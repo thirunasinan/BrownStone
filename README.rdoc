@@ -1,13 +1,24 @@
 problem model
 
 
-* name (input is text field, but displayName prepends source)
+done :
+
+* name
 * question
-
-
-
-
-
 * answer choices (which is correct)
-* associated content (potentially, file-upload)
-* source (dropdown) (at first no source before building source manager)
+* source (dropdown)
+
+images
+  name
+  description
+  order
+  content
+
+texts
+  name
+  order
+  content
+
+
+todo :
+

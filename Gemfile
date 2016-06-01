@@ -32,7 +32,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'rails_admin'
+#gem 'rails_admin'
+# to fix upload issue : https://github.com/hampelm/brickbeam/pull/177/files
+gem 'rails_admin', :github => 'sferik/rails_admin', :ref => 'c860b2f'
+
+gem "paperclip", "~> 5.0.0.beta1"
 
 group :production do
   gem 'rails_12factor'
