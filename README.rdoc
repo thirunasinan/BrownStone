@@ -1,0 +1,13 @@
+problem model
+
+
+* name (input is text field, but displayName prepends source)
+* question
+
+
+
+
+
+* answer choices (which is correct)
+* associated content (potentially, file-upload)
+* source (dropdown) (at first no source before building source manager)
