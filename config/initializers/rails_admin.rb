@@ -38,6 +38,23 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'Problem' do
+    list do
+      field :source
+      field :name
+      field :question
+    end
+
+    show do
+      field :source
+      field :name
+      field :question
+      field :texts
+      field :images
+      field :answer_choices
+    end
+  end
+
   config.model 'User' do
 
     #for some reason this doesnt work unless it comes before edit
