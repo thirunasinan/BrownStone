@@ -7,6 +7,9 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
+  config.authenticate_with do
+    redirect_to main_app.root_path unless warden.user && warden.user.is_admin
+  end
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -34,4 +37,38 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'User' do
+
+    #for some reason this doesnt work unless it comes before edit
+    create do
+      field :email
+      field :password
+      field :password_confirmation
+    end
+
+    show do
+      field :email
+      field :is_admin
+      field :is_teacher
+      field :last_sign_in_at
+    end
+
+    list do
+      field :email
+      field :is_admin
+      field :is_teacher
+      field :last_sign_in_at
+    end
+
+    edit do
+      field :email
+      field :is_admin
+      field :is_teacher
+      field :password
+      field :password_confirmation
+    end
+
+  end
+
 end

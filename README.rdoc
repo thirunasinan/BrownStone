@@ -20,5 +20,26 @@ texts
   content
 
 
+usermanager
+  create user invite
+
+put admin interface behind is_admin wall
+
+userfields
+  is_admin, default: false
+  is_teacher, default: false
+
+
 todo :
+
+create teacher/admin problem-viewer
+
+create home page for
+  teacher
+    problem_viewer
+  student
+    (actually homepage should be blank, can only go to links given to him)
+    student cant search, can only see problems in links the tutor sends
+  admin
+    links to rails_admin, problem_viewer
 

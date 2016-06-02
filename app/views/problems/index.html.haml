@@ -1,0 +1,19 @@
+= render 'nav'
+
+%p Problem Viewer
+
+%table
+  %tr
+    %th Name
+    %th Question
+    %th Source
+
+  - @problems.each do |problem|
+
+    %tr
+      %td
+        = link_to problem.name, problem_path(problem)
+      %td
+        = problem.question
+      %td
+        = problem.source_name

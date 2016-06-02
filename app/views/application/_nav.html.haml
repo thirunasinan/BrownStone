@@ -1,0 +1,6 @@
+- if current_user.is_admin
+  = render 'admin_nav'
+- elsif current_user.is_teacher
+  = render 'teacher_nav'
+- else
+  = render 'log_out'

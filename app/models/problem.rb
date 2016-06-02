@@ -3,4 +3,8 @@ class Problem < ActiveRecord::Base
   has_many :answer_choices, inverse_of: :problem
   has_many :texts, inverse_of: :problem
   has_many :images, inverse_of: :problem
+
+  def source_name
+    source.try(:name)
+  end
 end
