@@ -25,7 +25,9 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except ['User'] # since UserInvitation serves this purpose
+    end
     export
     bulk_delete
     show
@@ -75,6 +77,11 @@ RailsAdmin.config do |config|
       field :email
       field :is_admin
       field :is_teacher
+      field :login_as_user do
+        pretty_value do
+          %{<a href="#{value}">log in</a>}.html_safe
+        end
+      end
       field :last_sign_in_at
     end
 

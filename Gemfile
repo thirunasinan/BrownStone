@@ -48,6 +48,8 @@ gem 'ransack'
 
 gem 'will_paginate'
 
+gem 'switch_user'
+
 
 group :production do
   gem 'rails_12factor'
