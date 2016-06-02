@@ -38,8 +38,16 @@ gem 'rails_admin', :github => 'sferik/rails_admin', :ref => 'c860b2f'
 
 gem "paperclip", "~> 5.0.0.beta1"
 
+# sign up / sign in
 gem 'devise',           '~> 3.5.2'
+# set password through email invite
 gem 'devise_invitable', '~> 1.5.2'
+
+# search
+gem 'ransack'
+
+gem 'will_paginate'
+
 
 group :production do
   gem 'rails_12factor'

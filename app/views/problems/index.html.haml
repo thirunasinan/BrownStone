@@ -2,11 +2,20 @@
 
 %p Problem Viewer
 
+= search_form_for @q do |f|
+
+  = f.label :name_or_question_or_answer_choices_text_or_source_name_cont
+  = f.search_field :name_or_question_or_answer_choices_text_or_source_name_cont
+  = f.label :source_name_eq
+  = f.select :source_name_eq, Source.all.map(&:name), include_blank: true
+
+  = f.submit
+
 %table
   %tr
-    %th Name
-    %th Question
-    %th Source
+    = sort_link(@q, :name)
+    = sort_link(@q, :question)
+    = sort_link(@q, :source_name, 'Source')
 
   - @problems.each do |problem|
 
@@ -17,3 +26,5 @@
         = problem.question
       %td
         = problem.source_name
+
+= will_paginate @problems

@@ -1,37 +1,12 @@
-problem model
-
+hours :
+wed : 8hrs
+thurs : start at 12:30
 
 done :
 
-* name
-* question
-* answer choices (which is correct)
-* source (dropdown)
-
-images
-  name
-  description
-  order
-  content
-
-texts
-  name
-  order
-  content
-
-
-usermanager
-  create user invite
-
-put admin interface behind is_admin wall
-
-userfields
-  is_admin, default: false
-  is_teacher, default: false
-
 
 todo :
-
+add document manager
 create teacher/admin problem-viewer
 
 create home page for
