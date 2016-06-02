@@ -41,8 +41,6 @@ gem "paperclip", "~> 5.0.0.beta1"
 gem 'devise',           '~> 3.5.2'
 gem 'devise_invitable', '~> 1.5.2'
 
-gem 'rails_admin_invite', :git => 'git@github.com:tonywok/rails_admin_invite.git'
-
 group :production do
   gem 'rails_12factor'
 end
