@@ -46,7 +46,8 @@ gem 'devise_invitable', '~> 1.5.2'
 # search
 gem 'ransack'
 
-gem 'will_paginate'
+#gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'switch_user'
 

@@ -1,18 +1,27 @@
-%p Problem Viewer
+%br
+%br
+%br
 
 - if not current_user.low_access?
 
   = search_form_for @q do |f|
+    .form-group
+      = f.label :name_or_question_or_answer_choices_text_or_source_name_cont, "Search Terms (looks at text in Name, Question, Answer Choices, and Source)"
+      = f.search_field :name_or_question_or_answer_choices_text_or_source_name_cont, class: 'form-control'
+    .form-group
+      = f.label :source_name_eq, "Filter by Source"
+      = f.select :source_name_eq, Source.all.map(&:name), {include_blank: true}, {class: 'form-control'}
+    = f.submit class: 'btn btn-default'
 
-    = f.label :name_or_question_or_answer_choices_text_or_source_name_cont
-    = f.search_field :name_or_question_or_answer_choices_text_or_source_name_cont
-    = f.label :source_name_eq
-    = f.select :source_name_eq, Source.all.map(&:name), include_blank: true
-    = f.submit
-
-%p
-  - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
-  = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem)
+- if not current_user.low_access?
+  %p
+  %br
+  %br
+    - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
+    = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem, page: params[:page])
+  %br
+  %br
+  %br
 
 - if @show_full_problem
   - @problems.each do |problem|
@@ -20,23 +29,26 @@
 
 - else
 
-  %table
+  %table.table.table-hover.problems-table
     %tr
-      = sort_link(@q, :name)
-      = sort_link(@q, :question)
-      = sort_link(@q, :source_name, 'Source')
+      %th
+        = sort_link(@q, :source_name, 'Source')
+      %th
+        = sort_link(@q, :name)
+      %th
+        = sort_link(@q, :question)
 
     - @problems.each do |problem|
-
       %tr
+        %td
+          -if problem.source
+            = link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
+          -else
+            = ""
         %td
           = link_to problem.name, problem_path(problem)
         %td
-          - if @show_full_problem
-            = problem.question
-          - else
-            = problem.question_extract
-        %td
-          = problem.source_name
+          = problem.question_extract
 
-= will_paginate @problems
+
+= will_paginate @problems, renderer: BootstrapPagination::Rails

@@ -1,31 +1,23 @@
 hours :
 wed : 8hrs
-thurs : start at 12:30, break at 4:08, resume 5:11. break at 7:34, resume 8:10
+thurs : start at 12:30, break at 4:08, resume 5:11. break at 7:34, resume 8:10, end 9:10
 
 3:38
 2:23
-:50
+1:00
+
+total :
+7hrs
 
 
+fri :
+1:30 - 2:30
 
 done :
-
+removed search-form from view of students
+styled email-invitation page,
+styled problems search-form, table results, pagination
 
 todo :
-add document manager
-create teacher/admin problem-viewer
-
-create home page for
-  teacher
-    problem_viewer
-  student
-    (actually homepage should be blank, can only go to links given to him)
-    student cant search, can only see problems in links the tutor sends
-  admin
-    links to rails_admin, problem_viewer
-
-
-2 blocks down
-- bush and shank
-(burgers)
+style full-problem-view
 

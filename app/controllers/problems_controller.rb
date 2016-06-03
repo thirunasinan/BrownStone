@@ -1,18 +1,15 @@
 class ProblemsController < ApplicationController
-  PER_PAGE = 30
+  PER_PAGE = 1
   before_action :authenticate_user!
-  before_action :authenticate_admin_or_teacher!, only: :index
 
   def index
+    redirect_to root_path if params[:q].nil? and current_user.low_access?
     @q = Problem.ransack(params[:q])
     @problems = @q.result.paginate(page: params[:page], per_page: PER_PAGE)
-    puts "params : #{params.to_json}"
-    @show_full_problem = params[:full] == "true"
+    @show_full_problem = (current_user.low_access? or (params[:full] == "true"))
   end
 
   def show
     @problem = Problem.find(params[:id])
   end
-
-
 end
