@@ -1,12 +1,28 @@
--  original_user = user_signed_in? && SwitchUser::Provider.init(controller).original_user
-- if original_user
-  - next_path = ERB::Util.url_encode "/switch_user/remember_user?remember=false}"
-  = link_to "Back to #{original_user.email}", "/switch_user?scope_identifier=user_#{original_user.id}&path=#{next_path}"
+// cant use url path helpers because they wont work in rails_admin
 
+.container-fluid
+.navbar-header
+  = link_to "Brown", "/", {class: "navbar-brand"}
+%ul.nav.navbar-nav
+  - if current_user && current_user.is_admin
+    %li
+      = link_to 'Admin CMS', '/admin'
+  - if current_user && (current_user.is_admin or current_user.is_teacher)
+    %li
+      = link_to 'Problem Viewer', '/problems'
 
-- if current_user.is_admin
-  = render 'admin_nav'
-- elsif current_user.is_teacher
-  = render 'teacher_nav'
-- else
-  = render 'log_out'
+  - if current_user && current_user.is_admin
+    -  original_user = user_signed_in? && SwitchUser::Provider.init(controller).original_user
+    - if original_user
+      - next_path = ERB::Util.url_encode "/switch_user/remember_user?remember=false}"
+      %li
+        = link_to "switch back to #{original_user.email}", "/switch_user?scope_identifier=user_#{original_user.id}&path=#{next_path}"
+
+  - if current_user
+    %li
+      = link_to 'log out', '/users/sign_out', method: 'delete'
+  - else
+    %li
+      = link_to 'log in', '/users/sign_in'
+    %li
+      = link_to 'sign up', '/users/sign_up'

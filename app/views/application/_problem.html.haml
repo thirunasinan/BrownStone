@@ -1,0 +1,33 @@
+
+- # if !student -> show source + name
+- # everyone : question, answer-choices (if !student, show which one is correct),
+- # associated images, texts
+- if not current_user.low_access?
+  %p
+    = problem.source_name
+  %p
+    = problem.name
+
+%p
+  = problem.question
+
+- if problem.texts.any?
+  %p
+    related texts
+    - problem.texts.each do |text|
+      %p
+        = text.content
+
+- if problem.images.any?
+  %p
+    related images
+    - problem.images.each do |image|
+      = image_tag image.content.url(:medium)
+
+%p
+  answer choices
+- problem.answer_choices.each do |ac|
+  = render 'answer_choice', answer_choice: ac
+
+
+

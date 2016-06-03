@@ -50,6 +50,10 @@ gem 'will_paginate'
 
 gem 'switch_user'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+# adds vendor prefixes to vendor assets
+gem 'autoprefixer-rails'
+
 
 group :production do
   gem 'rails_12factor'

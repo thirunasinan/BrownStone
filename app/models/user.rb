@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
     "/switch_user/remember_user?remember=true&path=#{next_path}"
   end
 
+  def low_access?
+    not (is_admin or is_teacher)
+  end
 
   private
 

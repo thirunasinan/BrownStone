@@ -1,30 +1,42 @@
-= render 'nav'
-
 %p Problem Viewer
 
-= search_form_for @q do |f|
+- if not current_user.low_access?
 
-  = f.label :name_or_question_or_answer_choices_text_or_source_name_cont
-  = f.search_field :name_or_question_or_answer_choices_text_or_source_name_cont
-  = f.label :source_name_eq
-  = f.select :source_name_eq, Source.all.map(&:name), include_blank: true
+  = search_form_for @q do |f|
 
-  = f.submit
+    = f.label :name_or_question_or_answer_choices_text_or_source_name_cont
+    = f.search_field :name_or_question_or_answer_choices_text_or_source_name_cont
+    = f.label :source_name_eq
+    = f.select :source_name_eq, Source.all.map(&:name), include_blank: true
+    = f.submit
 
-%table
-  %tr
-    = sort_link(@q, :name)
-    = sort_link(@q, :question)
-    = sort_link(@q, :source_name, 'Source')
+%p
+  - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
+  = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem)
 
+- if @show_full_problem
   - @problems.each do |problem|
+    = render 'problem', problem: problem
 
+- else
+
+  %table
     %tr
-      %td
-        = link_to problem.name, problem_path(problem)
-      %td
-        = problem.question
-      %td
-        = problem.source_name
+      = sort_link(@q, :name)
+      = sort_link(@q, :question)
+      = sort_link(@q, :source_name, 'Source')
+
+    - @problems.each do |problem|
+
+      %tr
+        %td
+          = link_to problem.name, problem_path(problem)
+        %td
+          - if @show_full_problem
+            = problem.question
+          - else
+            = problem.question_extract
+        %td
+          = problem.source_name
 
 = will_paginate @problems

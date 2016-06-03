@@ -1,6 +1,12 @@
 hours :
 wed : 8hrs
-thurs : start at 12:30
+thurs : start at 12:30, break at 4:08, resume 5:11. break at 7:34, resume 8:10
+
+3:38
+2:23
+:50
+
+
 
 done :
 
