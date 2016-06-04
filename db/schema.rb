@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602173745) do
+ActiveRecord::Schema.define(version: 20160604192244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20160602173745) do
   create_table "images", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "problem_id"
     t.string   "content_file_name"
     t.string   "content_content_type"
     t.integer  "content_file_size"
@@ -35,19 +34,13 @@ ActiveRecord::Schema.define(version: 20160602173745) do
     t.integer  "order"
   end
 
-  add_index "images", ["problem_id"], name: "index_images_on_problem_id", using: :btree
-
-  create_table "problem_images", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "problem_id"
-    t.string   "content_file_name"
-    t.string   "content_content_type"
-    t.integer  "content_file_size"
-    t.datetime "content_updated_at"
+  create_table "images_problems", force: :cascade do |t|
+    t.integer "image_id"
+    t.integer "problem_id"
   end
 
-  add_index "problem_images", ["problem_id"], name: "index_problem_images_on_problem_id", using: :btree
+  add_index "images_problems", ["image_id"], name: "index_images_problems_on_image_id", using: :btree
+  add_index "images_problems", ["problem_id"], name: "index_images_problems_on_problem_id", using: :btree
 
   create_table "problems", force: :cascade do |t|
     t.string  "name"
@@ -56,6 +49,14 @@ ActiveRecord::Schema.define(version: 20160602173745) do
   end
 
   add_index "problems", ["source_id"], name: "index_problems_on_source_id", using: :btree
+
+  create_table "problems_texts", force: :cascade do |t|
+    t.integer "problem_id"
+    t.integer "text_id"
+  end
+
+  add_index "problems_texts", ["problem_id"], name: "index_problems_texts_on_problem_id", using: :btree
+  add_index "problems_texts", ["text_id"], name: "index_problems_texts_on_text_id", using: :btree
 
   create_table "sources", force: :cascade do |t|
     t.string   "name",                  null: false
@@ -69,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160602173745) do
   create_table "texts", force: :cascade do |t|
     t.string  "name"
     t.text    "content"
-    t.integer "problem_id"
     t.integer "order"
   end
 
@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(version: 20160602173745) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "images", "problems"
-  add_foreign_key "problem_images", "problems"
+  add_foreign_key "images_problems", "images"
+  add_foreign_key "images_problems", "problems"
   add_foreign_key "problems", "sources"
+  add_foreign_key "problems_texts", "problems"
+  add_foreign_key "problems_texts", "texts"
 end

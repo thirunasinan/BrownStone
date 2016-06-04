@@ -1,2 +1,6 @@
-%p
-  = answer_choice.text
+-if (not current_user.low_access?) and answer_choice.correct
+  %li.list-group-item.correct
+    = answer_choice.text
+-else
+  %li.list-group-item
+    = answer_choice.text

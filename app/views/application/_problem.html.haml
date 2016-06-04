@@ -2,32 +2,51 @@
 - # if !student -> show source + name
 - # everyone : question, answer-choices (if !student, show which one is correct),
 - # associated images, texts
-- if not current_user.low_access?
-  %p
-    = problem.source_name
-  %p
-    = problem.name
 
-%p
-  = problem.question
+- if not current_user.low_access?
+  %h3
+    = link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
+    = ": " + problem.name
+  %br
+  %br
+
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Question
+  .panel-body
+    = problem.question
+
 
 - if problem.texts.any?
-  %p
-    related texts
-    - problem.texts.each do |text|
-      %p
+  - problem.texts.each do |text|
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          Related Text
+      .panel-body
         = text.content
 
 - if problem.images.any?
-  %p
-    related images
-    - problem.images.each do |image|
-      = image_tag image.content.url(:medium)
+  - problem.images.each do |image|
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          Related Image
+      .panel-body
+        = image_tag image.content.url(:medium)
 
-%p
-  answer choices
-- problem.answer_choices.each do |ac|
-  = render 'answer_choice', answer_choice: ac
+
+- if problem.answer_choices.any?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        Answer Choices
+    .panel-body
+      %ui.list-group
+        - problem.answer_choices.each do |ac|
+          = render 'answer_choice', answer_choice: ac
 
 
 

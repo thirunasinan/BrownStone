@@ -1,3 +1,3 @@
 class Text < ActiveRecord::Base
-  belongs_to :problem, inverse_of: :texts
+  has_and_belongs_to_many :problems
 end

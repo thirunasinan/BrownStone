@@ -1,17 +1,9 @@
 hours :
 wed : 8hrs
-thurs : start at 12:30, break at 4:08, resume 5:11. break at 7:34, resume 8:10, end 9:10
+thurs : 7hrs
+fri : 1hr
+sat : 1hr 45min  (2:30 - 3:30, 3:47 - 4:31)
 
-3:38
-2:23
-1:00
-
-total :
-7hrs
-
-
-fri :
-1:30 - 2:30
 
 done :
 removed search-form from view of students
