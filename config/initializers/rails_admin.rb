@@ -47,6 +47,31 @@ RailsAdmin.config do |config|
       field :question
     end
 
+    create do
+      field :source
+      field :name
+      field :question
+      field :texts
+      field :images
+      field :raw_answer_choices, :text do
+        html_attributes rows: 10, cols: 100
+      end
+
+      field :answer_choices do
+        label 'individual answer choices'
+        partial 'problem_answer_choices'
+      end
+    end
+
+    edit do
+      field :source
+      field :name
+      field :question
+      field :texts
+      field :images
+      field :answer_choices
+    end
+
     show do
       field :source
       field :name

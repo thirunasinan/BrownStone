@@ -1,0 +1,9 @@
+.form-group.control-group
+- 6.times do
+  .form-group.control-group.text_type
+    %label.col-sm-2.control-label answer choice
+    %div.col-sm-10.controls
+      = form.fields_for :answer_choices, [AnswerChoice.new] do |answer_choice_fields|
+        = answer_choice_fields.text_field :text
+
+      //%textarea.form-control{cols: 100}
