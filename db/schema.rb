@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604192244) do
+ActiveRecord::Schema.define(version: 20160607190914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_choices", force: :cascade do |t|
-    t.text    "text",                       null: false
-    t.boolean "correct",    default: false, null: false
-    t.integer "problem_id"
+    t.text     "text",                               null: false
+    t.boolean  "correct",            default: false, null: false
+    t.integer  "problem_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "answer_choices", ["problem_id"], name: "index_answer_choices_on_problem_id", using: :btree
@@ -42,8 +46,20 @@ ActiveRecord::Schema.define(version: 20160604192244) do
   add_index "images_problems", ["image_id"], name: "index_images_problems_on_image_id", using: :btree
   add_index "images_problems", ["problem_id"], name: "index_images_problems_on_problem_id", using: :btree
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "test_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "notes", ["test_id"], name: "index_notes_on_test_id", using: :btree
+
   create_table "problems", force: :cascade do |t|
-    t.string  "name"
+    t.string  "number"
     t.text    "question"
     t.integer "source_id"
   end
@@ -67,8 +83,16 @@ ActiveRecord::Schema.define(version: 20160604192244) do
     t.datetime "document_updated_at"
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.string  "title"
+    t.text    "description"
+    t.text    "instructions"
+    t.integer "source_id"
+  end
+
+  add_index "tests", ["source_id"], name: "index_tests_on_source_id", using: :btree
+
   create_table "texts", force: :cascade do |t|
-    t.string  "name"
     t.text    "content"
     t.integer "order"
   end
@@ -110,7 +134,9 @@ ActiveRecord::Schema.define(version: 20160604192244) do
 
   add_foreign_key "images_problems", "images"
   add_foreign_key "images_problems", "problems"
+  add_foreign_key "notes", "tests"
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
+  add_foreign_key "tests", "sources"
 end

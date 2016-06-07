@@ -1,6 +1,14 @@
 -if (not current_user.low_access?) and answer_choice.correct
-  %li.list-group-item.correct
-    = answer_choice.text
+  - class_name = "list-group-item correct"
 -else
-  %li.list-group-item
+  - class_name = "list-group-item"
+
+%li{class: class_name}
+  - if answer_choice.image.present?
+    - if answer_choice.text.present?
+      %p
+        = answer_choice.text
+    %p
+      = image_tag answer_choice.image.url(:medium)
+  - else
     = answer_choice.text

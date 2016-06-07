@@ -3,6 +3,11 @@
 <head>
   <title>Brown</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <!-- latex rendering -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,6 +20,7 @@
     <br />
     <br />
     <%= render 'layouts/messages' %>
+    <div class='latex'><%="c = \\pm\\sqrt{a^2 + b^2}"%></div>
     <%= yield %>
   </div>
 

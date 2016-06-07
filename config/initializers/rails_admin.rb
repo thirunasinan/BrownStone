@@ -40,16 +40,40 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'AnswerChoice' do
+    label 'Answer'
+    list do
+      scopes [:is_correct]
+      field :problem
+      field :text do
+        label 'answer'
+      end
+
+      field :image
+    end
+
+    edit do
+      field :text
+      field :image
+    end
+
+    show do
+      field :text
+      field :image
+      field :correct
+    end
+  end
+
   config.model 'Problem' do
     list do
       field :source
-      field :name
+      field :number
       field :question
     end
 
     create do
       field :source
-      field :name
+      field :number
       field :question
       field :texts
       field :images
@@ -65,20 +89,39 @@ RailsAdmin.config do |config|
 
     edit do
       field :source
-      field :name
+      field :number
       field :question
       field :texts
       field :images
-      field :answer_choices
+      field :answer_choices do
+        label 'Answer Choices'
+      end
     end
 
     show do
       field :source
-      field :name
-      field :question
+      field :number
+      field :question do
+        pretty_value do
+          %{<div class='latex'>'#{value}'</div>}.html_safe
+        end
+      end
       field :texts
       field :images
-      field :answer_choices
+      field :answer_choices do
+        label 'Answer Choices'
+      end
+    end
+  end
+
+  config.model 'Source' do
+    list do
+      field :name
+      field :problems do
+        pretty_value do
+          value.count
+        end
+      end
     end
   end
 

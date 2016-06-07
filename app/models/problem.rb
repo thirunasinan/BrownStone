@@ -11,9 +11,13 @@ class Problem < ActiveRecord::Base
 
   accepts_nested_attributes_for :answer_choices
 
-  before_update :process_raw_answer_choices
+  around_save :process_answer_choices
 
-  attr_accessor :raw_answer_choices, :answer_choices, :answer_choices_attributes
+  attr_accessor :raw_answer_choices, :answer_choices_attributes
+
+  def name
+    "#{self.source_name} : #{self.number}"
+  end
 
   def source_name
     source.try(:name)
@@ -29,20 +33,24 @@ class Problem < ActiveRecord::Base
     result
   end
 
-  def answer_choices_attributes=(attributes)
-    return if attributes.nil?
-    x = attributes.reject do |key, value|
-      value[:text].length == 0
-    end
-    self.answer_choices = x
-  end
-
   private
 
-  def process_raw_answer_choices
-    return if self.raw_answer_choices.nil?
-    self.answer_choices = AnswerChoiceProcessor.run(self.raw_answer_choices).map do |string|
-      AnswerChoice.create(text: string)
+  def process_answer_choices
+    if self.raw_answer_choices.present?
+      self.answer_choices = AnswerChoiceProcessor.run(self.raw_answer_choices).map do |string|
+        AnswerChoice.create(text: string)
+      end
+      yield
+    else
+      acs = self.answer_choices_attributes
+      yield
+      acs.each do |key, value|
+        if value[:text].length != 0
+          puts "past if"
+          ac = AnswerChoice.create(text: value[:text], problem_id: self.id)
+          ac
+        end
+      end
     end
   end
 

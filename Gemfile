@@ -57,6 +57,10 @@ gem 'autoprefixer-rails'
 
 gem 'monadic'
 
+#latex
+gem 'katex-rails'
+# apparently needs :
+gem 'therubyracer'
 
 
 group :production do

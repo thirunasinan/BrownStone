@@ -1,13 +1,8 @@
-class AnswerChoice < ActiveRecord::Base
-  belongs_to :problem, inverse_of: :answer_choices
-  scope :is_correct, -> {where(correct: true)}
+class Note < ActiveRecord::Base
+  belongs_to :test, inverse_of: :notes
   has_attached_file :image,
                     styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: "/images/:style/missing.png"
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-
-  def name
-    self.text
-  end
 end

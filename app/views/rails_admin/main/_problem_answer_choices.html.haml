@@ -4,6 +4,7 @@
     %label.col-sm-2.control-label answer choice
     %div.col-sm-10.controls
       = form.fields_for :answer_choices, [AnswerChoice.new] do |answer_choice_fields|
-        = answer_choice_fields.text_field :text
+        = answer_choice_fields.text_area :text, {class: 'form-control', cols: 100}
+        = answer_choice_fields.file_field :image
 
       //%textarea.form-control{cols: 100}

@@ -135,11 +135,13 @@ data =
     ]
   }
 
-text = Text.create(content: data[:passage])
-source = Source.create(name: data[:source])
+text = Text.find_or_create_by(content: data[:passage])
+source = Source.find_or_create_by(name: data[:source])
 data[:problems].each do |p|
-  p1 = Problem.create(name: p[:name], question: p[:question], texts: [text], source: source)
+  p1 = Problem.find_or_create_by(number: p[:name], question: p[:question], texts: [text], source: source)
   p[:answer_choices].each do |ac|
-    AnswerChoice.create(problem: p1, text: ac[:text], correct: ac[:correct])
+    AnswerChoice.find_or_create_by(problem: p1, text: ac[:text], correct: ac[:correct])
   end
 end
+
+Source.find_or_create_by(name: 'Original')
