@@ -42,37 +42,33 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.model 'AnswerChoice' do
-    label 'Answer'
-    list do
-      scopes [:is_correct]
-      field :problem
-      field :text do
-        label 'answer'
-      end
-
-      field :image
-    end
-
-    edit do
-      field :text
-      field :image
-      field :correct
-    end
-
-    show do
-      field :text
-      field :image
-      field :correct
-    end
-  end
-
   config.model 'Problem' do
     navigation_label 'Content'
     list do
       field :source
       field :number
-      field :question
+      field :question do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+    end
+
+
+    show do
+      field :source
+      field :number
+      field :question do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+      field :texts
+      field :images
+      field :answer_choices do
+        label 'answer choices'
+        partial 'different_name'
+      end
     end
 
     create do
@@ -103,19 +99,30 @@ RailsAdmin.config do |config|
       end
     end
 
+  end
+
+  config.model 'AnswerChoice' do
+    label 'Answer'
+    list do
+      scopes [:is_correct]
+      field :problem
+      field :text do
+        label 'answer'
+      end
+
+      field :image
+    end
+
+    edit do
+      field :text
+      field :image
+      field :correct
+    end
+
     show do
-      field :source
-      field :number
-      field :question do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-      field :texts
-      field :images
-      field :answer_choices do
-        label 'Answer Choices'
-      end
+      field :text
+      field :image
+      field :correct
     end
   end
 
@@ -133,6 +140,51 @@ RailsAdmin.config do |config|
 
   config.model 'UserInvitation' do
     navigation_label 'Users'
+  end
+
+  config.model 'Text' do
+    show do
+      field :content do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+    end
+  end
+
+  config.model 'Image' do
+    show do
+      field :description do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+    end
+  end
+
+  config.model 'Assessment' do
+    show do
+      field :description do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+      field :instructions do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+    end
+  end
+
+  config.model 'Note' do
+    show do
+      field :content do
+        pretty_value do
+          %{<div class='latex'>#{value}</div>}.html_safe
+        end
+      end
+    end
   end
 
   config.model 'User' do

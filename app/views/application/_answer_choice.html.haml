@@ -6,9 +6,10 @@
 %li{class: class_name}
   - if answer_choice.image.present?
     - if answer_choice.text.present?
-      %p
+      %p.latex
         = answer_choice.text
     %p
       = image_tag answer_choice.image.url(:medium)
   - else
-    = answer_choice.text
+    %span.latex
+      = answer_choice.text
