@@ -138,7 +138,7 @@ data =
 text = Text.find_or_create_by(content: data[:passage])
 source = Source.find_or_create_by(name: data[:source])
 data[:problems].each do |p|
-  p1 = Problem.find_or_create_by(number: p[:name], question: p[:question], texts: [text], source: source)
+  p1 = Problem.create(number: p[:name], question: p[:question], texts: [text], source: source)
   p[:answer_choices].each do |ac|
     AnswerChoice.find_or_create_by(problem: p1, text: ac[:text], correct: ac[:correct])
   end
