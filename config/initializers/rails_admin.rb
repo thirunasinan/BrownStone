@@ -55,6 +55,7 @@ RailsAdmin.config do |config|
     edit do
       field :text
       field :image
+      field :correct
     end
 
     show do
@@ -94,7 +95,8 @@ RailsAdmin.config do |config|
       field :texts
       field :images
       field :answer_choices do
-        label 'Answer Choices'
+        label 'individual answer choices'
+        partial 'problem_answer_choices'
       end
     end
 

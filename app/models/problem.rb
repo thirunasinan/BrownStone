@@ -37,18 +37,22 @@ class Problem < ActiveRecord::Base
 
   def process_answer_choices
     if self.raw_answer_choices.present?
+      self.answer_choices.destroy_all
       self.answer_choices = AnswerChoiceProcessor.run(self.raw_answer_choices).map do |string|
-        AnswerChoice.create(text: string)
+        AnswerChoice.find_or_create_by(text: string)
       end
       yield
     else
       acs = self.answer_choices_attributes
       yield
+      texts = acs.values.map{|v| v[:text]}
+      self.answer_choices.where.not(text: texts).destroy_all
       return if acs.nil?
       acs.each do |key, value|
         if value[:text].length != 0
-          puts "past if"
-          ac = AnswerChoice.create(text: value[:text], problem_id: self.id)
+          ac = AnswerChoice.find_or_create_by(text: value[:text], problem_id: self.id)
+          correct = value[:correct].nil? ? false : value[:correct]
+          ac.update(correct: correct)
           ac
         end
       end
