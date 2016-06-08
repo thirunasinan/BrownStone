@@ -6,7 +6,7 @@ describe AnswerChoiceProcessor do
     AnswerChoiceProcessor.run(input)
   end
 
-  it 'works' do
+  it 'works for A) answer format' do
     test1 = "A) answer choice 1 B) answer choice 2"
     result = subject(test1)
     expect(result).to eq([
@@ -15,4 +15,12 @@ describe AnswerChoiceProcessor do
     ])
   end
 
+  it 'works for (A) answer format' do
+    test1 = "(A) answer choice 1 (B) answer choice 2"
+    result = subject(test1)
+    expect(result).to eq([
+      "answer choice 1",
+      "answer choice 2"
+    ])
+  end
 end
