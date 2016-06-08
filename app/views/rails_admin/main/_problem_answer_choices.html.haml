@@ -1,17 +1,24 @@
 .form-group.control-group
-- extant = @object.answer_choices#[*1..5].map{|i| AnswerChoice.new}
+- extant = @object.answer_choices
 - num = 7 - extant.length
 - empty = [*1..num].map{|i| AnswerChoice.new }
 - records = extant.to_a.concat(empty)
 .form-group.control-group.text_type
-  %label.col-sm-2.control-label answer choice
+  %label.col-sm-2.control-label
   %div.col-sm-10.controls
     - i = 0
     = form.fields_for :answer_choices, records do |answer_choice_fields|
-      = answer_choice_fields.text_area :text, {class: 'form-control', cols: 100}
-      - if records[i].image.present?
-        = image_tag records[i].image.url(:medium)
-      = answer_choice_fields.file_field :image
+      %div.form-group
+        = answer_choice_fields.label :text
+        = answer_choice_fields.text_area :text, {class: 'form-control', cols: 100}
+      %div.form-group
+        = answer_choice_fields.label :image
+        - if records[i].image.present?
+          = image_tag records[i].image.url(:medium)
+        = answer_choice_fields.file_field :image
       - i = i + 1
-      = answer_choice_fields.check_box :correct
+      %div.form-group
+        = answer_choice_fields.label :correct
+        = answer_choice_fields.check_box :correct
+      %br
 
