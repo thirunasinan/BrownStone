@@ -3,6 +3,7 @@ class Text < ActiveRecord::Base
   has_many :sources, through: :problems
 
   def name
+    return "" if content.nil?
     content = "#{self.content[0..40]}..."
     if self.sources.any?
       first = self.sources.first.name
