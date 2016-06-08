@@ -44,6 +44,7 @@ class Problem < ActiveRecord::Base
     else
       acs = self.answer_choices_attributes
       yield
+      return if acs.nil?
       acs.each do |key, value|
         if value[:text].length != 0
           puts "past if"
