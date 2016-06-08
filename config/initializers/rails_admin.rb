@@ -22,6 +22,8 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.included_models = ["Problem", "Source", "User", "UserInvitation"]
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -66,6 +68,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Problem' do
+    navigation_label 'Content'
     list do
       field :source
       field :number
@@ -117,6 +120,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Source' do
+    navigation_label 'Content'
     list do
       field :name
       field :problems do
@@ -127,7 +131,12 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'UserInvitation' do
+    navigation_label 'Users'
+  end
+
   config.model 'User' do
+    navigation_label 'Users'
 
     #for some reason this doesnt work unless it comes before edit
     create do
