@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607190914) do
+ActiveRecord::Schema.define(version: 20160608173848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20160607190914) do
   end
 
   add_index "answer_choices", ["problem_id"], name: "index_answer_choices_on_problem_id", using: :btree
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer "source_id"
+    t.string  "title"
+    t.text    "description"
+    t.text    "instructions"
+  end
+
+  add_index "assessments", ["source_id"], name: "index_assessments_on_source_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -47,16 +56,16 @@ ActiveRecord::Schema.define(version: 20160607190914) do
   add_index "images_problems", ["problem_id"], name: "index_images_problems_on_problem_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
+    t.text     "content"
     t.string   "title"
-    t.text     "text"
-    t.integer  "test_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "assessment_id"
   end
 
-  add_index "notes", ["test_id"], name: "index_notes_on_test_id", using: :btree
+  add_index "notes", ["assessment_id"], name: "index_notes_on_assessment_id", using: :btree
 
   create_table "problems", force: :cascade do |t|
     t.string  "number"
@@ -132,9 +141,10 @@ ActiveRecord::Schema.define(version: 20160607190914) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "assessments", "sources"
   add_foreign_key "images_problems", "images"
   add_foreign_key "images_problems", "problems"
-  add_foreign_key "notes", "tests"
+  add_foreign_key "notes", "assessments"
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
