@@ -103,7 +103,7 @@ RailsAdmin.config do |config|
       field :number
       field :question do
         pretty_value do
-          %{<div class='latex'>'#{value}'</div>}.html_safe
+          %{<div class='latex'>#{value}</div>}.html_safe
         end
       end
       field :texts

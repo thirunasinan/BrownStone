@@ -10,4 +10,5 @@ mon : 2hr 30min
 second batch
 
 mon : 2hr 40min |  2:50 - 3:50, resume 4:10 - 5:10, 5:37 - 7:17
-tues : 11:40 - 1:10, 2:02 - 4:21
+tues : 3hr 50min | 11:40 - 1:10, 2:02 - 4:21
+wed : 12:13 -
