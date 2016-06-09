@@ -150,11 +150,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'UserInvitation' do
-    weight 2
-    navigation_label 'People'
-  end
-
   config.model 'Text' do
     show do
       field :content do
