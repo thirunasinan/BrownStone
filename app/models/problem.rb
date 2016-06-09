@@ -33,6 +33,14 @@ class Problem < ActiveRecord::Base
     result
   end
 
+
+  def display_number
+    return "" if self.number.nil?
+    i, f = self.number.to_i, self.number.to_f
+    x = (i == f ? i : f)
+    "#{x}"
+  end
+
   private
 
   def process_answer_choices
@@ -58,6 +66,7 @@ class Problem < ActiveRecord::Base
       end
     end
   end
+
 
 
   def question_extract_length
