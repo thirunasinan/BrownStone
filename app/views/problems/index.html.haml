@@ -2,8 +2,8 @@
 
   = search_form_for @q do |f|
     .form-group
-      = f.label :question_or_answer_choices_text_or_source_name_cont, "Search Terms (looks at text in Name, Question, Answer Choices, and Source)"
-      = f.search_field :question_or_answer_choices_text_or_source_name_cont, class: 'form-control'
+      = f.label :number_or_question_or_answer_choices_text_or_source_name_cont, "Search Terms (looks at text in Name, Question, Answer Choices, and Source)"
+      = f.search_field :number_or_question_or_answer_choices_text_or_source_name_cont, class: 'form-control'
     .form-group
       = f.label :source_name_eq, "Filter by Source"
       = f.select :source_name_eq, Source.all.map(&:name), {include_blank: true}, {class: 'form-control'}

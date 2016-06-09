@@ -15,6 +15,10 @@ class Problem < ActiveRecord::Base
 
   attr_accessor :raw_answer_choices, :answer_choices_attributes
 
+  ransacker :number do
+    Arel.sql("to_char(\"#{table_name}\".\"number\", '9999.9999')")
+  end
+
   def source_id_enum
     Source.all.map(&:id)
   end
