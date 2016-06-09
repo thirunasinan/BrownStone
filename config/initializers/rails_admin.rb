@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.included_models = ["Problem", "Source", "User", "UserInvitation"]
+  config.included_models = ["Problem", "Source", "Image", "User", "UserInvitation"]
 
   config.actions do
     dashboard                     # mandatory
@@ -151,7 +151,8 @@ RailsAdmin.config do |config|
   end
 
   config.model 'UserInvitation' do
-    navigation_label 'Users'
+    weight 2
+    navigation_label 'People'
   end
 
   config.model 'Text' do
@@ -165,6 +166,8 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Image' do
+    weight 10
+    navigation_label 'Assets'
     show do
       field :description do
         pretty_value do
@@ -200,7 +203,8 @@ RailsAdmin.config do |config|
   end
 
   config.model 'User' do
-    navigation_label 'Users'
+    navigation_label 'People'
+    weight 1
 
     #for some reason this doesnt work unless it comes before edit
     create do
