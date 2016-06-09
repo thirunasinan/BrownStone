@@ -15,6 +15,10 @@ class Problem < ActiveRecord::Base
 
   attr_accessor :raw_answer_choices, :answer_choices_attributes
 
+  def source_id_enum
+    Source.all.map(&:id)
+  end
+
   def name
     "#{self.source_name} : #{self.number}"
   end

@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
   config.model 'Problem' do
     navigation_label 'Content'
     list do
+      filters [:source]
       field :source
       field :number
       field :question do
