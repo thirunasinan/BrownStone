@@ -20,7 +20,7 @@
   %br
 
 - if @show_full_problem
-  - @problems.each do |problem|
+  - @uniq.each do |problem|
     = render 'problem', problem: problem
 
 - else
@@ -30,11 +30,11 @@
       %th
         = 'Source'
       %th
-        = 'Name'
+        = 'Number'
       %th
         = 'Question'
 
-    - @problems.each do |problem|
+    - @uniq.each do |problem|
       %tr
         %td
           -if problem.source

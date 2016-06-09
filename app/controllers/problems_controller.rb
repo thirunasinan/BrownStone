@@ -5,7 +5,9 @@ class ProblemsController < ApplicationController
   def index
     redirect_to root_path if params[:q].nil? and current_user.low_access?
     @q = Problem.ransack(params[:q])
-    @problems = @q.result(distinct: true).includes(:source).paginate(page: params[:page], per_page: PER_PAGE)
+    @q.sorts = ['source_name asc', 'number asc']
+    @problems = @q.result.includes(:source).paginate(page: params[:page], per_page: PER_PAGE)
+    @uniq = @problems.to_a.uniq
     @show_full_problem = (current_user.low_access? or (params[:full] == "true"))
   end
 
