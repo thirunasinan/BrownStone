@@ -20,7 +20,7 @@ class Problem < ActiveRecord::Base
   end
 
   def name
-    "#{self.source_name} : #{self.number}"
+    "#{self.source_name} : #{self.display_number}"
   end
 
   def source_name
