@@ -129,7 +129,11 @@ RailsAdmin.config do |config|
   config.model 'Source' do
     navigation_label 'Content'
     list do
-      field :name
+      field :name do
+        pretty_value do
+          %{<a href="source/#{bindings[:object].id}">#{value}</a>}.html_safe
+        end
+      end
       field :problems do
         pretty_value do
           value.count
