@@ -45,9 +45,16 @@ RailsAdmin.config do |config|
   config.model 'Problem' do
     navigation_label 'Content'
     list do
+      sort_by :number
       filters [:source]
       field :source
-      field :number
+      field :number do
+        label "Number"
+        sort_reverse false
+        pretty_value do
+          bindings[:object].display_number
+        end
+      end
       field :question do
         pretty_value do
           %{<div class='latex'>#{value}</div>}.html_safe
