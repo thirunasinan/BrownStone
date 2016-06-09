@@ -28,7 +28,7 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new do
-      except ['User'] # since UserInvitation serves this purpose
+      #except ['User'] # since UserInvitation serves this purpose
     end
     #export
     bulk_delete
@@ -209,8 +209,8 @@ RailsAdmin.config do |config|
     #for some reason this doesnt work unless it comes before edit
     create do
       field :email
-      field :password
-      field :password_confirmation
+      #field :password
+      #field :password_confirmation
     end
 
     show do
