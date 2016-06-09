@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
     new do
       except ['User'] # since UserInvitation serves this purpose
     end
-    export
+    #export
     bulk_delete
     show
     edit
