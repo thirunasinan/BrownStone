@@ -5,8 +5,9 @@
 
 - if not current_user.low_access?
   %h3
-    = link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
-    = ": " + problem.display_number
+    //= link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
+    //= ": " + problem.display_number
+    = "#{problem.source_name} : #{problem.display_number}"
   %br
   %br
 
