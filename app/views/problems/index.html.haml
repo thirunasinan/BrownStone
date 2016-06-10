@@ -38,7 +38,8 @@
       %tr
         %td
           -if problem.source
-            = link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
+            //= link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
+            = problem.source.name
           -else
             = ""
         %td
