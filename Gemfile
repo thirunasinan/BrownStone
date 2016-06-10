@@ -73,6 +73,9 @@ group :development, :test do
 
   # testing
   gem 'rspec-rails'
+
+  # javascript-testing
+  gem 'teaspoon-jasmine'
 end
 
 group :development do

@@ -10,6 +10,8 @@
   - if current_user && (current_user.is_admin or current_user.is_teacher)
     %li
       = link_to 'Problem Viewer', '/problems'
+    %li
+      = link_to 'Problem Parser', '/problems_parser'
 
   - if current_user && current_user.is_admin
     -  original_user = user_signed_in? && SwitchUser::Provider.init(controller).original_user

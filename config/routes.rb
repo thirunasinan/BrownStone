@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get 'problems_parser', to: 'problems#parser'
+
   get 'problems', to: 'problems#index'
   get 'problems/:id', to: 'problems#show', as: :problem
 

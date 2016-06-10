@@ -18,4 +18,7 @@ class ProblemsController < ApplicationController
   def create
 
   end
+
+  def parser
+  end
 end
