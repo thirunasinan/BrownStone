@@ -31,6 +31,6 @@ class ProblemsController < ApplicationController
   end
 
   def parser
-    render component: 'Parser'
+    # cant prerender components - https://github.com/reactjs/react-rails/issues/403
   end
 end
