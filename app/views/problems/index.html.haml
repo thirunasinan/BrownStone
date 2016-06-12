@@ -28,11 +28,14 @@
   %table.table.table-hover.problems-table
     %tr
       %th
-        = 'Source'
+        //= 'Source'
+        = sort_link(@q, :source_name, "Source")
       %th
-        = 'Number'
+        //= 'Number'
+        = sort_link(@q, :number)
       %th
-        = 'Question'
+        //= 'Question'
+        = sort_link(@q, :question)
 
     - @uniq.each do |problem|
       %tr
