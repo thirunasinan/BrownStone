@@ -1,13 +1,22 @@
+var processLatex = function (text) {
+  var trimmed = text.trim()
+  var code = trimmed.slice(0,5)
+  var isLatex = (code === 'latex')
+  if (isLatex) {
+    actualText = trimmed.slice(6, text.length)
+  } else {
+    actualText = trimmed
+  }
+  return {isLatex: isLatex, actualText: actualText}
+}
+
 var _latexInit = function () {
   $('.latex').each(function(i) {
     var text = $(this).text()
-    var code = $.trim(text).slice(0, 5)
-    console.log('text', text)
-    console.log('code', code)
-    var isLatex = (code == 'latex')
-    if (isLatex) {
-      restText = text.slice(6, text.length)
-      katex.render(restText, this, {displayMode: true})
+    var latexness = processLatex(text)
+
+    if (latexness.isLatex) {
+      katex.render(latexness.actualText, this, {displayMode: true})
     }
   })
 }

@@ -26,8 +26,6 @@ var Parser = React.createClass({
   },
 
   componentDidMount: function () {
-    console.log('compona ')
-    _latexInit()
     var that = this;
     $.get('sources', function (data) {
       var sources = [{id: null, name: 'None'}].concat(data)
