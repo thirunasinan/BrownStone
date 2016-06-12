@@ -8,7 +8,7 @@ var ParsedProblem = React.createClass({
       return (
         <div key={i} className='row'>
           <strong className='col-xs-2'>{letter}</strong>
-          <div className='col-xs-10'>{ac}</div>
+          <div className='col-xs-10 latex'>{ac}</div>
         </div>
       );
     })
@@ -23,7 +23,7 @@ var ParsedProblem = React.createClass({
 
           <div className='row'>
             <strong className='col-xs-2'>Question</strong>
-            <div className='col-xs-10'>{this.props.problem.question}</div>
+            <div className='col-xs-10 latex'>{this.props.problem.question}</div>
           </div>
 
           {answerChoices}

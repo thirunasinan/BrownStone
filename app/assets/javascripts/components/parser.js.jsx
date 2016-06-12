@@ -17,7 +17,7 @@ var Parser = React.createClass({
 
   parseProblems: function (text) {
     var parsed = problemsParser(text);
-    this.setState({parsedProblems: parsed})
+    this.setState({parsedProblems: parsed}, _latexInit)
   },
 
   selectSource: function (e) {
@@ -26,6 +26,8 @@ var Parser = React.createClass({
   },
 
   componentDidMount: function () {
+    console.log('compona ')
+    _latexInit()
     var that = this;
     $.get('sources', function (data) {
       var sources = [{id: null, name: 'None'}].concat(data)

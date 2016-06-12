@@ -1,4 +1,3 @@
-
 var _latexInit = function () {
   $('.latex').each(function(i) {
     var text = $(this).text()
