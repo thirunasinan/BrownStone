@@ -16,9 +16,21 @@ class ProblemsController < ApplicationController
   end
 
   def create
+    puts "params : #{params.to_json}"
+    source_id = params['sourceId'].to_i
+    params['problems'].each do |data|
+      p = Problem.create(number: data['number'],
+                         question: data['question'],
+                         source_id: source_id)
 
+      data['answerChoices'].each do |ac_data|
+        AnswerChoice.create(text: ac_data, problem_id: p.id)
+      end
+    end
+    render json: {}
   end
 
   def parser
+    render component: 'Parser'
   end
 end

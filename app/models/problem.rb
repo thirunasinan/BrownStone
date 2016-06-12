@@ -61,9 +61,10 @@ class Problem < ActiveRecord::Base
     else
       acs = self.answer_choices_attributes
       yield
+      return if acs.nil?
+
       texts = acs.values.map{|v| v[:text]}
       self.answer_choices.where.not(text: texts).destroy_all
-      return if acs.nil?
       acs.each do |key, value|
         if value[:text].length != 0
           ac = AnswerChoice.find_or_create_by(text: value[:text], problem_id: self.id)

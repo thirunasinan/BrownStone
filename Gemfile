@@ -62,6 +62,8 @@ gem 'katex-rails'
 # apparently needs :
 gem 'therubyracer'
 
+# react.js
+gem 'react-rails'
 
 group :production do
   gem 'rails_12factor'

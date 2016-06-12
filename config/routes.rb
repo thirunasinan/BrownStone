@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'problems', to: 'problems#index'
   get 'problems/:id', to: 'problems#show', as: :problem
 
+  post 'problems', to: 'problems#create', as:  :create_problem
+
+  get 'sources', to: 'sources#index', as: :sources
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
