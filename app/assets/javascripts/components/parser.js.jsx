@@ -63,23 +63,38 @@ var Parser = React.createClass({
     var sourceOptions = this.state.sourceOptions.map(function (source) {
       return <option key={source.id} value={source.id}>{source.name}</option>;
     });
+
+    var saveBtnOrNot = (this.state.parsedProblems.length)
+      ? <button onClick={this.clickSave} className='btn btn-success'>Save</button>
+      : null
     return (
       <div>
         <br />
         <div className='row'>
-          <div className='col-xs-6 raw-input'>
-
+          <div className='col-xs-6'>
             <div className='form-group'>
               <label>Source</label>
               <select ref={'sourceSelect'} onChange={this.selectSource} className='form-control'>
                 {sourceOptions}
               </select>
             </div>
-
+            <label>Raw Text Input - Separate Problems with an Empty Line</label>
+            <br />
+            <br />
+            <div className='row'>
+              <div className='col-xs-2'>
+                <button onClick={this.clearRawInput} className='btn btn-danger'>Clear</button>
+              </div>
+              <div className='col-xs-1'>
+                {saveBtnOrNot}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div className='row'>
+          <div className='col-xs-6 raw-input'>
             <div className='form-group'>
-              <label>Raw Text Input - Separate Problems with an Empty Line</label>
-              <div><button onClick={this.clearRawInput} className='btn btn-danger'>Clear</button></div>
-              <br />
               <textarea ref='rawInput' onChange={this.rawInputChange} className='form-control' />
             </div>
           </div>
