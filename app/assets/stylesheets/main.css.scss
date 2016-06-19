@@ -37,6 +37,18 @@ body {
     }
 }
 
+.sources_table {
+    th.subject {
+        width: 10%;
+    }
+    th.source_name {
+        width: 30%;
+    }
+    th.level, th.publication_date, th.view_pdf {
+        width: 20%;
+    }
+}
+
 /*flash*/
 .alert {
   margin-top: 40px;

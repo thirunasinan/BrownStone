@@ -34,7 +34,7 @@ var Parser = React.createClass({
 
   componentDidMount: function () {
     var that = this;
-    $.get('sources', function (data) {
+    $.get('sources_for_select', function (data) {
       var sources = [{id: null, name: 'None'}].concat(data)
       that.setState({sourceOptions: sources})
     })

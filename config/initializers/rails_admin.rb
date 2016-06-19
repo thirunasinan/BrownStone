@@ -138,6 +138,13 @@ RailsAdmin.config do |config|
 
   config.model "Subject" do
     navigation_label "Content"
+    list do
+      field :name do
+        pretty_value do
+          %{<a href="/sources_by_subject/#{bindings[:object].id}">#{value}</a>}.html_safe
+        end
+      end
+    end
   end
 
   config.model "Level" do

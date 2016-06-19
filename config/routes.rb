@@ -11,7 +11,12 @@ Rails.application.routes.draw do
 
   post 'problems', to: 'problems#create', as:  :create_problem
 
+  get 'sources_for_select', to: 'sources#for_select', as: :sources_for_select
+
   get 'sources', to: 'sources#index', as: :sources
+
+
+  get 'sources_by_subject/:id', to: 'sources#by_subject', as: :sources_by_subject
 
   get 'sections', to: 'sections#index', as: :sections
 
