@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.included_models = ["Problem", "Source", "Image", "User", "UserInvitation"]
+  config.included_models = ["Problem", "Source", "Image", "User", "Level", "Subject", "SourceType"]
 
   config.actions do
     dashboard                     # mandatory
@@ -136,6 +136,20 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model "Subject" do
+    navigation_label "Content"
+  end
+
+  config.model "Level" do
+    weight 10
+    navigation_label 'Other'
+  end
+
+  config.model "SourceType" do
+    weight 10
+    navigation_label "Other"
+  end
+
   config.model 'Source' do
     navigation_label 'Content'
     list do
@@ -164,7 +178,7 @@ RailsAdmin.config do |config|
 
   config.model 'Image' do
     weight 10
-    navigation_label 'Assets'
+    navigation_label 'Other'
     show do
       field :description do
         pretty_value do

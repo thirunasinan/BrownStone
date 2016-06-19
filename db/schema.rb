@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618213706) do
+ActiveRecord::Schema.define(version: 20160619180958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 20160618213706) do
   add_index "images_problems", ["image_id"], name: "index_images_problems_on_image_id", using: :btree
   add_index "images_problems", ["problem_id"], name: "index_images_problems_on_problem_id", using: :btree
 
+  create_table "levels", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.text     "content"
     t.string   "title"
@@ -90,13 +94,31 @@ ActiveRecord::Schema.define(version: 20160618213706) do
     t.text   "notes"
   end
 
+  create_table "source_types", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "sources", force: :cascade do |t|
     t.string   "name",                  null: false
-    t.text     "description"
+    t.text     "notes"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.integer  "subject_id"
+    t.integer  "level_id"
+    t.integer  "publication_month"
+    t.integer  "publication_year"
+    t.integer  "source_type_id"
+  end
+
+  add_index "sources", ["level_id"], name: "index_sources_on_level_id", using: :btree
+  add_index "sources", ["source_type_id"], name: "index_sources_on_source_type_id", using: :btree
+  add_index "sources", ["subject_id"], name: "index_sources_on_subject_id", using: :btree
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.text   "notes"
   end
 
   create_table "texts", force: :cascade do |t|
@@ -141,4 +163,7 @@ ActiveRecord::Schema.define(version: 20160618213706) do
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
+  add_foreign_key "sources", "levels"
+  add_foreign_key "sources", "source_types"
+  add_foreign_key "sources", "subjects"
 end
