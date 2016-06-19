@@ -33,7 +33,7 @@
 
 %h4 Sources :
 %br
-= link_to "Add New", rails_admin.new_path(model_name: "Source")
+= link_to "add new", rails_admin.new_path(model_name: "Source")
 %br
 %br
 %br
@@ -59,7 +59,7 @@
         -else
           = ""
       %td
-        = source.name
+        = link_to source.name, "/problems_by_source/#{source.id}"
       %td
         -if source.level
           = source.level.name

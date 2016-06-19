@@ -9,15 +9,21 @@
       = f.select :source_name_eq, Source.all.map(&:name), {include_blank: true}, {class: 'form-control'}
     = f.submit class: 'btn btn-default'
 
+%br
+%br
+%br
+
+%h4 Problems :
 - if not current_user.low_access?
-  %p
+  %br
+  = link_to "add new", problems_parser_path
   %br
   %br
-    - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
-    = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem, page: params[:page])
-  %br
-  %br
-  %br
+  - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
+  = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem, page: params[:page])
+%br
+%br
+%br
 
 - if @show_full_problem
   - @uniq.each do |problem|

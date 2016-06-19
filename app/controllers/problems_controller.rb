@@ -11,6 +11,15 @@ class ProblemsController < ApplicationController
     @show_full_problem = (current_user.low_access? or (params[:full] == "true"))
   end
 
+  def by_source
+    source_name = Source.find(params[:id]).name
+    @q = Problem.ransack({source_name_eq: source_name})
+    @problems = @q.result.paginate(page: params[:page], per_page: PER_PAGE)
+    @uniq = @problems.to_a.uniq
+    @show_full_problem = false
+    render 'index'
+  end
+
   def show
     @problem = Problem.find(params[:id])
   end
