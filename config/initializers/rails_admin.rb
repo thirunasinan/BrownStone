@@ -79,6 +79,7 @@ RailsAdmin.config do |config|
   #   end
   # end
 
+
   config.model 'Assessment' do
     navigation_label 'Other'
   end
@@ -198,8 +199,7 @@ RailsAdmin.config do |config|
 
 
   config.model "Subject" do
-    navigation_label "Main"
-    weight -100
+    navigation_label "Other"
     list do
       field :name do
         pretty_value do
@@ -210,6 +210,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Text' do
+    weight 10000
     navigation_label 'Other'
   end
 

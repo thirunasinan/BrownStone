@@ -4,14 +4,19 @@
 .navbar-header
   = link_to "Brown", "/", {class: "navbar-brand"}
 %ul.nav.navbar-nav
-  - if current_user && current_user.is_admin
-    %li
-      = link_to 'Admin CMS', '/admin'
+
   - if current_user && (current_user.is_admin or current_user.is_teacher)
+    %li
+      = link_to 'Sources (by Subject)', '/admin/subject'
+
     %li
       = link_to 'Problem Viewer', '/problems'
     %li
       = link_to 'Problem Uploader', '/problems_parser'
+
+  - if current_user && current_user.is_admin
+    %li
+      = link_to 'Admin CMS', '/admin'
 
   - if current_user && current_user.is_admin
     -  original_user = user_signed_in? && SwitchUser::Provider.init(controller).original_user
