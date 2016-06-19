@@ -1,6 +1,6 @@
 class Text < ActiveRecord::Base
-  has_and_belongs_to_many :problems
-  has_many :sources, through: :problems
+  has_and_belongs_to_many :problems, dependent: :nullify
+  has_many :sources, through: :problems, dependent: :nullify
 
   def name
     return "" if content.nil?

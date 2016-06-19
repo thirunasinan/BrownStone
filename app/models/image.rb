@@ -4,5 +4,5 @@ class Image < ActiveRecord::Base
                     default_url: "/images/:style/missing.png"
 
   validates_attachment_content_type :content, content_type: /\Aimage\/.*\Z/
-  has_and_belongs_to_many :problems
+  has_and_belongs_to_many :problems, dependent: :nullify
 end

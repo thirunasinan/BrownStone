@@ -1,10 +1,10 @@
 class Problem < ActiveRecord::Base
   belongs_to :source
   belongs_to :section
-  has_many :answer_choices
+  has_many :answer_choices, dependent: :destroy
 
-  has_and_belongs_to_many :texts
-  has_and_belongs_to_many :images
+  has_and_belongs_to_many :texts, dependent: :nullify
+  has_and_belongs_to_many :images, dependent: :nullify
 
   validates_presence_of :source
   validates_presence_of :name

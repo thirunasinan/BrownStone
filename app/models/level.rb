@@ -1,3 +1,3 @@
 class Level < ActiveRecord::Base
-  has_many :sources
+  has_many :sources, dependent: :nullify
 end
