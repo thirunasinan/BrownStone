@@ -16,9 +16,8 @@ class ProblemsController < ApplicationController
   end
 
   def create
-    puts "params : #{params.to_json}"
-    source_id = params['sourceId'].to_i
-    section_id = params['sectionId'].to_i
+    source_id = params['sourceId'] ? params['sourceId'].to_i : nil
+    section_id = params['sectionId'] ? params['sectionId'].to_i : nil
     params['problems'].each do |data|
       p = Problem.create(number: data['number'],
                          question: data['question'],

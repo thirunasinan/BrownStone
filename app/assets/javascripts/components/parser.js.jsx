@@ -80,9 +80,15 @@ var Parser = React.createClass({
       return <option key={section.id} value={section.id}>{section.name}</option>;
     })
 
-    var saveBtnOrNot = (this.state.parsedProblems.length)
-      ? <button onClick={this.clickSave} className='btn btn-success'>Save</button>
-      : null
+    var saveBtnOrNot;
+    if (this.state.selectedSourceId == null) {
+      saveBtnOrNot = <div className='danger'>Select a Source before saving</div>
+    } else if (this.state.parsedProblems.length) {
+      saveBtnOrNot = <button onClick={this.clickSave} className='btn btn-success pull-left'>Save</button>
+    } else {
+      saveBtnOrNot = null;
+    }
+
     return (
       <div>
         <br />
@@ -107,7 +113,7 @@ var Parser = React.createClass({
               <div className='col-xs-2'>
                 <button onClick={this.clearRawInput} className='btn btn-danger'>Clear</button>
               </div>
-              <div className='col-xs-1'>
+              <div className='col-xs-10'>
                 {saveBtnOrNot}
               </div>
             </div>
