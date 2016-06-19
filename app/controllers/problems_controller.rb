@@ -15,7 +15,7 @@ class ProblemsController < ApplicationController
     source_name = Source.find(params[:id]).name
     @q = Problem.ransack({source_name_eq: source_name})
     #@q.sorts = ['number asc']
-    @problems = @q.result.paginate(page: params[:page], per_page: PER_PAGE).order(:number)
+    @problems = @q.result.includes(:source).paginate(page: params[:page], per_page: PER_PAGE).order(:number)
     @uniq = @problems.to_a.uniq
     @show_full_problem = false
     render 'index'
