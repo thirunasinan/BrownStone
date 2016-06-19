@@ -8,7 +8,7 @@ class Source < ActiveRecord::Base
   has_many :problems, inverse_of: :source
 
   def display_publication_date
-    "#{self.months[self.publication_month]} #{self.publication_year}"
+    "#{self.class.months[self.publication_month]} #{self.publication_year}"
   end
 
   #http://stackoverflow.com/questions/8326668/rails-admin-static-select-dropdown
