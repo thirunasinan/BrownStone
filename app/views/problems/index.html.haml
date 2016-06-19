@@ -33,15 +33,19 @@
 
   %table.table.table-hover.problems-table
     %tr
-      %th
-        //= 'Source'
-        = sort_link(@q, :source_name, "Source")
-      %th
-        //= 'Number'
-        = sort_link(@q, :number)
-      %th
-        //= 'Question'
-        = sort_link(@q, :question)
+      %th.source
+        = 'Source'
+        //= sort_link(@q, :source_name, "Source")
+      %th.number
+        = 'Number'
+        //= sort_link(@q, :number)
+      %th.question
+        = 'Question'
+        //= sort_link(@q, :question)
+      %th.edit
+        = "Edit"
+      %th.delete
+        = "Delete"
 
     - @uniq.each do |problem|
       %tr
@@ -55,6 +59,10 @@
           = link_to problem.display_number, problem_path(problem)
         %td
           = problem.question_extract
+        %td
+          = link_to "Edit", rails_admin.edit_path(model_name: "problem", id: problem.id)
+        %td
+          = link_to "Delete", rails_admin.delete_path(model_name: "problem", id: problem.id)
 
 
 = will_paginate @problems, renderer: BootstrapPagination::Rails

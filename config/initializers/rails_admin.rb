@@ -22,30 +22,81 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.included_models = ["Problem", "Source", "Image", "User", "Level", "Subject", "SourceType"]
+  config.included_models = [
+    "Assessment",
+    "Image",
+    "Level",
+    "Note",
+    "Problem",
+    "Section",
+    "Source",
+    "SourceType",
+    "Subject",
+    "Text",
+    "User"
+  ]
 
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new do
-      #except ['User'] # since UserInvitation serves this purpose
-    end
+    new
     #export
     bulk_delete
     show do
-      except ['Problem']
+      except ['Problem', 'Source']
     end
     edit
     delete
     show_in_app
-
     ## With an audit adapter, you can add:
     # history_index
     # history_show
   end
 
+  # config.model 'AnswerChoice' do
+  #   navigation_label "Other"
+  #   label 'Answer'
+  #   list do
+  #     scopes [:is_correct]
+  #     field :problem
+  #     field :text do
+  #       label 'answer'
+  #     end
+
+  #     field :image
+  #   end
+
+  #   edit do
+  #     field :text
+  #     field :image
+  #     field :correct
+  #   end
+
+  #   show do
+  #     field :text
+  #     field :image
+  #     field :correct
+  #   end
+  # end
+
+  config.model 'Assessment' do
+    navigation_label 'Other'
+  end
+
+  config.model 'Image' do
+    navigation_label 'Other'
+  end
+
+  config.model "Level" do
+    navigation_label "Other"
+  end
+
+  config.model 'Note' do
+    navigation_label 'Other'
+  end
+
   config.model 'Problem' do
-    navigation_label 'Content'
+    navigation_label 'Other'
     list do
       sort_by :number
       filters [:source]
@@ -57,22 +108,14 @@ RailsAdmin.config do |config|
           bindings[:object].display_number
         end
       end
-      field :question do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
+      field :question
     end
 
 
     show do
       field :source
       field :number
-      field :question do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
+      field :question
       field :texts
       field :images
       field :answer_choices do
@@ -82,11 +125,12 @@ RailsAdmin.config do |config|
     end
 
     create do
-      field :source
+      field :source do
+        inline_add false
+        inline_edit false
+      end
       field :number
       field :question
-      field :texts
-      field :images
       field :raw_answer_choices, :text do
         html_attributes rows: 10, cols: 100
       end
@@ -98,11 +142,12 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :source
+      field :source do
+        inline_add false
+        inline_edit false
+      end
       field :number
       field :question
-      field :texts
-      field :images
       field :answer_choices do
         label 'individual answer choices'
         partial 'problem_answer_choices'
@@ -111,54 +156,13 @@ RailsAdmin.config do |config|
 
   end
 
-  config.model 'AnswerChoice' do
-    label 'Answer'
-    list do
-      scopes [:is_correct]
-      field :problem
-      field :text do
-        label 'answer'
-      end
-
-      field :image
-    end
-
-    edit do
-      field :text
-      field :image
-      field :correct
-    end
-
-    show do
-      field :text
-      field :image
-      field :correct
-    end
-  end
-
-  config.model "Subject" do
-    navigation_label "Content"
-    list do
-      field :name do
-        pretty_value do
-          %{<a href="/sources_by_subject/#{bindings[:object].id}">#{value}</a>}.html_safe
-        end
-      end
-    end
-  end
-
-  config.model "Level" do
-    weight 10
-    navigation_label 'Other'
-  end
-
-  config.model "SourceType" do
-    weight 10
+  config.model "Section" do
     navigation_label "Other"
   end
 
+
   config.model 'Source' do
-    navigation_label 'Content'
+    navigation_label 'Other'
     list do
       field :name do
         pretty_value do
@@ -171,58 +175,51 @@ RailsAdmin.config do |config|
         end
       end
     end
+
+    create do
+      field :subject
+      field :level
+      field :source_type
+      field :publication_month
+      field :publication_year
+      field :name
+    end
+
+    edit do
+      field :subject
+      field :level
+      field :source_type
+      field :publication_month
+      field :publication_year
+      field :name
+    end
+  end
+
+
+  config.model "SourceType" do
+    navigation_label "Other"
+  end
+
+
+  config.model "Subject" do
+    navigation_label "Main"
+    weight -100
+    list do
+      field :name do
+        pretty_value do
+          %{<a href="/sources_by_subject/#{bindings[:object].id}">#{value}</a>}.html_safe
+        end
+      end
+    end
   end
 
   config.model 'Text' do
-    show do
-      field :content do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-    end
-  end
-
-  config.model 'Image' do
-    weight 10
     navigation_label 'Other'
-    show do
-      field :description do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-    end
-  end
-
-  config.model 'Assessment' do
-    show do
-      field :description do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-      field :instructions do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-    end
-  end
-
-  config.model 'Note' do
-    show do
-      field :content do
-        pretty_value do
-          %{<div class='latex'>#{value}</div>}.html_safe
-        end
-      end
-    end
   end
 
   config.model 'User' do
     navigation_label 'People'
-    weight 1
+    weight -50
 
     #for some reason this doesnt work unless it comes before edit
     create do

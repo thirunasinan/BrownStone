@@ -26,14 +26,20 @@ body {
 
 
 .problems-table {
-    th:first-child {
+    th.source {
         width: 25%;
     }
-    th:nth-child(2) {
+    th.number {
         width: 5%;
     }
-    th:nth-child(3) {
-        width: 70%;
+    th.question {
+        width: 60%;
+    }
+    th.edit {
+        width: 5%;
+    }
+    th.delete {
+        width: 5%;
     }
 }
 
