@@ -11,7 +11,7 @@
     %li
       = link_to 'Problem Viewer', '/problems'
     %li
-      = link_to 'Problem Parser', '/problems_parser'
+      = link_to 'Problem Uploader', '/problems_parser'
 
   - if current_user && current_user.is_admin
     -  original_user = user_signed_in? && SwitchUser::Provider.init(controller).original_user

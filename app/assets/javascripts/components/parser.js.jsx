@@ -6,7 +6,9 @@ var Parser = React.createClass({
     return {
         parsedProblems: [],
         sourceOptions: [],
-        selectedSourceId: null
+        sectionOptions: [],
+        selectedSourceId: null,
+        selectedSectionId: null
       }
   },
 
@@ -25,11 +27,20 @@ var Parser = React.createClass({
     this.setState({selectedSourceId: value})
   },
 
+  selectSection: function (e) {
+    var value = this.refs.sectionSelect.getDOMNode().value;
+    this.setState({selectedSectionId: value})
+  },
+
   componentDidMount: function () {
     var that = this;
     $.get('sources', function (data) {
       var sources = [{id: null, name: 'None'}].concat(data)
       that.setState({sourceOptions: sources})
+    })
+    $.get('sections', function (data) {
+      var sections = [{id: null, name: 'None'}].concat(data)
+      that.setState({sectionOptions: sections})
     })
   },
 
@@ -37,7 +48,8 @@ var Parser = React.createClass({
     var that = this;
     var data = {
       problems: this.state.parsedProblems,
-      sourceId: this.state.selectedSourceId
+      sourceId: this.state.selectedSourceId,
+      sectionId: this.state.selectedSectionId
     }
     $.ajax({
       type: "POST",
@@ -64,6 +76,10 @@ var Parser = React.createClass({
       return <option key={source.id} value={source.id}>{source.name}</option>;
     });
 
+    var sectionOptions = this.state.sectionOptions.map(function (section) {
+      return <option key={section.id} value={section.id}>{section.name}</option>;
+    })
+
     var saveBtnOrNot = (this.state.parsedProblems.length)
       ? <button onClick={this.clickSave} className='btn btn-success'>Save</button>
       : null
@@ -76,6 +92,12 @@ var Parser = React.createClass({
               <label>Source</label>
               <select ref={'sourceSelect'} onChange={this.selectSource} className='form-control'>
                 {sourceOptions}
+              </select>
+            </div>
+            <div className='form-group'>
+              <label>Section</label>
+              <select ref={'sectionSelect'} onChange={this.selectSection} className='form-control'>
+                {sectionOptions}
               </select>
             </div>
             <label>Raw Text Input - Separate Problems with an Empty Line</label>

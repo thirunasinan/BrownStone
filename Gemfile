@@ -63,6 +63,12 @@ gem 'therubyracer'
 # react.js
 gem 'react-rails'
 
+# dev env variables
+gem 'dotenv-rails', :groups => [:development, :test]
+
+# s3 storage for paperclip (uploading pdfs, images, etc)
+gem 'aws-sdk'
+
 group :production do
   gem 'rails_12factor'
 end

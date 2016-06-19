@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609223034) do
+ActiveRecord::Schema.define(version: 20160618213706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,8 +71,10 @@ ActiveRecord::Schema.define(version: 20160609223034) do
     t.text    "question"
     t.integer "source_id"
     t.decimal "number"
+    t.integer "section_id"
   end
 
+  add_index "problems", ["section_id"], name: "index_problems_on_section_id", using: :btree
   add_index "problems", ["source_id"], name: "index_problems_on_source_id", using: :btree
 
   create_table "problems_texts", force: :cascade do |t|
@@ -82,6 +84,11 @@ ActiveRecord::Schema.define(version: 20160609223034) do
 
   add_index "problems_texts", ["problem_id"], name: "index_problems_texts_on_problem_id", using: :btree
   add_index "problems_texts", ["text_id"], name: "index_problems_texts_on_text_id", using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.text   "notes"
+  end
 
   create_table "sources", force: :cascade do |t|
     t.string   "name",                  null: false
@@ -130,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160609223034) do
   add_foreign_key "images_problems", "images"
   add_foreign_key "images_problems", "problems"
   add_foreign_key "notes", "assessments"
+  add_foreign_key "problems", "sections"
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"

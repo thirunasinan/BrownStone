@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get 'sources', to: 'sources#index', as: :sources
 
+  get 'sections', to: 'sections#index', as: :sections
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
