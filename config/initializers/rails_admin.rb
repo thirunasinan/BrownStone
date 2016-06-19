@@ -32,7 +32,9 @@ RailsAdmin.config do |config|
     end
     #export
     bulk_delete
-    show
+    show do
+      except ['Problem']
+    end
     edit
     delete
     show_in_app

@@ -8,8 +8,8 @@ describe('numberAndQuestionParser', function () {
   })
 
   it('works in non-trivial case', function () {
-    var text = "24. This is a problem"
-    var expected = {number: "24", question: "This is a problem"}
+    var text = "24. This is a \n problem"
+    var expected = {number: "24", question: "This is a \n problem"}
     var result = subject(text)
     expect(result).toEqual(expected)
   })

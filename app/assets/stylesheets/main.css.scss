@@ -20,6 +20,11 @@ body {
     height: 2000px !important;
 }
 
+.preserve-newlines {
+    white-space: pre;
+}
+
+
 .problems-table {
     th:first-child {
         width: 25%;

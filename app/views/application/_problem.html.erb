@@ -1,0 +1,64 @@
+<%- if not current_user.low_access? %>
+  <h3><%= "#{problem.source_name} : #{problem.display_number}" %></h3>
+  <br />
+  <br />
+<%- end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Question
+    </h3>
+  </div>
+  <div class="panel-body preserve-newlines"><%= problem.question %></div>
+</div>
+
+
+<%- if problem.texts.any? %>
+  <%- problem.texts.each do |text| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Related Text
+        </h3>
+      </div>
+      <div class="panel-body preserve-newlines">
+        <%= text.content %>
+      </div>
+    </div>
+  <%- end %>
+<%- end %>
+
+
+<%- if problem.images.any? %>
+  <%- problem.images.each do |image| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Related Image
+        </h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag image.content.url(:medium) %>
+      </div>
+    </div>
+  <%- end %>
+<%- end %>
+
+
+<%- if problem.answer_choices.any? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Answer Choices
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ui class="list-group">
+        <%- problem.answer_choices.each do |ac| %>
+          <%= render 'answer_choice', answer_choice: ac %>
+        <%- end %>
+      </ui>
+    </div>
+  </div>
+<%- end %>
