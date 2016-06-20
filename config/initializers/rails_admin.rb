@@ -174,6 +174,7 @@ RailsAdmin.config do |config|
     end
 
     create do
+      field :document
       field :subject
       field :level
       field :source_type
@@ -183,6 +184,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
+      field :document
       field :subject
       field :level
       field :source_type
