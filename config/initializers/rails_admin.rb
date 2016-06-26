@@ -149,6 +149,8 @@ RailsAdmin.config do |config|
       end
       field :number
       field :question
+      field :requires_associated_images
+      field :requires_associated_texts
       field :answer_choices do
         label 'individual answer choices'
         partial 'problem_answer_choices'

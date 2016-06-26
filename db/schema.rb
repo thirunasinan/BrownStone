@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619180958) do
+ActiveRecord::Schema.define(version: 20160626204846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 20160619180958) do
     t.integer "source_id"
     t.decimal "number"
     t.integer "section_id"
+    t.boolean "requires_associated_images"
+    t.boolean "requires_associated_texts"
   end
 
   add_index "problems", ["section_id"], name: "index_problems_on_section_id", using: :btree

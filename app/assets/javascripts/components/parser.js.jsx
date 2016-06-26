@@ -5,6 +5,8 @@ var Parser = React.createClass({
   getInitialState: function () {
     return {
         parsedProblems: [],
+        hasAssociatedImages: false,
+        hasAssociatedTexts: false,
         sourceOptions: [],
         sectionOptions: [],
         selectedSourceId: null,
@@ -49,20 +51,45 @@ var Parser = React.createClass({
     var data = {
       problems: this.state.parsedProblems,
       sourceId: this.state.selectedSourceId,
-      sectionId: this.state.selectedSectionId
+      sectionId: this.state.selectedSectionId,
+      hasAssociatedImages: this.state.hasAssociatedImages,
+      hasAssociatedTexts: this.state.hasAssociatedTexts
     }
     $.ajax({
       type: "POST",
       url: 'problems',
       data: JSON.stringify(data),
       contentType: 'application/json',
-      dataType: 'json'
+      dataType: 'json',
+      success: function () {
+        that.clearRawInput()
+      }
     })
   },
 
   clearRawInput: function () {
     this.refs.rawInput.value = null
     this.parseProblems("")
+  },
+
+  toggleHasAssociatedImages: function () {
+    this.setState({hasAssociatedImages: !this.state.hasAssociatedImages})
+  },
+
+  toggleHasAssociatedTexts: function () {
+    this.setState({hasAssociatedTexts: !this.state.hasAssociatedTexts})
+  },
+
+  associatedImagesClassName: function () {
+    return this.state.hasAssociatedImages
+    ? "btn btn-info"
+    : "btn btn-default"
+  },
+
+  associatedTextsClassName: function () {
+    return this.state.hasAssociatedTexts
+    ? "btn btn-info"
+    : "btn btn-default"
   },
 
   render: function() {
@@ -106,6 +133,13 @@ var Parser = React.createClass({
                 {sectionOptions}
               </select>
             </div>
+            <div className='form-group'>
+              <button className={this.associatedImagesClassName()} onClick={this.toggleHasAssociatedImages}>Has Associated Images</button>
+            </div>
+            <div className='form-group'>
+              <button className={this.associatedTextsClassName()} onClick={this.toggleHasAssociatedTexts}>Has Associated Texts</button>
+            </div>
+
             <label>Raw Text Input - Separate Problems with an Empty Line</label>
             <br />
             <br />

@@ -32,7 +32,9 @@ class ProblemsController < ApplicationController
       p = Problem.create(number: data['number'],
                          question: data['question'],
                          source_id: source_id,
-                         section_id: section_id)
+                         section_id: section_id,
+                         requires_associated_images: params['hasAssociatedImages'],
+                         requires_associated_texts: params['hasAssociatedTexts'])
 
       data['answerChoices'].each do |ac_data|
         AnswerChoice.create(text: ac_data, problem_id: p.id)

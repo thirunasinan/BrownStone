@@ -1,3 +1,12 @@
+var parseNewlines = function (string) {
+  if (!string) {
+    return null
+  } else {
+    return string.replace(/##/g, '')
+  }
+}
+
+
 var problemParser = function (text) {
   var regex = /\(?[A]\)/
   var arr = text.split(regex)
@@ -19,6 +28,10 @@ var problemParser = function (text) {
       nq = {number: null, question: null}
     }
   }
+
+  nq.question = parseNewlines(nq.question)
+
+  answers = answers.map(parseNewlines)
 
 
   return {

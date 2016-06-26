@@ -1,0 +1,1634 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/marcellomarcellosachs/code/.nvm/versions/node/v5.0.0/bin/node',
+1 verbose cli   '/Users/marcellomarcellosachs/code/.nvm/versions/node/v5.0.0/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-string-replace-recursively' ]
+2 info using npm@3.5.1
+3 info using node@v5.0.0
+4 verbose config Skipping project config: /Users/marcellomarcellosachs/code/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData react-string-replace-recursively
+9 silly fetchNamedPackageData react-string-replace-recursively
+10 silly mapToRegistry name react-string-replace-recursively
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry uri https://registry.npmjs.org/react-string-replace-recursively
+14 verbose request uri https://registry.npmjs.org/react-string-replace-recursively
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 3:53:41 PM
+17 verbose request id 8186b460f5499dc3
+18 verbose etag "2PVXWYG92PCIZHI7M8JJPH5W5"
+19 http request GET https://registry.npmjs.org/react-string-replace-recursively
+20 http 304 https://registry.npmjs.org/react-string-replace-recursively
+21 verbose headers { date: 'Sun, 26 Jun 2016 19:53:39 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   etag: '"2PVXWYG92PCIZHI7M8JJPH5W5"',
+21 verbose headers   age: '0',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-iad2120-IAD',
+21 verbose headers   'x-cache': 'MISS',
+21 verbose headers   'x-cache-hits': '0',
+21 verbose headers   'x-timer': 'S1466970819.850057,VS0,VE394',
+21 verbose headers   vary: 'Accept-Encoding' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Sun, 26 Jun 2016 19:53:39 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     etag: '"2PVXWYG92PCIZHI7M8JJPH5W5"',
+22 silly get     age: '0',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-iad2120-IAD',
+22 silly get     'x-cache': 'MISS',
+22 silly get     'x-cache-hits': '0',
+22 silly get     'x-timer': 'S1466970819.850057,VS0,VE394',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose etag https://registry.npmjs.org/react-string-replace-recursively from cache
+24 verbose get saving react-string-replace-recursively to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/react-string-replace-recursively/.cache.json
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule react-string-replace-recursively@0.1.27 checking installable status
+38 silly cache add args [ 'react-string-replace-recursively', null ]
+39 verbose cache add spec react-string-replace-recursively
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'react-string-replace-recursively',
+40 silly cache add   scope: null,
+40 silly cache add   name: 'react-string-replace-recursively',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed react-string-replace-recursively@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for react-string-replace-recursively
+43 info addNameTag [ 'react-string-replace-recursively', 'latest' ]
+44 silly mapToRegistry name react-string-replace-recursively
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry uri https://registry.npmjs.org/react-string-replace-recursively
+48 verbose addNameTag registry:https://registry.npmjs.org/react-string-replace-recursively not in flight; fetching
+49 verbose get https://registry.npmjs.org/react-string-replace-recursively not expired, no request
+50 silly addNameTag next cb for react-string-replace-recursively with tag latest
+51 silly addNamed react-string-replace-recursively@0.1.27
+52 verbose addNamed "0.1.27" is a plain semver version for react-string-replace-recursively
+53 silly cache afterAdd react-string-replace-recursively@0.1.27
+54 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/react-string-replace-recursively/0.1.27/package/package.json not in flight; writing
+55 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/react-string-replace-recursively/0.1.27/package/package.json written
+56 silly fetchNamedPackageData lodash.identity
+57 silly mapToRegistry name lodash.identity
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry uri https://registry.npmjs.org/lodash.identity
+61 silly fetchNamedPackageData lodash.keys
+62 silly mapToRegistry name lodash.keys
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry uri https://registry.npmjs.org/lodash.keys
+66 silly fetchNamedPackageData lodash.omit
+67 silly mapToRegistry name lodash.omit
+68 silly mapToRegistry using default registry
+69 silly mapToRegistry registry https://registry.npmjs.org/
+70 silly mapToRegistry uri https://registry.npmjs.org/lodash.omit
+71 silly fetchNamedPackageData lodash.reduce
+72 silly mapToRegistry name lodash.reduce
+73 silly mapToRegistry using default registry
+74 silly mapToRegistry registry https://registry.npmjs.org/
+75 silly mapToRegistry uri https://registry.npmjs.org/lodash.reduce
+76 verbose request uri https://registry.npmjs.org/lodash.identity
+77 verbose request no auth needed
+78 info attempt registry request try #1 at 3:53:43 PM
+79 verbose etag "9RBEGTK8VZ29KULTYWVVDOIKM"
+80 http request GET https://registry.npmjs.org/lodash.identity
+81 verbose request uri https://registry.npmjs.org/lodash.keys
+82 verbose request no auth needed
+83 info attempt registry request try #1 at 3:53:43 PM
+84 verbose etag "DSH01RK8J8DFT2LSSSUEPYECM"
+85 http request GET https://registry.npmjs.org/lodash.keys
+86 verbose request uri https://registry.npmjs.org/lodash.omit
+87 verbose request no auth needed
+88 info attempt registry request try #1 at 3:53:43 PM
+89 verbose etag "CQEP7JZZKTDX9WDJU99ID9GFH"
+90 http request GET https://registry.npmjs.org/lodash.omit
+91 verbose request uri https://registry.npmjs.org/lodash.reduce
+92 verbose request no auth needed
+93 info attempt registry request try #1 at 3:53:43 PM
+94 verbose etag "9QC56HORW7IHE2B9IS4D7BCK1"
+95 http request GET https://registry.npmjs.org/lodash.reduce
+96 http 304 https://registry.npmjs.org/lodash.identity
+97 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+97 verbose headers   via: '1.1 varnish',
+97 verbose headers   'cache-control': 'max-age=300',
+97 verbose headers   etag: '"9RBEGTK8VZ29KULTYWVVDOIKM"',
+97 verbose headers   age: '254',
+97 verbose headers   connection: 'keep-alive',
+97 verbose headers   'x-served-by': 'cache-iad2147-IAD',
+97 verbose headers   'x-cache': 'HIT',
+97 verbose headers   'x-cache-hits': '1',
+97 verbose headers   'x-timer': 'S1466970821.250082,VS0,VE0',
+97 verbose headers   vary: 'Accept-Encoding' }
+98 silly get cb [ 304,
+98 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+98 silly get     via: '1.1 varnish',
+98 silly get     'cache-control': 'max-age=300',
+98 silly get     etag: '"9RBEGTK8VZ29KULTYWVVDOIKM"',
+98 silly get     age: '254',
+98 silly get     connection: 'keep-alive',
+98 silly get     'x-served-by': 'cache-iad2147-IAD',
+98 silly get     'x-cache': 'HIT',
+98 silly get     'x-cache-hits': '1',
+98 silly get     'x-timer': 'S1466970821.250082,VS0,VE0',
+98 silly get     vary: 'Accept-Encoding' } ]
+99 verbose etag https://registry.npmjs.org/lodash.identity from cache
+100 verbose get saving lodash.identity to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.identity/.cache.json
+101 silly resolveWithNewModule lodash.identity@3.0.0 checking installable status
+102 silly cache add args [ 'lodash.identity@^3.0.0', null ]
+103 verbose cache add spec lodash.identity@^3.0.0
+104 silly cache add parsed spec Result {
+104 silly cache add   raw: 'lodash.identity@^3.0.0',
+104 silly cache add   scope: null,
+104 silly cache add   name: 'lodash.identity',
+104 silly cache add   rawSpec: '^3.0.0',
+104 silly cache add   spec: '>=3.0.0 <4.0.0',
+104 silly cache add   type: 'range' }
+105 silly addNamed lodash.identity@>=3.0.0 <4.0.0
+106 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for lodash.identity
+107 silly addNameRange { name: 'lodash.identity',
+107 silly addNameRange   range: '>=3.0.0 <4.0.0',
+107 silly addNameRange   hasData: false }
+108 silly mapToRegistry name lodash.identity
+109 silly mapToRegistry using default registry
+110 silly mapToRegistry registry https://registry.npmjs.org/
+111 silly mapToRegistry uri https://registry.npmjs.org/lodash.identity
+112 verbose addNameRange registry:https://registry.npmjs.org/lodash.identity not in flight; fetching
+113 http 304 https://registry.npmjs.org/lodash.keys
+114 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+114 verbose headers   via: '1.1 varnish',
+114 verbose headers   'cache-control': 'max-age=300',
+114 verbose headers   etag: '"DSH01RK8J8DFT2LSSSUEPYECM"',
+114 verbose headers   age: '74',
+114 verbose headers   connection: 'keep-alive',
+114 verbose headers   'x-served-by': 'cache-iad2131-IAD',
+114 verbose headers   'x-cache': 'HIT',
+114 verbose headers   'x-cache-hits': '2',
+114 verbose headers   'x-timer': 'S1466970821.263403,VS0,VE0',
+114 verbose headers   vary: 'Accept-Encoding' }
+115 silly get cb [ 304,
+115 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+115 silly get     via: '1.1 varnish',
+115 silly get     'cache-control': 'max-age=300',
+115 silly get     etag: '"DSH01RK8J8DFT2LSSSUEPYECM"',
+115 silly get     age: '74',
+115 silly get     connection: 'keep-alive',
+115 silly get     'x-served-by': 'cache-iad2131-IAD',
+115 silly get     'x-cache': 'HIT',
+115 silly get     'x-cache-hits': '2',
+115 silly get     'x-timer': 'S1466970821.263403,VS0,VE0',
+115 silly get     vary: 'Accept-Encoding' } ]
+116 verbose etag https://registry.npmjs.org/lodash.keys from cache
+117 verbose get saving lodash.keys to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.keys/.cache.json
+118 http 304 https://registry.npmjs.org/lodash.omit
+119 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+119 verbose headers   via: '1.1 varnish',
+119 verbose headers   'cache-control': 'max-age=300',
+119 verbose headers   etag: '"CQEP7JZZKTDX9WDJU99ID9GFH"',
+119 verbose headers   age: '293',
+119 verbose headers   connection: 'keep-alive',
+119 verbose headers   'x-served-by': 'cache-iad2140-IAD',
+119 verbose headers   'x-cache': 'HIT',
+119 verbose headers   'x-cache-hits': '1',
+119 verbose headers   'x-timer': 'S1466970821.264307,VS0,VE0',
+119 verbose headers   vary: 'Accept-Encoding' }
+120 silly get cb [ 304,
+120 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+120 silly get     via: '1.1 varnish',
+120 silly get     'cache-control': 'max-age=300',
+120 silly get     etag: '"CQEP7JZZKTDX9WDJU99ID9GFH"',
+120 silly get     age: '293',
+120 silly get     connection: 'keep-alive',
+120 silly get     'x-served-by': 'cache-iad2140-IAD',
+120 silly get     'x-cache': 'HIT',
+120 silly get     'x-cache-hits': '1',
+120 silly get     'x-timer': 'S1466970821.264307,VS0,VE0',
+120 silly get     vary: 'Accept-Encoding' } ]
+121 verbose etag https://registry.npmjs.org/lodash.omit from cache
+122 verbose get saving lodash.omit to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.omit/.cache.json
+123 http 200 https://registry.npmjs.org/lodash.reduce
+124 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+124 verbose headers   etag: '"3P10D4QX47R2NRLM4C8XDE5I2"',
+124 verbose headers   'content-type': 'application/json',
+124 verbose headers   'content-encoding': 'gzip',
+124 verbose headers   'cache-control': 'max-age=300',
+124 verbose headers   'content-length': '4144',
+124 verbose headers   'accept-ranges': 'bytes',
+124 verbose headers   date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+124 verbose headers   via: '1.1 varnish',
+124 verbose headers   age: '114',
+124 verbose headers   connection: 'keep-alive',
+124 verbose headers   'x-served-by': 'cache-iad2143-IAD',
+124 verbose headers   'x-cache': 'HIT',
+124 verbose headers   'x-cache-hits': '1',
+124 verbose headers   'x-timer': 'S1466970821.259897,VS0,VE0',
+124 verbose headers   vary: 'Accept-Encoding' }
+125 silly get cb [ 200,
+125 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+125 silly get     etag: '"3P10D4QX47R2NRLM4C8XDE5I2"',
+125 silly get     'content-type': 'application/json',
+125 silly get     'content-encoding': 'gzip',
+125 silly get     'cache-control': 'max-age=300',
+125 silly get     'content-length': '4144',
+125 silly get     'accept-ranges': 'bytes',
+125 silly get     date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+125 silly get     via: '1.1 varnish',
+125 silly get     age: '114',
+125 silly get     connection: 'keep-alive',
+125 silly get     'x-served-by': 'cache-iad2143-IAD',
+125 silly get     'x-cache': 'HIT',
+125 silly get     'x-cache-hits': '1',
+125 silly get     'x-timer': 'S1466970821.259897,VS0,VE0',
+125 silly get     vary: 'Accept-Encoding' } ]
+126 verbose get saving lodash.reduce to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.reduce/.cache.json
+127 verbose get https://registry.npmjs.org/lodash.identity not expired, no request
+128 silly addNameRange number 2 { name: 'lodash.identity',
+128 silly addNameRange   range: '>=3.0.0 <4.0.0',
+128 silly addNameRange   hasData: true }
+129 silly addNameRange versions [ 'lodash.identity',
+129 silly addNameRange   [ '2.0.0',
+129 silly addNameRange     '2.1.0',
+129 silly addNameRange     '2.2.0',
+129 silly addNameRange     '2.2.1',
+129 silly addNameRange     '2.3.0',
+129 silly addNameRange     '2.4.0',
+129 silly addNameRange     '2.4.1',
+129 silly addNameRange     '3.0.0' ] ]
+130 silly addNamed lodash.identity@3.0.0
+131 verbose addNamed "3.0.0" is a plain semver version for lodash.identity
+132 silly resolveWithNewModule lodash.omit@4.3.0 checking installable status
+133 silly cache add args [ 'lodash.omit@^4.2.1', null ]
+134 verbose cache add spec lodash.omit@^4.2.1
+135 silly cache add parsed spec Result {
+135 silly cache add   raw: 'lodash.omit@^4.2.1',
+135 silly cache add   scope: null,
+135 silly cache add   name: 'lodash.omit',
+135 silly cache add   rawSpec: '^4.2.1',
+135 silly cache add   spec: '>=4.2.1 <5.0.0',
+135 silly cache add   type: 'range' }
+136 silly addNamed lodash.omit@>=4.2.1 <5.0.0
+137 verbose addNamed ">=4.2.1 <5.0.0" is a valid semver range for lodash.omit
+138 silly addNameRange { name: 'lodash.omit', range: '>=4.2.1 <5.0.0', hasData: false }
+139 silly mapToRegistry name lodash.omit
+140 silly mapToRegistry using default registry
+141 silly mapToRegistry registry https://registry.npmjs.org/
+142 silly mapToRegistry uri https://registry.npmjs.org/lodash.omit
+143 verbose addNameRange registry:https://registry.npmjs.org/lodash.omit not in flight; fetching
+144 silly resolveWithNewModule lodash.keys@4.0.7 checking installable status
+145 silly cache add args [ 'lodash.keys@^4.0.6', null ]
+146 verbose cache add spec lodash.keys@^4.0.6
+147 silly cache add parsed spec Result {
+147 silly cache add   raw: 'lodash.keys@^4.0.6',
+147 silly cache add   scope: null,
+147 silly cache add   name: 'lodash.keys',
+147 silly cache add   rawSpec: '^4.0.6',
+147 silly cache add   spec: '>=4.0.6 <5.0.0',
+147 silly cache add   type: 'range' }
+148 silly addNamed lodash.keys@>=4.0.6 <5.0.0
+149 verbose addNamed ">=4.0.6 <5.0.0" is a valid semver range for lodash.keys
+150 silly addNameRange { name: 'lodash.keys', range: '>=4.0.6 <5.0.0', hasData: false }
+151 silly mapToRegistry name lodash.keys
+152 silly mapToRegistry using default registry
+153 silly mapToRegistry registry https://registry.npmjs.org/
+154 silly mapToRegistry uri https://registry.npmjs.org/lodash.keys
+155 verbose addNameRange registry:https://registry.npmjs.org/lodash.keys not in flight; fetching
+156 silly cache afterAdd lodash.identity@3.0.0
+157 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.identity/3.0.0/package/package.json not in flight; writing
+158 silly resolveWithNewModule lodash.reduce@4.4.0 checking installable status
+159 silly cache add args [ 'lodash.reduce@^4.3.0', null ]
+160 verbose cache add spec lodash.reduce@^4.3.0
+161 silly cache add parsed spec Result {
+161 silly cache add   raw: 'lodash.reduce@^4.3.0',
+161 silly cache add   scope: null,
+161 silly cache add   name: 'lodash.reduce',
+161 silly cache add   rawSpec: '^4.3.0',
+161 silly cache add   spec: '>=4.3.0 <5.0.0',
+161 silly cache add   type: 'range' }
+162 silly addNamed lodash.reduce@>=4.3.0 <5.0.0
+163 verbose addNamed ">=4.3.0 <5.0.0" is a valid semver range for lodash.reduce
+164 silly addNameRange { name: 'lodash.reduce',
+164 silly addNameRange   range: '>=4.3.0 <5.0.0',
+164 silly addNameRange   hasData: false }
+165 silly mapToRegistry name lodash.reduce
+166 silly mapToRegistry using default registry
+167 silly mapToRegistry registry https://registry.npmjs.org/
+168 silly mapToRegistry uri https://registry.npmjs.org/lodash.reduce
+169 verbose addNameRange registry:https://registry.npmjs.org/lodash.reduce not in flight; fetching
+170 verbose get https://registry.npmjs.org/lodash.omit not expired, no request
+171 silly addNameRange number 2 { name: 'lodash.omit', range: '>=4.2.1 <5.0.0', hasData: true }
+172 silly addNameRange versions [ 'lodash.omit',
+172 silly addNameRange   [ '2.0.0',
+172 silly addNameRange     '2.1.0',
+172 silly addNameRange     '2.2.0',
+172 silly addNameRange     '2.2.1',
+172 silly addNameRange     '2.3.0',
+172 silly addNameRange     '2.4.0',
+172 silly addNameRange     '2.4.1',
+172 silly addNameRange     '3.0.0',
+172 silly addNameRange     '3.1.0',
+172 silly addNameRange     '4.0.0',
+172 silly addNameRange     '4.0.1',
+172 silly addNameRange     '4.0.2',
+172 silly addNameRange     '4.1.0',
+172 silly addNameRange     '4.1.1',
+172 silly addNameRange     '4.1.2',
+172 silly addNameRange     '4.2.0',
+172 silly addNameRange     '4.2.1',
+172 silly addNameRange     '4.3.0' ] ]
+173 silly addNamed lodash.omit@4.3.0
+174 verbose addNamed "4.3.0" is a plain semver version for lodash.omit
+175 verbose get https://registry.npmjs.org/lodash.keys not expired, no request
+176 silly addNameRange number 2 { name: 'lodash.keys', range: '>=4.0.6 <5.0.0', hasData: true }
+177 silly addNameRange versions [ 'lodash.keys',
+177 silly addNameRange   [ '2.0.0',
+177 silly addNameRange     '2.1.0',
+177 silly addNameRange     '2.2.0',
+177 silly addNameRange     '2.2.1',
+177 silly addNameRange     '2.3.0',
+177 silly addNameRange     '2.4.0',
+177 silly addNameRange     '2.4.1',
+177 silly addNameRange     '3.0.0',
+177 silly addNameRange     '3.0.1',
+177 silly addNameRange     '3.0.2',
+177 silly addNameRange     '3.0.3',
+177 silly addNameRange     '3.0.4',
+177 silly addNameRange     '3.0.5',
+177 silly addNameRange     '3.0.6',
+177 silly addNameRange     '3.0.7',
+177 silly addNameRange     '3.1.0',
+177 silly addNameRange     '3.1.1',
+177 silly addNameRange     '3.1.2',
+177 silly addNameRange     '4.0.0',
+177 silly addNameRange     '4.0.1',
+177 silly addNameRange     '4.0.2',
+177 silly addNameRange     '4.0.3',
+177 silly addNameRange     '4.0.4',
+177 silly addNameRange     '4.0.5',
+177 silly addNameRange     '4.0.6',
+177 silly addNameRange     '4.0.7' ] ]
+178 silly addNamed lodash.keys@4.0.7
+179 verbose addNamed "4.0.7" is a plain semver version for lodash.keys
+180 verbose get https://registry.npmjs.org/lodash.reduce not expired, no request
+181 silly addNameRange number 2 { name: 'lodash.reduce', range: '>=4.3.0 <5.0.0', hasData: true }
+182 silly addNameRange versions [ 'lodash.reduce',
+182 silly addNameRange   [ '2.0.0',
+182 silly addNameRange     '2.1.0',
+182 silly addNameRange     '2.2.0',
+182 silly addNameRange     '2.2.1',
+182 silly addNameRange     '2.3.0',
+182 silly addNameRange     '2.4.0',
+182 silly addNameRange     '2.4.1',
+182 silly addNameRange     '3.0.0',
+182 silly addNameRange     '3.0.1',
+182 silly addNameRange     '3.1.0',
+182 silly addNameRange     '3.1.1',
+182 silly addNameRange     '3.1.2',
+182 silly addNameRange     '4.0.0',
+182 silly addNameRange     '4.0.1',
+182 silly addNameRange     '4.0.2',
+182 silly addNameRange     '4.1.0',
+182 silly addNameRange     '4.1.1',
+182 silly addNameRange     '4.2.0',
+182 silly addNameRange     '4.2.1',
+182 silly addNameRange     '4.3.0',
+182 silly addNameRange     '4.4.0' ] ]
+183 silly addNamed lodash.reduce@4.4.0
+184 verbose addNamed "4.4.0" is a plain semver version for lodash.reduce
+185 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.identity/3.0.0/package/package.json written
+186 silly cache afterAdd lodash.omit@4.3.0
+187 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.omit/4.3.0/package/package.json not in flight; writing
+188 silly cache afterAdd lodash.keys@4.0.7
+189 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.keys/4.0.7/package/package.json not in flight; writing
+190 silly cache afterAdd lodash.reduce@4.4.0
+191 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.reduce/4.4.0/package/package.json not in flight; writing
+192 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.keys/4.0.7/package/package.json written
+193 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.omit/4.3.0/package/package.json written
+194 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.reduce/4.4.0/package/package.json written
+195 silly fetchNamedPackageData lodash._basedifference
+196 silly mapToRegistry name lodash._basedifference
+197 silly mapToRegistry using default registry
+198 silly mapToRegistry registry https://registry.npmjs.org/
+199 silly mapToRegistry uri https://registry.npmjs.org/lodash._basedifference
+200 silly fetchNamedPackageData lodash._baseflatten
+201 silly mapToRegistry name lodash._baseflatten
+202 silly mapToRegistry using default registry
+203 silly mapToRegistry registry https://registry.npmjs.org/
+204 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseflatten
+205 silly fetchNamedPackageData lodash.keysin
+206 silly mapToRegistry name lodash.keysin
+207 silly mapToRegistry using default registry
+208 silly mapToRegistry registry https://registry.npmjs.org/
+209 silly mapToRegistry uri https://registry.npmjs.org/lodash.keysin
+210 silly fetchNamedPackageData lodash.rest
+211 silly mapToRegistry name lodash.rest
+212 silly mapToRegistry using default registry
+213 silly mapToRegistry registry https://registry.npmjs.org/
+214 silly mapToRegistry uri https://registry.npmjs.org/lodash.rest
+215 verbose request uri https://registry.npmjs.org/lodash._basedifference
+216 verbose request no auth needed
+217 info attempt registry request try #1 at 3:53:43 PM
+218 verbose etag "AC4KX0XBKYQZ5IJ5ZXAVZNT3W"
+219 http request GET https://registry.npmjs.org/lodash._basedifference
+220 verbose request uri https://registry.npmjs.org/lodash.rest
+221 verbose request no auth needed
+222 info attempt registry request try #1 at 3:53:43 PM
+223 verbose etag "DVFX5VT4H724C93A1IKHU2WMM"
+224 http request GET https://registry.npmjs.org/lodash.rest
+225 verbose request uri https://registry.npmjs.org/lodash._baseflatten
+226 verbose request no auth needed
+227 info attempt registry request try #1 at 3:53:43 PM
+228 verbose etag "CZKE4UYJ3LZJK7QDMV9SN8J69"
+229 http request GET https://registry.npmjs.org/lodash._baseflatten
+230 verbose request uri https://registry.npmjs.org/lodash.keysin
+231 verbose request no auth needed
+232 info attempt registry request try #1 at 3:53:43 PM
+233 verbose etag "34XXWCZJWIHG286D5BLP1KWGF"
+234 http request GET https://registry.npmjs.org/lodash.keysin
+235 http 304 https://registry.npmjs.org/lodash.rest
+236 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+236 verbose headers   via: '1.1 varnish',
+236 verbose headers   'cache-control': 'max-age=300',
+236 verbose headers   etag: '"DVFX5VT4H724C93A1IKHU2WMM"',
+236 verbose headers   age: '90',
+236 verbose headers   connection: 'keep-alive',
+236 verbose headers   'x-served-by': 'cache-iad2122-IAD',
+236 verbose headers   'x-cache': 'HIT',
+236 verbose headers   'x-cache-hits': '2',
+236 verbose headers   'x-timer': 'S1466970821.424006,VS0,VE0',
+236 verbose headers   vary: 'Accept-Encoding' }
+237 silly get cb [ 304,
+237 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+237 silly get     via: '1.1 varnish',
+237 silly get     'cache-control': 'max-age=300',
+237 silly get     etag: '"DVFX5VT4H724C93A1IKHU2WMM"',
+237 silly get     age: '90',
+237 silly get     connection: 'keep-alive',
+237 silly get     'x-served-by': 'cache-iad2122-IAD',
+237 silly get     'x-cache': 'HIT',
+237 silly get     'x-cache-hits': '2',
+237 silly get     'x-timer': 'S1466970821.424006,VS0,VE0',
+237 silly get     vary: 'Accept-Encoding' } ]
+238 verbose etag https://registry.npmjs.org/lodash.rest from cache
+239 verbose get saving lodash.rest to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.rest/.cache.json
+240 http 304 https://registry.npmjs.org/lodash._baseflatten
+241 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+241 verbose headers   via: '1.1 varnish',
+241 verbose headers   'cache-control': 'max-age=300',
+241 verbose headers   etag: '"CZKE4UYJ3LZJK7QDMV9SN8J69"',
+241 verbose headers   age: '275',
+241 verbose headers   connection: 'keep-alive',
+241 verbose headers   'x-served-by': 'cache-iad2125-IAD',
+241 verbose headers   'x-cache': 'HIT',
+241 verbose headers   'x-cache-hits': '215',
+241 verbose headers   'x-timer': 'S1466970821.426692,VS0,VE0',
+241 verbose headers   vary: 'Accept-Encoding' }
+242 silly get cb [ 304,
+242 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+242 silly get     via: '1.1 varnish',
+242 silly get     'cache-control': 'max-age=300',
+242 silly get     etag: '"CZKE4UYJ3LZJK7QDMV9SN8J69"',
+242 silly get     age: '275',
+242 silly get     connection: 'keep-alive',
+242 silly get     'x-served-by': 'cache-iad2125-IAD',
+242 silly get     'x-cache': 'HIT',
+242 silly get     'x-cache-hits': '215',
+242 silly get     'x-timer': 'S1466970821.426692,VS0,VE0',
+242 silly get     vary: 'Accept-Encoding' } ]
+243 verbose etag https://registry.npmjs.org/lodash._baseflatten from cache
+244 verbose get saving lodash._baseflatten to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._baseflatten/.cache.json
+245 silly resolveWithNewModule lodash._baseflatten@4.2.1 checking installable status
+246 silly cache add args [ 'lodash._baseflatten@~4.2.0', null ]
+247 verbose cache add spec lodash._baseflatten@~4.2.0
+248 silly cache add parsed spec Result {
+248 silly cache add   raw: 'lodash._baseflatten@~4.2.0',
+248 silly cache add   scope: null,
+248 silly cache add   name: 'lodash._baseflatten',
+248 silly cache add   rawSpec: '~4.2.0',
+248 silly cache add   spec: '>=4.2.0 <4.3.0',
+248 silly cache add   type: 'range' }
+249 silly addNamed lodash._baseflatten@>=4.2.0 <4.3.0
+250 verbose addNamed ">=4.2.0 <4.3.0" is a valid semver range for lodash._baseflatten
+251 silly addNameRange { name: 'lodash._baseflatten',
+251 silly addNameRange   range: '>=4.2.0 <4.3.0',
+251 silly addNameRange   hasData: false }
+252 silly mapToRegistry name lodash._baseflatten
+253 silly mapToRegistry using default registry
+254 silly mapToRegistry registry https://registry.npmjs.org/
+255 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseflatten
+256 verbose addNameRange registry:https://registry.npmjs.org/lodash._baseflatten not in flight; fetching
+257 silly resolveWithNewModule lodash.rest@4.0.3 checking installable status
+258 silly cache add args [ 'lodash.rest@^4.0.0', null ]
+259 verbose cache add spec lodash.rest@^4.0.0
+260 silly cache add parsed spec Result {
+260 silly cache add   raw: 'lodash.rest@^4.0.0',
+260 silly cache add   scope: null,
+260 silly cache add   name: 'lodash.rest',
+260 silly cache add   rawSpec: '^4.0.0',
+260 silly cache add   spec: '>=4.0.0 <5.0.0',
+260 silly cache add   type: 'range' }
+261 silly addNamed lodash.rest@>=4.0.0 <5.0.0
+262 verbose addNamed ">=4.0.0 <5.0.0" is a valid semver range for lodash.rest
+263 silly addNameRange { name: 'lodash.rest', range: '>=4.0.0 <5.0.0', hasData: false }
+264 silly mapToRegistry name lodash.rest
+265 silly mapToRegistry using default registry
+266 silly mapToRegistry registry https://registry.npmjs.org/
+267 silly mapToRegistry uri https://registry.npmjs.org/lodash.rest
+268 verbose addNameRange registry:https://registry.npmjs.org/lodash.rest not in flight; fetching
+269 verbose get https://registry.npmjs.org/lodash._baseflatten not expired, no request
+270 silly addNameRange number 2 { name: 'lodash._baseflatten',
+270 silly addNameRange   range: '>=4.2.0 <4.3.0',
+270 silly addNameRange   hasData: true }
+271 silly addNameRange versions [ 'lodash._baseflatten',
+271 silly addNameRange   [ '2.0.0',
+271 silly addNameRange     '2.1.0',
+271 silly addNameRange     '2.2.0',
+271 silly addNameRange     '2.2.1',
+271 silly addNameRange     '2.3.0',
+271 silly addNameRange     '2.4.0',
+271 silly addNameRange     '2.4.1',
+271 silly addNameRange     '3.0.0',
+271 silly addNameRange     '3.1.0',
+271 silly addNameRange     '3.1.1',
+271 silly addNameRange     '3.1.2',
+271 silly addNameRange     '3.1.3',
+271 silly addNameRange     '3.1.4',
+271 silly addNameRange     '4.0.0',
+271 silly addNameRange     '4.0.1',
+271 silly addNameRange     '4.1.0',
+271 silly addNameRange     '4.1.1',
+271 silly addNameRange     '4.2.0',
+271 silly addNameRange     '4.2.1' ] ]
+272 silly addNamed lodash._baseflatten@4.2.1
+273 verbose addNamed "4.2.1" is a plain semver version for lodash._baseflatten
+274 verbose get https://registry.npmjs.org/lodash.rest not expired, no request
+275 silly addNameRange number 2 { name: 'lodash.rest', range: '>=4.0.0 <5.0.0', hasData: true }
+276 silly addNameRange versions [ 'lodash.rest',
+276 silly addNameRange   [ '2.0.0',
+276 silly addNameRange     '2.1.0',
+276 silly addNameRange     '2.2.0',
+276 silly addNameRange     '2.2.1',
+276 silly addNameRange     '2.3.0',
+276 silly addNameRange     '2.4.0',
+276 silly addNameRange     '2.4.1',
+276 silly addNameRange     '3.0.0',
+276 silly addNameRange     '4.0.0',
+276 silly addNameRange     '4.0.1',
+276 silly addNameRange     '4.0.2',
+276 silly addNameRange     '4.0.3' ] ]
+277 silly addNamed lodash.rest@4.0.3
+278 verbose addNamed "4.0.3" is a plain semver version for lodash.rest
+279 silly cache afterAdd lodash._baseflatten@4.2.1
+280 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseflatten/4.2.1/package/package.json not in flight; writing
+281 silly cache afterAdd lodash.rest@4.0.3
+282 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.rest/4.0.3/package/package.json not in flight; writing
+283 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseflatten/4.2.1/package/package.json written
+284 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.rest/4.0.3/package/package.json written
+285 http 200 https://registry.npmjs.org/lodash.keysin
+286 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+286 verbose headers   etag: '"85FN7V7081ASKSOLRIEYO9HGK"',
+286 verbose headers   'content-type': 'application/json',
+286 verbose headers   'content-encoding': 'gzip',
+286 verbose headers   'cache-control': 'max-age=300',
+286 verbose headers   'content-length': '3210',
+286 verbose headers   'accept-ranges': 'bytes',
+286 verbose headers   date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+286 verbose headers   via: '1.1 varnish',
+286 verbose headers   age: '256',
+286 verbose headers   connection: 'keep-alive',
+286 verbose headers   'x-served-by': 'cache-iad2131-IAD',
+286 verbose headers   'x-cache': 'HIT',
+286 verbose headers   'x-cache-hits': '2',
+286 verbose headers   'x-timer': 'S1466970821.476456,VS0,VE0',
+286 verbose headers   vary: 'Accept-Encoding' }
+287 silly get cb [ 200,
+287 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+287 silly get     etag: '"85FN7V7081ASKSOLRIEYO9HGK"',
+287 silly get     'content-type': 'application/json',
+287 silly get     'content-encoding': 'gzip',
+287 silly get     'cache-control': 'max-age=300',
+287 silly get     'content-length': '3210',
+287 silly get     'accept-ranges': 'bytes',
+287 silly get     date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+287 silly get     via: '1.1 varnish',
+287 silly get     age: '256',
+287 silly get     connection: 'keep-alive',
+287 silly get     'x-served-by': 'cache-iad2131-IAD',
+287 silly get     'x-cache': 'HIT',
+287 silly get     'x-cache-hits': '2',
+287 silly get     'x-timer': 'S1466970821.476456,VS0,VE0',
+287 silly get     vary: 'Accept-Encoding' } ]
+288 verbose get saving lodash.keysin to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash.keysin/.cache.json
+289 silly resolveWithNewModule lodash.keysin@4.1.4 checking installable status
+290 silly cache add args [ 'lodash.keysin@^4.0.0', null ]
+291 verbose cache add spec lodash.keysin@^4.0.0
+292 silly cache add parsed spec Result {
+292 silly cache add   raw: 'lodash.keysin@^4.0.0',
+292 silly cache add   scope: null,
+292 silly cache add   name: 'lodash.keysin',
+292 silly cache add   rawSpec: '^4.0.0',
+292 silly cache add   spec: '>=4.0.0 <5.0.0',
+292 silly cache add   type: 'range' }
+293 silly addNamed lodash.keysin@>=4.0.0 <5.0.0
+294 verbose addNamed ">=4.0.0 <5.0.0" is a valid semver range for lodash.keysin
+295 silly addNameRange { name: 'lodash.keysin',
+295 silly addNameRange   range: '>=4.0.0 <5.0.0',
+295 silly addNameRange   hasData: false }
+296 silly mapToRegistry name lodash.keysin
+297 silly mapToRegistry using default registry
+298 silly mapToRegistry registry https://registry.npmjs.org/
+299 silly mapToRegistry uri https://registry.npmjs.org/lodash.keysin
+300 verbose addNameRange registry:https://registry.npmjs.org/lodash.keysin not in flight; fetching
+301 verbose get https://registry.npmjs.org/lodash.keysin not expired, no request
+302 silly addNameRange number 2 { name: 'lodash.keysin', range: '>=4.0.0 <5.0.0', hasData: true }
+303 silly addNameRange versions [ 'lodash.keysin',
+303 silly addNameRange   [ '3.0.0',
+303 silly addNameRange     '3.0.1',
+303 silly addNameRange     '3.0.2',
+303 silly addNameRange     '3.0.3',
+303 silly addNameRange     '3.0.4',
+303 silly addNameRange     '3.0.5',
+303 silly addNameRange     '3.0.6',
+303 silly addNameRange     '3.0.7',
+303 silly addNameRange     '3.0.8',
+303 silly addNameRange     '4.0.0',
+303 silly addNameRange     '4.0.1',
+303 silly addNameRange     '4.0.2',
+303 silly addNameRange     '4.1.0',
+303 silly addNameRange     '4.1.1',
+303 silly addNameRange     '4.1.2',
+303 silly addNameRange     '4.1.3',
+303 silly addNameRange     '4.1.4' ] ]
+304 silly addNamed lodash.keysin@4.1.4
+305 verbose addNamed "4.1.4" is a plain semver version for lodash.keysin
+306 silly cache afterAdd lodash.keysin@4.1.4
+307 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.keysin/4.1.4/package/package.json not in flight; writing
+308 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash.keysin/4.1.4/package/package.json written
+309 http 304 https://registry.npmjs.org/lodash._basedifference
+310 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+310 verbose headers   via: '1.1 varnish',
+310 verbose headers   'cache-control': 'max-age=300',
+310 verbose headers   etag: '"AC4KX0XBKYQZ5IJ5ZXAVZNT3W"',
+310 verbose headers   age: '0',
+310 verbose headers   connection: 'keep-alive',
+310 verbose headers   'x-served-by': 'cache-iad2133-IAD',
+310 verbose headers   'x-cache': 'HIT',
+310 verbose headers   'x-cache-hits': '1',
+310 verbose headers   'x-timer': 'S1466970821.418970,VS0,VE73',
+310 verbose headers   vary: 'Accept-Encoding' }
+311 silly get cb [ 304,
+311 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+311 silly get     via: '1.1 varnish',
+311 silly get     'cache-control': 'max-age=300',
+311 silly get     etag: '"AC4KX0XBKYQZ5IJ5ZXAVZNT3W"',
+311 silly get     age: '0',
+311 silly get     connection: 'keep-alive',
+311 silly get     'x-served-by': 'cache-iad2133-IAD',
+311 silly get     'x-cache': 'HIT',
+311 silly get     'x-cache-hits': '1',
+311 silly get     'x-timer': 'S1466970821.418970,VS0,VE73',
+311 silly get     vary: 'Accept-Encoding' } ]
+312 verbose etag https://registry.npmjs.org/lodash._basedifference from cache
+313 verbose get saving lodash._basedifference to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._basedifference/.cache.json
+314 silly resolveWithNewModule lodash._basedifference@4.5.0 checking installable status
+315 silly cache add args [ 'lodash._basedifference@~4.5.0', null ]
+316 verbose cache add spec lodash._basedifference@~4.5.0
+317 silly cache add parsed spec Result {
+317 silly cache add   raw: 'lodash._basedifference@~4.5.0',
+317 silly cache add   scope: null,
+317 silly cache add   name: 'lodash._basedifference',
+317 silly cache add   rawSpec: '~4.5.0',
+317 silly cache add   spec: '>=4.5.0 <4.6.0',
+317 silly cache add   type: 'range' }
+318 silly addNamed lodash._basedifference@>=4.5.0 <4.6.0
+319 verbose addNamed ">=4.5.0 <4.6.0" is a valid semver range for lodash._basedifference
+320 silly addNameRange { name: 'lodash._basedifference',
+320 silly addNameRange   range: '>=4.5.0 <4.6.0',
+320 silly addNameRange   hasData: false }
+321 silly mapToRegistry name lodash._basedifference
+322 silly mapToRegistry using default registry
+323 silly mapToRegistry registry https://registry.npmjs.org/
+324 silly mapToRegistry uri https://registry.npmjs.org/lodash._basedifference
+325 verbose addNameRange registry:https://registry.npmjs.org/lodash._basedifference not in flight; fetching
+326 verbose get https://registry.npmjs.org/lodash._basedifference not expired, no request
+327 silly addNameRange number 2 { name: 'lodash._basedifference',
+327 silly addNameRange   range: '>=4.5.0 <4.6.0',
+327 silly addNameRange   hasData: true }
+328 silly addNameRange versions [ 'lodash._basedifference',
+328 silly addNameRange   [ '2.3.0',
+328 silly addNameRange     '2.4.0',
+328 silly addNameRange     '2.4.1',
+328 silly addNameRange     '3.0.0',
+328 silly addNameRange     '3.0.1',
+328 silly addNameRange     '3.0.2',
+328 silly addNameRange     '3.0.3',
+328 silly addNameRange     '4.4.0',
+328 silly addNameRange     '4.4.1',
+328 silly addNameRange     '4.5.0' ] ]
+329 silly addNamed lodash._basedifference@4.5.0
+330 verbose addNamed "4.5.0" is a plain semver version for lodash._basedifference
+331 silly cache afterAdd lodash._basedifference@4.5.0
+332 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basedifference/4.5.0/package/package.json not in flight; writing
+333 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basedifference/4.5.0/package/package.json written
+334 silly fetchNamedPackageData lodash._root
+335 silly mapToRegistry name lodash._root
+336 silly mapToRegistry using default registry
+337 silly mapToRegistry registry https://registry.npmjs.org/
+338 silly mapToRegistry uri https://registry.npmjs.org/lodash._root
+339 verbose request uri https://registry.npmjs.org/lodash._root
+340 verbose request no auth needed
+341 info attempt registry request try #1 at 3:53:43 PM
+342 verbose etag "ZXC6N9SH3CXW8Q61S0H9M01N"
+343 http request GET https://registry.npmjs.org/lodash._root
+344 http 304 https://registry.npmjs.org/lodash._root
+345 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+345 verbose headers   via: '1.1 varnish',
+345 verbose headers   'cache-control': 'max-age=300',
+345 verbose headers   etag: '"ZXC6N9SH3CXW8Q61S0H9M01N"',
+345 verbose headers   age: '94',
+345 verbose headers   connection: 'keep-alive',
+345 verbose headers   'x-served-by': 'cache-iad2130-IAD',
+345 verbose headers   'x-cache': 'HIT',
+345 verbose headers   'x-cache-hits': '2',
+345 verbose headers   'x-timer': 'S1466970821.579343,VS0,VE0',
+345 verbose headers   vary: 'Accept-Encoding' }
+346 silly get cb [ 304,
+346 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+346 silly get     via: '1.1 varnish',
+346 silly get     'cache-control': 'max-age=300',
+346 silly get     etag: '"ZXC6N9SH3CXW8Q61S0H9M01N"',
+346 silly get     age: '94',
+346 silly get     connection: 'keep-alive',
+346 silly get     'x-served-by': 'cache-iad2130-IAD',
+346 silly get     'x-cache': 'HIT',
+346 silly get     'x-cache-hits': '2',
+346 silly get     'x-timer': 'S1466970821.579343,VS0,VE0',
+346 silly get     vary: 'Accept-Encoding' } ]
+347 verbose etag https://registry.npmjs.org/lodash._root from cache
+348 verbose get saving lodash._root to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._root/.cache.json
+349 silly resolveWithNewModule lodash._root@3.0.1 checking installable status
+350 silly cache add args [ 'lodash._root@~3.0.0', null ]
+351 verbose cache add spec lodash._root@~3.0.0
+352 silly cache add parsed spec Result {
+352 silly cache add   raw: 'lodash._root@~3.0.0',
+352 silly cache add   scope: null,
+352 silly cache add   name: 'lodash._root',
+352 silly cache add   rawSpec: '~3.0.0',
+352 silly cache add   spec: '>=3.0.0 <3.1.0',
+352 silly cache add   type: 'range' }
+353 silly addNamed lodash._root@>=3.0.0 <3.1.0
+354 verbose addNamed ">=3.0.0 <3.1.0" is a valid semver range for lodash._root
+355 silly addNameRange { name: 'lodash._root', range: '>=3.0.0 <3.1.0', hasData: false }
+356 silly mapToRegistry name lodash._root
+357 silly mapToRegistry using default registry
+358 silly mapToRegistry registry https://registry.npmjs.org/
+359 silly mapToRegistry uri https://registry.npmjs.org/lodash._root
+360 verbose addNameRange registry:https://registry.npmjs.org/lodash._root not in flight; fetching
+361 verbose get https://registry.npmjs.org/lodash._root not expired, no request
+362 silly addNameRange number 2 { name: 'lodash._root', range: '>=3.0.0 <3.1.0', hasData: true }
+363 silly addNameRange versions [ 'lodash._root', [ '3.0.0', '3.0.1' ] ]
+364 silly addNamed lodash._root@3.0.1
+365 verbose addNamed "3.0.1" is a plain semver version for lodash._root
+366 silly cache afterAdd lodash._root@3.0.1
+367 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._root/3.0.1/package/package.json not in flight; writing
+368 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._root/3.0.1/package/package.json written
+369 silly fetchNamedPackageData lodash._baseeach
+370 silly mapToRegistry name lodash._baseeach
+371 silly mapToRegistry using default registry
+372 silly mapToRegistry registry https://registry.npmjs.org/
+373 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseeach
+374 silly fetchNamedPackageData lodash._baseiteratee
+375 silly mapToRegistry name lodash._baseiteratee
+376 silly mapToRegistry using default registry
+377 silly mapToRegistry registry https://registry.npmjs.org/
+378 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseiteratee
+379 silly fetchNamedPackageData lodash._basereduce
+380 silly mapToRegistry name lodash._basereduce
+381 silly mapToRegistry using default registry
+382 silly mapToRegistry registry https://registry.npmjs.org/
+383 silly mapToRegistry uri https://registry.npmjs.org/lodash._basereduce
+384 verbose request uri https://registry.npmjs.org/lodash._baseeach
+385 verbose request no auth needed
+386 info attempt registry request try #1 at 3:53:43 PM
+387 verbose etag "7V6063TF7JTW0UPDTBAVB3OSR"
+388 http request GET https://registry.npmjs.org/lodash._baseeach
+389 verbose request uri https://registry.npmjs.org/lodash._basereduce
+390 verbose request no auth needed
+391 info attempt registry request try #1 at 3:53:43 PM
+392 verbose etag "3VYK07555S13GVJ3KVT0KYGR5"
+393 http request GET https://registry.npmjs.org/lodash._basereduce
+394 verbose request uri https://registry.npmjs.org/lodash._baseiteratee
+395 verbose request no auth needed
+396 info attempt registry request try #1 at 3:53:43 PM
+397 verbose etag "DAP05W14MJON9LMFVEPQ7GC82"
+398 http request GET https://registry.npmjs.org/lodash._baseiteratee
+399 http 304 https://registry.npmjs.org/lodash._baseiteratee
+400 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+400 verbose headers   via: '1.1 varnish',
+400 verbose headers   'cache-control': 'max-age=300',
+400 verbose headers   etag: '"DAP05W14MJON9LMFVEPQ7GC82"',
+400 verbose headers   age: '0',
+400 verbose headers   connection: 'keep-alive',
+400 verbose headers   'x-served-by': 'cache-iad2132-IAD',
+400 verbose headers   'x-cache': 'HIT',
+400 verbose headers   'x-cache-hits': '1',
+400 verbose headers   'x-timer': 'S1466970821.681729,VS0,VE90',
+400 verbose headers   vary: 'Accept-Encoding' }
+401 silly get cb [ 304,
+401 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+401 silly get     via: '1.1 varnish',
+401 silly get     'cache-control': 'max-age=300',
+401 silly get     etag: '"DAP05W14MJON9LMFVEPQ7GC82"',
+401 silly get     age: '0',
+401 silly get     connection: 'keep-alive',
+401 silly get     'x-served-by': 'cache-iad2132-IAD',
+401 silly get     'x-cache': 'HIT',
+401 silly get     'x-cache-hits': '1',
+401 silly get     'x-timer': 'S1466970821.681729,VS0,VE90',
+401 silly get     vary: 'Accept-Encoding' } ]
+402 verbose etag https://registry.npmjs.org/lodash._baseiteratee from cache
+403 verbose get saving lodash._baseiteratee to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._baseiteratee/.cache.json
+404 silly resolveWithNewModule lodash._baseiteratee@4.7.0 checking installable status
+405 silly cache add args [ 'lodash._baseiteratee@~4.7.0', null ]
+406 verbose cache add spec lodash._baseiteratee@~4.7.0
+407 silly cache add parsed spec Result {
+407 silly cache add   raw: 'lodash._baseiteratee@~4.7.0',
+407 silly cache add   scope: null,
+407 silly cache add   name: 'lodash._baseiteratee',
+407 silly cache add   rawSpec: '~4.7.0',
+407 silly cache add   spec: '>=4.7.0 <4.8.0',
+407 silly cache add   type: 'range' }
+408 silly addNamed lodash._baseiteratee@>=4.7.0 <4.8.0
+409 verbose addNamed ">=4.7.0 <4.8.0" is a valid semver range for lodash._baseiteratee
+410 silly addNameRange { name: 'lodash._baseiteratee',
+410 silly addNameRange   range: '>=4.7.0 <4.8.0',
+410 silly addNameRange   hasData: false }
+411 silly mapToRegistry name lodash._baseiteratee
+412 silly mapToRegistry using default registry
+413 silly mapToRegistry registry https://registry.npmjs.org/
+414 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseiteratee
+415 verbose addNameRange registry:https://registry.npmjs.org/lodash._baseiteratee not in flight; fetching
+416 verbose get https://registry.npmjs.org/lodash._baseiteratee not expired, no request
+417 silly addNameRange number 2 { name: 'lodash._baseiteratee',
+417 silly addNameRange   range: '>=4.7.0 <4.8.0',
+417 silly addNameRange   hasData: true }
+418 silly addNameRange versions [ 'lodash._baseiteratee',
+418 silly addNameRange   [ '4.4.0', '4.5.0', '4.5.1', '4.5.2', '4.6.0', '4.6.1', '4.7.0' ] ]
+419 silly addNamed lodash._baseiteratee@4.7.0
+420 verbose addNamed "4.7.0" is a plain semver version for lodash._baseiteratee
+421 http 304 https://registry.npmjs.org/lodash._baseeach
+422 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+422 verbose headers   via: '1.1 varnish',
+422 verbose headers   'cache-control': 'max-age=300',
+422 verbose headers   etag: '"7V6063TF7JTW0UPDTBAVB3OSR"',
+422 verbose headers   age: '0',
+422 verbose headers   connection: 'keep-alive',
+422 verbose headers   'x-served-by': 'cache-iad2120-IAD',
+422 verbose headers   'x-cache': 'HIT',
+422 verbose headers   'x-cache-hits': '1',
+422 verbose headers   'x-timer': 'S1466970821.683227,VS0,VE100',
+422 verbose headers   vary: 'Accept-Encoding' }
+423 silly get cb [ 304,
+423 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+423 silly get     via: '1.1 varnish',
+423 silly get     'cache-control': 'max-age=300',
+423 silly get     etag: '"7V6063TF7JTW0UPDTBAVB3OSR"',
+423 silly get     age: '0',
+423 silly get     connection: 'keep-alive',
+423 silly get     'x-served-by': 'cache-iad2120-IAD',
+423 silly get     'x-cache': 'HIT',
+423 silly get     'x-cache-hits': '1',
+423 silly get     'x-timer': 'S1466970821.683227,VS0,VE100',
+423 silly get     vary: 'Accept-Encoding' } ]
+424 verbose etag https://registry.npmjs.org/lodash._baseeach from cache
+425 verbose get saving lodash._baseeach to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._baseeach/.cache.json
+426 silly cache afterAdd lodash._baseiteratee@4.7.0
+427 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseiteratee/4.7.0/package/package.json not in flight; writing
+428 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseiteratee/4.7.0/package/package.json written
+429 silly resolveWithNewModule lodash._baseeach@4.1.3 checking installable status
+430 silly cache add args [ 'lodash._baseeach@~4.1.0', null ]
+431 verbose cache add spec lodash._baseeach@~4.1.0
+432 silly cache add parsed spec Result {
+432 silly cache add   raw: 'lodash._baseeach@~4.1.0',
+432 silly cache add   scope: null,
+432 silly cache add   name: 'lodash._baseeach',
+432 silly cache add   rawSpec: '~4.1.0',
+432 silly cache add   spec: '>=4.1.0 <4.2.0',
+432 silly cache add   type: 'range' }
+433 silly addNamed lodash._baseeach@>=4.1.0 <4.2.0
+434 verbose addNamed ">=4.1.0 <4.2.0" is a valid semver range for lodash._baseeach
+435 silly addNameRange { name: 'lodash._baseeach',
+435 silly addNameRange   range: '>=4.1.0 <4.2.0',
+435 silly addNameRange   hasData: false }
+436 silly mapToRegistry name lodash._baseeach
+437 silly mapToRegistry using default registry
+438 silly mapToRegistry registry https://registry.npmjs.org/
+439 silly mapToRegistry uri https://registry.npmjs.org/lodash._baseeach
+440 verbose addNameRange registry:https://registry.npmjs.org/lodash._baseeach not in flight; fetching
+441 verbose get https://registry.npmjs.org/lodash._baseeach not expired, no request
+442 silly addNameRange number 2 { name: 'lodash._baseeach',
+442 silly addNameRange   range: '>=4.1.0 <4.2.0',
+442 silly addNameRange   hasData: true }
+443 silly addNameRange versions [ 'lodash._baseeach',
+443 silly addNameRange   [ '3.0.0',
+443 silly addNameRange     '3.0.1',
+443 silly addNameRange     '3.0.2',
+443 silly addNameRange     '3.0.3',
+443 silly addNameRange     '3.0.4',
+443 silly addNameRange     '4.0.0',
+443 silly addNameRange     '4.0.1',
+443 silly addNameRange     '4.0.2',
+443 silly addNameRange     '4.1.0',
+443 silly addNameRange     '4.1.1',
+443 silly addNameRange     '4.1.2',
+443 silly addNameRange     '4.1.3' ] ]
+444 silly addNamed lodash._baseeach@4.1.3
+445 verbose addNamed "4.1.3" is a plain semver version for lodash._baseeach
+446 silly cache afterAdd lodash._baseeach@4.1.3
+447 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseeach/4.1.3/package/package.json not in flight; writing
+448 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._baseeach/4.1.3/package/package.json written
+449 http 304 https://registry.npmjs.org/lodash._basereduce
+450 verbose headers { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+450 verbose headers   via: '1.1 varnish',
+450 verbose headers   'cache-control': 'max-age=300',
+450 verbose headers   etag: '"3VYK07555S13GVJ3KVT0KYGR5"',
+450 verbose headers   age: '0',
+450 verbose headers   connection: 'keep-alive',
+450 verbose headers   'x-served-by': 'cache-iad2128-IAD',
+450 verbose headers   'x-cache': 'HIT',
+450 verbose headers   'x-cache-hits': '1',
+450 verbose headers   'x-timer': 'S1466970821.679147,VS0,VE386',
+450 verbose headers   vary: 'Accept-Encoding' }
+451 silly get cb [ 304,
+451 silly get   { date: 'Sun, 26 Jun 2016 19:53:41 GMT',
+451 silly get     via: '1.1 varnish',
+451 silly get     'cache-control': 'max-age=300',
+451 silly get     etag: '"3VYK07555S13GVJ3KVT0KYGR5"',
+451 silly get     age: '0',
+451 silly get     connection: 'keep-alive',
+451 silly get     'x-served-by': 'cache-iad2128-IAD',
+451 silly get     'x-cache': 'HIT',
+451 silly get     'x-cache-hits': '1',
+451 silly get     'x-timer': 'S1466970821.679147,VS0,VE386',
+451 silly get     vary: 'Accept-Encoding' } ]
+452 verbose etag https://registry.npmjs.org/lodash._basereduce from cache
+453 verbose get saving lodash._basereduce to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._basereduce/.cache.json
+454 silly resolveWithNewModule lodash._basereduce@3.0.2 checking installable status
+455 silly cache add args [ 'lodash._basereduce@~3.0.0', null ]
+456 verbose cache add spec lodash._basereduce@~3.0.0
+457 silly cache add parsed spec Result {
+457 silly cache add   raw: 'lodash._basereduce@~3.0.0',
+457 silly cache add   scope: null,
+457 silly cache add   name: 'lodash._basereduce',
+457 silly cache add   rawSpec: '~3.0.0',
+457 silly cache add   spec: '>=3.0.0 <3.1.0',
+457 silly cache add   type: 'range' }
+458 silly addNamed lodash._basereduce@>=3.0.0 <3.1.0
+459 verbose addNamed ">=3.0.0 <3.1.0" is a valid semver range for lodash._basereduce
+460 silly addNameRange { name: 'lodash._basereduce',
+460 silly addNameRange   range: '>=3.0.0 <3.1.0',
+460 silly addNameRange   hasData: false }
+461 silly mapToRegistry name lodash._basereduce
+462 silly mapToRegistry using default registry
+463 silly mapToRegistry registry https://registry.npmjs.org/
+464 silly mapToRegistry uri https://registry.npmjs.org/lodash._basereduce
+465 verbose addNameRange registry:https://registry.npmjs.org/lodash._basereduce not in flight; fetching
+466 verbose get https://registry.npmjs.org/lodash._basereduce not expired, no request
+467 silly addNameRange number 2 { name: 'lodash._basereduce',
+467 silly addNameRange   range: '>=3.0.0 <3.1.0',
+467 silly addNameRange   hasData: true }
+468 silly addNameRange versions [ 'lodash._basereduce', [ '3.0.0', '3.0.1', '3.0.2' ] ]
+469 silly addNamed lodash._basereduce@3.0.2
+470 verbose addNamed "3.0.2" is a plain semver version for lodash._basereduce
+471 silly cache afterAdd lodash._basereduce@3.0.2
+472 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basereduce/3.0.2/package/package.json not in flight; writing
+473 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basereduce/3.0.2/package/package.json written
+474 silly fetchNamedPackageData lodash._stringtopath
+475 silly mapToRegistry name lodash._stringtopath
+476 silly mapToRegistry using default registry
+477 silly mapToRegistry registry https://registry.npmjs.org/
+478 silly mapToRegistry uri https://registry.npmjs.org/lodash._stringtopath
+479 verbose request uri https://registry.npmjs.org/lodash._stringtopath
+480 verbose request no auth needed
+481 info attempt registry request try #1 at 3:53:44 PM
+482 verbose etag "5FGUB96J202SP8IBWIWUIS5O"
+483 http request GET https://registry.npmjs.org/lodash._stringtopath
+484 http 304 https://registry.npmjs.org/lodash._stringtopath
+485 verbose headers { date: 'Sun, 26 Jun 2016 19:53:42 GMT',
+485 verbose headers   via: '1.1 varnish',
+485 verbose headers   'cache-control': 'max-age=300',
+485 verbose headers   etag: '"5FGUB96J202SP8IBWIWUIS5O"',
+485 verbose headers   age: '116',
+485 verbose headers   connection: 'keep-alive',
+485 verbose headers   'x-served-by': 'cache-iad2123-IAD',
+485 verbose headers   'x-cache': 'HIT',
+485 verbose headers   'x-cache-hits': '1',
+485 verbose headers   'x-timer': 'S1466970822.183117,VS0,VE0',
+485 verbose headers   vary: 'Accept-Encoding' }
+486 silly get cb [ 304,
+486 silly get   { date: 'Sun, 26 Jun 2016 19:53:42 GMT',
+486 silly get     via: '1.1 varnish',
+486 silly get     'cache-control': 'max-age=300',
+486 silly get     etag: '"5FGUB96J202SP8IBWIWUIS5O"',
+486 silly get     age: '116',
+486 silly get     connection: 'keep-alive',
+486 silly get     'x-served-by': 'cache-iad2123-IAD',
+486 silly get     'x-cache': 'HIT',
+486 silly get     'x-cache-hits': '1',
+486 silly get     'x-timer': 'S1466970822.183117,VS0,VE0',
+486 silly get     vary: 'Accept-Encoding' } ]
+487 verbose etag https://registry.npmjs.org/lodash._stringtopath from cache
+488 verbose get saving lodash._stringtopath to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._stringtopath/.cache.json
+489 silly resolveWithNewModule lodash._stringtopath@4.8.0 checking installable status
+490 silly cache add args [ 'lodash._stringtopath@~4.8.0', null ]
+491 verbose cache add spec lodash._stringtopath@~4.8.0
+492 silly cache add parsed spec Result {
+492 silly cache add   raw: 'lodash._stringtopath@~4.8.0',
+492 silly cache add   scope: null,
+492 silly cache add   name: 'lodash._stringtopath',
+492 silly cache add   rawSpec: '~4.8.0',
+492 silly cache add   spec: '>=4.8.0 <4.9.0',
+492 silly cache add   type: 'range' }
+493 silly addNamed lodash._stringtopath@>=4.8.0 <4.9.0
+494 verbose addNamed ">=4.8.0 <4.9.0" is a valid semver range for lodash._stringtopath
+495 silly addNameRange { name: 'lodash._stringtopath',
+495 silly addNameRange   range: '>=4.8.0 <4.9.0',
+495 silly addNameRange   hasData: false }
+496 silly mapToRegistry name lodash._stringtopath
+497 silly mapToRegistry using default registry
+498 silly mapToRegistry registry https://registry.npmjs.org/
+499 silly mapToRegistry uri https://registry.npmjs.org/lodash._stringtopath
+500 verbose addNameRange registry:https://registry.npmjs.org/lodash._stringtopath not in flight; fetching
+501 verbose get https://registry.npmjs.org/lodash._stringtopath not expired, no request
+502 silly addNameRange number 2 { name: 'lodash._stringtopath',
+502 silly addNameRange   range: '>=4.8.0 <4.9.0',
+502 silly addNameRange   hasData: true }
+503 silly addNameRange versions [ 'lodash._stringtopath', [ '4.7.0', '4.7.1', '4.8.0' ] ]
+504 silly addNamed lodash._stringtopath@4.8.0
+505 verbose addNamed "4.8.0" is a plain semver version for lodash._stringtopath
+506 silly cache afterAdd lodash._stringtopath@4.8.0
+507 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._stringtopath/4.8.0/package/package.json not in flight; writing
+508 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._stringtopath/4.8.0/package/package.json written
+509 silly fetchNamedPackageData lodash._basetostring
+510 silly mapToRegistry name lodash._basetostring
+511 silly mapToRegistry using default registry
+512 silly mapToRegistry registry https://registry.npmjs.org/
+513 silly mapToRegistry uri https://registry.npmjs.org/lodash._basetostring
+514 verbose request uri https://registry.npmjs.org/lodash._basetostring
+515 verbose request no auth needed
+516 info attempt registry request try #1 at 3:53:44 PM
+517 verbose etag "BHKCTSYA1JORHFG6DCY0UFUBN"
+518 http request GET https://registry.npmjs.org/lodash._basetostring
+519 http 304 https://registry.npmjs.org/lodash._basetostring
+520 verbose headers { date: 'Sun, 26 Jun 2016 19:53:42 GMT',
+520 verbose headers   via: '1.1 varnish',
+520 verbose headers   'cache-control': 'max-age=300',
+520 verbose headers   etag: '"BHKCTSYA1JORHFG6DCY0UFUBN"',
+520 verbose headers   age: '149',
+520 verbose headers   connection: 'keep-alive',
+520 verbose headers   'x-served-by': 'cache-iad2135-IAD',
+520 verbose headers   'x-cache': 'HIT',
+520 verbose headers   'x-cache-hits': '1',
+520 verbose headers   'x-timer': 'S1466970822.277567,VS0,VE0',
+520 verbose headers   vary: 'Accept-Encoding' }
+521 silly get cb [ 304,
+521 silly get   { date: 'Sun, 26 Jun 2016 19:53:42 GMT',
+521 silly get     via: '1.1 varnish',
+521 silly get     'cache-control': 'max-age=300',
+521 silly get     etag: '"BHKCTSYA1JORHFG6DCY0UFUBN"',
+521 silly get     age: '149',
+521 silly get     connection: 'keep-alive',
+521 silly get     'x-served-by': 'cache-iad2135-IAD',
+521 silly get     'x-cache': 'HIT',
+521 silly get     'x-cache-hits': '1',
+521 silly get     'x-timer': 'S1466970822.277567,VS0,VE0',
+521 silly get     vary: 'Accept-Encoding' } ]
+522 verbose etag https://registry.npmjs.org/lodash._basetostring from cache
+523 verbose get saving lodash._basetostring to /Users/marcellomarcellosachs/code/.npm/registry.npmjs.org/lodash._basetostring/.cache.json
+524 silly resolveWithNewModule lodash._basetostring@4.12.0 checking installable status
+525 silly cache add args [ 'lodash._basetostring@~4.12.0', null ]
+526 verbose cache add spec lodash._basetostring@~4.12.0
+527 silly cache add parsed spec Result {
+527 silly cache add   raw: 'lodash._basetostring@~4.12.0',
+527 silly cache add   scope: null,
+527 silly cache add   name: 'lodash._basetostring',
+527 silly cache add   rawSpec: '~4.12.0',
+527 silly cache add   spec: '>=4.12.0 <4.13.0',
+527 silly cache add   type: 'range' }
+528 silly addNamed lodash._basetostring@>=4.12.0 <4.13.0
+529 verbose addNamed ">=4.12.0 <4.13.0" is a valid semver range for lodash._basetostring
+530 silly addNameRange { name: 'lodash._basetostring',
+530 silly addNameRange   range: '>=4.12.0 <4.13.0',
+530 silly addNameRange   hasData: false }
+531 silly mapToRegistry name lodash._basetostring
+532 silly mapToRegistry using default registry
+533 silly mapToRegistry registry https://registry.npmjs.org/
+534 silly mapToRegistry uri https://registry.npmjs.org/lodash._basetostring
+535 verbose addNameRange registry:https://registry.npmjs.org/lodash._basetostring not in flight; fetching
+536 verbose get https://registry.npmjs.org/lodash._basetostring not expired, no request
+537 silly addNameRange number 2 { name: 'lodash._basetostring',
+537 silly addNameRange   range: '>=4.12.0 <4.13.0',
+537 silly addNameRange   hasData: true }
+538 silly addNameRange versions [ 'lodash._basetostring', [ '3.0.0', '3.0.1', '4.12.0' ] ]
+539 silly addNamed lodash._basetostring@4.12.0
+540 verbose addNamed "4.12.0" is a plain semver version for lodash._basetostring
+541 silly cache afterAdd lodash._basetostring@4.12.0
+542 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basetostring/4.12.0/package/package.json not in flight; writing
+543 verbose afterAdd /Users/marcellomarcellosachs/code/.npm/lodash._basetostring/4.12.0/package/package.json written
+544 silly loadAllDepsIntoIdealTree Finishing
+545 silly idealTree:prePrune code
+545 silly idealTree:prePrune ├── lodash._basedifference@4.5.0
+545 silly idealTree:prePrune ├── lodash._baseeach@4.1.3
+545 silly idealTree:prePrune ├── lodash._baseflatten@4.2.1
+545 silly idealTree:prePrune ├── lodash._baseiteratee@4.7.0
+545 silly idealTree:prePrune ├── lodash._basereduce@3.0.2
+545 silly idealTree:prePrune ├── lodash._basetostring@4.12.0
+545 silly idealTree:prePrune ├── lodash._root@3.0.1
+545 silly idealTree:prePrune ├── lodash._stringtopath@4.8.0
+545 silly idealTree:prePrune ├── lodash.identity@3.0.0
+545 silly idealTree:prePrune ├── lodash.keys@4.0.7
+545 silly idealTree:prePrune ├── lodash.keysin@4.1.4
+545 silly idealTree:prePrune ├── lodash.omit@4.3.0
+545 silly idealTree:prePrune ├── lodash.reduce@4.4.0
+545 silly idealTree:prePrune ├── lodash.rest@4.0.3
+545 silly idealTree:prePrune └── react-string-replace-recursively@0.1.27
+546 silly loadIdealTree Finishing
+547 silly currentTree code
+547 silly currentTree └─┬ react-string-replace-recursively@0.1.27
+547 silly currentTree   ├── acorn@1.2.2
+547 silly currentTree   ├── amdefine@1.0.0
+547 silly currentTree   ├── ansi-regex@2.0.0
+547 silly currentTree   ├── ansi-styles@2.2.1
+547 silly currentTree   ├── anymatch@1.3.0
+547 silly currentTree   ├── arr-diff@2.0.0
+547 silly currentTree   ├── arr-flatten@1.0.1
+547 silly currentTree   ├── array-find-index@1.0.1
+547 silly currentTree   ├── array-uniq@1.0.2
+547 silly currentTree   ├── array-unique@0.2.1
+547 silly currentTree   ├── arrify@1.0.1
+547 silly currentTree   ├── asn1@0.2.3
+547 silly currentTree   ├── assert-plus@0.2.0
+547 silly currentTree   ├── assertion-error@1.0.1
+547 silly currentTree   ├── ast-types@0.8.16
+547 silly currentTree   ├── async-each@1.0.0
+547 silly currentTree   ├── async@1.5.2
+547 silly currentTree   ├── aws-sign2@0.6.0
+547 silly currentTree   ├── aws4@1.3.2
+547 silly currentTree   ├── babel-cli@6.7.7
+547 silly currentTree   ├── babel-code-frame@6.7.7
+547 silly currentTree   ├── babel-core@6.7.7
+547 silly currentTree   ├── babel-generator@6.7.7
+547 silly currentTree   ├── babel-helper-call-delegate@6.6.5
+547 silly currentTree   ├── babel-helper-define-map@6.6.5
+547 silly currentTree   ├── babel-helper-function-name@6.6.0
+547 silly currentTree   ├── babel-helper-get-function-arity@6.6.5
+547 silly currentTree   ├── babel-helper-hoist-variables@6.6.5
+547 silly currentTree   ├── babel-helper-optimise-call-expression@6.6.0
+547 silly currentTree   ├── babel-helper-regex@6.6.5
+547 silly currentTree   ├── babel-helper-replace-supers@6.7.0
+547 silly currentTree   ├── babel-helpers@6.6.0
+547 silly currentTree   ├── babel-messages@6.7.2
+547 silly currentTree   ├── babel-plugin-check-es2015-constants@6.7.2
+547 silly currentTree   ├── babel-plugin-syntax-async-functions@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-arrow-functions@6.7.7
+547 silly currentTree   ├── babel-plugin-transform-es2015-block-scoped-functions@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-block-scoping@6.7.1
+547 silly currentTree   ├── babel-plugin-transform-es2015-classes@6.7.7
+547 silly currentTree   ├── babel-plugin-transform-es2015-computed-properties@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-destructuring@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-duplicate-keys@6.6.4
+547 silly currentTree   ├── babel-plugin-transform-es2015-for-of@6.6.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-function-name@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-literals@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-modules-commonjs@6.7.7
+547 silly currentTree   ├── babel-plugin-transform-es2015-object-super@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-parameters@6.7.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-shorthand-properties@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-spread@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-sticky-regex@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-template-literals@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-es2015-typeof-symbol@6.6.0
+547 silly currentTree   ├── babel-plugin-transform-es2015-unicode-regex@6.5.0
+547 silly currentTree   ├── babel-plugin-transform-regenerator@6.6.5
+547 silly currentTree   ├── babel-plugin-transform-strict-mode@6.6.5
+547 silly currentTree   ├─┬ babel-polyfill@6.7.4
+547 silly currentTree   │ └── core-js@2.3.0
+547 silly currentTree   ├── babel-preset-es2015@6.6.0
+547 silly currentTree   ├── babel-regenerator-runtime@6.5.0
+547 silly currentTree   ├─┬ babel-register@6.7.2
+547 silly currentTree   │ └── core-js@2.3.0
+547 silly currentTree   ├── babel-runtime@5.8.38
+547 silly currentTree   ├── babel-template@6.7.0
+547 silly currentTree   ├── babel-traverse@6.7.6
+547 silly currentTree   ├── babel-types@6.7.7
+547 silly currentTree   ├── babylon@6.7.0
+547 silly currentTree   ├── balanced-match@0.3.0
+547 silly currentTree   ├── bin-version-check@2.1.0
+547 silly currentTree   ├── bin-version@1.0.4
+547 silly currentTree   ├── binary-extensions@1.4.0
+547 silly currentTree   ├─┬ bl@1.1.2
+547 silly currentTree   │ └── readable-stream@2.0.6
+547 silly currentTree   ├── boom@2.10.1
+547 silly currentTree   ├── brace-expansion@1.1.3
+547 silly currentTree   ├── braces@1.8.4
+547 silly currentTree   ├── builtin-modules@1.1.1
+547 silly currentTree   ├── camelcase-keys@2.1.0
+547 silly currentTree   ├── camelcase@2.1.1
+547 silly currentTree   ├── caseless@0.11.0
+547 silly currentTree   ├── chai@3.5.0
+547 silly currentTree   ├── chalk@1.1.1
+547 silly currentTree   ├── chokidar@1.4.3
+547 silly currentTree   ├── combined-stream@1.0.5
+547 silly currentTree   ├── commander@2.9.0
+547 silly currentTree   ├── concat-map@0.0.1
+547 silly currentTree   ├── convert-source-map@1.2.0
+547 silly currentTree   ├── core-js@1.2.6
+547 silly currentTree   ├── core-util-is@1.0.2
+547 silly currentTree   ├── cryptiles@2.0.5
+547 silly currentTree   ├─┬ dashdash@1.13.1
+547 silly currentTree   │ └── assert-plus@1.0.0
+547 silly currentTree   ├── debug@2.2.0
+547 silly currentTree   ├── decamelize@1.2.0
+547 silly currentTree   ├─┬ deep-eql@0.1.3
+547 silly currentTree   │ └── type-detect@0.1.1
+547 silly currentTree   ├── delayed-stream@1.0.0
+547 silly currentTree   ├── detect-indent@3.0.1
+547 silly currentTree   ├── diff@1.4.0
+547 silly currentTree   ├── ecc-jsbn@0.1.1
+547 silly currentTree   ├── error-ex@1.3.0
+547 silly currentTree   ├── escape-string-regexp@1.0.5
+547 silly currentTree   ├── esmangle-evaluator@1.0.0
+547 silly currentTree   ├── esprima@2.7.2
+547 silly currentTree   ├── esutils@2.0.2
+547 silly currentTree   ├── expand-brackets@0.1.5
+547 silly currentTree   ├── expand-range@1.8.1
+547 silly currentTree   ├── extend@3.0.0
+547 silly currentTree   ├── extglob@0.3.2
+547 silly currentTree   ├── extsprintf@1.0.2
+547 silly currentTree   ├─┬ falafel@1.2.0
+547 silly currentTree   │ └── isarray@0.0.1
+547 silly currentTree   ├── filename-regex@2.0.0
+547 silly currentTree   ├── fill-range@2.2.3
+547 silly currentTree   ├─┬ find-up@1.1.2
+547 silly currentTree   │ └── path-exists@2.1.0
+547 silly currentTree   ├── find-versions@1.2.1
+547 silly currentTree   ├── for-in@0.1.5
+547 silly currentTree   ├── for-own@0.1.4
+547 silly currentTree   ├── foreach@2.0.5
+547 silly currentTree   ├── forever-agent@0.6.1
+547 silly currentTree   ├── form-data@1.0.0-rc4
+547 silly currentTree   ├── fs-readdir-recursive@0.1.2
+547 silly currentTree   ├─┬ fsevents@1.0.11
+547 silly currentTree   │ ├── ansi-regex@2.0.0
+547 silly currentTree   │ ├── ansi-styles@2.2.1
+547 silly currentTree   │ ├── ansi@0.3.1
+547 silly currentTree   │ ├── are-we-there-yet@1.1.2
+547 silly currentTree   │ ├── asn1@0.2.3
+547 silly currentTree   │ ├── assert-plus@0.2.0
+547 silly currentTree   │ ├── async@1.5.2
+547 silly currentTree   │ ├── aws-sign2@0.6.0
+547 silly currentTree   │ ├─┬ aws4@1.3.2
+547 silly currentTree   │ │ └─┬ lru-cache@4.0.1
+547 silly currentTree   │ │   ├── pseudomap@1.0.2
+547 silly currentTree   │ │   └── yallist@2.0.0
+547 silly currentTree   │ ├── bl@1.0.3
+547 silly currentTree   │ ├── block-stream@0.0.8
+547 silly currentTree   │ ├── boom@2.10.1
+547 silly currentTree   │ ├── caseless@0.11.0
+547 silly currentTree   │ ├── chalk@1.1.3
+547 silly currentTree   │ ├── combined-stream@1.0.5
+547 silly currentTree   │ ├── commander@2.9.0
+547 silly currentTree   │ ├── core-util-is@1.0.2
+547 silly currentTree   │ ├── cryptiles@2.0.5
+547 silly currentTree   │ ├─┬ dashdash@1.13.0
+547 silly currentTree   │ │ └── assert-plus@1.0.0
+547 silly currentTree   │ ├── debug@2.2.0
+547 silly currentTree   │ ├── deep-extend@0.4.1
+547 silly currentTree   │ ├── delayed-stream@1.0.0
+547 silly currentTree   │ ├── delegates@1.0.0
+547 silly currentTree   │ ├── ecc-jsbn@0.1.1
+547 silly currentTree   │ ├── escape-string-regexp@1.0.5
+547 silly currentTree   │ ├── extend@3.0.0
+547 silly currentTree   │ ├── extsprintf@1.0.2
+547 silly currentTree   │ ├── forever-agent@0.6.1
+547 silly currentTree   │ ├── form-data@1.0.0-rc4
+547 silly currentTree   │ ├─┬ fstream-ignore@1.0.3
+547 silly currentTree   │ │ └─┬ minimatch@3.0.0
+547 silly currentTree   │ │   └─┬ brace-expansion@1.1.3
+547 silly currentTree   │ │     ├── balanced-match@0.3.0
+547 silly currentTree   │ │     └── concat-map@0.0.1
+547 silly currentTree   │ ├── fstream@1.0.8
+547 silly currentTree   │ ├── gauge@1.2.7
+547 silly currentTree   │ ├── generate-function@2.0.0
+547 silly currentTree   │ ├── generate-object-property@1.2.0
+547 silly currentTree   │ ├── graceful-fs@4.1.3
+547 silly currentTree   │ ├── graceful-readlink@1.0.1
+547 silly currentTree   │ ├── har-validator@2.0.6
+547 silly currentTree   │ ├── has-ansi@2.0.0
+547 silly currentTree   │ ├── has-unicode@2.0.0
+547 silly currentTree   │ ├── hawk@3.1.3
+547 silly currentTree   │ ├── hoek@2.16.3
+547 silly currentTree   │ ├── http-signature@1.1.1
+547 silly currentTree   │ ├── inherits@2.0.1
+547 silly currentTree   │ ├── ini@1.3.4
+547 silly currentTree   │ ├── is-my-json-valid@2.13.1
+547 silly currentTree   │ ├── is-property@1.0.2
+547 silly currentTree   │ ├── is-typedarray@1.0.0
+547 silly currentTree   │ ├── isarray@1.0.0
+547 silly currentTree   │ ├── isstream@0.1.2
+547 silly currentTree   │ ├── jodid25519@1.0.2
+547 silly currentTree   │ ├── jsbn@0.1.0
+547 silly currentTree   │ ├── json-schema@0.2.2
+547 silly currentTree   │ ├── json-stringify-safe@5.0.1
+547 silly currentTree   │ ├── jsonpointer@2.0.0
+547 silly currentTree   │ ├── jsprim@1.2.2
+547 silly currentTree   │ ├── lodash.pad@4.1.0
+547 silly currentTree   │ ├── lodash.padend@4.2.0
+547 silly currentTree   │ ├── lodash.padstart@4.2.0
+547 silly currentTree   │ ├── lodash.repeat@4.0.0
+547 silly currentTree   │ ├── lodash.tostring@4.1.2
+547 silly currentTree   │ ├── mime-db@1.22.0
+547 silly currentTree   │ ├── mime-types@2.1.10
+547 silly currentTree   │ ├── minimist@0.0.8
+547 silly currentTree   │ ├── mkdirp@0.5.1
+547 silly currentTree   │ ├── ms@0.7.1
+547 silly currentTree   │ ├─┬ node-pre-gyp@0.6.25
+547 silly currentTree   │ │ └─┬ nopt@3.0.6
+547 silly currentTree   │ │   └── abbrev@1.0.7
+547 silly currentTree   │ ├── node-uuid@1.4.7
+547 silly currentTree   │ ├── npmlog@2.0.3
+547 silly currentTree   │ ├── oauth-sign@0.8.1
+547 silly currentTree   │ ├── once@1.3.3
+547 silly currentTree   │ ├── pinkie-promise@2.0.0
+547 silly currentTree   │ ├── pinkie@2.0.4
+547 silly currentTree   │ ├── process-nextick-args@1.0.6
+547 silly currentTree   │ ├── qs@6.0.2
+547 silly currentTree   │ ├─┬ rc@1.1.6
+547 silly currentTree   │ │ └── minimist@1.2.0
+547 silly currentTree   │ ├── readable-stream@2.0.6
+547 silly currentTree   │ ├── request@2.69.0
+547 silly currentTree   │ ├─┬ rimraf@2.5.2
+547 silly currentTree   │ │ └─┬ glob@7.0.3
+547 silly currentTree   │ │   ├─┬ inflight@1.0.4
+547 silly currentTree   │ │   │ └── wrappy@1.0.1
+547 silly currentTree   │ │   ├── inherits@2.0.1
+547 silly currentTree   │ │   ├─┬ minimatch@3.0.0
+547 silly currentTree   │ │   │ └─┬ brace-expansion@1.1.3
+547 silly currentTree   │ │   │   ├── balanced-match@0.3.0
+547 silly currentTree   │ │   │   └── concat-map@0.0.1
+547 silly currentTree   │ │   ├─┬ once@1.3.3
+547 silly currentTree   │ │   │ └── wrappy@1.0.1
+547 silly currentTree   │ │   └── path-is-absolute@1.0.0
+547 silly currentTree   │ ├── semver@5.1.0
+547 silly currentTree   │ ├── sntp@1.0.9
+547 silly currentTree   │ ├── sshpk@1.7.4
+547 silly currentTree   │ ├── string_decoder@0.10.31
+547 silly currentTree   │ ├── stringstream@0.0.5
+547 silly currentTree   │ ├── strip-ansi@3.0.1
+547 silly currentTree   │ ├── strip-json-comments@1.0.4
+547 silly currentTree   │ ├── supports-color@2.0.0
+547 silly currentTree   │ ├── tar-pack@3.1.3
+547 silly currentTree   │ ├── tar@2.2.1
+547 silly currentTree   │ ├── tough-cookie@2.2.2
+547 silly currentTree   │ ├── tunnel-agent@0.4.2
+547 silly currentTree   │ ├── tweetnacl@0.14.3
+547 silly currentTree   │ ├── uid-number@0.0.6
+547 silly currentTree   │ ├── util-deprecate@1.0.2
+547 silly currentTree   │ ├── verror@1.3.6
+547 silly currentTree   │ ├── wrappy@1.0.1
+547 silly currentTree   │ └── xtend@4.0.1
+547 silly currentTree   ├── generate-function@2.0.0
+547 silly currentTree   ├── generate-object-property@1.2.0
+547 silly currentTree   ├── get-stdin@4.0.1
+547 silly currentTree   ├─┬ getpass@0.1.5
+547 silly currentTree   │ └── assert-plus@1.0.0
+547 silly currentTree   ├── glob-base@0.3.0
+547 silly currentTree   ├── glob-parent@2.0.0
+547 silly currentTree   ├── glob@5.0.15
+547 silly currentTree   ├── globals@8.18.0
+547 silly currentTree   ├── graceful-fs@4.1.3
+547 silly currentTree   ├── graceful-readlink@1.0.1
+547 silly currentTree   ├── growl@1.8.1
+547 silly currentTree   ├── har-validator@2.0.6
+547 silly currentTree   ├── has-ansi@2.0.0
+547 silly currentTree   ├── hawk@3.1.3
+547 silly currentTree   ├── hoek@2.16.3
+547 silly currentTree   ├── home-or-tmp@1.0.0
+547 silly currentTree   ├── hosted-git-info@2.1.4
+547 silly currentTree   ├── http-signature@1.1.1
+547 silly currentTree   ├─┬ indent-string@2.1.0
+547 silly currentTree   │ └── repeating@2.0.1
+547 silly currentTree   ├── inflight@1.0.4
+547 silly currentTree   ├── inherits@2.0.1
+547 silly currentTree   ├── inline-process-browser@2.0.1
+547 silly currentTree   ├── invariant@2.2.1
+547 silly currentTree   ├── is-arrayish@0.2.1
+547 silly currentTree   ├── is-binary-path@1.0.1
+547 silly currentTree   ├── is-buffer@1.1.3
+547 silly currentTree   ├── is-builtin-module@1.0.0
+547 silly currentTree   ├── is-dotfile@1.0.2
+547 silly currentTree   ├── is-equal-shallow@0.1.3
+547 silly currentTree   ├── is-extendable@0.1.1
+547 silly currentTree   ├── is-extglob@1.0.0
+547 silly currentTree   ├── is-finite@1.0.1
+547 silly currentTree   ├── is-glob@2.0.1
+547 silly currentTree   ├── is-integer@1.0.6
+547 silly currentTree   ├── is-my-json-valid@2.13.1
+547 silly currentTree   ├── is-number@2.1.0
+547 silly currentTree   ├── is-posix-bracket@0.1.1
+547 silly currentTree   ├── is-primitive@2.0.0
+547 silly currentTree   ├── is-property@1.0.2
+547 silly currentTree   ├── is-typedarray@1.0.0
+547 silly currentTree   ├── is-utf8@0.2.1
+547 silly currentTree   ├── isarray@1.0.0
+547 silly currentTree   ├── isobject@2.1.0
+547 silly currentTree   ├── isstream@0.1.2
+547 silly currentTree   ├─┬ jade@0.26.3
+547 silly currentTree   │ ├── commander@0.6.1
+547 silly currentTree   │ └── mkdirp@0.3.0
+547 silly currentTree   ├── jodid25519@1.0.2
+547 silly currentTree   ├── js-tokens@1.0.3
+547 silly currentTree   ├── jsbn@0.1.0
+547 silly currentTree   ├── jsesc@0.5.0
+547 silly currentTree   ├── json-schema@0.2.2
+547 silly currentTree   ├── json-stringify-safe@5.0.1
+547 silly currentTree   ├── json5@0.4.0
+547 silly currentTree   ├── jsonpointer@2.0.0
+547 silly currentTree   ├── jsprim@1.2.2
+547 silly currentTree   ├── kind-of@3.0.2
+547 silly currentTree   ├── load-json-file@1.1.0
+547 silly currentTree   ├── lodash._basedifference@4.4.1
+547 silly currentTree   ├── lodash._baseeach@4.1.2
+547 silly currentTree   ├── lodash._baseflatten@4.2.0
+547 silly currentTree   ├── lodash._baseiteratee@4.6.1
+547 silly currentTree   ├── lodash._basereduce@3.0.2
+547 silly currentTree   ├── lodash._setcache@4.1.3
+547 silly currentTree   ├── lodash._stringtopath@4.7.1
+547 silly currentTree   ├── lodash.identity@3.0.0
+547 silly currentTree   ├── lodash.keys@4.0.6
+547 silly currentTree   ├── lodash.keysin@4.1.3
+547 silly currentTree   ├── lodash.omit@4.2.1
+547 silly currentTree   ├── lodash.reduce@4.3.0
+547 silly currentTree   ├── lodash.rest@4.0.2
+547 silly currentTree   ├── lodash@3.10.1
+547 silly currentTree   ├── log-symbols@1.0.2
+547 silly currentTree   ├── loose-envify@1.1.0
+547 silly currentTree   ├── loud-rejection@1.3.0
+547 silly currentTree   ├── lru-cache@4.0.1
+547 silly currentTree   ├── map-obj@1.0.1
+547 silly currentTree   ├── meow@3.7.0
+547 silly currentTree   ├── micromatch@2.3.8
+547 silly currentTree   ├── mime-db@1.22.0
+547 silly currentTree   ├── mime-types@2.1.10
+547 silly currentTree   ├── minimatch@2.0.10
+547 silly currentTree   ├── minimist@1.2.0
+547 silly currentTree   ├─┬ mkdirp@0.5.1
+547 silly currentTree   │ └── minimist@0.0.8
+547 silly currentTree   ├─┬ mocha@2.4.5
+547 silly currentTree   │ ├── commander@2.3.0
+547 silly currentTree   │ ├── escape-string-regexp@1.0.2
+547 silly currentTree   │ ├── glob@3.2.3
+547 silly currentTree   │ ├── graceful-fs@2.0.3
+547 silly currentTree   │ ├── lru-cache@2.7.3
+547 silly currentTree   │ ├── minimatch@0.2.14
+547 silly currentTree   │ └── supports-color@1.2.0
+547 silly currentTree   ├── ms@0.7.1
+547 silly currentTree   ├── nan@2.3.1
+547 silly currentTree   ├── node-uuid@1.4.7
+547 silly currentTree   ├── normalize-package-data@2.3.5
+547 silly currentTree   ├── normalize-path@2.0.1
+547 silly currentTree   ├── number-is-nan@1.0.0
+547 silly currentTree   ├── oauth-sign@0.8.1
+547 silly currentTree   ├── object-assign@4.0.1
+547 silly currentTree   ├── object-keys@1.0.9
+547 silly currentTree   ├── object.omit@2.0.0
+547 silly currentTree   ├── once@1.3.3
+547 silly currentTree   ├── os-tmpdir@1.0.1
+547 silly currentTree   ├── output-file-sync@1.1.1
+547 silly currentTree   ├── parse-glob@3.0.4
+547 silly currentTree   ├── parse-json@2.2.0
+547 silly currentTree   ├── path-exists@1.0.0
+547 silly currentTree   ├── path-is-absolute@1.0.0
+547 silly currentTree   ├── path-type@1.1.0
+547 silly currentTree   ├── pify@2.3.0
+547 silly currentTree   ├── pinkie-promise@2.0.1
+547 silly currentTree   ├── pinkie@2.0.4
+547 silly currentTree   ├── preserve@0.2.0
+547 silly currentTree   ├── private@0.1.6
+547 silly currentTree   ├── process-nextick-args@1.0.6
+547 silly currentTree   ├── pseudomap@1.0.2
+547 silly currentTree   ├── qs@6.1.0
+547 silly currentTree   ├── randomatic@1.1.5
+547 silly currentTree   ├── read-pkg-up@1.0.1
+547 silly currentTree   ├── read-pkg@1.1.0
+547 silly currentTree   ├── readable-stream@2.1.0
+547 silly currentTree   ├── readdirp@2.0.0
+547 silly currentTree   ├── recast@0.11.5
+547 silly currentTree   ├── redent@1.0.0
+547 silly currentTree   ├── regenerate@1.2.1
+547 silly currentTree   ├── regex-cache@0.4.3
+547 silly currentTree   ├── regexpu-core@1.0.0
+547 silly currentTree   ├── regjsgen@0.2.0
+547 silly currentTree   ├── regjsparser@0.1.5
+547 silly currentTree   ├── repeat-element@1.1.2
+547 silly currentTree   ├── repeat-string@1.5.4
+547 silly currentTree   ├── repeating@1.1.3
+547 silly currentTree   ├── request@2.72.0
+547 silly currentTree   ├── semver-regex@1.0.0
+547 silly currentTree   ├─┬ semver-truncate@1.1.0
+547 silly currentTree   │ └── semver@5.1.0
+547 silly currentTree   ├── semver@4.3.6
+547 silly currentTree   ├── shebang-regex@1.0.0
+547 silly currentTree   ├── sigmund@1.0.1
+547 silly currentTree   ├── signal-exit@2.1.2
+547 silly currentTree   ├── slash@1.0.0
+547 silly currentTree   ├── sntp@1.0.9
+547 silly currentTree   ├─┬ source-map-support@0.2.10
+547 silly currentTree   │ └── source-map@0.1.32
+547 silly currentTree   ├── source-map@0.5.5
+547 silly currentTree   ├── spdx-correct@1.0.2
+547 silly currentTree   ├── spdx-exceptions@1.0.4
+547 silly currentTree   ├── spdx-expression-parse@1.0.2
+547 silly currentTree   ├── spdx-license-ids@1.2.1
+547 silly currentTree   ├─┬ sshpk@1.8.2
+547 silly currentTree   │ └── assert-plus@1.0.0
+547 silly currentTree   ├── string_decoder@0.10.31
+547 silly currentTree   ├── stringstream@0.0.5
+547 silly currentTree   ├── strip-ansi@3.0.1
+547 silly currentTree   ├── strip-bom@2.0.0
+547 silly currentTree   ├── strip-indent@1.0.1
+547 silly currentTree   ├── supports-color@2.0.0
+547 silly currentTree   ├─┬ through2@0.6.5
+547 silly currentTree   │ ├── isarray@0.0.1
+547 silly currentTree   │ └── readable-stream@1.0.34
+547 silly currentTree   ├── to-fast-properties@1.0.2
+547 silly currentTree   ├── tough-cookie@2.2.2
+547 silly currentTree   ├── trim-newlines@1.0.0
+547 silly currentTree   ├── trim-right@1.0.1
+547 silly currentTree   ├── tunnel-agent@0.4.2
+547 silly currentTree   ├── tweetnacl@0.13.3
+547 silly currentTree   ├── type-detect@1.0.0
+547 silly currentTree   ├── unreachable-branch-transform@0.5.1
+547 silly currentTree   ├── user-home@1.1.1
+547 silly currentTree   ├── util-deprecate@1.0.2
+547 silly currentTree   ├── v8flags@2.0.11
+547 silly currentTree   ├── validate-npm-package-license@3.0.1
+547 silly currentTree   ├── verror@1.3.6
+547 silly currentTree   ├── wrappy@1.0.1
+547 silly currentTree   ├── xtend@4.0.1
+547 silly currentTree   └── yallist@2.0.0
+548 silly idealTree code
+548 silly idealTree ├── lodash._basedifference@4.5.0
+548 silly idealTree ├── lodash._baseeach@4.1.3
+548 silly idealTree ├── lodash._baseflatten@4.2.1
+548 silly idealTree ├── lodash._baseiteratee@4.7.0
+548 silly idealTree ├── lodash._basereduce@3.0.2
+548 silly idealTree ├── lodash._basetostring@4.12.0
+548 silly idealTree ├── lodash._root@3.0.1
+548 silly idealTree ├── lodash._stringtopath@4.8.0
+548 silly idealTree ├── lodash.identity@3.0.0
+548 silly idealTree ├── lodash.keys@4.0.7
+548 silly idealTree ├── lodash.keysin@4.1.4
+548 silly idealTree ├── lodash.omit@4.3.0
+548 silly idealTree ├── lodash.reduce@4.4.0
+548 silly idealTree ├── lodash.rest@4.0.3
+548 silly idealTree └── react-string-replace-recursively@0.1.27
+549 silly generateActionsToTake Starting
+550 silly install generateActionsToTake
+551 silly rollbackFailedOptional Starting
+552 silly rollbackFailedOptional Finishing
+553 silly runTopLevelLifecycles Starting
+554 silly runTopLevelLifecycles Finishing
+555 silly install printInstalled
+556 warn enoent ENOENT: no such file or directory, open '/Users/marcellomarcellosachs/code/package.json'
+557 verbose stack Error: Appears to be a git repo or submodule.
+557 verbose stack     at /Users/marcellomarcellosachs/code/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/npm-install-checks/index.js:138:15
+557 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+558 verbose cwd /Users/marcellomarcellosachs/code/rails/brown
+559 error Darwin 15.3.0
+560 error argv "/Users/marcellomarcellosachs/code/.nvm/versions/node/v5.0.0/bin/node" "/Users/marcellomarcellosachs/code/.nvm/versions/node/v5.0.0/bin/npm" "install" "--save" "react-string-replace-recursively"
+561 error node v5.0.0
+562 error npm  v3.5.1
+563 error path /Users/marcellomarcellosachs/code/node_modules/react-string-replace-recursively
+564 error code EISGIT
+565 error git Appears to be a git repo or submodule.
+566 error git /Users/marcellomarcellosachs/code/node_modules/react-string-replace-recursively
+567 error git Refusing to remove it. Update manually,
+567 error git or move it out of the way first.
+568 verbose exit [ 1, true ]
