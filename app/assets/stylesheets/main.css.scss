@@ -45,13 +45,16 @@ body {
 
 .sources_table {
     th.subject {
-        width: 10%;
+        width: 20%;
     }
     th.source_name {
-        width: 30%;
+        width: 45%;
     }
-    th.level, th.publication_date, th.view_pdf {
-        width: 20%;
+    th.level, th.publication_date {
+        width: 10%;
+    }
+    th.view_pdf, th.view_info, th.edit_info {
+        width: 5%
     }
 }
 

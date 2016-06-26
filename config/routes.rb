@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'sections', to: 'sections#index', as: :sections
 
+  get 'subjects', to: 'subjects#index', as: :subjects
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
     #export
     bulk_delete
     show do
-      except ['Problem', 'Source']
+      except ['Problem']
     end
     edit
     delete
