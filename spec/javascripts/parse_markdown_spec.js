@@ -1,6 +1,6 @@
 describe('parseMarkdown', function () {
 
-  var subject = parseMarkdown
+  var subject = App.modules.parseMarkdown
 
   it('works in trivial case', function () {
     result = subject("")

@@ -1,10 +1,11 @@
-var DisplayParsed = React.createClass({
+
+App.components.parser.parsedDisplay.Problems = React.createClass({
 
 
   render: function () {
 
     var parsedProblems = this.props.problems.map(function (problem, i) {
-      return <ParsedProblem key={i} problem={problem} />
+      return <App.components.parser.parsedDisplay.Problem key={i} problem={problem} />
     })
 
     return (

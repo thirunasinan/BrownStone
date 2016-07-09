@@ -1,6 +1,6 @@
 describe('parseNewlines', function () {
 
-  var subject = parseNewlines
+  var subject = App.modules.parseNewlines
 
   it('works in trivial case', function () {
     result = subject("")

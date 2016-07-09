@@ -1,6 +1,6 @@
 describe('answersParser', function () {
 
-  var subject = answersParser
+  var subject = App.modules.answersParser
 
   it('works in trivial case', function () {
     result = subject("")

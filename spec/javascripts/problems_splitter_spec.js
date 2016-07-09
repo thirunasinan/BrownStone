@@ -22,15 +22,17 @@
 // "
 
 describe('problemsParser', function () {
+
+  var subject = App.modules.problemsSplitter;
   it('works in trivial case', function () {
-    result = problemsSplitter("")
+    result = subject("")
     expect(result).toEqual([])
   })
 
   it('works with 1 problem', function () {
     var text = "24. This is a problem (A) answer choice 1 \n second line\n(B) answer choice 2"
     var expected = [text]
-    var result = problemsSplitter(text)
+    var result = subject(text)
     expect(result).toEqual(expected)
   })
 
@@ -41,7 +43,7 @@ describe('problemsParser', function () {
     var text = "24. problem1 \nok\n(A) ac1\nac1-line2\n(B) ac2\n\n25. problem2 (A) ac3 (B) ac4"
     var expected = ["24. problem1 \nok\n(A) ac1\nac1-line2\n(B) ac2",
                     "25. problem2 (A) ac3 (B) ac4"]
-    var result = problemsSplitter(text)
+    var result = subject(text)
     expect(result).toEqual(expected)
   })
 
@@ -50,7 +52,7 @@ describe('problemsParser', function () {
     var expected = ["24. problem1 \nok (A) ac1 \n(B) ac2",
                     "25. problem2 (A) ac3 (B) ac4",
                     "26. problem3\n(A) ac1"]
-    var result = problemsSplitter(text)
+    var result = subject(text)
     expect(result).toEqual(expected)
   })
 })

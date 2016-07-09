@@ -28,7 +28,8 @@ class ProblemsController < ApplicationController
   def create
     source_id = params['sourceId'] ? params['sourceId'].to_i : nil
     section_id = params['sectionId'] ? params['sectionId'].to_i : nil
-    params['problems'].each do |data|
+
+    problems = params['problems'].map do |data|
       p = Problem.create(number: data['number'],
                          question: data['question'],
                          source_id: source_id,
@@ -36,11 +37,13 @@ class ProblemsController < ApplicationController
                          requires_associated_images: params['hasAssociatedImages'],
                          requires_associated_texts: params['hasAssociatedTexts'])
 
-      data['answerChoices'].each do |ac_data|
+      answer_choices = data['answerChoices'] || []
+      answer_choices.each do |ac_data|
         AnswerChoice.create(text: ac_data, problem_id: p.id)
       end
+      return p
     end
-    render json: {}
+    render json: {saved: problems}
   end
 
   def parser

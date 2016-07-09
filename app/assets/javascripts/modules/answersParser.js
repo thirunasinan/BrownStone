@@ -1,4 +1,4 @@
-var answersParser = function (text) {
+App.modules.answersParser = function (text) {
 
   var regex = /\(?[BCDEFGH]\)/
 

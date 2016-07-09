@@ -1,6 +1,6 @@
 describe('problemParser', function () {
 
-  var subject = problemParser
+  var subject = App.modules.problemParser
 
   it('works in trivial case', function () {
     result = subject("")
