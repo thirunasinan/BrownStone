@@ -6,6 +6,7 @@ class AnswerChoice < ActiveRecord::Base
                     default_url: "/images/:style/missing.png"
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  default_scope { order('answer_choices.order ASC, answer_choices.id ASC') }
 
   def name
     self.text

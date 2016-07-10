@@ -78,14 +78,26 @@ App.components.parser.Top = React.createClass({
   },
 
   clickSave: function (e) {
+
+    var _process = function (ps) {
+      return ps.map(function (p) {
+        var p2 = Object.assign({}, p)
+        p2.answerChoices = p.answerChoices.map(function (ac, i) {
+          return {name: ac, order: i + 1}
+        })
+        return p2;
+      })
+    }
+
     var that = this;
     var data = {
-      problems: this.state.parsedProblems,
+      problems: _process(this.state.parsedProblems),
       sourceId: this.state.selectedSourceId,
       sectionId: this.state.selectedSectionId,
       hasAssociatedImages: this.state.hasAssociatedImages,
       hasAssociatedTexts: this.state.hasAssociatedTexts
     }
+    console.log('data', data)
     $.ajax({
       type: "POST",
       url: 'problems',

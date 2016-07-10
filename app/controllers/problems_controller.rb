@@ -39,7 +39,7 @@ class ProblemsController < ApplicationController
 
       answer_choices = data['answerChoices'] || []
       answer_choices.each do |ac_data|
-        AnswerChoice.create(text: ac_data, problem_id: p.id)
+        AnswerChoice.create(text: ac_data[:name], problem_id: p.id, order: ac_data[:order])
       end
       p
     end
