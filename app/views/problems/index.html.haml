@@ -28,6 +28,7 @@
 - if @show_full_problem
   - @uniq.each do |problem|
     = render 'problem', problem: problem
+    %br
 
 - else
 
@@ -36,6 +37,8 @@
       %th.source
         = 'Source'
         //= sort_link(@q, :source_name, "Source")
+      %th.section
+        = 'Section'
       %th.number
         = 'Number'
         //= sort_link(@q, :number)
@@ -50,11 +53,9 @@
     - @uniq.each do |problem|
       %tr
         %td
-          -if problem.source
-            //= link_to problem.source.name, rails_admin.show_path(model_name: 'source', id: problem.source.id)
-            = problem.source.name
-          -else
-            = ""
+          = problem.source_name
+        %td
+          = problem.section_name
         %td
           = link_to problem.display_number, problem_path(problem)
         %td

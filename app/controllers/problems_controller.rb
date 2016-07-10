@@ -41,7 +41,7 @@ class ProblemsController < ApplicationController
       answer_choices.each do |ac_data|
         AnswerChoice.create(text: ac_data, problem_id: p.id)
       end
-      return p
+      p
     end
     render json: {saved: problems}
   end

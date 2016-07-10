@@ -25,11 +25,16 @@ class Problem < ActiveRecord::Base
   end
 
   def name
-    "#{self.source_name} : #{self.display_number}"
+    section_part = section ? ", #{section_name}" : ""
+    "#{self.source_name}#{section_part} : #{self.display_number}"
   end
 
   def source_name
     source.try(:name)
+  end
+
+  def section_name
+    section.try(:name)
   end
 
   def question_extract

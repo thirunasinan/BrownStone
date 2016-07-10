@@ -1,6 +1,9 @@
 <%- if not current_user.low_access? %>
-  <h3><%= "#{problem.source_name} : #{problem.display_number}" %></h3>
-  <br />
+  <h3><%= problem.name %>
+  </h3>
+
+  <h3><%= link_to "edit", rails_admin.edit_path(model_name: "problem", id: problem.id) %></h3>
+
   <br />
 <%- end %>
 
@@ -62,3 +65,4 @@
     </div>
   </div>
 <%- end %>
+
