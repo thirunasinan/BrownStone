@@ -16,20 +16,37 @@ body {
     background-color: #dff0d8;
 }
 
+.associated-content-indicator {
+    button {
+        min-width: 100px;
+    }
+}
+
 .raw-input textarea {
     height: 2000px !important;
 }
+
+.alert-line {
+    display: block;
+}
+
 
 .preserve-newlines {
     white-space: pre-wrap;
 }
 
+
+.mathjax-cheatsheet {
+    td {padding-left: 60px !important;}
+}
+
+
 .problems-table {
     th.source {
-        width: 25%;
+        width: 15%;
     }
     th.section {
-        width: 25%;
+        width: 15%;
     }
     th.number {
         width: 5%;

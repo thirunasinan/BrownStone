@@ -1,17 +1,5 @@
 App.components.parser.input.AssociatedData = React.createClass({
 
-  associatedImagesClassName: function () {
-    return this.props.store.hasAssociatedImages
-    ? "btn btn-info"
-    : "btn btn-default"
-  },
-
-  associatedTextsClassName: function () {
-    return this.props.store.hasAssociatedTexts
-    ? "btn btn-info"
-    : "btn btn-default"
-  },
-
   selectedSource: function () {
     return this.refs.sourceSelect.getDOMNode().value;
   },
@@ -34,44 +22,36 @@ App.components.parser.input.AssociatedData = React.createClass({
 
     var saveBtnOrNot;
     if (this.props.store.selectedSourceId == null) {
-      saveBtnOrNot = <div className='danger'>Select a Source before saving</div>
+      saveBtnOrNot = <button onClick={_actions.clickInvalidSave} className='btn btn-default'>Save</button>;
     } else if (this.props.store.parsedProblems.length) {
       saveBtnOrNot = <button onClick={_actions.clickSave} className='btn btn-success pull-left'>Save</button>
-    } else {
-      saveBtnOrNot = null;
     }
 
     return (
       <div className='row'>
-        <div className='col-xs-6'>
-          <div className='form-group'>
-            <label>Source</label>
-            <select ref={'sourceSelect'} onChange={_actions.selectSource} className='form-control'>
-              {sourceOptions}
-            </select>
+        <div className='col-xs-12'>
+          <div className='row'>
+            <div className='col-xs-12'>
+              {saveBtnOrNot}
+              <button onClick={_actions.clearRawInput} className='btn btn-danger pull-right'>Clear</button>
+            </div>
           </div>
-          <div className='form-group'>
-            <label>Section</label>
-            <select ref={'sectionSelect'} onChange={_actions.selectSection} className='form-control'>
-              {sectionOptions}
-            </select>
-          </div>
-          <div className='form-group'>
-            <button className={this.associatedImagesClassName()} onClick={_actions.toggleHasAssociatedImages}>Has Associated Images</button>
-          </div>
-          <div className='form-group'>
-            <button className={this.associatedTextsClassName()} onClick={_actions.toggleHasAssociatedTexts}>Has Associated Texts</button>
-          </div>
-
-          <label>Raw Text Input - Separate Problems with an Empty Line</label>
           <br />
           <br />
           <div className='row'>
-            <div className='col-xs-2'>
-              <button onClick={_actions.clearRawInput} className='btn btn-danger'>Clear</button>
-            </div>
-            <div className='col-xs-10'>
-              {saveBtnOrNot}
+            <div className='col-xs-12'>
+              <div className='form-group'>
+                <label>Source</label>
+                <select ref={'sourceSelect'} onChange={_actions.selectSource} className='form-control'>
+                  {sourceOptions}
+                </select>
+              </div>
+              <div className='form-group'>
+                <label>Section</label>
+                <select ref={'sectionSelect'} onChange={_actions.selectSection} className='form-control'>
+                  {sectionOptions}
+                </select>
+              </div>
             </div>
           </div>
         </div>

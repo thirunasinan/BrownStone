@@ -7,10 +7,10 @@
 <li class="<%= class_name %>" %>
   <%- if answer_choice.image.present? %>
     <%- if answer_choice.text.present? %>
-      <p class="preserve-newlines"><%= answer_choice.text %></p>
+      <p class="preserve-newlines markdown-text"><%= answer_choice.text %></p>
       <p><%= image_tag answer_choice.image.url(:medium) %></p>
     <%- end %>
     <%- else %>
-    <span class='preserve-newlines'><%= answer_choice.text %></span>
+    <span class='preserve-newlines markdown-text'><%= answer_choice.text %></span>
   <%- end %>
 </li>

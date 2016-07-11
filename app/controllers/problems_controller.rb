@@ -25,6 +25,7 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
   end
 
+
   def create
     source_id = params['sourceId'] ? params['sourceId'].to_i : nil
     section_id = params['sectionId'] ? params['sectionId'].to_i : nil
@@ -34,8 +35,8 @@ class ProblemsController < ApplicationController
                          question: data['question'],
                          source_id: source_id,
                          section_id: section_id,
-                         requires_associated_images: params['hasAssociatedImages'],
-                         requires_associated_texts: params['hasAssociatedTexts'])
+                         requires_associated_images: data['hasImages'],
+                         requires_associated_texts: data['hasTexts'])
 
       answer_choices = data['answerChoices'] || []
       answer_choices.each do |ac_data|
@@ -43,7 +44,9 @@ class ProblemsController < ApplicationController
       end
       p
     end
-    render json: {saved: problems}
+
+
+    render json: {saved: problems.map{|p| {success: p.errors.empty?, number: p.display_number, errors: p.errors}} }
   end
 
   def parser

@@ -1,69 +1,70 @@
-- if not current_user.low_access?
+.container
+  - if not current_user.low_access?
 
-  = search_form_for @q do |f|
-    .form-group
-      = f.label :number_or_question_or_answer_choices_text_or_source_name_cont, "Search Terms (looks at text in Name, Question, Answer Choices, and Source)"
-      = f.search_field :number_or_question_or_answer_choices_text_or_source_name_cont, class: 'form-control'
-    .form-group
-      = f.label :source_name_eq, "Filter by Source"
-      = f.select :source_name_eq, Source.all.map(&:name), {include_blank: true}, {class: 'form-control'}
-    = f.submit class: 'btn btn-default'
+    = search_form_for @q do |f|
+      .form-group
+        = f.label :number_or_question_or_answer_choices_text_or_source_name_cont, "Search Terms (looks at text in Name, Question, Answer Choices, and Source)"
+        = f.search_field :number_or_question_or_answer_choices_text_or_source_name_cont, class: 'form-control'
+      .form-group
+        = f.label :source_name_eq, "Filter by Source"
+        = f.select :source_name_eq, Source.all.map(&:name), {include_blank: true}, {class: 'form-control'}
+      = f.submit class: 'btn btn-default'
 
-%br
-%br
-%br
-
-%h4 Problems :
-- if not current_user.low_access?
-  %br
-  = link_to "add new", problems_parser_path
   %br
   %br
-  - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
-  = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem, page: params[:page])
-%br
-%br
-%br
+  %br
 
-- if @show_full_problem
-  - @uniq.each do |problem|
-    = render 'problem', problem: problem
+  %h4 Problems :
+  - if not current_user.low_access?
     %br
+    = link_to "add new", problems_parser_path
+    %br
+    %br
+    - toggle_text = @show_full_problem ? 'show problem extracts' : 'show full problems'
+    = link_to toggle_text, problems_path(q: params[:q], full: !@show_full_problem, page: params[:page])
+  %br
+  %br
+  %br
 
-- else
-
-  %table.table.table-hover.problems-table
-    %tr
-      %th.source
-        = 'Source'
-        //= sort_link(@q, :source_name, "Source")
-      %th.section
-        = 'Section'
-      %th.number
-        = 'Number'
-        //= sort_link(@q, :number)
-      %th.question
-        = 'Question'
-        //= sort_link(@q, :question)
-      %th.edit
-        = "Edit"
-      %th.delete
-        = "Delete"
-
+  - if @show_full_problem
     - @uniq.each do |problem|
+      = render 'problem', problem: problem
+      %br
+
+  - else
+
+    %table.table.table-hover.problems-table
       %tr
-        %td
-          = problem.source_name
-        %td
-          = problem.section_name
-        %td
-          = link_to problem.display_number, problem_path(problem)
-        %td
-          = problem.question_extract
-        %td
-          = link_to "Edit", rails_admin.edit_path(model_name: "problem", id: problem.id)
-        %td
-          = link_to "Delete", rails_admin.delete_path(model_name: "problem", id: problem.id)
+        %th.source
+          = 'Source'
+          //= sort_link(@q, :source_name, "Source")
+        %th.section
+          = 'Section'
+        %th.number
+          = 'Number'
+          //= sort_link(@q, :number)
+        %th.question
+          = 'Question'
+          //= sort_link(@q, :question)
+        %th.edit
+          = "Edit"
+        %th.delete
+          = "Delete"
+
+      - @uniq.each do |problem|
+        %tr
+          %td
+            = problem.source_name
+          %td
+            = problem.section_name
+          %td
+            = link_to problem.display_number, problem_path(problem)
+          %td.markdown-text
+            = problem.question_extract
+          %td
+            = link_to "Edit", rails_admin.edit_path(model_name: "problem", id: problem.id)
+          %td
+            = link_to "Delete", rails_admin.delete_path(model_name: "problem", id: problem.id)
 
 
-= will_paginate @problems, renderer: BootstrapPagination::Rails
+  = will_paginate @problems, renderer: BootstrapPagination::Rails

@@ -16,11 +16,9 @@ App.components.parser.Top = React.createClass({
     }
 
     return {
-      alert: {type: null, message: null},
+      alerts: [],
       rawInputValue: null,
       parsedProblems: [],
-      hasAssociatedImages: false,
-      hasAssociatedTexts: false,
       sourceOptions: [],
       sectionOptions: [],
       selectedSourceId: null,
@@ -30,6 +28,10 @@ App.components.parser.Top = React.createClass({
 
   rawInputChange: function (e) {
     var text = this.refs.rawInput.getDOMNode().value
+    this.predictDelimitersAndParse(text)
+  },
+
+  predictDelimitersAndParse: function (text) {
     var processed = this.modules.predictDelimiters(text);
     this.setState({rawInputValue: processed})
     this.parseProblems(processed)
@@ -37,7 +39,17 @@ App.components.parser.Top = React.createClass({
 
   parseProblems: function (text) {
     var parsed = this.modules.problemsParser(text);
-    this.setState({parsedProblems: parsed}, _latexInit)
+    var extant = this.state.parsedProblems;
+    var finalP = parsed.map(function (ele) {
+      var match = extant.find(function (x) { return x.number === ele.number })
+      if (match) {
+        var y = Object.assign({}, ele, {hasImages: match.hasImages, hasTexts: match.hasTexts})
+        return y;
+      } else {
+        return ele;
+      }
+    })
+    this.setState({parsedProblems: finalP}, _latexInit)
   },
 
   selectSource: function (e) {
@@ -62,19 +74,68 @@ App.components.parser.Top = React.createClass({
     })
   },
 
+  failMessage: function (errors) {
+    return Object.keys(errors).reduce(function (acc, key) {
+      var value = errors[key]
+      var commaOrNot = (acc === "") ? null : ","
+      return [acc, commaOrNot, key, value].join(" ")
+    }, "")
+  },
+
+  combineMessages: function (messages) {
+    return messages.reduce(function (acc, msg) {
+      var newlineOrNot = (acc === '') ? "" : "\n"
+      return [acc, newlineOrNot, msg].join("")
+    }, "")
+  },
+
+  clearSavedFromInput: function (numbers) {
+    var keep = this.state.parsedProblems.filter(function (p) {
+      return !numbers.includes(p.number)
+    })
+
+    var unParse = keep.reduce(function (acc, p) {
+      var answerChoices = p.answerChoices.reduce(function (acc2, ac) {
+        return [acc2, "\n", ac].join("")
+      }, "")
+      var separator = (acc === "") ? null : "\n\n##\n\n"
+      return [acc, separator, p.number, ". ", p.question, answerChoices].join("")
+    }, "")
+
+    this.setState({rawInputValue: unParse, parsedProblems: keep})
+  },
+
   saveSuccess: function (data) {
-    this.clearRawInput()
-    var numberSaved = data.saved.length
-    var x = (numberSaved === 1)
-    ? 'problem'
-    : 'problems'
-    var msg = ["saved", numberSaved, x].join(" ")
-    this.setState({alert: {type: 'success', message: msg}})
+    var saveAttempts = data.saved;
+    var saved = saveAttempts.filter(function (ele) { return ele.success === true})
+    var failed = saveAttempts.filter(function (ele) { return ele.success === false})
+    var that = this;
+
+    var savedMessages = saved.map(function (ele, i) {
+      return ["saved problem", ele.number, " successfully"].join(" ")
+    }).concat(["these problems have been cleared from the input box"])
+
+    var failedMessages = failed.map(function (ele, i) {
+      return ["errors saving problem", ele.number, ":", that.failMessage(ele.errors)].join(" ")
+    }).concat(["these problems have been left in the input box"])
+
+    var savedMessage = this.combineMessages(savedMessages)
+    var failedMessage = this.combineMessages(failedMessages)
+
+    var savedAlerts = saved.length
+    ? [{id: 1, type: 'success', messages: savedMessages}]
+    : []
+
+    var failedAlerts = failed.length
+    ? [{id: 2, type: 'danger', messages: failedMessages}]
+    : []
+    this.setState({alerts: savedAlerts.concat(failedAlerts)})
+    this.clearSavedFromInput(saved.map(function (s) { return s.number}))
   },
 
   saveError: function (jqXHR, textStatus, errorThrown) {
     var message = ["Save Error:", textStatus, errorThrown].join(' ')
-    this.setState({alert: {type: 'danger', message: message}})
+    this.addAlert({type: 'danger', message: message})
   },
 
   clickSave: function (e) {
@@ -93,11 +154,8 @@ App.components.parser.Top = React.createClass({
     var data = {
       problems: _process(this.state.parsedProblems),
       sourceId: this.state.selectedSourceId,
-      sectionId: this.state.selectedSectionId,
-      hasAssociatedImages: this.state.hasAssociatedImages,
-      hasAssociatedTexts: this.state.hasAssociatedTexts
+      sectionId: this.state.selectedSectionId
     }
-    console.log('data', data)
     $.ajax({
       type: "POST",
       url: 'problems',
@@ -114,60 +172,140 @@ App.components.parser.Top = React.createClass({
     this.parseProblems("")
   },
 
-  toggleHasAssociatedImages: function () {
-    this.setState({hasAssociatedImages: !this.state.hasAssociatedImages})
+  alertClassName: function (type) {
+    return 'alert alert-dismissible alert-' + type
   },
 
-  toggleHasAssociatedTexts: function () {
-    this.setState({hasAssociatedTexts: !this.state.hasAssociatedTexts})
+  addAlert: function (alert) {
+    var alerts = this.state.alerts.concat([alert])
+    this.setState({alerts: alerts})
   },
 
-  alertClassName: function () {
-    return 'alert alert-dismissible alert-' + this.state.alert.type
+  removeAlert: function (id) {
+    var alerts = this.state.alerts.filter(function (alert) { return alert.id !== id })
+    this.setState({alerts: alerts})
   },
 
-  closeAlert: function () {
-    this.setState({alert: {type: null, message: null}})
+  clickCloseAlertFn: function (id) {
+    var that = this;
+    return function (e) {
+      that.removeAlert(id)
+    }
+  },
+  alertMessage: function (messages) {
+    return messages.map(function (msg, i) {
+      return <div className='alert-line'>{msg}</div>
+    })
+  },
+
+  toggleProblemProperty: function (number, property) {
+    var problems = this.state.parsedProblems.map(function (p) {
+      if (p.number === number) {
+        var p2 = Object.assign({}, p)
+        p2[property] = !p[property]
+        return p2;
+      } else {
+        return p;
+      }
+    })
+    this.setState({parsedProblems: problems})
+  },
+
+  clickInvalidSave: function (e) {
+    this.addAlert({type: 'danger', messages: ["Select a Source before Saving"], id: this.state.alerts.length + 1})
   },
 
   render: function() {
     var that = this;
-    var actions = ['rawInputChange', 'clickSave', 'selectSource'].reduce(function (acc, name) {
+    var actions = ['clearRawInput', 'clickInvalidSave', 'rawInputChange', 'clickSave', 'selectSource', 'toggleProblemProperty'].reduce(function (acc, name) {
       acc[name] = that[name]
       return acc;
     }, {})
 
-    var alertOrNot;
-    if (this.state.alert.message) {
-      alertOrNot = (
+    var alerts = this.state.alerts.map(function (alert, index) {
+      return (
         <div className='row'>
           <div className='col-xs-12'>
-            <div className={this.alertClassName()} role='alert'>
-              <button type="button" className="close" onClick={this.closeAlert} aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <div>{this.state.alert.message}</div>
+            <div className={that.alertClassName(alert.type)} role='alert'>
+              <button type="button" className="close" onClick={that.clickCloseAlertFn(alert.id)} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <div className="preserve-newlines">{that.alertMessage(alert.messages)}</div>
             </div>
           </div>
         </div>
       )
-    } else {
-      alertOrNot = null;
-    }
+    })
+
+    var cheatData = [
+      "x_i",
+      "x^2",
+      "\\frac{1}{2}",
+      "\\sqrt[3]{4}"
+    ]
+
+    var rows = cheatData.map(function (ele) {
+      var text = "\\(" + ele + "\\)"
+      return (<tr>
+        <td>{text}</td>
+        <td className='mathjax-ignore'>{text}</td>
+      </tr>);
+    })
+
+    var cheatsheet = (
+      <div className='mathjax-cheatsheet'>
+        <div className='panel panel-default'>
+          <div className='panel-heading'>
+            {"Separating Problems"}
+          </div>
+          <div className='panel-body'>
+            <div>{"Separate problems with '##'"}</div>
+            <div>{"System will automatically insert the ##'s based on your first paste action, but you can edit their placement after that."}</div>
+          </div>
+        </div>
+        <div className='panel panel-default'>
+        <div className='panel-heading'>
+          MathJax Cheatsheet <a target="_blank" className='pull-right' href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference"
+          >full cheatsheet</a>
+
+        </div>
+          <table className='table'>
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
 
     return (
       <div>
-        <br />
-        {alertOrNot}
-        <br />
-        <this.components.AssociatedData ref={'associatedData'} actions={actions} store={this.state} />
-        <br />
-        <br />
         <div className='row'>
-          <div className='col-xs-6 raw-input'>
-            <div className='form-group'>
-              <textarea ref='rawInput' value={this.state.rawInputValue} onChange={this.rawInputChange} className='form-control' />
+          <div className='col-xs-1' />
+          <div className='col-xs-10'>{alerts}</div>
+          <div className='col-xs-1' />
+        </div>
+        <div className='row'>
+          <div className='col-xs-1' />
+          <div className='col-xs-4'>
+            {cheatsheet}
+          </div>
+          <div className='col-xs-6'>
+             <this.components.AssociatedData ref={'associatedData'} actions={actions} store={this.state}  />
+          </div>
+          <div className='col-xs-1' />
+        </div>
+        <div className='row'>
+          <div className='col-xs-1' />
+          <div className='col-xs-4' >
+            <div className='raw-input'>
+              <div className='form-group'>
+                <textarea ref='rawInput' value={this.state.rawInputValue} onChange={this.rawInputChange} className='form-control' />
+              </div>
             </div>
           </div>
-          <this.components.ParsedDisplay problems={this.state.parsedProblems} actions={actions} />
+          <div className='col-xs-6'>
+            <this.components.ParsedDisplay problems={this.state.parsedProblems} actions={actions} />
+          </div>
+          <div className='col-xs-1' />
         </div>
       </div>
     );

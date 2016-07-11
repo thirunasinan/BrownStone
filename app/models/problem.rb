@@ -1,3 +1,14 @@
+class UniqueNumberValidator < ActiveModel::Validator
+
+  def validate(record)
+    x = Problem.where(number: record.number, source_id: record.source_id, section_id: record.section_id)
+    if x.any?
+      record.errors[:number] << "must be unique for this source and section"
+    end
+  end
+
+end
+
 class Problem < ActiveRecord::Base
   belongs_to :source
   belongs_to :section
@@ -10,6 +21,8 @@ class Problem < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :question
 
+  validates_with UniqueNumberValidator
+
   accepts_nested_attributes_for :answer_choices
 
   around_save :process_answer_choices
@@ -18,6 +31,10 @@ class Problem < ActiveRecord::Base
 
   ransacker :number do
     Arel.sql("to_char(\"#{table_name}\".\"number\", '9999.9999')")
+  end
+
+  def source_and_section
+    "#{source.try(:id)} #{section.try(:id)}"
   end
 
   def source_id_enum
