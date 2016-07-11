@@ -55,6 +55,7 @@ App.components.parser.Top = React.createClass({
   selectSource: function (e) {
     var value = this.refs.associatedData.selectedSource()
     this.setState({selectedSourceId: value})
+    this.loadSections(value)
   },
 
   selectSection: function (e) {
@@ -68,7 +69,11 @@ App.components.parser.Top = React.createClass({
       var sources = [{id: null, name: 'None'}].concat(data)
       that.setState({sourceOptions: sources})
     })
-    $.get('sections', function (data) {
+  },
+
+  loadSections: function (sourceId) {
+    var that = this;
+    $.get('sections_by_source/' + sourceId, function (data) {
       var sections = [{id: null, name: 'None'}].concat(data)
       that.setState({sectionOptions: sections})
     })

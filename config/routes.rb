@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'sections', to: 'sections#index', as: :sections
 
+  get 'sections_by_source/:id', to: 'sections#by_source', as: :sections_by_source
+
   get 'subjects', to: 'subjects#index', as: :subjects
 
   # The priority is based upon order of creation: first created -> highest priority.

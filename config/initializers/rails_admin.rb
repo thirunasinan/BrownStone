@@ -168,6 +168,7 @@ RailsAdmin.config do |config|
     navigation_label 'Other'
     list do
       field :name
+      field :number_of_sections
       field :problems do
         pretty_value do
           value.count
@@ -182,6 +183,9 @@ RailsAdmin.config do |config|
       field :source_type
       field :publication_month
       field :publication_year
+      field :bootstrap_number_of_sections do
+        label  "number of sections"
+      end
       field :name
     end
 

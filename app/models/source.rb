@@ -6,6 +6,19 @@ class Source < ActiveRecord::Base
   validates_attachment :document, content_type: { content_type: "application/pdf" }
   has_many :assessments, inverse_of: :source, dependent: :nullify
   has_many :problems, inverse_of: :source, dependent: :nullify
+  has_many :sections, dependent: :nullify
+  after_create :bootstrap_sections
+
+  def bootstrap_number_of_sections_enum
+    (1..50).to_a
+  end
+
+  def bootstrap_sections
+    alphabet = ("A".."Z").to_a
+    bootstrap_number_of_sections.times do |i|
+      sections.create(name: alphabet[i])
+    end
+  end
 
   def display_publication_date
     "#{self.class.months[self.publication_month]} #{self.publication_year}"
@@ -29,6 +42,10 @@ class Source < ActiveRecord::Base
 
   def self.publication_year_options
     (1950..Time.now.year).to_a.reverse
+  end
+
+  def number_of_sections
+    sections.count
   end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710004031) do
+ActiveRecord::Schema.define(version: 20160711135126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,16 +93,19 @@ ActiveRecord::Schema.define(version: 20160710004031) do
   add_index "problems_texts", ["text_id"], name: "index_problems_texts_on_text_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string "name"
-    t.text   "notes"
+    t.string  "name"
+    t.text    "notes"
+    t.integer "source_id"
   end
+
+  add_index "sections", ["source_id"], name: "index_sections_on_source_id", using: :btree
 
   create_table "source_types", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "sources", force: :cascade do |t|
-    t.string   "name",                  null: false
+    t.string   "name",                         null: false
     t.text     "notes"
     t.string   "document_file_name"
     t.string   "document_content_type"
@@ -113,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160710004031) do
     t.integer  "publication_month"
     t.integer  "publication_year"
     t.integer  "source_type_id"
+    t.integer  "bootstrap_number_of_sections"
   end
 
   add_index "sources", ["level_id"], name: "index_sources_on_level_id", using: :btree
@@ -166,6 +170,7 @@ ActiveRecord::Schema.define(version: 20160710004031) do
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
+  add_foreign_key "sections", "sources"
   add_foreign_key "sources", "levels"
   add_foreign_key "sources", "source_types"
   add_foreign_key "sources", "subjects"
