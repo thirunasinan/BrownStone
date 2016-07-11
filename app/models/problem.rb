@@ -1,8 +1,8 @@
 class UniqueNumberValidator < ActiveModel::Validator
 
   def validate(record)
-    x = Problem.where(number: record.number, source_id: record.source_id, section_id: record.section_id)
-    if x.any?
+    x = Problem.where(number: record.number, source_id: record.source_id, section_id: record.section_id).where.not(id: record.id)
+    if x.any? &&
       record.errors[:number] << "must be unique for this source and section"
     end
   end
