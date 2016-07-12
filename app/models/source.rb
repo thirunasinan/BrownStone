@@ -7,13 +7,14 @@ class Source < ActiveRecord::Base
   has_many :assessments, inverse_of: :source, dependent: :nullify
   has_many :problems, inverse_of: :source, dependent: :nullify
   has_many :sections, dependent: :nullify
-  after_create :bootstrap_sections
+  after_save :bootstrap_sections
 
   def bootstrap_number_of_sections_enum
     (1..50).to_a
   end
 
   def bootstrap_sections
+    return if sections
     alphabet = ("A".."Z").to_a
     bootstrap_number_of_sections.times do |i|
       sections.create(name: alphabet[i])

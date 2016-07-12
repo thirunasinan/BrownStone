@@ -197,6 +197,9 @@ RailsAdmin.config do |config|
       field :publication_month
       field :publication_year
       field :name
+      field :bootstrap_number_of_sections do
+        label  "number of sections"
+      end
     end
   end
 

@@ -59,7 +59,7 @@
             = problem.section_name
           %td
             = link_to problem.display_number, problem_path(problem)
-          %td.markdown-text
+          %td.markdown-text.latex-text
             = problem.question_extract
           %td
             = link_to "Edit", rails_admin.edit_path(model_name: "problem", id: problem.id)
