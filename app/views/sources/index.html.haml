@@ -41,13 +41,17 @@
   %table.table.table-hover.sources-table
     %tr
       %th.subject
-        = sort_link(@q, :subject_name, "Subject")
+        //= sort_link(@q, :subject_name, "Subject")
+        = "Subject"
       %th.source_name
-        = sort_link(@q, :name, "Name")
+        //= sort_link(@q, :name, "Name")
+        = "Name"
       %th.level
-        = sort_link(@q, :level, "Level")
+        //= sort_link(@q, :level, "Level")
+        = "Level"
       %th.publication_date
-        = sort_link(@q, :publication_date, "Publication Date")
+        //= sort_link(@q, :publication_date, "Publication Date")
+        = "Publication Date"
       %th.view_pdf
         = "View Source"
       %th.view_info

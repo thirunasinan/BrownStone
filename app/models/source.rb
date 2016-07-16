@@ -14,7 +14,7 @@ class Source < ActiveRecord::Base
   end
 
   def bootstrap_sections
-    return if sections
+    return if sections.any?
     alphabet = ("A".."Z").to_a
     bootstrap_number_of_sections.times do |i|
       sections.create(name: alphabet[i])
