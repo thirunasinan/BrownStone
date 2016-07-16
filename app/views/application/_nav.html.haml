@@ -14,6 +14,9 @@
     %li
       = link_to 'Problem Uploader', '/problems_parser'
 
+    %li
+      = link_to 'Problem Editor', '/problems_editor'
+
   - if current_user && current_user.is_admin
     %li
       = link_to 'Admin CMS', '/admin'

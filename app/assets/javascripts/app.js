@@ -7,7 +7,10 @@ var App = {
       input: {
 
       }
-    }
+    },
+    editor: {
+
+    },
   },
 
   modules: {

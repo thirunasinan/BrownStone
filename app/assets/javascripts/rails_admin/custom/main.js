@@ -7,6 +7,10 @@ var _latexInitHelper = function () {
     MathJax.Hub.Config({
       tex2jax: {
         ignoreClass: "mathjax-ignore"
+      },
+      //http://docs.mathjax.org/en/latest/tex.html
+      TeX: {
+        extensions: ["mhchem.js"]
       }
     });
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);

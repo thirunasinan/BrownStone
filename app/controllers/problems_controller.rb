@@ -11,6 +11,9 @@ class ProblemsController < ApplicationController
     @show_full_problem = (current_user.low_access? or (params[:full] == "true"))
   end
 
+  def editor
+  end
+
   def by_source
     source_name = Source.find(params[:id]).name
     @q = Problem.ransack({source_name_eq: source_name})

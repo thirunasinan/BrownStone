@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'problems', to: 'problems#index'
   get 'problems/:id', to: 'problems#show', as: :problem
+  get 'problems_editor', to: 'problems#editor', as: :problems_editor
 
   post 'problems', to: 'problems#create', as:  :create_problem
 
