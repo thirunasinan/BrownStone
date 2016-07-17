@@ -11,6 +11,10 @@ var App = {
     editor: {
 
     },
+    tagger: {
+      problems: {
+      }
+    }
   },
 
   modules: {

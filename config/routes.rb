@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'problems', to: 'problems#index'
   get 'problems/:id', to: 'problems#show', as: :problem
   get 'problems_editor', to: 'problems#editor', as: :problems_editor
+  get 'problems_tagger', to: 'problems#tagger', as: :problems_tagger
 
   post 'problems', to: 'problems#create', as:  :create_problem
 
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get 'sources_by_subject/:id', to: 'sources#by_subject', as: :sources_by_subject
 
   get 'problems_by_source/:id', to: 'problems#by_source', as: :problems_by_source
+  get 'problems_by_section/:id', to: 'problems#by_section', as: :problems_by_section
 
   get 'sections', to: 'sections#index', as: :sections
 

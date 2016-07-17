@@ -14,14 +14,32 @@ class ProblemsController < ApplicationController
   def editor
   end
 
+  def tagger
+  end
+
   def by_source
-    source_name = Source.find(params[:id]).name
-    @q = Problem.ransack({source_name_eq: source_name})
-    #@q.sorts = ['number asc']
-    @problems = @q.result.includes(:source).paginate(page: params[:page], per_page: PER_PAGE).order(:number)
-    @uniq = @problems.to_a.uniq
-    @show_full_problem = false
-    render 'index'
+    respond_to do |format|
+      format.html do
+        source_name = Source.find(params[:id]).name
+        @q = Problem.ransack({source_name_eq: source_name})
+        #@q.sorts = ['number asc']
+        @problems = @q.result.includes(:source).paginate(page: params[:page], per_page: PER_PAGE).order(:number)
+        @uniq = @problems.to_a.uniq
+        @show_full_problem = false
+        render 'index'
+      end
+
+      format.json do
+        #problems = Problem.where(source_id: params[:id])
+        problems = [Problem.find(828)]
+        render json: DisplayProblems.run(problems)
+      end
+    end
+  end
+
+  def by_section
+    problems = Problem.where(section_id: params[:id])
+    render json: DisplayProblems.run(problems)
   end
 
   def show

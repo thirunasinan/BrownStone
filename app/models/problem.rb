@@ -17,8 +17,9 @@ class Problem < ActiveRecord::Base
   has_and_belongs_to_many :texts, dependent: :nullify
   has_and_belongs_to_many :images, dependent: :nullify
 
+  has_many :tag_relationships, as: :tagged
+
   validates_presence_of :source
-  validates_presence_of :name
   validates_presence_of :question
 
   validates_with UniqueNumberValidator

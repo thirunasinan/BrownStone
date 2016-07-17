@@ -33,7 +33,9 @@ RailsAdmin.config do |config|
     "SourceType",
     "Subject",
     "Text",
-    "User"
+    "User",
+    "Tag",
+    "TagType",
   ]
 
   config.actions do
@@ -223,6 +225,48 @@ RailsAdmin.config do |config|
   config.model 'Text' do
     weight 10000
     navigation_label 'Other'
+  end
+
+  config.model 'TagType' do
+    list do
+      field :name
+      field :description
+    end
+
+    create do
+      field :name
+      field :description
+    end
+
+    edit do
+      field :name
+      field :description
+    end
+
+    show do
+      field :name
+      field :description
+    end
+  end
+
+  config.model 'Tag' do
+    list do
+      field :tag_type
+      field :name
+      field :description
+    end
+
+    create do
+      field :tag_type
+      field :name
+      field :description
+    end
+
+    edit do
+      field :tag_type
+      field :name
+      field :description
+    end
   end
 
   config.model 'User' do

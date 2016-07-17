@@ -14,8 +14,11 @@
     %li
       = link_to 'Problem Uploader', '/problems_parser'
 
+    / %li
+    /   = link_to 'Problem Editor', '/problems_editor'
+
     %li
-      = link_to 'Problem Editor', '/problems_editor'
+      = link_to 'Problem Tagger', '/problems_tagger'
 
   - if current_user && current_user.is_admin
     %li

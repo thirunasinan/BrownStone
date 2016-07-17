@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711135126) do
+ActiveRecord::Schema.define(version: 20160716183320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,29 @@ ActiveRecord::Schema.define(version: 20160711135126) do
     t.text   "notes"
   end
 
+  create_table "tag_relationships", force: :cascade do |t|
+    t.text    "description"
+    t.integer "tagged_id"
+    t.string  "tagged_type"
+    t.integer "tag_id"
+  end
+
+  add_index "tag_relationships", ["tag_id"], name: "index_tag_relationships_on_tag_id", using: :btree
+  add_index "tag_relationships", ["tagged_type", "tagged_id"], name: "index_tag_relationships_on_tagged_type_and_tagged_id", using: :btree
+
+  create_table "tag_types", force: :cascade do |t|
+    t.string "name"
+    t.text   "description"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "tag_type_id"
+    t.text    "description"
+  end
+
+  add_index "tags", ["tag_type_id"], name: "index_tags_on_tag_type_id", using: :btree
+
   create_table "texts", force: :cascade do |t|
     t.text    "content"
     t.integer "order"
@@ -174,4 +197,6 @@ ActiveRecord::Schema.define(version: 20160711135126) do
   add_foreign_key "sources", "levels"
   add_foreign_key "sources", "source_types"
   add_foreign_key "sources", "subjects"
+  add_foreign_key "tag_relationships", "tags"
+  add_foreign_key "tags", "tag_types"
 end
