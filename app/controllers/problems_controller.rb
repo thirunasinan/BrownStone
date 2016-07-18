@@ -30,8 +30,7 @@ class ProblemsController < ApplicationController
       end
 
       format.json do
-        #problems = Problem.where(source_id: params[:id])
-        problems = [Problem.find(828)]
+        problems = Problem.where(source_id: params[:id])
         render json: DisplayProblems.run(problems)
       end
     end
