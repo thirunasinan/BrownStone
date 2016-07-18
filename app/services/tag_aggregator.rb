@@ -16,6 +16,8 @@ module TagAggregator
     trs.map do |tr|
       {
         tag_id: tr.tag_id,
+        is_new: false,
+        is_tag_new: false,
         tr_id: tr.id,
         name: tr.tag.display_name,
         description: tr.description,
@@ -25,10 +27,10 @@ module TagAggregator
   end
 
   def self.first_order_trs_query(problem_id)
-    TagRelationship.where(tagged_id: problem_id, tagged_type: "Problem")
+    TagRelationship.where(tagged_id: problem_id, tagged_type: "Problem").order("created_at ASC")
   end
 
   def self.second_order_trs_query(tr_id)
-    TagRelationship.where(tagged_id: tr_id, tagged_type: "TagRelationship")
+    TagRelationship.where(tagged_id: tr_id, tagged_type: "TagRelationship").order("created_at ASC")
   end
 end

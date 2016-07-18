@@ -8,7 +8,6 @@ App.components.tagger.problems.Problem = React.createClass({
 
     var originalProblem = this.props.problem.original
     var editedProblem = this.props.problem.edited
-    console.log('editedProblem', editedProblem)
 
     var ProblemDisplay = App.components.tagger.problems.ProblemDisplay
     var Tagger = App.components.tagger.problems.Tagger

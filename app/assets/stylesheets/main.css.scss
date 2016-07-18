@@ -12,12 +12,41 @@ body {
   }
 }
 
+.tag-search-results {
+    border: 1px solid rgb(102, 102, 255);
+    border-top: none;
+}
+
+.new-tag-or-not.old-tag {
+    color: rgb(150, 150, 150);
+}
+.new-tag-or-not.new-tag {
+    color: green;
+}
+
+.tag-search-result-hovered {
+    background-color: rgb(102, 102, 255);
+    color: white;
+}
+.tag-search-result {
+    padding: 5px;
+}
+
 .tag-description {
     width: 100%;
 
     height: 50px;
     //outline: none;
     //border: none;
+}
+
+.tag-description, .tag-search-input {
+    outline: none;
+    border: 1px solid rgb(200,200,200)
+}
+
+.tag-search-input {
+    width: 100%;
 }
 
 .correct {

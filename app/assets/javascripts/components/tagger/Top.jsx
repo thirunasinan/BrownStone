@@ -5,6 +5,10 @@ App.components.tagger.Top = React.createClass({
       sourceOptions: [],
       sectionOptions: [],
       problems: [],
+      tagSearchQuery: null,
+      searchingTag: null,
+      tagSearchResults: [],
+      hoveredTagSearchResult: null
     }
   },
 
@@ -58,6 +62,19 @@ App.components.tagger.Top = React.createClass({
     return Object.assign({}, tag, {description: description})
   },
 
+  selectTagSearchResult: function (problemId, tr_id, tagData) {
+    console.log('selectTagSearchResultHelper', problemId, tr_id, tagData)
+    this.editTagHelper(problemId, tr_id, this.selectTagSearchResultHelper, tagData)
+  },
+
+  selectTagSearchResultHelper: function (tag, tagData) {
+    return Object.assign({}, tag, {
+      is_tag_new: false,
+      name: tagData.name,
+      tag_id: tagData.id
+    })
+  },
+
   toggleRemoveTagHelper: function (tag, bool) {
     var that = this;
     if (tag.is_new) {
@@ -75,8 +92,14 @@ App.components.tagger.Top = React.createClass({
   },
 
   addTagHelper1: function (tag) {
-    var newTag = {
+    var ho_trs2 = tag.ho_trs.concat([this.newTag()])
+    return Object.assign({}, tag, {ho_trs: ho_trs2})
+  },
+
+  newTag: function () {
+    return {
       is_new: true,
+      is_tag_new: true,
       tr_id: Math.random(),
       markedForRemoval: false,
       description: null,
@@ -84,14 +107,33 @@ App.components.tagger.Top = React.createClass({
       name: null,
       ho_trs: []
     }
-    var ho_trs2 = tag.ho_trs.concat([newTag])
-    return Object.assign({}, tag, {ho_trs: ho_trs2})
   },
 
   addTag: function (problemId, parent_tr_id) {
     if (parent_tr_id) {
       this.editTagHelper(problemId, parent_tr_id, this.addTagHelper1)
+    } else {
+      var problems = this.state.problems
+      var problem = problems.find(function (p) { return p.id === problemId})
+      var tags2 = problem.edited.tags.concat([
+        this.newTag()
+      ])
+      this.updateEditedProblem(problemId, {tags: tags2})
     }
+  },
+
+  updateEditedProblem: function (problemId, hash) {
+    var problem = this.state.problems.find(function (p) { return p.id === problemId})
+    var editedProblem2 = Object.assign({}, problem.edited, hash)
+    var problem2 = Object.assign({}, problem, {edited: editedProblem2})
+    var problems2 = this.state.problems.map(function (ele) {
+      if (ele.id === problemId) {
+        return problem2
+      } else {
+        return ele;
+      }
+    })
+    this.setState({problems: problems2})
   },
 
   editTagHelper: function (problemId, tr_id, inputFn, args) {
@@ -120,16 +162,8 @@ App.components.tagger.Top = React.createClass({
       return acc.concat(fn1(ele, tr_id, args))
     }, [])
 
-    var editedProblem2 = Object.assign({}, editedProblem, {tags: tags2})
-    var problem2 = Object.assign({}, problem, {edited: editedProblem2})
-    var problems2 = problems.map(function (ele) {
-      if (ele.id === problemId) {
-        return problem2
-      } else {
-        return ele;
-      }
-    })
-    this.setState({problems: problems2})
+
+    this.updateEditedProblem(problemId, {tags: tags2})
   },
 
   editTagDescription: function (problemId, tr_id, description) {
@@ -140,12 +174,75 @@ App.components.tagger.Top = React.createClass({
     this.editTagHelper(problemId, tr_id, this.toggleRemoveTagHelper, bool)
   },
 
-  render: function () {
-    var actions = {
-      editTagDescription: this.editTagDescription,
-      toggleRemoveTag: this.toggleRemoveTag,
-      addTag: this.addTag,
+  updateTagNameHelper: function (tag, name) {
+    return Object.assign({}, tag, {tag_id: null, is_tag_new: true, name: name})
+  },
+
+  updateTagSearchQuery: function (problemId, tr_id, value) {
+    this.setState({tagSearchQuery: value, searchingTag: tr_id})
+    this.editTagHelper(problemId, tr_id, this.updateTagNameHelper, value)
+    var that = this;
+    if (value) {
+      $.get('search_tags/' + value, function (data) {
+        that.setState({tagSearchResults: data})
+      }, 'json')
+    } else {
+      this.setState({tagSearchResults: []})
     }
+  },
+
+  hoverTagSearchResult: function (data) {
+    this.setState({hoveredTagSearchResult: data})
+  },
+
+  stopHoverTagSearchResult: function (data) {
+    var x = this.state.hoveredTagSearchResult
+    if (x && x.id && x.id === data.id) {
+      this.setState({hoveredTagSearchResult: null})
+    }
+  },
+
+  saveTagsSuccess: function (data) {
+    problems = this.state.problems
+    problems2 = problems.map(function (ele) {
+      if (ele.id === data.id) {
+        return {id: data.id, original: data, edited: data}
+      } else {
+        return ele
+      }
+    })
+    this.setState({problems: problems2})
+  },
+
+  saveTags: function (problemId) {
+    var problem = this.state.problems.find(function (p) { return p.id === problemId})
+    var edited = problem.edited
+    var that = this;
+    $.ajax({
+      type: 'POST',
+      url: 'tags',
+      data: JSON.stringify({problem_id: edited.id, tags: edited.tags}),
+      success: that.saveTagsSuccess,
+      dataType: 'json',
+      contentType: 'application/json'
+    })
+  },
+
+  render: function () {
+    var that = this;
+    var actions = [
+      'editTagDescription',
+      'toggleRemoveTag',
+      'addTag',
+      'updateTagSearchQuery',
+      'hoverTagSearchResult',
+      'stopHoverTagSearchResult',
+      'selectTagSearchResult',
+      'saveTags',
+    ].reduce(function (acc, ele) {
+      acc[ele] = that[ele]
+      return acc
+    }, {})
 
     var Problems = App.components.tagger.problems.Problems
 
