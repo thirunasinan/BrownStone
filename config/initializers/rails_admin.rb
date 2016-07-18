@@ -228,6 +228,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'TagType' do
+    navigation_label 'Other'
     list do
       field :name
       field :description
@@ -250,6 +251,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Tag' do
+    navigation_label 'Other'
     list do
       field :tag_type
       field :name
