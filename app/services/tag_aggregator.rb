@@ -13,7 +13,7 @@ module TagAggregator
   end
 
   def self.fetch_recursive(trs)
-    trs2 = trs.filter{ |tr| tr.tag.present? }
+    trs2 = trs.select{ |tr| tr.tag.present? }
     trs2.map do |tr|
       {
         tag_id: tr.tag_id,
