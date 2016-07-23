@@ -21,6 +21,14 @@ body {
 
 a {
     cursor: pointer;
+    color: blue;
+}
+
+
+.pseudo-link {
+    color: #337ab7;
+    cursor: pointer;
+
 }
 
 a.margined-a {
@@ -38,6 +46,7 @@ a.margined-a {
     border: none !important;
     outline: none !important;
     background-color:  rgb(250,250,250) !important;
+    padding-bottom: 0px !important;
     input {
         // border: none !important;
         // outline: none !important;

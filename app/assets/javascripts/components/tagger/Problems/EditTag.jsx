@@ -6,6 +6,10 @@ App.components.tagger.problems.EditTag = React.createClass({
     }
   },
 
+  componentDidMount: function () {
+    App.modules.autoresizeTextarea()
+  },
+
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
     this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.tr_id, value)
@@ -87,6 +91,10 @@ App.components.tagger.problems.EditTag = React.createClass({
     return <span className='new-tag-or-not new-tag'>{text}</span>
   },
 
+  addSubTag: function () {
+    this.props.actions.addTag(this.props.problemId, this.props.tag.tr_id)
+  },
+
   render: function () {
     var tag = this.props.tag
     var Tagger = App.components.tagger.problems.Tagger
@@ -121,13 +129,15 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     var newNessInfo = <span><span>{relText}</span><span>,&nbsp;&nbsp;</span><span>{tagText}</span></span>
 
-    var crudStuff = <span className='pull-right'>remove: <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
+    var crudStuff = (
+      <span>
+      <span className='pseudo-link' onClick={this.addSubTag}>add subtag</span>
+      <span className='pull-right'>remove: <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
+      </span>
+    )
 
     return (
       <div className='list-group-item tag-list-item'>
-        <p>
-
-        </p>
         <div className='row'>
           <div className='col-xs-6'>
             {tagName}
@@ -140,7 +150,7 @@ App.components.tagger.problems.EditTag = React.createClass({
         <div className='row'>
           <div className='col-xs-12'>
 
-            <textarea className='tag-description' ref={'description'} placeholder={'description of relationship to this tag'} onChange={this.editTagDescription}  value={tag.description}></textarea>
+            <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'description of relationship to this tag'} onChange={this.editTagDescription}  value={tag.description}></textarea>
 
           </div>
         </div>

@@ -16,28 +16,30 @@ App.components.tagger.problems.Tagger = React.createClass({
       return <EditTag store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tag={tag} />
     })
 
-    var addLabel = this.props.isSubTags
-    ? "add sub-tag"
-    : "add tag"
 
-
-
+    var button
+    if (this.props.parent_tr_id) {
+      addTag = null
+      save = null
+    } else {
+      addTag = <a className='margined-a' onClick={this.addTag} >{"add tag"}</a>
+      save =
+    }
 
     if (this.props.tags.length) {
-      var button = <a className='margined-a' onClick={this.addTag} >{addLabel}</a>
       return (
+        {save}
         <div className='panel panel-success'>
           <div className='tag-panel-body panel-body'>
             <div className='list-group'>
               {tags}
             </div>
-            {button}
+            {addTag}
           </div>
         </div>
       )
     } else {
-      var button = <a onClick={this.addTag} >{addLabel}</a>
-      return button;
+      return addTag;
     }
   }
 })

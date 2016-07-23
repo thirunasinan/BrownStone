@@ -2,6 +2,7 @@ problem-tagger changes :
 
 1. tagging happens below problem
 2. tags compressed after they are saved (with edit link to expand)
+  sub-tags are not shown, though perhaps theres a text indicator in compresed list item (has subtags)
 3. topic-tags added/edited in a different section than sp-tags
   users cannot create new topic-tags
   users cannot create new sp-tags in the category 'knowledge'
@@ -9,6 +10,7 @@ problem-tagger changes :
 5. display generally more compressed
 6. tag explorer on right hand side
 7. cant add new know tags
+8. prepend tag-type to tag name
 
 
 ----

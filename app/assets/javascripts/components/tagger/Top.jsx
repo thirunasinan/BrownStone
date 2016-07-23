@@ -1,3 +1,16 @@
+function autoresizeTextareaHelper(e) {
+  $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
+}
+
+App.modules.autoresizeTextarea  = function () {
+  $('textarea.autoresize').each(function () {
+    autoresizeTextareaHelper(this);
+  }).on('input', function () {
+    autoresizeTextareaHelper(this);
+  });
+}
+
+
 App.components.tagger.Top = React.createClass({
 
   getInitialState: function () {
