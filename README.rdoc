@@ -1,0 +1,22 @@
+problem-tagger changes :
+
+1. tagging happens below problem
+2. tags compressed after they are saved (with edit link to expand)
+3. topic-tags added/edited in a different section than sp-tags
+4. topic-tags displayed    in a different section than sp-tags
+5. display generally more compressed
+6. tag explorer on right hand side
+
+
+----
+new crud flow
+
+existing tags appear as compressed list of items.
+expand all -> puts all tags into edit mode.
+each item has name, no description, and link to edit, delete.
+after each save/delete, entire problem refreshes from db so you can see reflection of changes.
+click on edit -> tag expands such that :
+name is input with search/ auto-complete.
+description is textarea.
+save button, cancel buttons replaces edit button.
+add-sub-tag link at the bottom.
