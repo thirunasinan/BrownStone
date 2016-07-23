@@ -3,9 +3,12 @@ problem-tagger changes :
 1. tagging happens below problem
 2. tags compressed after they are saved (with edit link to expand)
 3. topic-tags added/edited in a different section than sp-tags
+  users cannot create new topic-tags
+  users cannot create new sp-tags in the category 'knowledge'
 4. topic-tags displayed    in a different section than sp-tags
 5. display generally more compressed
 6. tag explorer on right hand side
+7. cant add new know tags
 
 
 ----

@@ -18,7 +18,7 @@ App.components.tagger.Top = React.createClass({
       var sources = [{id: null, name: 'None'}].concat(data)
       that.setState({sourceOptions: sources})
     })
-    this.loadProblemsBySource(1)
+    this.loadProblemsBySource(3)
   },
 
   loadProblemsBySource: function (id) {

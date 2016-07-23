@@ -119,16 +119,21 @@ App.components.tagger.problems.EditTag = React.createClass({
     ? newTagText
     : oldTagText
 
+    var newNessInfo = <span><span>{relText}</span><span>,&nbsp;&nbsp;</span><span>{tagText}</span></span>
+
+    var crudStuff = <span className='pull-right'>remove: <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
 
     return (
-      <div className='list-group-item'>
+      <div className='list-group-item tag-list-item'>
         <p>
-          <span>{relText}</span><span>,&nbsp;&nbsp;</span><span>{tagText}</span>
-          <span className='pull-right'>remove: <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
+
         </p>
         <div className='row'>
-          <div className='col-xs-12'>
+          <div className='col-xs-6'>
             {tagName}
+          </div>
+          <div className='col-xs-6'>
+            {crudStuff}
           </div>
         </div>
         {tagSearchResults}

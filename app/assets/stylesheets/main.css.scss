@@ -19,6 +19,31 @@ body {
     overflow-y: auto;
 }
 
+a {
+    cursor: pointer;
+}
+
+a.margined-a {
+    margin-bottom: 10px !important;
+    margin-left: 10px !important;
+}
+
+.tag-panel-body {
+    padding: 0px !important;
+    outline: 1px solid black;
+    background-color: rgb(250,250,250);
+}
+
+.tag-list-item {
+    border: none !important;
+    outline: none !important;
+    background-color:  rgb(250,250,250) !important;
+    input {
+        // border: none !important;
+        // outline: none !important;
+    }
+}
+
 .new-tag-or-not.old-tag {
     color: rgb(150, 150, 150);
 }
