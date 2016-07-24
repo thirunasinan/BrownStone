@@ -5,7 +5,11 @@ problem-tagger changes :
   sub-tags are not shown, though perhaps theres a text indicator in compresed list item (has subtags)
 3. topic-tags added/edited in a different section than sp-tags
   users cannot create new topic-tags
-  users cannot create new sp-tags in the category 'knowledge'
+  users cannot create new sp-tags unles they are in the category 'knowledge'
+
+* add 'subtag-type' dropdown to subtags (will be type of higher-order tag_relationship)
+
+
 4. topic-tags displayed    in a different section than sp-tags
 5. display generally more compressed
 6. tag explorer on right hand side

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718013628) do
+ActiveRecord::Schema.define(version: 20160724033313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 20160718013628) do
   add_index "problems_texts", ["problem_id"], name: "index_problems_texts_on_problem_id", using: :btree
   add_index "problems_texts", ["text_id"], name: "index_problems_texts_on_text_id", using: :btree
 
+  create_table "problems_topics", force: :cascade do |t|
+    t.integer "problem_id"
+    t.integer "topic_id"
+  end
+
+  add_index "problems_topics", ["problem_id"], name: "index_problems_topics_on_problem_id", using: :btree
+  add_index "problems_topics", ["topic_id"], name: "index_problems_topics_on_topic_id", using: :btree
+
   create_table "sections", force: :cascade do |t|
     t.string  "name"
     t.text    "notes"
@@ -158,6 +166,14 @@ ActiveRecord::Schema.define(version: 20160718013628) do
     t.integer "order"
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.integer "subject_id"
+  end
+
+  add_index "topics", ["subject_id"], name: "index_topics_on_subject_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -195,10 +211,13 @@ ActiveRecord::Schema.define(version: 20160718013628) do
   add_foreign_key "problems", "sources"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
+  add_foreign_key "problems_topics", "problems"
+  add_foreign_key "problems_topics", "topics"
   add_foreign_key "sections", "sources"
   add_foreign_key "sources", "levels"
   add_foreign_key "sources", "source_types"
   add_foreign_key "sources", "subjects"
   add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tags", "tag_types"
+  add_foreign_key "topics", "subjects"
 end
