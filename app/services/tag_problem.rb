@@ -16,7 +16,7 @@ module TagProblem
     else
       if tag[:is_new] == true
         if tag[:is_tag_new] == true
-          new_tag = Tag.create(name: tag[:name])
+          new_tag = Tag.create(name: tag[:name], tag_type_id: tag[:tag_type_id])
           tag_id = new_tag.id
         else
           tag_id = tag[:tag_id]

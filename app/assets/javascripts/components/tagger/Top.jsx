@@ -252,18 +252,44 @@ App.components.tagger.Top = React.createClass({
     this.setState({problems: problems2})
   },
 
+  isProblemValid: function (editedProblem) {
+    tags = editedProblem.tags
+    var valid = tags.reduce(function (acc, ele) {
+      var bad = (ele.is_tag_new && (ele.tag_type_name != "KNOW"))
+      console.log(ele, bad)
+      return acc && !bad
+    }, true)
+    var errors = valid
+    ? []
+    : ["cant create new tags unless they are KNOW tags"]
+
+    return {valid: valid, errors: errors}
+  },
+
   saveTags: function (problemId) {
     var problem = this.state.problems.find(function (p) { return p.id === problemId})
     var edited = problem.edited
-    var that = this;
-    $.ajax({
-      type: 'POST',
-      url: 'tags',
-      data: JSON.stringify({problem_id: edited.id, tags: edited.tags}),
-      success: that.saveTagsSuccess,
-      dataType: 'json',
-      contentType: 'application/json'
-    })
+    validHash = this.isProblemValid(edited)
+    if (validHash.valid) {
+      var that = this;
+      $.ajax({
+        type: 'POST',
+        url: 'tags',
+        data: JSON.stringify({problem_id: edited.id, tags: edited.tags}),
+        success: that.saveTagsSuccess,
+        dataType: 'json',
+        contentType: 'application/json'
+      })
+    } else {
+      var newProblems = this.state.problems.map(function (p) {
+        if (p.id === problemId) {
+          return Object.assign({}, p, {errors: validHash.errors})
+        } else {
+          return p
+        }
+      })
+      this.setState({problems: newProblems})
+    }
   },
 
   render: function () {

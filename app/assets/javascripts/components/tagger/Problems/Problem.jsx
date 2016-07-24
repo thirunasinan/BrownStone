@@ -5,9 +5,23 @@ App.components.tagger.problems.Problem = React.createClass({
   },
 
   render: function () {
+    var problem = this.props.problem
+    var originalProblem = problem.original
+    var editedProblem = problem.edited
 
-    var originalProblem = this.props.problem.original
-    var editedProblem = this.props.problem.edited
+    var alerts
+    if (problem.errors) {
+      var alerts = problem.errors.map(function (error, index) {
+        return (
+          <div className={'alert alert-dismissable alert-danger problem-tagger'} role='alert'>
+            {error}
+          </div>
+        )
+      })
+    } else {
+      alerts = null;
+    }
+
 
     var ProblemDisplay = App.components.tagger.problems.ProblemDisplay
     var Tagger = App.components.tagger.problems.Tagger
@@ -17,6 +31,9 @@ App.components.tagger.problems.Problem = React.createClass({
           <ProblemDisplay problem={originalProblem} />
         </div>
         <div className='col-xs-7'>
+          <div>
+            {alerts}
+          </div>
           <Tagger isSubTags={false} tags={editedProblem.tags} problemId={editedProblem.id} store={this.props.store} actions={this.props.actions} />
         </div>
       </div>

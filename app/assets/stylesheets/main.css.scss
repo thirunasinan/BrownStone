@@ -160,6 +160,9 @@ a.save {
 .alert {
   margin-top: 40px;
 }
+.alert.problem-tagger {
+margin-top: 0px;
+}
 .alert-error {
     background-color: #f2dede;
     border-color: #eed3d7;
