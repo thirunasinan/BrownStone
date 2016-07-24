@@ -12,6 +12,8 @@ problem-tagger changes :
 7. cant add new know tags
 8. prepend tag-type to tag name
 
+9. going to need a way to change the order of the tags
+
 
 ----
 new crud flow

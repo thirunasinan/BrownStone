@@ -23,9 +23,11 @@ Rails.application.routes.draw do
   get 'problems_by_source/:id', to: 'problems#by_source', as: :problems_by_source
   get 'problems_by_section/:id', to: 'problems#by_section', as: :problems_by_section
 
-  get 'search_tags/:query', to: 'tags#search', as: :search_tags
+  get 'search_tags/:tag_type_id/:query', to: 'tags#search', as: :search_tags
 
   post 'tags', to: 'tags#tag_problem', as: :tag_problem
+
+  get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select
 
   get 'sections', to: 'sections#index', as: :sections
 

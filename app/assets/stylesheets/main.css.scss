@@ -24,7 +24,6 @@ a {
     color: blue;
 }
 
-
 .pseudo-link {
     color: #337ab7;
     cursor: pointer;
@@ -32,8 +31,14 @@ a {
 }
 
 a.margined-a {
-    margin-bottom: 10px !important;
-    margin-left: 10px !important;
+   margin: 10px !important;
+}
+
+a.save {
+    color: green !important;
+}
+.tag-list-group {
+    margin: 0px !important;
 }
 
 .tag-panel-body {
@@ -47,6 +52,7 @@ a.margined-a {
     outline: none !important;
     background-color:  rgb(250,250,250) !important;
     padding-bottom: 0px !important;
+    padding-top: 2px !important;
     input {
         // border: none !important;
         // outline: none !important;

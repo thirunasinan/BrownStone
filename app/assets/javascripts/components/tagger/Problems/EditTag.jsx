@@ -12,7 +12,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.tr_id, value)
+    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.tr_id, this.props.tag.tag_type_id, value)
   },
 
   onKeyDown: function (e) {
@@ -95,13 +95,38 @@ App.components.tagger.problems.EditTag = React.createClass({
     this.props.actions.addTag(this.props.problemId, this.props.tag.tr_id)
   },
 
+  selectTagType: function () {
+    var value = this.refs.selectTagType.getDOMNode().value
+    this.props.actions.selectTagType(this.props.problemId, this.props.tag.tr_id, value)
+  },
+
+  tagTypeDropDown: function () {
+    var typeOptions = this.props.store.tagTypeOptions.map(function (tagType) {
+      return <option key={tagType.id} value={tagType.id}>{tagType.name}</option>;
+    })
+    return (<select
+              ref={'selectTagType'}
+              selected={this.props.tag.tag_type_name}
+              onChange={this.selectTagType}>{typeOptions}</select>)
+  },
+
   render: function () {
     var tag = this.props.tag
     var Tagger = App.components.tagger.problems.Tagger
 
-    var tagName = tag.is_new
-    ? <input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />
-    : <span><strong>{tag.name}</strong><br /><br /></span>
+    var tagName, tagTypeName
+    if (tag.is_new) {
+      tagTypeName = this.tagTypeDropDown()
+      if (tag.tag_type_id) {
+        tagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />)
+      } else {
+        tagName = null
+      }
+
+    } else {
+      tagTypeName = (tag.tag_type_name ? tag.tag_type_name + ":" : "")
+      tagName = <span>{tag.name}</span>
+    }
 
     var tagSearchResults;
 
@@ -139,10 +164,13 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (
       <div className='list-group-item tag-list-item'>
         <div className='row'>
+          <div className='col-xs-1'>
+            {tagTypeName}
+          </div>
           <div className='col-xs-6'>
             {tagName}
           </div>
-          <div className='col-xs-6'>
+          <div className='col-xs-4'>
             {crudStuff}
           </div>
         </div>

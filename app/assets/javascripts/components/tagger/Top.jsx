@@ -21,7 +21,8 @@ App.components.tagger.Top = React.createClass({
       tagSearchQuery: null,
       searchingTag: null,
       tagSearchResults: [],
-      hoveredTagSearchResult: null
+      hoveredTagSearchResult: null,
+      tagTypeOptions: [],
     }
   },
 
@@ -30,6 +31,10 @@ App.components.tagger.Top = React.createClass({
     $.get('sources_for_select', function (data) {
       var sources = [{id: null, name: 'None'}].concat(data)
       that.setState({sourceOptions: sources})
+    })
+    $.get('tag_types_for_select', function (data) {
+      var options = [{id: null, name: ''}].concat(data)
+      that.setState({tagTypeOptions: options})
     })
     this.loadProblemsBySource(3)
   },
@@ -59,6 +64,7 @@ App.components.tagger.Top = React.createClass({
       that.setState({sectionOptions: sections})
     })
   },
+
 
   selectSource: function () {
     var value = this.refs.sourceSelect.getDOMNode().value
@@ -179,6 +185,25 @@ App.components.tagger.Top = React.createClass({
     this.updateEditedProblem(problemId, {tags: tags2})
   },
 
+  selectTagTypeHelper: function (tag, tag_type_id) {
+    if (tag_type_id === "") {
+      return Object.assign({}, tag, {
+        tag_type_id: null,
+        tag_type_name: null
+      })
+    } else {
+      var tag_type = this.state.tagTypeOptions.find(function (tagType) { return parseInt(tagType.id) === parseInt(tag_type_id)})
+      return Object.assign({}, tag, {
+        tag_type_id: tag_type_id,
+        tag_type_name: tag_type.name,
+      })
+    }
+  },
+
+  selectTagType: function (problemId, tr_id, tag_type_id) {
+    this.editTagHelper(problemId, tr_id, this.selectTagTypeHelper, tag_type_id)
+  },
+
   editTagDescription: function (problemId, tr_id, description) {
     this.editTagHelper(problemId, tr_id, this.editTagDescriptionHelper, description)
   },
@@ -191,12 +216,12 @@ App.components.tagger.Top = React.createClass({
     return Object.assign({}, tag, {tag_id: null, is_tag_new: true, name: name})
   },
 
-  updateTagSearchQuery: function (problemId, tr_id, value) {
+  updateTagSearchQuery: function (problemId, tr_id, tag_type_id, value) {
     this.setState({tagSearchQuery: value, searchingTag: tr_id})
     this.editTagHelper(problemId, tr_id, this.updateTagNameHelper, value)
     var that = this;
     if (value) {
-      $.get('search_tags/' + value, function (data) {
+      $.get(['search_tags', tag_type_id, value].join('/'), function (data) {
         that.setState({tagSearchResults: data})
       }, 'json')
     } else {
@@ -252,6 +277,7 @@ App.components.tagger.Top = React.createClass({
       'stopHoverTagSearchResult',
       'selectTagSearchResult',
       'saveTags',
+      'selectTagType',
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]
       return acc

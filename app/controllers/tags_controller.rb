@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def search
-    tags = Tag.where("name ILIKE '%#{params[:query]}%'")
+    tags = Tag.where(tag_type_id: params[:tag_type_id])
+              .where("name ILIKE '%#{params[:query]}%'")
     render json: tags
   end
 

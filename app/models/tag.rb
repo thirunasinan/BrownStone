@@ -5,10 +5,15 @@ class Tag < ActiveRecord::Base
   validates_presence_of :name
 
   def display_name
-    if tag_type
-      "#{name} (#{tag_type.name})"
-    else
-      name
-    end
+    # if tag_type
+    #   "#{tag_type.name}: #{name}"
+    # else
+    #   name
+    # end
+    name
+  end
+
+  def type_name
+    tag_type.present? ? tag_type.name : ""
   end
 end

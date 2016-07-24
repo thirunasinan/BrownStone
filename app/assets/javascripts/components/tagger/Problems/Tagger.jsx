@@ -23,15 +23,15 @@ App.components.tagger.problems.Tagger = React.createClass({
       save = null
     } else {
       addTag = <a className='margined-a' onClick={this.addTag} >{"add tag"}</a>
-      save =
+      save = <a className='margined-a save' onClick={this.saveTags}>save</a>
     }
 
     if (this.props.tags.length) {
       return (
-        {save}
         <div className='panel panel-success'>
           <div className='tag-panel-body panel-body'>
-            <div className='list-group'>
+            {save}
+            <div className='list-group tag-list-group'>
               {tags}
             </div>
             {addTag}
