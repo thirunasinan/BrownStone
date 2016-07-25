@@ -39,6 +39,7 @@ App.components.Modal = React.createClass({
               <button onClick={this.props.actions.toggleTagExplorer} className='btn btn-danger pull-right'>close</button>
             </div>
           </div>
+          <br />
           <div className='row'>
             <div className='col-xs-12'>
               <input ref={'tagExplorer'} onChange={this.updateTagExplorerQuery} value={this.props.store.tagExplorerQuery} />
