@@ -12,8 +12,8 @@ App.components.tagger.problems.Tagger = React.createClass({
 
     var EditTag = App.components.tagger.problems.EditTag
     var that = this;
-    var tags = this.props.tags.map(function (tag) {
-      return <EditTag store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tag={tag} />
+    var tags = this.props.tags.map(function (tag, i) {
+      return <EditTag key={i} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tag={tag} />
     })
 
 

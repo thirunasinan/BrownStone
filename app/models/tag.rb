@@ -16,4 +16,8 @@ class Tag < ActiveRecord::Base
   def type_name
     tag_type.present? ? tag_type.name : ""
   end
+
+  def tagger_can_create_new
+    tag_type.present? ? tag_type.tagger_can_create_new : false
+  end
 end

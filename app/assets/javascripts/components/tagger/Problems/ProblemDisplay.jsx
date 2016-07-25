@@ -6,7 +6,7 @@ App.components.tagger.problems.ProblemDisplay = React.createClass({
     var answerChoices = problem.answer_choices.map(function (ac, i) {
       var letter = ["A", "B", 'C', 'D', 'E', 'F', 'G'][i]
       return (
-        <div className='list-group-item'>
+        <div key={i} className='list-group-item'>
           <div className='row'>
             <div className='col-xs-1'>
               <strong>{letter}</strong>

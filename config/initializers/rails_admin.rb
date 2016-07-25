@@ -231,21 +231,25 @@ RailsAdmin.config do |config|
     navigation_label 'Other'
     list do
       field :name
+      field :tagger_can_create_new
       field :description
     end
 
     create do
       field :name
+      field :tagger_can_create_new
       field :description
     end
 
     edit do
       field :name
+      field :tagger_can_create_new
       field :description
     end
 
     show do
       field :name
+      field :tagger_can_create_new
       field :description
     end
   end

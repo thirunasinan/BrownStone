@@ -106,8 +106,12 @@ App.components.tagger.problems.EditTag = React.createClass({
     })
     return (<select
               ref={'selectTagType'}
+              className='tag-type-dropdown'
               selected={this.props.tag.tag_type_name}
               onChange={this.selectTagType}>{typeOptions}</select>)
+  },
+  openTagExplorer: function (e) {
+    this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tag)
   },
 
   render: function () {
@@ -115,10 +119,19 @@ App.components.tagger.problems.EditTag = React.createClass({
     var Tagger = App.components.tagger.problems.Tagger
 
     var tagName, tagTypeName
+
+    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />)
+
+
+
     if (tag.is_new) {
       tagTypeName = this.tagTypeDropDown()
       if (tag.tag_type_id) {
-        tagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />)
+        if (tag.tagger_can_create_new) {
+          tagName = [inputTagName, <a onClick={this.openTagExplorer}>select in tag explorer</a>]
+        } else {
+          tagName = [inputTagName]
+        }
       } else {
         tagName = null
       }
@@ -132,6 +145,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     if (this.props.store.tagSearchResults.length
         && this.state.focused
+        && (!tag.tagger_can_create_new)
         && this.props.store.searchingTag === tag.tr_id) {
       var eles = this.props.store.tagSearchResults.map(this.searchResult)
       tagSearchResults = <div className='tag-search-results'>{eles}</div>
@@ -164,13 +178,13 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (
       <div className='list-group-item tag-list-item'>
         <div className='row'>
-          <div className='col-xs-1'>
+          <div className='col-xs-4'>
             {tagTypeName}
           </div>
-          <div className='col-xs-6'>
+          <div className='col-xs-5'>
             {tagName}
           </div>
-          <div className='col-xs-4'>
+          <div className='col-xs-3'>
             {crudStuff}
           </div>
         </div>

@@ -23,6 +23,12 @@ App.components.tagger.Top = React.createClass({
       tagSearchResults: [],
       hoveredTagSearchResult: null,
       tagTypeOptions: [],
+      tagExplorerActive: false,
+      tagExplorerQuery: null,
+      tagExplorerTrId: null,
+      tagExplorerProblemId: null,
+      tagExplorerTagTypeId: null,
+      tagExplorerSearchResults: []
     }
   },
 
@@ -82,7 +88,6 @@ App.components.tagger.Top = React.createClass({
   },
 
   selectTagSearchResult: function (problemId, tr_id, tagData) {
-    console.log('selectTagSearchResultHelper', problemId, tr_id, tagData)
     this.editTagHelper(problemId, tr_id, this.selectTagSearchResultHelper, tagData)
   },
 
@@ -189,13 +194,14 @@ App.components.tagger.Top = React.createClass({
     if (tag_type_id === "") {
       return Object.assign({}, tag, {
         tag_type_id: null,
-        tag_type_name: null
+        tag_type_name: null,
       })
     } else {
       var tag_type = this.state.tagTypeOptions.find(function (tagType) { return parseInt(tagType.id) === parseInt(tag_type_id)})
       return Object.assign({}, tag, {
         tag_type_id: tag_type_id,
         tag_type_name: tag_type.name,
+        tagger_can_create_new: tag_type.tagger_can_create_new,
       })
     }
   },
@@ -256,7 +262,6 @@ App.components.tagger.Top = React.createClass({
     tags = editedProblem.tags
     var valid = tags.reduce(function (acc, ele) {
       var bad = (ele.is_tag_new && (ele.tag_type_name != "KNOW"))
-      console.log(ele, bad)
       return acc && !bad
     }, true)
     var errors = valid
@@ -292,6 +297,26 @@ App.components.tagger.Top = React.createClass({
     }
   },
 
+  toggleTagExplorer: function (problemId, tag) {
+    var tag_type_id = tag ? tag.tag_type_id : null
+    var tr_id = tag ? tag.tr_id : null
+    this.setState({tagExplorerActive: !this.state.tagExplorerActive, tagExplorerTrId: tr_id, tagExplorerProblemId: problemId, tagExplorerTagTypeId: tag_type_id})
+  },
+
+  updateTagExplorerQuery: function (value) {
+    this.setState({tagExplorerQuery: value})
+    var that = this;
+    var tag_type_id = this.state.tagExplorerTagTypeId
+    if (value) {
+      $.get(['search_tags', tag_type_id, value].join('/'), function (data) {
+        that.setState({tagExplorerSearchResults: data})
+        console.log('data', data)
+      }, 'json')
+    } else {
+      this.setState({tagExplorerSearchResults: []})
+    }
+  },
+
   render: function () {
     var that = this;
     var actions = [
@@ -304,6 +329,8 @@ App.components.tagger.Top = React.createClass({
       'selectTagSearchResult',
       'saveTags',
       'selectTagType',
+      'toggleTagExplorer',
+      'updateTagExplorerQuery',
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]
       return acc
@@ -321,6 +348,7 @@ App.components.tagger.Top = React.createClass({
 
     return (
       <div>
+        <App.components.Modal active={this.state.tagExplorerActive} actions={actions} store={this.state} />
         <div className='container'>
           <div className='row'>
             <div className='col-xs-12'>

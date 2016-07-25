@@ -19,6 +19,7 @@ module TagAggregator
         tag_id: tr.tag_id,
         tag_type_name: tr.tag.type_name,
         tag_type_id: tr.tag.tag_type_id,
+        tagger_can_create_new: tr.tag.tagger_can_create_new,
         is_new: false,
         is_tag_new: false,
         tr_id: tr.id,

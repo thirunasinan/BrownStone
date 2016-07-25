@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724033313) do
+ActiveRecord::Schema.define(version: 20160724220638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,8 +149,9 @@ ActiveRecord::Schema.define(version: 20160724033313) do
   add_index "tag_relationships", ["tagged_type", "tagged_id"], name: "index_tag_relationships_on_tagged_type_and_tagged_id", using: :btree
 
   create_table "tag_types", force: :cascade do |t|
-    t.string "name"
-    t.text   "description"
+    t.string  "name"
+    t.text    "description"
+    t.boolean "tagger_can_create_new", default: false
   end
 
   create_table "tags", force: :cascade do |t|
