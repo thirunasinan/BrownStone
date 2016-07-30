@@ -16,6 +16,11 @@ describe TagAggregator do
     expect(result).to eq([
       {
         tag_id: tag1.id,
+        is_new: false,
+        is_tag_new: false,
+        tag_type_id: nil,
+        tag_type_name: '',
+        tagger_can_create_new: false,
         tr_id: tr1.id,
         name: 'tag1',
         description: 'description1',
@@ -37,12 +42,22 @@ describe TagAggregator do
     expect(result).to eq([
       {
         tag_id: tag1.id,
+        is_new: false,
+        is_tag_new: false,
+        tag_type_id: nil,
+        tag_type_name: '',
+        tagger_can_create_new: false,
         tr_id: tr1.id,
         name: 'tag1',
         description: 'description1',
         ho_trs: [
           {
             tag_id: tag2.id,
+            is_new: false,
+            is_tag_new: false,
+            tag_type_id: nil,
+            tag_type_name: '',
+            tagger_can_create_new: false,
             tr_id: tr2.id,
             name: 'tag2',
             description: 'description2',
