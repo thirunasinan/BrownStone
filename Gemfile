@@ -69,6 +69,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # s3 storage for paperclip (uploading pdfs, images, etc)
 gem 'aws-sdk'
 
+gem 'plissken'
+
 group :production do
   gem 'rails_12factor'
 end
@@ -82,6 +84,11 @@ group :development, :test do
 
   # javascript-testing
   gem 'teaspoon-jasmine'
+
+  gem 'factory_girl_rails'
+
+  gem 'byebug'
+
 end
 
 group :development do

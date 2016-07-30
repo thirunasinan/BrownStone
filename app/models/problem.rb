@@ -19,6 +19,9 @@ class Problem < ActiveRecord::Base
 
   has_many :tag_relationships, as: :tagged
 
+  has_and_belongs_to_many :topics
+  has_many :problems_topics, dependent: :destroy, class_name: "ProblemTopic"
+
   validates_presence_of :source
   validates_presence_of :question
 

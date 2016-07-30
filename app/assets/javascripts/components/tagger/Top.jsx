@@ -17,6 +17,8 @@ App.components.tagger.Top = React.createClass({
     return {
       sourceOptions: [],
       sectionOptions: [],
+      subjectOptions: [],
+      topicOptions: [],
       problems: [],
       tagSearchQuery: null,
       searchingTag: null,
@@ -41,6 +43,14 @@ App.components.tagger.Top = React.createClass({
     $.get('tag_types_for_select', function (data) {
       var options = [{id: null, name: ''}].concat(data)
       that.setState({tagTypeOptions: options})
+    })
+    $.get('subjects_for_select', function (data) {
+      var options = [{id: null, name: ''}].concat(data)
+      that.setState({subjectOptions: options})
+    })
+    $.get('topics_for_select', function (data) {
+      var options = [{id: null, name: ''}].concat(data)
+      that.setState({topicOptions: options})
     })
     this.loadProblemsBySource(3)
   },
@@ -133,6 +143,16 @@ App.components.tagger.Top = React.createClass({
     }
   },
 
+  newTopic: function () {
+    return {
+      topic_rel_id: Math.random(),
+      topic_id: null,
+      is_new: true,
+      name: '',
+      subject_id: null,
+    }
+  },
+
   addTag: function (problemId, parent_tr_id) {
     if (parent_tr_id) {
       this.editTagHelper(problemId, parent_tr_id, this.addTagHelper1)
@@ -144,6 +164,35 @@ App.components.tagger.Top = React.createClass({
       ])
       this.updateEditedProblem(problemId, {tags: tags2})
     }
+  },
+
+  updateArray: function (array, newEle, prop) {
+    return array.map(function (ele) {
+      if (ele[prop] === newEle[prop]) {
+        return newEle
+      } else {
+        return ele
+      }
+    })
+  },
+
+  selectSubjectForTopic: function (problemId, topic_rel_id, subject_id) {
+    var problems = this.state.problems
+    var problem = problems.find(function (p) { return p.id === problemId})
+    var topics = problem.edited.topics
+    var topic = topics.find(function (t) { return t.topic_rel_id === topic_rel_id })
+    var editedTopic = Object.assign({}, topic, {subject_id: subject_id})
+    var editedTopics = this.updateArray(topics, editedTopic, 'topic_rel_id')
+    this.updateEditedProblem(problemId, {topics: editedTopics})
+  },
+
+  addTopic: function (problemId) {
+    var problems = this.state.problems
+    var problem = problems.find(function (p) { return p.id === problemId})
+    var topics = problem.edited.topics.concat([
+      this.newTopic()
+    ])
+    this.updateEditedProblem(problemId, {topics: topics})
   },
 
   updateEditedProblem: function (problemId, hash) {
@@ -317,6 +366,24 @@ App.components.tagger.Top = React.createClass({
     }
   },
 
+  saveTopics: function (problemId) {
+    var problem = this.state.problems.find(function (p) { return p.id === problemId})
+    var edited = problem.edited
+    var that = this;
+    $.ajax({
+      type: 'POST',
+      url: 'problems_topics',
+      data: JSON.stringify({problem_id: edited.id, problems_topics: edited.topics}),
+      success: that.saveTopicsSuccess,
+      dataType: 'json',
+      contentType: 'application/json'
+    })
+  },
+
+  saveTopicsSuccess: function (data) {
+    this.updateEditedProblem(data.problem_id, {topics: data.problems_topics})
+  },
+
   render: function () {
     var that = this;
     var actions = [
@@ -331,6 +398,9 @@ App.components.tagger.Top = React.createClass({
       'selectTagType',
       'toggleTagExplorer',
       'updateTagExplorerQuery',
+      'addTopic',
+      'selectSubjectForTopic',
+      'saveTopics',
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]
       return acc

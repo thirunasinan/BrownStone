@@ -7,4 +7,7 @@ class SubjectsController < ApplicationController
     @subjects = @q.result
   end
 
+  def for_select
+    render json: Subject.all
+  end
 end

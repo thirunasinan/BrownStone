@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   post 'tags', to: 'tags#tag_problem', as: :tag_problem
 
+  post 'problems_topics', to: 'topics#problems_topics'
+
   get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select
 
   get 'sections', to: 'sections#index', as: :sections
@@ -34,6 +36,11 @@ Rails.application.routes.draw do
   get 'sections_by_source/:id', to: 'sections#by_source', as: :sections_by_source
 
   get 'subjects', to: 'subjects#index', as: :subjects
+
+  get 'subjects_for_select', to: 'subjects#for_select', as: :subjects_for_select
+
+
+  get 'topics_for_select', to: 'topics#for_select', as: :topics_for_select
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

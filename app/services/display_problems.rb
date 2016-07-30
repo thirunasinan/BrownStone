@@ -10,7 +10,8 @@ module DisplayProblems
         section_id: problem.section,
         source_id: problem.source,
         answer_choices: problem.answer_choices,
-        tags: TagAggregator.run(problem.id)
+        tags: TagAggregator.run(problem.id),
+        topics: ProblemTopicsDisplay.run(problem)
       }
     end
   end
