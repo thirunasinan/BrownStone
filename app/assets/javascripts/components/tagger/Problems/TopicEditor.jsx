@@ -27,7 +27,7 @@ App.components.TopicEditor = React.createClass({
 
   selectTopic: function () {
     var value = this.refs.topicSelect.getDOMNode().value
-    this.props.actions.selectTopic(this.props.problemId, this.props.topic.id, value)
+    this.props.actions.selectTopic(this.props.problemId, this.props.topic.topic_rel_id, value)
   },
 
   topicSelect: function () {

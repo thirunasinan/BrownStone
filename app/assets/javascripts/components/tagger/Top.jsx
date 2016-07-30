@@ -176,14 +176,18 @@ App.components.tagger.Top = React.createClass({
     })
   },
 
-  selectSubjectForTopic: function (problemId, topic_rel_id, subject_id) {
+  updateTopicRelHelper: function (problemId, topic_rel_id, hash) {
     var problems = this.state.problems
     var problem = problems.find(function (p) { return p.id === problemId})
     var topics = problem.edited.topics
     var topic = topics.find(function (t) { return t.topic_rel_id === topic_rel_id })
-    var editedTopic = Object.assign({}, topic, {subject_id: subject_id})
+    var editedTopic = Object.assign({}, topic, hash)
     var editedTopics = this.updateArray(topics, editedTopic, 'topic_rel_id')
     this.updateEditedProblem(problemId, {topics: editedTopics})
+  },
+
+  selectSubjectForTopic: function (problemId, topic_rel_id, subject_id) {
+    this.updateTopicRelHelper(problemId, topic_rel_id, {subject_id: subject_id})
   },
 
   addTopic: function (problemId) {
@@ -366,6 +370,10 @@ App.components.tagger.Top = React.createClass({
     }
   },
 
+  selectTopic: function (problemId, topic_rel_id, topic_id) {
+    this.updateTopicRelHelper(problemId, topic_rel_id, {topic_id: topic_id})
+  },
+
   saveTopics: function (problemId) {
     var problem = this.state.problems.find(function (p) { return p.id === problemId})
     var edited = problem.edited
@@ -373,7 +381,7 @@ App.components.tagger.Top = React.createClass({
     $.ajax({
       type: 'POST',
       url: 'problems_topics',
-      data: JSON.stringify({problem_id: edited.id, problems_topics: edited.topics}),
+      data: JSON.stringify({data: {problem_id: edited.id, problems_topics: edited.topics}}),
       success: that.saveTopicsSuccess,
       dataType: 'json',
       contentType: 'application/json'
@@ -400,6 +408,7 @@ App.components.tagger.Top = React.createClass({
       'updateTagExplorerQuery',
       'addTopic',
       'selectSubjectForTopic',
+      'selectTopic',
       'saveTopics',
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]

@@ -13,19 +13,21 @@ describe TopicsController do
 
   let!(:params) do
     {
-      problem_id: problem.id,
-      problems_topics: [
-        {
-          topic_id: topic.id,
-        }
-      ]
+      data: {
+        problem_id: problem.id,
+        problems_topics: [
+          {
+            topic_id: topic.id,
+          }
+        ]
+      }
     }
   end
 
   context 'POST #problems_topics' do
 
     before :each do
-      post url, params: params
+      post url, params
       @json = json(response)
     end
 
@@ -39,7 +41,7 @@ describe TopicsController do
     end
 
     it 'returns problems_topics' do
-      expect(@json[:problems_topics][0][:id]).to eq(ProblemTopic.first.id)
+      expect(@json[:problems_topics][0][:topic_rel_id]).to eq(ProblemTopic.first.id)
     end
   end
 end

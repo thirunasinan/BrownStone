@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   end
 
   def problems_topics
-    data = params['params'].to_snake_keys.deep_symbolize_keys
+    data = problems_topics_params
     problem_id = data[:problem_id]
     problems_topics = data[:problems_topics]
     saved = problems_topics.map do |pt|
@@ -19,7 +19,13 @@ class TopicsController < ApplicationController
     # }
     render json: {
       problem_id: problem_id,
-      problems_topics: saved
+      problems_topics: ProblemTopicsDisplay.run(Problem.find(problem_id))
     }
+  end
+
+  private
+
+  def problems_topics_params
+    params.require(:data).permit(:problem_id, problems_topics: [:topic_id] )
   end
 end
