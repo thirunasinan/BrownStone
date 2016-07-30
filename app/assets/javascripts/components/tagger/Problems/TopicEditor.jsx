@@ -4,8 +4,8 @@ App.components.TopicEditor = React.createClass({
     return this.props.topic.markedForRemoval || false
   },
 
-  removeTag: function () {
-
+  removeTopic: function () {
+    this.props.actions.toggleRemoveTopic(this.props.problemId, this.props.topic.topic_rel_id)
   },
 
   selectSubject: function () {
@@ -73,7 +73,7 @@ App.components.TopicEditor = React.createClass({
         <div className='col-xs-3'>
           <span className='pull-right'>
             remove:
-            <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' />
+            <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTopic} type='checkbox' />
           </span>
         </div>
       </div>

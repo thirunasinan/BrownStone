@@ -150,6 +150,7 @@ App.components.tagger.Top = React.createClass({
       is_new: true,
       name: '',
       subject_id: null,
+      markedForRemoval: false,
     }
   },
 
@@ -197,6 +198,32 @@ App.components.tagger.Top = React.createClass({
       this.newTopic()
     ])
     this.updateEditedProblem(problemId, {topics: topics})
+  },
+
+  getEditedProblem: function (problemId) {
+    return this.state.problems.find(function (p) { return parseInt(p.id) === parseInt(problemId)}).edited
+  },
+
+  getTopicRel: function (problemId, topic_rel_id) {
+    var ep = this.getEditedProblem(problemId)
+    var topic = ep.topics.find(function (t) { return t.topic_rel_id === topic_rel_id})
+    return topic
+  },
+
+  toggleRemoveTopic: function (problemId, topic_rel_id) {
+    var topic = this.getTopicRel(problemId, topic_rel_id)
+    if (topic.is_new) {
+      ep = this.getEditedProblem(problemId)
+      topics = ep.topics.filter(function (t) { return t.topic_rel_id !== topic_rel_id})
+      this.updateEditedProblem(problemId, {topics: topics})
+      console.log('is new')
+      console.log('ep', ep)
+      console.log('new topics for problem', topics)
+
+    } else {
+      this.updateTopicRelHelper(problemId, topic_rel_id, {markedForRemoval: !topic.markedForRemoval})
+      console.log('is old')
+    }
   },
 
   updateEditedProblem: function (problemId, hash) {
@@ -410,6 +437,7 @@ App.components.tagger.Top = React.createClass({
       'selectSubjectForTopic',
       'selectTopic',
       'saveTopics',
+      'toggleRemoveTopic'
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]
       return acc

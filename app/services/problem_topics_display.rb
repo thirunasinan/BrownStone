@@ -14,7 +14,8 @@ module ProblemTopicsDisplay
       is_new: false,
       name: topic.name,
       subject: topic.subject,
-      display_name: self.display_name(topic)
+      display_name: self.display_name(topic),
+      markedForRemoval: false
     }
   end
 
