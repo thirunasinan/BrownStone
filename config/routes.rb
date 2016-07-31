@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post 'problems_topics', to: 'topics#problems_topics'
 
   get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select
+  get 'action_tag_types_for_select', to: 'tag_types#actions_for_select'
 
   get 'sections', to: 'sections#index', as: :sections
 

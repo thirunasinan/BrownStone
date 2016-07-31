@@ -1,17 +1,48 @@
-problem-tagger changes :
-
-* topic-tags added/edited in a different section than sp-tags
-* users cannot create new topic-tags
-* users cannot create new sp-tags unles they are in the category 'knowledge'
 
 
 
+(have tag aggregator camlize things before sending it over)
+
+options
+  tags
+  tagTypes
+  subjects
+  topics
 
 
 
+tagRelationships
+  id
+  clientId
+  description
+  isNew
+  markedForRemoval
+
+  tag
+    id
+    clientId
+    name
+    isNew
+
+    tagType
+      id
+      clientId
+      name
 
 
-* add 'subtag-type' dropdown to subtags (will be type of higher-order tag_relationship)
+--
 
-* TAG EXPLORER IS ONLY FOR KNOWLEDGE TAGS
+
+
+markForRemoval
+
+addNew
+
+selectTag
+  updateTagId
+  updateTagName
+
+updateTagName
+
+
 
