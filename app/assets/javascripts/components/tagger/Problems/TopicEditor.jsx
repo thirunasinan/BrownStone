@@ -35,7 +35,10 @@ App.components.TopicEditor = React.createClass({
     if (this.props.topic.subject_id) {
       var topicOptions = this.props.store.topicOptions.filter(function (t) {
         return parseInt(t.subject_id) === parseInt(that.props.topic.subject_id)
-      }).map(function (t) {
+      })
+      .concat([{id: null, value: ''}])
+      .reverse()
+      .map(function (t) {
         return <option key={t.id} value={t.id}>{t.name}</option>
       })
 

@@ -293,6 +293,13 @@ App.components.tagger.Top = React.createClass({
     this.editTagHelper(problemId, tr_id, this.selectTagTypeHelper, tag_type_id)
   },
 
+  editTagHelper2: function (problemId, tr_id, hash) {
+    var function1 = function (tag) {
+      return Object.assign({}, tag, hash)
+    }
+    this.editTagHelper(problemId, tr_id, function1)
+  },
+
   editTagDescription: function (problemId, tr_id, description) {
     this.editTagHelper(problemId, tr_id, this.editTagDescriptionHelper, description)
   },
@@ -417,6 +424,11 @@ App.components.tagger.Top = React.createClass({
     })
   },
 
+  selectActionTag: function (problemId, tr_id, action_tag_id) {
+    var action_tag = this.state.actionTagOptions.find(function (a) { return a.id == action_tag_id})
+    this.editTagHelper2(problemId, tr_id, {tag_type_id: action_tag.id, tag_type_name: action_tag.name})
+  },
+
   saveTopicsSuccess: function (data) {
     this.updateEditedProblem(data.problem_id, {topics: data.problems_topics})
   },
@@ -439,7 +451,8 @@ App.components.tagger.Top = React.createClass({
       'selectSubjectForTopic',
       'selectTopic',
       'saveTopics',
-      'toggleRemoveTopic'
+      'toggleRemoveTopic',
+      'selectActionTag',
     ].reduce(function (acc, ele) {
       acc[ele] = that[ele]
       return acc

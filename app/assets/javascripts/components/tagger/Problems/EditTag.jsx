@@ -108,23 +108,23 @@ App.components.tagger.problems.EditTag = React.createClass({
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
 
-  selectTag: function () {
-
+  selectActionTag: function () {
+    var value = this.refs.selectTag.getDOMNode().value
+    this.props.actions.selectActionTag(this.props.problemId, this.props.tag.tr_id, value)
   },
 
   actionTagDropDown: function () {
     var that = this;
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
       var x =  parseInt(t.tag_type_id) === parseInt(that.props.tag.tag_type_id)
-      console.log(t, that.props.tag)
-      console.log('x', x)
       return x
-    }).map(function (option) {
+    }).concat([{id: null, name: ''}])
+    .reverse()
+    .map(function (option) {
       return <option key={option.id} value={option.id}>{option.name}</option>;
     })
-    console.log('tagOptions', tagOptions)
     return (<select
-              ref={'selectTag'}
+              ref={'selectActionTag'}
               className='tag-type-dropdown'
               selected={this.props.tag.name}
               onChange={this.selectTag}>{tagOptions}</select>)
@@ -172,30 +172,24 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     var crudStuff = (
       <span>
-      <span className='pseudo-link' onClick={this.addSubTag}>add subtag</span>
-      <span className='pull-right'>remove: <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
+      <span className='pull-right'>X:<input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
       </span>
     )
 
     return (
       <div className='list-group-item tag-list-item'>
         <div className='row'>
-          <div className='col-xs-4'>
+          <div className='col-xs-2'>
             {tagTypeName}
           </div>
-          <div className='col-xs-5'>
+          <div className='col-xs-2'>
             {tagName}
           </div>
           <div className='col-xs-3'>
-            {crudStuff}
+            <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'data'} onChange={this.editTagDescription}  value={tag.description}></textarea>
           </div>
-        </div>
-        {tagSearchResults}
-        <div className='row'>
-          <div className='col-xs-12'>
-
-            <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'description of relationship to this tag'} onChange={this.editTagDescription}  value={tag.description}></textarea>
-
+          <div className='col-xs-1'>
+            {crudStuff}
           </div>
         </div>
       </div>
