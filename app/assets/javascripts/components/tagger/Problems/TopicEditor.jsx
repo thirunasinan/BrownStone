@@ -32,7 +32,6 @@ App.components.TopicEditor = React.createClass({
 
   topicSelect: function () {
     var that = this;
-    console.log(this.props.store.topicOptions)
     if (this.props.topic.subject_id) {
       var topicOptions = this.props.store.topicOptions.filter(function (t) {
         return parseInt(t.subject_id) === parseInt(that.props.topic.subject_id)

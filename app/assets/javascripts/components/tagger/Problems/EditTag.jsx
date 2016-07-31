@@ -87,9 +87,6 @@ App.components.tagger.problems.EditTag = React.createClass({
     return <span className='new-tag-or-not old-tag'>{text}</span>
   },
 
-  newNessText: function (text) {
-    return <span className='new-tag-or-not new-tag'>{text}</span>
-  },
 
   addSubTag: function () {
     this.props.actions.addTag(this.props.problemId, this.props.tag.tr_id)
@@ -100,8 +97,8 @@ App.components.tagger.problems.EditTag = React.createClass({
     this.props.actions.selectTagType(this.props.problemId, this.props.tag.tr_id, value)
   },
 
-  tagTypeDropDown: function () {
-    var typeOptions = this.props.store.tagTypeOptions.map(function (tagType) {
+  actionTagTypeDropDown: function () {
+    var typeOptions = this.props.store.actionTagTypeOptions.map(function (tagType) {
       return <option key={tagType.id} value={tagType.id}>{tagType.name}</option>;
     })
     return (<select
@@ -110,6 +107,29 @@ App.components.tagger.problems.EditTag = React.createClass({
               selected={this.props.tag.tag_type_name}
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
+
+  selectTag: function () {
+
+  },
+
+  actionTagDropDown: function () {
+    var that = this;
+    var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
+      var x =  parseInt(t.tag_type_id) === parseInt(that.props.tag.tag_type_id)
+      console.log(t, that.props.tag)
+      console.log('x', x)
+      return x
+    }).map(function (option) {
+      return <option key={option.id} value={option.id}>{option.name}</option>;
+    })
+    console.log('tagOptions', tagOptions)
+    return (<select
+              ref={'selectTag'}
+              className='tag-type-dropdown'
+              selected={this.props.tag.name}
+              onChange={this.selectTag}>{tagOptions}</select>)
+  },
+
   openTagExplorer: function (e) {
     this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tag)
   },
@@ -125,13 +145,9 @@ App.components.tagger.problems.EditTag = React.createClass({
 
 
     if (tag.is_new) {
-      tagTypeName = this.tagTypeDropDown()
+      tagTypeName = this.actionTagTypeDropDown()
       if (tag.tag_type_id) {
-        if (tag.tagger_can_create_new) {
-          tagName = [inputTagName, <a onClick={this.openTagExplorer}>select in tag explorer</a>]
-        } else {
-          tagName = [inputTagName]
-        }
+        tagName = this.actionTagDropDown()
       } else {
         tagName = null
       }
@@ -153,20 +169,6 @@ App.components.tagger.problems.EditTag = React.createClass({
       tagSearchResults = null
     }
 
-    var oldTagText = this.oldnessText("old tag")
-    var oldRelText = this.oldnessText("old relationship")
-    var newTagText = this.newNessText("new tag")
-    var newRelText = this.newNessText("new relationship")
-
-    var relText = tag.is_new
-    ? newRelText
-    : oldRelText
-
-    var tagText = tag.is_tag_new
-    ? newTagText
-    : oldTagText
-
-    var newNessInfo = <span><span>{relText}</span><span>,&nbsp;&nbsp;</span><span>{tagText}</span></span>
 
     var crudStuff = (
       <span>
@@ -196,12 +198,6 @@ App.components.tagger.problems.EditTag = React.createClass({
 
           </div>
         </div>
-        <div className='row'>
-          <div className='col-xs-11'>
-            <Tagger isSubTags={true} problemId={this.props.problemId} parent_tr_id={tag.tr_id} tags={tag.ho_trs} store={this.props.store} actions={this.props.actions} />
-          </div>
-        </div>
-
       </div>
 
     )

@@ -25,6 +25,8 @@ App.components.tagger.Top = React.createClass({
       tagSearchResults: [],
       hoveredTagSearchResult: null,
       tagTypeOptions: [],
+      actionTagTypeOptions: [],
+      actionTagOptions: [],
       tagExplorerActive: false,
       tagExplorerQuery: null,
       tagExplorerTrId: null,
@@ -41,8 +43,14 @@ App.components.tagger.Top = React.createClass({
       that.setState({sourceOptions: sources})
     })
     $.get('tag_types_for_select', function (data) {
-      var options = [{id: null, name: ''}].concat(data)
+      var options = [{id: null, name: ''}].concat(data.all)
       that.setState({tagTypeOptions: options})
+      var options2 = [{id: null, name: ''}].concat(data.actionTagTypes)
+      that.setState({actionTagTypeOptions: options2})
+    })
+    $.get('action_tags_for_select', function (data) {
+      var options = [{id: null, name: ''}].concat(data)
+      that.setState({actionTagOptions: options})
     })
     $.get('subjects_for_select', function (data) {
       var options = [{id: null, name: ''}].concat(data)
@@ -216,13 +224,8 @@ App.components.tagger.Top = React.createClass({
       ep = this.getEditedProblem(problemId)
       topics = ep.topics.filter(function (t) { return t.topic_rel_id !== topic_rel_id})
       this.updateEditedProblem(problemId, {topics: topics})
-      console.log('is new')
-      console.log('ep', ep)
-      console.log('new topics for problem', topics)
-
     } else {
       this.updateTopicRelHelper(problemId, topic_rel_id, {markedForRemoval: !topic.markedForRemoval})
-      console.log('is old')
     }
   },
 
@@ -390,7 +393,6 @@ App.components.tagger.Top = React.createClass({
     if (value) {
       $.get(['search_tags', tag_type_id, value].join('/'), function (data) {
         that.setState({tagExplorerSearchResults: data})
-        console.log('data', data)
       }, 'json')
     } else {
       this.setState({tagExplorerSearchResults: []})

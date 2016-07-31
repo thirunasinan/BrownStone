@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   post 'tags', to: 'tags#tag_problem', as: :tag_problem
 
+  get 'action_tags_for_select', to: 'tags#action_tags_for_select'
+
   post 'problems_topics', to: 'topics#problems_topics'
 
   get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select

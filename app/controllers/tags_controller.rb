@@ -14,4 +14,10 @@ class TagsController < ApplicationController
     problems = [Problem.find(problem_id)]
     render json: DisplayProblems.run(problems)[0]
   end
+
+  def action_tags_for_select
+    tts = TagType.where(tagger_can_create_new: false)
+    ts = Tag.where(tag_type: tts)
+    render json: ts
+  end
 end
