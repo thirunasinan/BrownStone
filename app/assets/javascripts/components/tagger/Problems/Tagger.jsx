@@ -1,7 +1,7 @@
 App.components.tagger.problems.Tagger = React.createClass({
 
   addTag: function () {
-    this.props.actions.addTag(this.props.problemId, this.props.parent_tr_id)
+    this.props.actions.addTag(this.props.problemId, this.props.parentTrId)
   },
 
   saveTags: function () {
@@ -18,7 +18,7 @@ App.components.tagger.problems.Tagger = React.createClass({
 
 
     var button
-    if (this.props.parent_tr_id) {
+    if (this.props.parentTrId) {
       addTag = null
       save = null
     } else {

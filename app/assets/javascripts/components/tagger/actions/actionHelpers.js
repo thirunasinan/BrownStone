@@ -34,34 +34,34 @@ addActionHelpers(function () {
       return state.problems.find(function (p) { return parseInt(p.id) === parseInt(problemId)}).edited
     },
 
-    updateTopicRelHelper: function (state, problemId, topic_rel_id, hash) {
+    updateTopicRelHelper: function (state, problemId, topicRelId, hash) {
       var problems = state.problems
       var problem = problems.find(function (p) { return p.id === problemId})
       var topics = problem.edited.topics
-      var topic = topics.find(function (t) { return t.topic_rel_id === topic_rel_id })
+      var topic = topics.find(function (t) { return t.topicRelId === topicRelId })
       var editedTopic = Object.assign({}, topic, hash)
-      var editedTopics = App.actionHelpers.updateArray(topics, editedTopic, 'topic_rel_id')
+      var editedTopics = App.actionHelpers.updateArray(topics, editedTopic, 'topicRelId')
       return App.actionHelpers.updateEditedProblem(state, problemId, {topics: editedTopics})
     },
 
-    getTopicRel: function (state, problemId, topic_rel_id) {
+    getTopicRel: function (state, problemId, topicRelId) {
       var ep = App.actionHelpers.getEditedProblem(state, problemId)
-      var topic = ep.topics.find(function (t) { return t.topic_rel_id === topic_rel_id})
+      var topic = ep.topics.find(function (t) { return t.topicRelId === topicRelId})
       return topic
     },
 
-    editTagHelper: function (state, problemId, tr_id, inputFn, args) {
+    editTagHelper: function (state, problemId, trId, inputFn, args) {
       var editedProblem = App.actionHelpers.getEditedProblem(state, problemId)
       var tags = editedProblem.tags
 
-      var fn1 = function (tag, tr_id, args) {
-        if (tag.tr_id === tr_id) {
+      var fn1 = function (tag, trId, args) {
+        if (tag.trId === trId) {
           var data = inputFn(tag, args)
         } else {
-          var ho_tags2 = tag.ho_trs.reduce(function (acc, tr) {
-            return acc.concat(fn1(tr, tr_id, args))
+          var hoTags2 = tag.hoTrs.reduce(function (acc, tr) {
+            return acc.concat(fn1(tr, trId, args))
           }, [])
-          var data = {ho_trs: ho_tags2}
+          var data = {hoTrs: hoTags2}
         }
         if (data === false) {
           return []
@@ -71,18 +71,18 @@ addActionHelpers(function () {
       }
 
       var tags2 = tags.reduce(function (acc, ele) {
-        return acc.concat(fn1(ele, tr_id, args))
+        return acc.concat(fn1(ele, trId, args))
       }, [])
 
 
       return App.actionHelpers.updateEditedProblem(state, problemId, {tags: tags2})
     },
 
-    editTagHelper2: function (state, problemId, tr_id, hash) {
+    editTagHelper2: function (state, problemId, trId, hash) {
       var function1 = function (tag) {
         return Object.assign({}, tag, hash)
       }
-      return App.actionHelpers.editTagHelper(state, problemId, tr_id, function1)
+      return App.actionHelpers.editTagHelper(state, problemId, trId, function1)
     }
   }
 })

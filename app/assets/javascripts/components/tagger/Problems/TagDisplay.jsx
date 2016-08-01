@@ -7,7 +7,7 @@ App.components.tagger.problems.TagDisplay = React.createClass({
       <div>
         <p><strong>{tag.name}</strong></p>
         <p>{tag.description}</p>
-        <TagsDisplay isSubTags={true} tags={tag.ho_trs} />
+        <TagsDisplay isSubTags={true} tags={tag.hoTrs} />
       </div>
     )
   }

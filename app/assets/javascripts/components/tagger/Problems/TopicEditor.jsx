@@ -5,12 +5,12 @@ App.components.TopicEditor = React.createClass({
   },
 
   removeTopic: function () {
-    this.props.actions.toggleRemoveTopic(this.props.problemId, this.props.topic.topic_rel_id)
+    this.props.actions.toggleRemoveTopic(this.props.problemId, this.props.topic.topicRelId)
   },
 
   selectSubject: function () {
     var value = this.refs.subjectSelect.getDOMNode().value
-    this.props.actions.selectSubjectForTopic(this.props.problemId, this.props.topic.topic_rel_id, value)
+    this.props.actions.selectSubjectForTopic(this.props.problemId, this.props.topic.topicRelId, value)
   },
 
   subjectSelect: function () {
@@ -27,14 +27,14 @@ App.components.TopicEditor = React.createClass({
 
   selectTopic: function () {
     var value = this.refs.topicSelect.getDOMNode().value
-    this.props.actions.selectTopic(this.props.problemId, this.props.topic.topic_rel_id, value)
+    this.props.actions.selectTopic(this.props.problemId, this.props.topic.topicRelId, value)
   },
 
   topicSelect: function () {
     var that = this;
-    if (this.props.topic.subject_id) {
+    if (this.props.topic.subjectId) {
       var topicOptions = this.props.store.topicOptions.filter(function (t) {
-        return parseInt(t.subject_id) === parseInt(that.props.topic.subject_id)
+        return parseInt(t.subjectId) === parseInt(that.props.topic.subjectId)
       })
       .concat([{id: null, value: ''}])
       .reverse()
@@ -56,7 +56,7 @@ App.components.TopicEditor = React.createClass({
 
     var topic = this.props.topic
     var mainSection;
-    if (topic.is_new) {
+    if (topic.isNew) {
       mainSection = (
         <div>
           {this.subjectSelect()}
@@ -64,7 +64,7 @@ App.components.TopicEditor = React.createClass({
         </div>
       )
     } else {
-      mainSection = topic.display_name
+      mainSection = topic.displayName
     }
 
     return (

@@ -2,20 +2,20 @@ addActions(function () {
 
   var newTag = function () {
     return {
-      is_new: true,
-      is_tag_new: true,
-      tr_id: Math.random(),
+      isNew: true,
+      isTagNew: true,
+      trId: Math.random(),
       markedForRemoval: false,
       description: null,
-      tag_id: null,
+      tagId: null,
       name: null,
-      ho_trs: []
+      hoTrs: []
     }
   }
 
   var addTagHelper1 = function (tag) {
-    var ho_trs2 = tag.ho_trs.concat([this.newTag()])
-    return Object.assign({}, tag, {ho_trs: ho_trs2})
+    var hoTrs2 = tag.hoTrs.concat([this.newTag()])
+    return Object.assign({}, tag, {hoTrs: hoTrs2})
   }
 
   var editTagDescriptionHelper = function (tag, description) {
@@ -24,33 +24,33 @@ addActions(function () {
 
   var toggleRemoveTagHelper = function (tag, bool) {
     var that = this;
-    if (tag.is_new) {
+    if (tag.isNew) {
       return false;
     } else {
-      var ho_trs = tag.ho_trs.reduce(function (acc, tr) {
-        if (tr.is_new) {
+      var hoTrs = tag.hoTrs.reduce(function (acc, tr) {
+        if (tr.isNew) {
           return acc;
         } else {
           return acc.concat([that.toggleRemoveTagHelper(tr, bool)])
         }
       }, [])
-      return Object.assign({}, tag, {markedForRemoval: bool, ho_trs: ho_trs })
+      return Object.assign({}, tag, {markedForRemoval: bool, hoTrs: hoTrs })
     }
   }
 
   var selectTagTypeHelper = function (state) {
-    return function (tag, tag_type_id) {
-      if (tag_type_id === "") {
+    return function (tag, tagTypeId) {
+      if (tagTypeId === "") {
         return Object.assign({}, tag, {
-          tag_type_id: null,
-          tag_type_name: null,
+          tagTypeId: null,
+          tagTypeName: null,
         })
       } else {
-        var tag_type = state.tagTypeOptions.find(function (tagType) { return parseInt(tagType.id) === parseInt(tag_type_id)})
+        var tagType = state.tagTypeOptions.find(function (tagType) { return parseInt(tagType.id) === parseInt(tagTypeId)})
         return Object.assign({}, tag, {
-          tag_type_id: tag_type_id,
-          tag_type_name: tag_type.name,
-          tagger_can_create_new: tag_type.tagger_can_create_new,
+          tagTypeId: tagTypeId,
+          tagTypeName: tagType.name,
+          taggerCanCreateNew: tagType.taggerCanCreateNew,
         })
       }
     }
@@ -59,7 +59,7 @@ addActions(function () {
   var _isProblemValid = function (editedProblem) {
     tags = editedProblem.tags
     var valid = tags.reduce(function (acc, ele) {
-      var bad = (ele.is_tag_new && (ele.tag_type_name != "KNOW"))
+      var bad = (ele.isTagNew && (ele.tagTypeName != "KNOW"))
       return acc && !bad
     }, true)
     var errors = valid
@@ -71,9 +71,9 @@ addActions(function () {
 
   var _selectTagSearchResultHelper = function (tag, tagData) {
     return Object.assign({}, tag, {
-      is_tag_new: false,
+      isTagNew: false,
       name: tagData.name,
-      tag_id: tagData.id
+      tagId: tagData.id
     })
   }
 
@@ -90,7 +90,7 @@ addActions(function () {
   }
 
   var _updateTagNameHelper = function (tag, name) {
-    return Object.assign({}, tag, {tag_id: null, is_tag_new: true, name: name})
+    return Object.assign({}, tag, {tagId: null, isTagNew: true, name: name})
   }
 
   var _setTagSearchResults = function (state, data) {
@@ -100,9 +100,9 @@ addActions(function () {
 
 
   return {
-    addTag: function (state, problemId, parent_tr_id) {
-      if (parent_tr_id) {
-        return App.actionHelpers.editTagHelper(state, problemId, parent_tr_id, addTagHelper1)
+    addTag: function (state, problemId, parentTrId) {
+      if (parentTrId) {
+        return App.actionHelpers.editTagHelper(state, problemId, parentTrId, addTagHelper1)
       } else {
         var editedProblem = App.actionHelpers.getEditedProblem(state, problemId)
         var tags2 = editedProblem.tags.concat([
@@ -112,36 +112,36 @@ addActions(function () {
       }
     },
 
-    editTagDescription: function (state, problemId, tr_id, description) {
-      return App.actionHelpers.editTagHelper(state, problemId, tr_id, editTagDescriptionHelper, description)
+    editTagDescription: function (state, problemId, trId, description) {
+      return App.actionHelpers.editTagHelper(state, problemId, trId, editTagDescriptionHelper, description)
     },
 
-    toggleRemoveTag: function (state, problemId, tr_id, bool) {
-      return App.actionHelpers.editTagHelper(state, problemId, tr_id, toggleRemoveTagHelper, bool)
+    toggleRemoveTag: function (state, problemId, trId, bool) {
+      return App.actionHelpers.editTagHelper(state, problemId, trId, toggleRemoveTagHelper, bool)
     },
 
-    selectTagType: function (state, problemId, tr_id, tag_type_id) {
-      return App.actionHelpers.editTagHelper(state, problemId, tr_id, selectTagTypeHelper(state), tag_type_id)
+    selectTagType: function (state, problemId, trId, tagTypeId) {
+      return App.actionHelpers.editTagHelper(state, problemId, trId, selectTagTypeHelper(state), tagTypeId)
     },
 
-    selectActionTag: function (state, problemId, tr_id, action_tag_id) {
-      var action_tag = state.actionTagOptions.find(function (a) { return a.id == action_tag_id})
-      return App.actionHelpers.editTagHelper2(state, problemId, tr_id, {tag_type_id: action_tag.id, tag_type_name: action_tag.name})
+    selectActionTag: function (state, problemId, trId, actionTagId) {
+      var actionTag = state.actionTagOptions.find(function (a) { return a.id == actionTagId})
+      return App.actionHelpers.editTagHelper2(state, problemId, trId, {tagTypeId: actionTag.id, tagTypeName: actionTag.name})
     },
 
-    selectTagSearchResult: function (state, problemId, tr_id, tagData) {
-      App.actionHelpers.editTagHelper(state, problemId, tr_id, _selectTagSearchResultHelper, tagData)
+    selectTagSearchResult: function (state, problemId, trId, tagData) {
+      App.actionHelpers.editTagHelper(state, problemId, trId, _selectTagSearchResultHelper, tagData)
     },
 
 
-    updateTagSearchQuery: function (state, problemId, tr_id, tag_type_id, value) {
+    updateTagSearchQuery: function (state, problemId, trId, tagTypeId, value) {
       var that = this;
       return function (bindAction) {
-        var state1 = Object.assign({}, state, {tagSearchQuery: value, searchingTag: tr_id})
-        var state2 = App.actionHelpers.editTagHelper(state, problemId, tr_id, _updateTagNameHelper, value)
+        var state1 = Object.assign({}, state, {tagSearchQuery: value, searchingTag: trId})
+        var state2 = App.actionHelpers.editTagHelper(state, problemId, trId, _updateTagNameHelper, value)
 
         if (value) {
-          $.get(['search_tags', tag_type_id, value].join('/'), function (data) {
+          $.get(['search_tags', tagTypeId, value].join('/'), function (data) {
             bindAction(_setTagSearchResults)(data)
           }, 'json')
         } else {
@@ -174,7 +174,7 @@ addActions(function () {
           $.ajax({
             type: 'POST',
             url: 'tags',
-            data: JSON.stringify({problem_id: edited.id, tags: edited.tags}),
+            data: JSON.stringify({problemId: edited.id, tags: edited.tags}),
             success: function (data) {
               bindAction(_saveTagsSuccess)(data)
             },

@@ -1,11 +1,11 @@
 addActions(function () {
   var newTopic = function () {
     return {
-      topic_rel_id: Math.random(),
-      topic_id: null,
-      is_new: true,
+      topicRelId: Math.random(),
+      topicId: null,
+      isNew: true,
       name: '',
-      subject_id: null,
+      subjectId: null,
       markedForRemoval: false,
     }
   }
@@ -24,23 +24,23 @@ addActions(function () {
       return _updateEditedProblem(state, problemId, {topics: topics})
     },
 
-    selectSubjectForTopic: function (state, problemId, topic_rel_id, subject_id) {
-      return _updateTopicRelHelper(state, problemId, topic_rel_id, {subject_id: subject_id})
+    selectSubjectForTopic: function (state, problemId, topicRelId, subjectId) {
+      return _updateTopicRelHelper(state, problemId, topicRelId, {subjectId: subjectId})
     },
 
-    toggleRemoveTopic: function (state, problemId, topic_rel_id) {
-      var topic = _getTopicRel(state, problemId, topic_rel_id)
-      if (topic.is_new) {
+    toggleRemoveTopic: function (state, problemId, topicRelId) {
+      var topic = _getTopicRel(state, problemId, topicRelId)
+      if (topic.isNew) {
         var ep = _getEditedProblem(state, problemId)
-        var topics = ep.topics.filter(function (t) { return t.topic_rel_id !== topic_rel_id})
+        var topics = ep.topics.filter(function (t) { return t.topicRelId !== topicRelId})
         return _updateEditedProblem(state, problemId, {topics: topics})
       } else {
-        return _updateTopicRelHelper(state ,problemId, topic_rel_id, {markedForRemoval: !topic.markedForRemoval})
+        return _updateTopicRelHelper(state ,problemId, topicRelId, {markedForRemoval: !topic.markedForRemoval})
       }
     },
 
-    selectTopic: function (state, problemId, topic_rel_id, topic_id) {
-      return _updateTopicRelHelper(state, problemId, topic_rel_id, {topic_id: topic_id})
+    selectTopic: function (state, problemId, topicRelId, topicId) {
+      return _updateTopicRelHelper(state, problemId, topicRelId, {topicId: topicId})
     },
 
     saveTopics: function (state, problemId) {
@@ -50,9 +50,9 @@ addActions(function () {
         $.ajax({
           type: 'POST',
           url: 'problems_topics',
-          data: JSON.stringify({data: {problem_id: edited.id, problems_topics: edited.topics}}),
+          data: JSON.stringify({data: {problemId: edited.id, problemsTopics: edited.topics}}),
           success: function (data) {
-            bindAction(App.actions.updateEditedProblem)(data.problem_id, {topics: data.problems_topics})
+            bindAction(App.actions.updateEditedProblem)(data.problemId, {topics: data.problemsTopics})
           },
           dataType: 'json',
           contentType: 'application/json'

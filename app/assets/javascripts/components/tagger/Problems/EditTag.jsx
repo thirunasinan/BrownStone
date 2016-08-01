@@ -12,7 +12,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.tr_id, this.props.tag.tag_type_id, value)
+    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.trId, this.props.tag.tagTypeId, value)
   },
 
   onKeyDown: function (e) {
@@ -21,7 +21,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   editTagDescription: function () {
     var value = this.refs.description.getDOMNode().value
-    this.props.actions.editTagDescription(this.props.problemId, this.props.tag.tr_id, value)
+    this.props.actions.editTagDescription(this.props.problemId, this.props.tag.trId, value)
   },
 
   onBlur: function () {
@@ -35,7 +35,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   removeTag: function () {
     var checked = this.refs.remove.getDOMNode().checked
-    this.props.actions.toggleRemoveTag(this.props.problemId, this.props.tag.tr_id, checked)
+    this.props.actions.toggleRemoveTag(this.props.problemId, this.props.tag.trId, checked)
   },
 
   markedForRemoval: function () {
@@ -59,7 +59,7 @@ App.components.tagger.problems.EditTag = React.createClass({
   selectTagSearchResult: function (data) {
     var that = this;
     return function (e) {
-      that.props.actions.selectTagSearchResult(that.props.problemId, that.props.tag.tr_id, data)
+      that.props.actions.selectTagSearchResult(that.props.problemId, that.props.tag.trId, data)
     }
   },
 
@@ -89,12 +89,12 @@ App.components.tagger.problems.EditTag = React.createClass({
 
 
   addSubTag: function () {
-    this.props.actions.addTag(this.props.problemId, this.props.tag.tr_id)
+    this.props.actions.addTag(this.props.problemId, this.props.tag.trId)
   },
 
   selectTagType: function () {
     var value = this.refs.selectTagType.getDOMNode().value
-    this.props.actions.selectTagType(this.props.problemId, this.props.tag.tr_id, value)
+    this.props.actions.selectTagType(this.props.problemId, this.props.tag.trId, value)
   },
 
   actionTagTypeDropDown: function () {
@@ -104,19 +104,19 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (<select
               ref={'selectTagType'}
               className='tag-type-dropdown'
-              selected={this.props.tag.tag_type_name}
+              selected={this.props.tag.tagTypeName}
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
 
   selectActionTag: function () {
     var value = this.refs.selectTag.getDOMNode().value
-    this.props.actions.selectActionTag(this.props.problemId, this.props.tag.tr_id, value)
+    this.props.actions.selectActionTag(this.props.problemId, this.props.tag.trId, value)
   },
 
   actionTagDropDown: function () {
     var that = this;
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
-      var x =  parseInt(t.tag_type_id) === parseInt(that.props.tag.tag_type_id)
+      var x =  parseInt(t.tagTypeId) === parseInt(that.props.tag.tagTypeId)
       return x
     }).concat([{id: null, name: ''}])
     .reverse()
@@ -144,16 +144,16 @@ App.components.tagger.problems.EditTag = React.createClass({
 
 
 
-    if (tag.is_new) {
+    if (tag.isNew) {
       tagTypeName = this.actionTagTypeDropDown()
-      if (tag.tag_type_id) {
+      if (tag.tagTypeId) {
         tagName = this.actionTagDropDown()
       } else {
         tagName = null
       }
 
     } else {
-      tagTypeName = (tag.tag_type_name ? tag.tag_type_name + ":" : "")
+      tagTypeName = (tag.tagTypeName ? tag.tagTypeName + ":" : "")
       tagName = <span>{tag.name}</span>
     }
 
@@ -161,8 +161,8 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     if (this.props.store.tagSearchResults.length
         && this.state.focused
-        && (!tag.tagger_can_create_new)
-        && this.props.store.searchingTag === tag.tr_id) {
+        && (!tag.taggerCanCreateNew)
+        && this.props.store.searchingTag === tag.trId) {
       var eles = this.props.store.tagSearchResults.map(this.searchResult)
       tagSearchResults = <div className='tag-search-results'>{eles}</div>
     } else {

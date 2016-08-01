@@ -5,6 +5,7 @@ addActions(function () {
     var that = this;
     return function (bindAction) {
       $.get(url, function (data) {
+        console.log('data', data)
         var loadedProblems = data.map(function (p) {
           return {id: p.id, original: p, edited: p}
         })

@@ -1,11 +1,11 @@
 class TopicsController < ApplicationController
 
   def for_select
-    render json: Topic.all
+    render json: CamelizeKeys.run(Topic.all)
   end
 
   def problems_topics
-    data = problems_topics_params
+    data = problems_topics_params.to_snake_case
     problem_id = data[:problem_id]
     problems_topics = data[:problems_topics]
     problems_topics.each do |pt|
@@ -16,15 +16,17 @@ class TopicsController < ApplicationController
       end
     end
 
-    render json: {
+    hash = {
       problem_id: problem_id,
       problems_topics: ProblemTopicsDisplay.run(Problem.find(problem_id))
     }
+
+    render json: CamelizeKeys.run(hash)
   end
 
   private
 
   def problems_topics_params
-    params.require(:data).permit(:problem_id, problems_topics: [:topic_id, :markedForRemoval] )
+    params.require(:data).permit(:problemId, problemsTopics: [:topicId, :markedForRemoval] )
   end
 end
