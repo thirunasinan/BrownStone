@@ -17,7 +17,9 @@ class TagsController < ApplicationController
 
   def action_tags_for_select
     tts = TagType.where(tagger_can_create_new: false)
-    ts = Tag.where(tag_type: tts)
-    render json: ts
+    ts = Tag.where(tag_type: tts).map do |t|
+      {id: t.id, tag_type_id: t.tag_type_id, name: t.name}
+    end
+    render json: CamelizeKeys.run(ts)
   end
 end

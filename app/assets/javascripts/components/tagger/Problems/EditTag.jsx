@@ -143,7 +143,6 @@ App.components.tagger.problems.EditTag = React.createClass({
     var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />)
 
 
-
     if (tag.isNew) {
       tagTypeName = this.actionTagTypeDropDown()
       if (tag.tagTypeId) {
