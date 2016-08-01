@@ -5,11 +5,12 @@ class TopicsController < ApplicationController
   end
 
   def problems_topics
-    data = problems_topics_params.to_snake_case
+    data = problems_topics_params.to_h.to_snake_keys.deep_symbolize_keys
+    puts "data: #{data.to_json}"
     problem_id = data[:problem_id]
     problems_topics = data[:problems_topics]
     problems_topics.each do |pt|
-      if ((pt[:markedForRemoval] === "true") || (pt[:markedForRemoval] === true))
+      if ((pt[:marked_for_removal] === "true") || (pt[:marked_for_removal] === true))
         ProblemTopic.where(problem_id: problem_id, topic_id: pt[:topic_id]).destroy_all
       else
         ProblemTopic.find_or_create_by(problem_id: problem_id, topic_id: pt[:topic_id])

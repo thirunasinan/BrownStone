@@ -15,13 +15,13 @@ describe TopicsController do
   let!(:params) do
     {
       data: {
-        problem_id: problem.id,
-        problems_topics: [
+        problemId: problem.id,
+        problemsTopics: [
           {
-            topic_id: topic.id,
+            topicId: topic.id,
           },
           {
-            topic_id: topic2.id,
+            topicId: topic2.id,
             markedForRemoval: true
           }
         ]
@@ -37,7 +37,8 @@ describe TopicsController do
     end
 
     it 'returns problem_id' do
-      expect(@json[:problem_id]).to eq(problem.id.to_s)
+      puts "@json: #{@json.to_json}"
+      expect(@json[:problemId]).to eq(problem.id.to_s)
     end
 
     it 'creates problems_topics' do
@@ -46,7 +47,7 @@ describe TopicsController do
     end
 
     it 'returns problems_topics' do
-      expect(@json[:problems_topics][0][:topic_rel_id]).to eq(ProblemTopic.first.id)
+      expect(@json[:problemsTopics][0][:topicRelId]).to eq(ProblemTopic.first.id)
     end
 
     it 'deletes those marked for removal' do
