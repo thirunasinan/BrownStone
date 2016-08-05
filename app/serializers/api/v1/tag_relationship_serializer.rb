@@ -1,4 +1,4 @@
-class TagRelationshipSerializer < ActiveModel::Serializer
+class Api::V1::TagRelationshipSerializer < ActiveModel::Serializer
   attributes :id, :description, :is_new
   has_many :tag_relationships
   belongs_to :tag
