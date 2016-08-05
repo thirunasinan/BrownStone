@@ -34,7 +34,6 @@ App.components.tagger.problems.ProblemDisplay = React.createClass({
           <div className='list-group'>
             {answerChoices}
           </div>
-          <TagsDisplay isSubTags={false} tags={problem.tags} />
         </div>
       </div>
     )

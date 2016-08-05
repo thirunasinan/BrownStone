@@ -5,6 +5,8 @@ module CamelizeKeys
       self.handle_hash(item)
     elsif item.is_a?(Array)
       self.handle_array(item)
+    elsif item.is_a?(ActiveRecord::Relation)
+      self.handle_array(item.map(&:serializable_hash))
     else
       item
     end

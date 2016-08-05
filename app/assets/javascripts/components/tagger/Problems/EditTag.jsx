@@ -12,7 +12,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tag.trId, this.props.tag.tagTypeId, value)
+    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tagTypeId, value)
   },
 
   onKeyDown: function (e) {
@@ -21,7 +21,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   editTagDescription: function () {
     var value = this.refs.description.getDOMNode().value
-    this.props.actions.editTagDescription(this.props.problemId, this.props.tag.trId, value)
+    this.props.actions.editTagDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
 
   onBlur: function () {
@@ -35,11 +35,11 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   removeTag: function () {
     var checked = this.refs.remove.getDOMNode().checked
-    this.props.actions.toggleRemoveTag(this.props.problemId, this.props.tag.trId, checked)
+    this.props.actions.toggleRemoveTagRelationship(this.props.problemId, this.props.tagRelationship.clientId, checked)
   },
 
   markedForRemoval: function () {
-    return this.props.tag.markedForRemoval || false
+    return this.props.tagRelationship.markedForRemoval || false
   },
 
   hoverTagSearchResult: function (data) {
@@ -59,7 +59,7 @@ App.components.tagger.problems.EditTag = React.createClass({
   selectTagSearchResult: function (data) {
     var that = this;
     return function (e) {
-      that.props.actions.selectTagSearchResult(that.props.problemId, that.props.tag.trId, data)
+      that.props.actions.selectTagSearchResult(that.props.problemId, that.props.tagRelationship.clientId, data)
     }
   },
 
@@ -89,12 +89,12 @@ App.components.tagger.problems.EditTag = React.createClass({
 
 
   addSubTag: function () {
-    this.props.actions.addTag(this.props.problemId, this.props.tag.trId)
+    this.props.actions.addTag(this.props.problemId, this.props.tagRelationship.clientId)
   },
 
   selectTagType: function () {
     var value = this.refs.selectTagType.getDOMNode().value
-    this.props.actions.selectTagType(this.props.problemId, this.props.tag.trId, value)
+    this.props.actions.selectTagType(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
 
   actionTagTypeDropDown: function () {
@@ -104,19 +104,19 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (<select
               ref={'selectTagType'}
               className='tag-type-dropdown'
-              selected={this.props.tag.tagTypeName}
+              selected={this.props.tagRelationship.tagTypeName}
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
 
   selectActionTag: function () {
     var value = this.refs.selectTag.getDOMNode().value
-    this.props.actions.selectActionTag(this.props.problemId, this.props.tag.trId, value)
+    this.props.actions.selectActionTag(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
 
   actionTagDropDown: function () {
     var that = this;
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
-      var x =  parseInt(t.tagTypeId) === parseInt(that.props.tag.tagTypeId)
+      var x =  parseInt(t.tagTypeId) === parseInt(that.props.tagRelationship.tagTypeId)
       return x
     }).concat([{id: null, name: ''}])
     .reverse()
@@ -126,21 +126,21 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (<select
               ref={'selectActionTag'}
               className='tag-type-dropdown'
-              selected={this.props.tag.name}
+              selected={this.props.tagRelationship.name}
               onChange={this.selectTag}>{tagOptions}</select>)
   },
 
   openTagExplorer: function (e) {
-    this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tag)
+    this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tagRelationship)
   },
 
   render: function () {
-    var tag = this.props.tag
+    var tagRelationship = this.props.tagRelationship
     var Tagger = App.components.tagger.problems.Tagger
 
     var tagName, tagTypeName
 
-    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tag.name} onChange={this.onNameChange} />)
+    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tagRelationship.name} onChange={this.onNameChange} />)
 
 
     if (tag.isNew) {
@@ -161,7 +161,7 @@ App.components.tagger.problems.EditTag = React.createClass({
     if (this.props.store.tagSearchResults.length
         && this.state.focused
         && (!tag.taggerCanCreateNew)
-        && this.props.store.searchingTag === tag.trId) {
+        && this.props.store.searchingTag === tag.clientId) {
       var eles = this.props.store.tagSearchResults.map(this.searchResult)
       tagSearchResults = <div className='tag-search-results'>{eles}</div>
     } else {

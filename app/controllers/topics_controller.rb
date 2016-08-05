@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
   def for_select
-    render json: CamelizeKeys.run(Topic.all.map(&:serializable_hash))
+    render json: CamelizeKeys.run(Topic.all.map{|t| TopicSerializer.new(t)})
   end
 
   def problems_topics

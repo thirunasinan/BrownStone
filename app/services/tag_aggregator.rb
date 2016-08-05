@@ -15,18 +15,37 @@ module TagAggregator
   def self.fetch_recursive(trs)
     trs2 = trs.select{ |tr| tr.tag.present? }
     trs2.map do |tr|
-      {
-        tag_id: tr.tag_id,
-        tag_type_name: tr.tag.type_name,
-        tag_type_id: tr.tag.tag_type_id,
-        tagger_can_create_new: tr.tag.tagger_can_create_new,
-        is_new: false,
-        is_tag_new: false,
-        tr_id: tr.id,
-        name: tr.tag.display_name,
-        description: tr.description,
-        ho_trs: self.second_order_trs(tr)
-      }
+      tag = tr.tag
+      tag_type = tr.tag.type
+      # {
+      #   tag_id: tr.tag_id,
+      #   tag_type_name: tr.tag.type_name,
+      #   tag_type_id: tr.tag.tag_type_id,
+      #   tagger_can_create_new: tr.tag.tagger_can_create_new,
+      #   is_new: false,
+      #   is_tag_new: false,
+      #   tr_id: tr.id,
+      #   name: tr.tag.display_name,
+      #   description: tr.description,
+      #   ho_trs: self.second_order_trs(tr)
+      # }
+      # {
+      #   id: tr.id,
+      #   is_new: false,
+      #   description: tr.description,
+      #   tag_relationships: self.second_order_trs(tr),
+      #   tag: {
+      #     id: tag.id,
+      #     is_new: false,
+      #     name: tag.display_name,
+      #     tag_type: {
+      #       id: tag_type.id,
+      #       name: tag_type.name,
+      #       tagger_can_create_new: tag_type.tagger_can_create_new
+      #     }
+      #   }
+      # }
+      {}
     end
   end
 

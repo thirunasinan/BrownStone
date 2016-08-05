@@ -57,7 +57,7 @@ addActions(function () {
         if (tr.isNew) {
           return acc;
         } else {
-          return acc.concat([that.toggleRemoveTagHelper(tr, bool)])
+          return acc.concat([that.toggleRemoveTagRelationshipHelper(tr, bool)])
         }
       }, [])
       return Object.assign({}, tagRelationship, {markedForRemoval: bool, tagRelationships: hoTrs })
@@ -120,8 +120,8 @@ addActions(function () {
       return _editTagRelationshipHelper(state, problemId, trId, _editTagRelationshipDescriptionHelper, description)
     },
 
-    toggleRemoveTag: function (state, problemId, trId, bool) {
-      return _editTagRelationshipHelper(state, problemId, trId, toggleRemoveTagHelper, bool)
+    toggleRemoveTagRelationship: function (state, problemId, trId, bool) {
+      return _editTagRelationshipHelper(state, problemId, trId, toggleRemoveTagRelationshipHelper, bool)
     },
 
     selectTagType: function (state, problemId, trId, tagTypeId) {
