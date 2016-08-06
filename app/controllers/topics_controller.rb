@@ -6,7 +6,6 @@ class TopicsController < ApplicationController
 
   def problems_topics
     data = problems_topics_params.to_h.to_snake_keys.deep_symbolize_keys
-    puts "data: #{data.to_json}"
     problem_id = data[:problem_id]
     problems_topics = data[:problems_topics]
     problems_topics.each do |pt|

@@ -1,29 +1,29 @@
 App.components.tagger.problems.Tagger = React.createClass({
 
-  addTag: function () {
-    this.props.actions.addTag(this.props.problemId, this.props.parentTrId)
+  addTagRelationship: function () {
+    this.props.actions.addTagRelationship(this.props.problemId, this.props.parentTagRelationshipId)
   },
 
-  saveTags: function () {
-    this.props.actions.saveTags(this.props.problemId)
+  saveTagRelationships: function () {
+    this.props.actions.saveTagRelationships(this.props.problemId)
   },
 
   render: function () {
 
-    var EditTag = App.components.tagger.problems.EditTag
+    var EditTagRelationship = App.components.tagger.problems.EditTagRelationship
     var that = this;
     var tagRelationships = this.props.tagRelationships.map(function (tagRelationship, i) {
-      return <EditTag key={i} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tagRelationship={tagRelationship} />
+      return <EditTagRelationship key={i} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tagRelationship={tagRelationship} />
     })
 
 
     var button
-    if (this.props.parentTrId) {
-      addTag = null
+    if (this.props.parentTagRelationshipId) {
+      addTagRelationship = null
       save = null
     } else {
-      addTag = <a className='margined-a' onClick={this.addTag} >{"add tag"}</a>
-      save = <a className='margined-a save' onClick={this.saveTags}>save</a>
+      addTagRelationship = <a className='margined-a' onClick={this.addTagRelationship} >{"add tag"}</a>
+      save = <a className='margined-a save' onClick={this.saveTagRelationships}>save</a>
     }
 
     if (this.props.tagRelationships.length) {
@@ -34,12 +34,12 @@ App.components.tagger.problems.Tagger = React.createClass({
             <div className='list-group tag-list-group'>
               {tagRelationships}
             </div>
-            {addTag}
+            {addTagRelationship}
           </div>
         </div>
       )
     } else {
-      return addTag;
+      return addTagRelationship;
     }
   }
 })

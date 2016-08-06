@@ -1,3 +1,4 @@
-class Api::V1::ProblemSerializer < ActiveModel::Serializer
+class ProblemSerializer < ActiveModel::Serializer
   attributes :id, :name, :number, :question, :section_id, :source_id, :answer_choices, :tag_relationships, :topics
+  has_many :answer_choices
 end

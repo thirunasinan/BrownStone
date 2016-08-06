@@ -1,4 +1,4 @@
-App.components.tagger.problems.EditTag = React.createClass({
+App.components.tagger.problems.EditTagRelationship = React.createClass({
 
   getInitialState: function () {
     return {
@@ -12,14 +12,14 @@ App.components.tagger.problems.EditTag = React.createClass({
 
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tagTypeId, value)
+    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tag.tagType.id, value)
   },
 
   onKeyDown: function (e) {
     // want to get tab to work as autocomplete eventually
   },
 
-  editTagDescription: function () {
+  editTagRelationshipDescription: function () {
     var value = this.refs.description.getDOMNode().value
     this.props.actions.editTagDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
@@ -88,8 +88,8 @@ App.components.tagger.problems.EditTag = React.createClass({
   },
 
 
-  addSubTag: function () {
-    this.props.actions.addTag(this.props.problemId, this.props.tagRelationship.clientId)
+  addSubTagRelationship: function () {
+    this.props.actions.addTagRelationship(this.props.problemId, this.props.tagRelationship.clientId)
   },
 
   selectTagType: function () {
@@ -104,7 +104,7 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (<select
               ref={'selectTagType'}
               className='tag-type-dropdown'
-              selected={this.props.tagRelationship.tagTypeName}
+              selected={this.props.tagRelationship.tag.tagType.name}
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
 
@@ -116,7 +116,7 @@ App.components.tagger.problems.EditTag = React.createClass({
   actionTagDropDown: function () {
     var that = this;
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
-      var x =  parseInt(t.tagTypeId) === parseInt(that.props.tagRelationship.tagTypeId)
+      var x =  parseInt(t.tagType.id) === parseInt(that.props.tagRelationship.tag.tagType.id)
       return x
     }).concat([{id: null, name: ''}])
     .reverse()
@@ -126,7 +126,7 @@ App.components.tagger.problems.EditTag = React.createClass({
     return (<select
               ref={'selectActionTag'}
               className='tag-type-dropdown'
-              selected={this.props.tagRelationship.name}
+              selected={this.props.tagRelationship.tag.name}
               onChange={this.selectTag}>{tagOptions}</select>)
   },
 
@@ -140,27 +140,27 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     var tagName, tagTypeName
 
-    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tagRelationship.name} onChange={this.onNameChange} />)
+    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tagRelationship.tag.name} onChange={this.onNameChange} />)
 
 
-    if (tag.isNew) {
+    if (tagRelationship.isNew) {
       tagTypeName = this.actionTagTypeDropDown()
-      if (tag.tagTypeId) {
+      if (tagRelationship.tag.tagType.id) {
         tagName = this.actionTagDropDown()
       } else {
         tagName = null
       }
 
     } else {
-      tagTypeName = (tag.tagTypeName ? tag.tagTypeName + ":" : "")
-      tagName = <span>{tag.name}</span>
+      tagTypeName = (tagRelationship.tag.tagType.name ? tagRelationship.tag.tagType.name + ":" : "")
+      tagName = <span>{tagRelationship.tag.name}</span>
     }
 
     var tagSearchResults;
 
     if (this.props.store.tagSearchResults.length
         && this.state.focused
-        && (!tag.taggerCanCreateNew)
+        && (!tagRelationship.tag.tagType.taggerCanCreateNew)
         && this.props.store.searchingTag === tag.clientId) {
       var eles = this.props.store.tagSearchResults.map(this.searchResult)
       tagSearchResults = <div className='tag-search-results'>{eles}</div>
@@ -171,7 +171,7 @@ App.components.tagger.problems.EditTag = React.createClass({
 
     var crudStuff = (
       <span>
-      <span className='pull-right'>X:<input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTag} type='checkbox' /></span>
+      <span className='pull-right'>X:<input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTagRelationship} type='checkbox' /></span>
       </span>
     )
 
@@ -185,7 +185,7 @@ App.components.tagger.problems.EditTag = React.createClass({
             {tagName}
           </div>
           <div className='col-xs-3'>
-            <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'data'} onChange={this.editTagDescription}  value={tag.description}></textarea>
+            <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'data'} onChange={this.editTagRelationshipDescription}  value={tagRelationship.description}></textarea>
           </div>
           <div className='col-xs-1'>
             {crudStuff}

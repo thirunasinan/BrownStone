@@ -14,11 +14,11 @@ App.components.TaggerProblemLoader = React.createClass({
   render: function () {
 
     var sourceOptions = this.props.store.sourceOptions.map(function (source) {
-      return <option key={source.id} value={source.id}>{source.name}</option>;
+      return <option key={source.id || Math.random()} value={source.id}>{source.name}</option>;
     });
 
     var sectionOptions = this.props.store.sectionOptions.map(function (section) {
-      return <option key={section.id} value={section.id}>{section.name}</option>;
+      return <option key={section.id || Math.random()} value={section.id}>{section.name}</option>;
     })
     return (
       <div>

@@ -1,7 +1,6 @@
 App.components.tagger.problems.ProblemDisplay = React.createClass({
 
   render: function () {
-    var TagsDisplay = App.components.tagger.problems.TagsDisplay
     var problem = this.props.problem
     var answerChoices = problem.answerChoices.map(function (ac, i) {
       var letter = ["A", "B", 'C', 'D', 'E', 'F', 'G'][i]

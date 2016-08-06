@@ -6,7 +6,10 @@ module CamelizeKeys
     elsif item.is_a?(Array)
       self.handle_array(item)
     elsif item.is_a?(ActiveRecord::Relation)
-      self.handle_array(item.map(&:serializable_hash))
+      model_name = item.class.to_s.split("::")[0]
+      serializer = "#{model_name}Serializer".constantize
+      serialized = item.map{ |x| serializer.new(x, root: false).as_json }
+      self.handle_array(serialized)
     else
       item
     end

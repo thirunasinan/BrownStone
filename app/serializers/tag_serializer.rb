@@ -1,4 +1,4 @@
-class Api::V1::TagSerializer < ActiveModel::Serializer
+class TagSerializer < ActiveModel::Serializer
   attributes :id, :name, :is_new
   belongs_to :tag_type
 
