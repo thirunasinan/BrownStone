@@ -31,14 +31,14 @@ class ProblemsController < ApplicationController
 
       format.json do
         problems = Problem.where(source_id: params[:id]).limit(2)
-        render json: CamelizeKeys.run(problems)
+        render json: CamelizeKeys.run(problems), root: false
       end
     end
   end
 
   def by_section
     problems = Problem.where(section_id: params[:id])
-    render json: CamelizeKeys.run(problems.map{|p| ProblemSerializer.new(p)})
+    render json: CamelizeKeys.run(problems), root: false
   end
 
   def show

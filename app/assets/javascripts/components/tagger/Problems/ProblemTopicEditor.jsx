@@ -1,16 +1,16 @@
-App.components.TopicEditor = React.createClass({
+App.components.ProblemTopicEditor = React.createClass({
 
   markedForRemoval: function () {
-    return this.props.topic.markedForRemoval || false
+    return this.props.problemTopic.markedForRemoval || false
   },
 
-  removeTopic: function () {
-    this.props.actions.toggleRemoveTopic(this.props.problemId, this.props.topic.topicRelId)
+  removeProblemTopic: function () {
+    this.props.actions.toggleRemoveProblemTopic(this.props.problemId, this.props.problemTopic.clientId)
   },
 
   selectSubject: function () {
     var value = this.refs.subjectSelect.getDOMNode().value
-    this.props.actions.selectSubjectForTopic(this.props.problemId, this.props.topic.topicRelId, value)
+    this.props.actions.selectSubjectForProblemTopic(this.props.problemId, this.props.problemTopic.clientId, value)
   },
 
   subjectSelect: function () {
@@ -27,15 +27,16 @@ App.components.TopicEditor = React.createClass({
 
   selectTopic: function () {
     var value = this.refs.topicSelect.getDOMNode().value
-    this.props.actions.selectTopic(this.props.problemId, this.props.topic.topicRelId, value)
+    this.props.actions.selectTopic(this.props.problemId, this.props.problemTopic.clientId, value)
   },
 
   topicSelect: function () {
+    console.log('toic select this.props', this.props)
     var that = this;
-    console.log('this.props', this.props)
-    if (this.props.topic.subjectId) {
+    var subjectId = this.props.problemTopic.topic.subject.id
+    if (subjectId) {
       var topicOptions = this.props.store.topicOptions.filter(function (t) {
-        return parseInt(t.subjectId) === parseInt(that.props.topic.subjectId)
+        return t.subjectId === subjectId
       })
       .concat([{id: null, value: ''}])
       .reverse()
@@ -55,9 +56,9 @@ App.components.TopicEditor = React.createClass({
 
   render: function () {
 
-    var topic = this.props.topic
+    var problemTopic = this.props.problemTopic
     var mainSection;
-    if (topic.isNew) {
+    if (problemTopic.isNew) {
       mainSection = (
         <div>
           {this.subjectSelect()}
@@ -65,7 +66,7 @@ App.components.TopicEditor = React.createClass({
         </div>
       )
     } else {
-      mainSection = topic.displayName
+      mainSection = problemTopic.topic.displayName
     }
 
     return (
@@ -76,7 +77,7 @@ App.components.TopicEditor = React.createClass({
         <div className='col-xs-3'>
           <span className='pull-right'>
             remove:
-            <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTopic} type='checkbox' />
+            <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeProblemTopic} type='checkbox' />
           </span>
         </div>
       </div>

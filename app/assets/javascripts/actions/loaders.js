@@ -1,16 +1,13 @@
 addActions(function () {
 
 
-  var _newState = function (state, hash) {
-    return Object.assign({}, state, hash)
-  }
+  var _newState = App.actionHelpers.newState
 
   var _loadProblems = function (url) {
     var that = this;
     return function (bindAction) {
       $.get(url, function (data) {
-        console.log('data', data)
-        var loadedProblems = data.problems.map(function (p) {
+        var loadedProblems = data.map(function (p) {
           return {id: p.id, original: p, edited: p}
         })
         bindAction(_newState, _latexInit)({problems: loadedProblems})

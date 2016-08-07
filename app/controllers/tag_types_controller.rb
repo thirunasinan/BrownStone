@@ -4,13 +4,13 @@ class TagTypesController < ApplicationController
     tts = TagType.all.map do |tt|
       {id: tt.id, name: tt.name, tagger_can_create_new: tt.tagger_can_create_new}
     end
-    render json: CamelizeKeys.run(tts)
+    render json: CamelizeKeys.run(tts), root: false
   end
 
   def actions_for_select
     tts = TagType.where(tagger_can_create_new: false).map do |tt|
       {id: tt.id, name: tt.name, tagger_can_create_new: tt.tagger_can_create_new}
     end
-    render json: CamelizeKeys.run(tts)
+    render json: CamelizeKeys.run(tts), root: false
   end
 end

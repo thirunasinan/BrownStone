@@ -25,7 +25,7 @@ App.components.tagger.problems.Problem = React.createClass({
 
     var ProblemDisplay = App.components.tagger.problems.ProblemDisplay
     var Tagger = App.components.tagger.problems.Tagger
-    var TopicsEditor = App.components.TopicsEditor
+    var ProblemsTopicsEditor = App.components.ProblemsTopicsEditor
 
     // var taggerStuff = <Tagger isSubTags={false} tagRelationships={editedProblem.tagRelationships} problemId={editedProblem.id} store={this.props.store} actions={this.props.actions} />
     var taggerStuff = null
@@ -39,7 +39,7 @@ App.components.tagger.problems.Problem = React.createClass({
           <div>
             {alerts}
           </div>
-          <TopicsEditor topics={editedProblem.topics} actions={this.props.actions} problemId={editedProblem.id} store={this.props.store}/>
+          <ProblemsTopicsEditor problemsTopics={editedProblem.problemsTopics} actions={this.props.actions} problemId={editedProblem.id} store={this.props.store}/>
           {taggerStuff}
         </div>
       </div>

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   get 'action_tags_for_select', to: 'tags#action_tags_for_select'
 
-  post 'problems_topics', to: 'topics#problems_topics'
+  post 'problems_topics', to: 'problems_topics#create'
 
   get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select
   get 'action_tag_types_for_select', to: 'tag_types#actions_for_select'

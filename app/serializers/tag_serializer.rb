@@ -1,6 +1,6 @@
 class TagSerializer < ActiveModel::Serializer
   attributes :id, :name, :is_new
-  belongs_to :tag_type
+  has_one :tag_type
 
   def name
     object.display_name
@@ -9,5 +9,4 @@ class TagSerializer < ActiveModel::Serializer
   def is_new
     false
   end
-
 end

@@ -8,6 +8,6 @@ class SubjectsController < ApplicationController
   end
 
   def for_select
-    render json: Subject.all
+    render json: CamelizeKeys.run(Subject.all), root: false
   end
 end

@@ -3,7 +3,7 @@ class SourcesController < ApplicationController
 
 
   def for_select
-    render json: Source.all
+    render json: Source.all, root: false
   end
 
   def by_subject

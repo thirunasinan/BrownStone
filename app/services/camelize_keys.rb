@@ -8,7 +8,7 @@ module CamelizeKeys
     elsif item.is_a?(ActiveRecord::Relation)
       model_name = item.class.to_s.split("::")[0]
       serializer = "#{model_name}Serializer".constantize
-      serialized = item.map{ |x| serializer.new(x, root: false).as_json }
+      serialized = item.map{ |x| serializer.new(x).as_json(root: false) }
       self.handle_array(serialized)
     else
       item
