@@ -17,7 +17,7 @@ addActionHelpers(function () {
           var data = inputFn(tagRelationship, args)
         } else {
           var hoTrs2 = tagRelationship.tagRelationships.reduce(function (acc, tr) {
-            return acc.concat(fn1(tr, tagRelationshipId, args))
+            return acc.concat(fn1(tr, tagRelationshipClientId, args))
           }, [])
           var data = {tagRelationships: hoTrs2}
         }

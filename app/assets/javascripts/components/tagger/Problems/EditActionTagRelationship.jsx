@@ -1,4 +1,4 @@
-App.components.tagger.problems.EditTagRelationship = React.createClass({
+App.components.tagger.problems.EditActionTagRelationship = React.createClass({
 
   getInitialState: function () {
     return {
@@ -10,23 +10,9 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
     App.modules.autoresizeTextarea()
   },
 
-  onNameChange: function (e) {
-    var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tag.tagType.id, value)
-  },
-
   editTagRelationshipDescription: function () {
     var value = this.refs.description.getDOMNode().value
     this.props.actions.editTagRelationshipDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
-  },
-
-  onBlur: function () {
-    var that = this;
-    setTimeout(function () {that.setState({focused: false})}, 300)
-  },
-
-  onFocus: function () {
-    this.setState({focused: true})
   },
 
   removeTagRelationship: function () {
@@ -36,51 +22,6 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
 
   markedForRemoval: function () {
     return this.props.tagRelationship.markedForRemoval || false
-  },
-
-  hoverTagSearchResult: function (data) {
-    var that = this;
-    return function (e) {
-      that.props.actions.hoverTagSearchResult(data)
-    }
-  },
-
-  stopHoverTagSearchResult: function (data) {
-    var that = this;
-    return function (e) {
-      that.props.actions.stopHoverTagSearchResult(data)
-    }
-  },
-
-  selectTagSearchResult: function (data) {
-    var that = this;
-    return function (e) {
-      that.props.actions.selectTagSearchResult(that.props.problemId, that.props.tagRelationship.clientId, data)
-    }
-  },
-
-  searchResult: function (data, i) {
-    var className;
-    var normal = 'tag-search-result'
-    var hovered = 'tag-search-result tag-search-result-hovered'
-    if (this.props.store.hoveredTagSearchResult) {
-      if (data.id === this.props.store.hoveredTagSearchResult.id) {
-        className = hovered
-      } else {
-        className = normal
-      }
-    } else if (i === 0) {
-      className = hovered
-    } else {
-      className = normal
-    }
-    return (
-      <div className={className} onMouseOut={this.stopHoverTagSearchResult(data)} onMouseOver={this.hoverTagSearchResult(data)} onClick={this.selectTagSearchResult(data)}>{data.name}</div>
-    )
-  },
-
-  oldnessText: function (text) {
-    return <span className='new-tag-or-not old-tag'>{text}</span>
   },
 
 
@@ -127,17 +68,13 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
               onChange={this.selectActionTag}>{tagOptions}</select>)
   },
 
-  openTagExplorer: function (e) {
-    this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tagRelationship)
-  },
+
 
   render: function () {
     var tagRelationship = this.props.tagRelationship
     var Tagger = App.components.tagger.problems.Tagger
 
     var tagName, tagTypeName
-
-    var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tagRelationship.tag.name} onChange={this.onNameChange} />)
 
 
     if (tagRelationship.isNew) {
@@ -153,24 +90,29 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
       tagName = <span>{tagRelationship.tag.name}</span>
     }
 
-    var tagSearchResults;
-
-    if (this.props.store.tagSearchResults.length
-        && this.state.focused
-        && (!tagRelationship.tag.tagType.taggerCanCreateNew)
-        && this.props.store.searchingTag === tag.clientId) {
-      var eles = this.props.store.tagSearchResults.map(this.searchResult)
-      tagSearchResults = <div className='tag-search-results'>{eles}</div>
-    } else {
-      tagSearchResults = null
-    }
-
-
     var crudStuff = (
       <span>
       <span className='pull-right'>X:<input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeTagRelationship} type='checkbox' /></span>
       </span>
     )
+
+    var subTagRelationships = tagRelationship.tagRelationships
+
+    var isTagRelationships = subTagRelationships.filter(function (ele) {
+      return ele.tag.tagType.name = "IS"
+    })
+
+    var isTagRelationshipsTagger = <Tagger
+      tagRelationships={subTagRelationships}
+      parentTagRelationshipClientId={tagRelationship.clientId}
+      problemId={this.props.problemId}
+      store={this.props.store}
+      actions={this.props.actions}
+      tagRelationshipType="notAction"
+      tagRelationshipSubType="IS" />
+
+
+    var knowledgeTagRelationshipsTagger = null
 
     return (
       <div className='list-group-item tag-list-item'>
@@ -186,6 +128,16 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
           </div>
           <div className='col-xs-1'>
             {crudStuff}
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-xs-12'>
+            {isTagRelationshipsTagger}
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-xs-12'>
+            {knowledgeTagRelationshipsTagger}
           </div>
         </div>
       </div>

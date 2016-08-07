@@ -1,7 +1,7 @@
 App.components.tagger.problems.Tagger = React.createClass({
 
   addTagRelationship: function () {
-    this.props.actions.addTagRelationship(this.props.problemId, this.props.parentTagRelationshipId)
+    this.props.actions.addTagRelationship(this.props.problemId, this.props.parentTagRelationshipClientId)
   },
 
   saveTagRelationships: function () {
@@ -9,22 +9,32 @@ App.components.tagger.problems.Tagger = React.createClass({
   },
 
   render: function () {
-
-    var EditTagRelationship = App.components.tagger.problems.EditTagRelationship
+    var trt = this.props.tagRelationshipType
+    var x = trt[0].toUpperCase() + trt.slice(1, trt.length)
+    var key = "Edit" + x + "TagRelationship"
+    var EditTagRelationship = App.components.tagger.problems[key]
     var that = this;
     var tagRelationships = this.props.tagRelationships.map(function (tagRelationship) {
-      return <EditTagRelationship key={tagRelationship.clientId} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tagRelationship={tagRelationship} />
+      return <EditTagRelationship
+              tagRelationshipSubType={that.props.tagRelationshipSubType}
+              parentTagRelationshipClientId={that.props.parentTagRelationshipClientId}
+              key={tagRelationship.clientId}
+              store={that.props.store}
+              problemId={that.props.problemId}
+              actions={that.props.actions}
+              tagRelationship={tagRelationship} />
     })
 
 
-    var button
-    if (this.props.parentTagRelationshipId) {
-      addTagRelationship = null
-      save = null
+
+    var addTagRelationshipText = ['add', this.props.tagRelationshipSubType, "tag"].join(" ")
+    var addTagRelationship = <a className='margined-a' onClick={this.addTagRelationship} >{addTagRelationshipText}</a>
+    if (this.props.tagRelationshipType === 'action') {
+      var save = <a className='margined-a save' onClick={this.saveTagRelationships}>save</a>
     } else {
-      addTagRelationship = <a className='margined-a' onClick={this.addTagRelationship} >{"add tag"}</a>
-      save = <a className='margined-a save' onClick={this.saveTagRelationships}>save</a>
+      var save = null;
     }
+
 
     if (this.props.tagRelationships.length) {
       return (

@@ -23,6 +23,7 @@ addActions(function () {
   }
 
   var _addTagRelationshipHelper1 = function (tagRelationship) {
+    console.log('2')
     var tagRelationships = tagRelationship.tagRelationships.concat([_newTagRelationship()])
     return Object.assign({}, tagRelationship, {tagRelationships: tagRelationships})
   }
@@ -32,9 +33,10 @@ addActions(function () {
   var _updateEditedProblem = App.actionHelpers.updateEditedProblem
 
   return {
-    addTagRelationship: function (state, problemId, parentTrId) {
-      if (parentTrId) {
-        return _editTagRelationshipHelper(state, problemId, parentTrId, _addTagRelationshipHelper1)
+    addTagRelationship: function (state, problemId, parentTagRelationshipClientId) {
+      console.log('1')
+      if (parentTagRelationshipClientId) {
+        return _editTagRelationshipHelper(state, problemId, parentTagRelationshipClientId, _addTagRelationshipHelper1)
       } else {
         var editedProblem = _getEditedProblem(state, problemId)
         var tagRelationships2 = editedProblem.tagRelationships.concat([
