@@ -15,13 +15,9 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
     this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tag.tagType.id, value)
   },
 
-  onKeyDown: function (e) {
-    // want to get tab to work as autocomplete eventually
-  },
-
   editTagRelationshipDescription: function () {
     var value = this.refs.description.getDOMNode().value
-    this.props.actions.editTagDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
+    this.props.actions.editTagRelationshipDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
 
   onBlur: function () {
@@ -33,7 +29,7 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
     this.setState({focused: true})
   },
 
-  removeTag: function () {
+  removeTagRelationship: function () {
     var checked = this.refs.remove.getDOMNode().checked
     this.props.actions.toggleRemoveTagRelationship(this.props.problemId, this.props.tagRelationship.clientId, checked)
   },
@@ -109,12 +105,13 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
   },
 
   selectActionTag: function () {
-    var value = this.refs.selectTag.getDOMNode().value
+    var value = this.refs.selectActionTag.getDOMNode().value
     this.props.actions.selectActionTag(this.props.problemId, this.props.tagRelationship.clientId, value)
   },
 
   actionTagDropDown: function () {
     var that = this;
+
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
       var x =  parseInt(t.tagType.id) === parseInt(that.props.tagRelationship.tag.tagType.id)
       return x
@@ -127,7 +124,7 @@ App.components.tagger.problems.EditTagRelationship = React.createClass({
               ref={'selectActionTag'}
               className='tag-type-dropdown'
               selected={this.props.tagRelationship.tag.name}
-              onChange={this.selectTag}>{tagOptions}</select>)
+              onChange={this.selectActionTag}>{tagOptions}</select>)
   },
 
   openTagExplorer: function (e) {

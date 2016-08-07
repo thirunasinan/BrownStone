@@ -1,10 +1,9 @@
 addActionHelpers(function () {
 
-  var app = function (key) { return App.actionHelpers[key]}
+  var app = function (key) { return App.actionHelpers[key] }
 
   return {
     updateProblemTopicHelper: function (state, problemId, problemTopicClientId, hash) {
-
       var problemsTopics = app('getEditedProblem')(state, problemId).problemsTopics
       var problemTopic = problemsTopics.find(function (pt) { return parseFloat(pt.clientId) === parseFloat(problemTopicClientId) })
       var editedProblemTopic = Object.assign({}, problemTopic, hash)

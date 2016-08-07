@@ -27,8 +27,7 @@ App.components.tagger.problems.Problem = React.createClass({
     var Tagger = App.components.tagger.problems.Tagger
     var ProblemsTopicsEditor = App.components.ProblemsTopicsEditor
 
-    // var taggerStuff = <Tagger isSubTags={false} tagRelationships={editedProblem.tagRelationships} problemId={editedProblem.id} store={this.props.store} actions={this.props.actions} />
-    var taggerStuff = null
+    var taggerStuff = <Tagger isSubTags={false} parentTagRelationshipId={null} tagRelationships={editedProblem.tagRelationships} problemId={editedProblem.id} store={this.props.store} actions={this.props.actions} />
 
     return (
       <div className='row'>

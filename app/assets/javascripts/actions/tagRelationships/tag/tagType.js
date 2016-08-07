@@ -1,12 +1,12 @@
 addActions(function () {
 
-  var _updateTagType = function (tagRelationship, hash) {
+  var updateTagType = function (tagRelationship, hash) {
     var tagType = tagRelationship.tag.tagType
     var tagType2 = Object.assign({}, tagType, hash)
     return App.actionHelpers.updateTag(tagRelationship, {tagType: tagType2})
   }
 
-  var selectTagTypeHelper = function (state) {
+  var _selectTagTypeHelper = function (state) {
     return function (tagRelationship, tagTypeId) {
       var hash;
       if (tagTypeId === "") {
@@ -14,13 +14,13 @@ addActions(function () {
       } else {
         hash = state.tagTypeOptions.find(function (tagType) { return parseInt(tagType.id) === parseInt(tagTypeId)})
       }
-      return _updateTagType(tagRelationship, hash)
+      return updateTagType(tagRelationship, hash)
     }
   }
 
   return {
     selectTagType: function (state, problemId, tagRelationshipClientId, tagTypeId) {
-      return App.actionHelpers.editTagRelationshipHelper(state, problemId, tagRelationshipClientId, selectTagTypeHelper(state), tagTypeId)
+      return App.actionHelpers.editTagRelationshipHelper(state, problemId, tagRelationshipClientId, _selectTagTypeHelper(state), tagTypeId)
     },
   }
 

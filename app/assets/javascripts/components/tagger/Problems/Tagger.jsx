@@ -12,8 +12,8 @@ App.components.tagger.problems.Tagger = React.createClass({
 
     var EditTagRelationship = App.components.tagger.problems.EditTagRelationship
     var that = this;
-    var tagRelationships = this.props.tagRelationships.map(function (tagRelationship, i) {
-      return <EditTagRelationship key={i} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tagRelationship={tagRelationship} />
+    var tagRelationships = this.props.tagRelationships.map(function (tagRelationship) {
+      return <EditTagRelationship key={tagRelationship.clientId} store={that.props.store} problemId={that.props.problemId} actions={that.props.actions} tagRelationship={tagRelationship} />
     })
 
 

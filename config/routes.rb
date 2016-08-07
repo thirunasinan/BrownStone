@@ -23,27 +23,27 @@ Rails.application.routes.draw do
   get 'problems_by_source/:id', to: 'problems#by_source', as: :problems_by_source
   get 'problems_by_section/:id', to: 'problems#by_section', as: :problems_by_section
 
-  get 'search_tags/:tag_type_id/:query', to: 'tags#search', as: :search_tags
+  get 'search_tags/:tag_type_id/:query', to: 'tags#search'
 
-  post 'tags', to: 'tags#tag_problem', as: :tag_problem
+  post 'tag_relationships', to: 'tag_relationships#create'
 
   get 'action_tags_for_select', to: 'tags#action_tags_for_select'
 
   post 'problems_topics', to: 'problems_topics#create'
 
-  get 'tag_types_for_select', to: 'tag_types#for_select', as: :tag_types_for_select
+  get 'tag_types_for_select', to: 'tag_types#for_select'
   get 'action_tag_types_for_select', to: 'tag_types#actions_for_select'
 
   get 'sections', to: 'sections#index', as: :sections
 
-  get 'sections_by_source/:id', to: 'sections#by_source', as: :sections_by_source
+  get 'sections_by_source/:id', to: 'sections#by_source'
 
   get 'subjects', to: 'subjects#index', as: :subjects
 
-  get 'subjects_for_select', to: 'subjects#for_select', as: :subjects_for_select
+  get 'subjects_for_select', to: 'subjects#for_select'
 
 
-  get 'topics_for_select', to: 'topics#for_select', as: :topics_for_select
+  get 'topics_for_select', to: 'topics#for_select'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

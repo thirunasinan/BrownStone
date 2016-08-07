@@ -30,8 +30,8 @@ addActions(function () {
       var that = this;
       return function (bindAction) {
         $.get('sections_by_source/' + sourceId, function (data) {
-          var sections = [{id: null, name: ''}].concat(data)
-          bindAction(App.actionHelpers.newState)({sectionOptions: sections})
+          //var sections = [{id: null, name: ''}].concat(data)
+          bindAction(App.actionHelpers.newState)({sectionOptions: data})
         })
       }
     },
@@ -43,7 +43,7 @@ addActions(function () {
           var url = name + "_for_select"
           var stateKey = camelCase(name.slice(0, name.length -1)) + "Options"
           $.get(url, function (data) {
-            var total = [{id: null, name: ''}].concat(data)
+            var total = data//[{id: null, name: ''}].concat(data)
             var hash = {}
             hash[stateKey] = total
             bindAction(_newState)(hash)
