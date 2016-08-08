@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'problems_by_source/:id', to: 'problems#by_source', as: :problems_by_source
   get 'problems_by_section/:id', to: 'problems#by_section', as: :problems_by_section
 
-  get 'search_tags/:tag_type_id/:query', to: 'tags#search'
+  get 'search_tags/:tag_type_name/:query', to: 'tags#search'
 
   post 'tag_relationships', to: 'tag_relationships#create'
 

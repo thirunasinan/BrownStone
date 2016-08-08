@@ -1,7 +1,7 @@
 App.components.tagger.problems.Tagger = React.createClass({
 
   addTagRelationship: function () {
-    this.props.actions.addTagRelationship(this.props.problemId, this.props.parentTagRelationshipClientId)
+    this.props.actions.addTagRelationship(this.props.problemId, this.props.parentTagRelationshipClientId, this.props.tagRelationshipSubType)
   },
 
   saveTagRelationships: function () {

@@ -1,8 +1,9 @@
 class TagsController < ApplicationController
   def search
-    tags = Tag.where(tag_type_id: params[:tag_type_id])
+    tagType = TagType.find_by(name: params[:tag_type_name])
+    tags = Tag.where(tag_type: tagType)
               .where("name ILIKE '%#{params[:query]}%'")
-    render json: tags, root: false
+    render json: CamelizeKeys.run(tags), root: false
   end
 
   def action_tags_for_select

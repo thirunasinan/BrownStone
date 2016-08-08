@@ -1,7 +1,8 @@
 addActions(function () {
 
 
-  var _newTagRelationship = function () {
+
+  var _newTagRelationship = function (tagType) {
     return {
       id: null,
       description: null,
@@ -10,11 +11,7 @@ addActions(function () {
         isNew: true,
         id: null,
         name: "",
-        tagType: {
-          id: null,
-          name: "",
-          taggerCanCreateNew: false,
-        }
+        tagType: tagType,
       },
       clientId: Math.random(),
       isNew: true,
@@ -22,9 +19,8 @@ addActions(function () {
     }
   }
 
-  var _addTagRelationshipHelper1 = function (tagRelationship) {
-    console.log('2')
-    var tagRelationships = tagRelationship.tagRelationships.concat([_newTagRelationship()])
+  var _addTagRelationshipHelper1 = function (tagRelationship, tagType) {
+    var tagRelationships = tagRelationship.tagRelationships.concat([_newTagRelationship(tagType)])
     return Object.assign({}, tagRelationship, {tagRelationships: tagRelationships})
   }
 
@@ -33,14 +29,20 @@ addActions(function () {
   var _updateEditedProblem = App.actionHelpers.updateEditedProblem
 
   return {
-    addTagRelationship: function (state, problemId, parentTagRelationshipClientId) {
-      console.log('1')
+    addTagRelationship: function (state, problemId, parentTagRelationshipClientId, tagRelationshipSubType) {
+      var tagType
+      if (tagRelationshipSubType === 'action') {
+        tagType = {id: nul, name: '', taggerCanCreateNew: false}
+      } else {
+        tagType = state.tagTypeOptions.find(function (tt) { return tt.name === tagRelationshipSubType})
+      }
+
       if (parentTagRelationshipClientId) {
-        return _editTagRelationshipHelper(state, problemId, parentTagRelationshipClientId, _addTagRelationshipHelper1)
+        return _editTagRelationshipHelper(state, problemId, parentTagRelationshipClientId, _addTagRelationshipHelper1, tagType)
       } else {
         var editedProblem = _getEditedProblem(state, problemId)
         var tagRelationships2 = editedProblem.tagRelationships.concat([
-          _newTagRelationship()
+          _newTagRelationship(tagType)
         ])
         return _updateEditedProblem(state, problemId, {tagRelationships: tagRelationships2})
       }

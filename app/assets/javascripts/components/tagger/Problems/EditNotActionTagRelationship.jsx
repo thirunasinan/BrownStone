@@ -6,18 +6,9 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
     }
   },
 
-  componentDidMount: function () {
-    App.modules.autoresizeTextarea()
-  },
-
   onNameChange: function (e) {
     var value = this.refs.search.getDOMNode().value
-    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationship.tag.tagType.id, value)
-  },
-
-  editTagRelationshipDescription: function () {
-    var value = this.refs.description.getDOMNode().value
-    this.props.actions.editTagRelationshipDescription(this.props.problemId, this.props.tagRelationship.clientId, value)
+    this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationshipSubType, value)
   },
 
   onBlur: function () {
@@ -91,26 +82,36 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
   render: function () {
     var tagRelationship = this.props.tagRelationship
     var tagName
+    console.log('tagRelationship.tag.name', tagRelationship.tag.name)
+    var inputTagName = <input
+                          onBlur={this.onBlur}
+                          onFocus={this.onFocus}
+                          className='tag-search-input'
+                          placeholder={'tag name'}
+                          ref={'search'}
+                          onKeyDown={this.onKeyDown}
+                          value={tagRelationship.tag.name || ''}
+                          onChange={this.onNameChange} />
 
-    // var inputTagName = (<input onBlur={this.onBlur} onFocus={this.onFocus} className='tag-search-input' placeholder={'tag name'} ref={'search'} onKeyDown={this.onKeyDown} value={tagRelationship.tag.name} onChange={this.onNameChange} />)
+    var tagSearchResults;
 
-    // if (tagRelationship.isNew) {
-    //   tagName = inputTagName
-    // } else {
-    //   tagName = <span>{tagRelationship.tag.name}</span>
-    // }
-    tagName = 'subTagName'
+    if (this.props.store.tagSearchResults.length
+        && this.state.focused
+        && this.props.store.searchingTagRelationshipClientId === tagRelationship.clientId) {
+      var eles = this.props.store.tagSearchResults.map(this.searchResult)
+      tagSearchResults = <div className='tag-search-results'>{eles}</div>
+    } else {
+      tagSearchResults = null
+    }
 
-    // var tagSearchResults;
+    if (tagRelationship.isNew) {
+      tagName = <span>{inputTagName}{tagSearchResults}</span>
+    } else {
+      tagName = <span>{tagRelationship.tag.name}</span>
+    }
 
-    // if (this.props.store.tagSearchResults.length
-    //     && this.state.focused
-    //     && this.props.store.searchingTagRelationship === tagRelationship.clientId) {
-    //   var eles = this.props.store.tagSearchResults.map(this.searchResult)
-    //   tagSearchResults = <div className='tag-search-results'>{eles}</div>
-    // } else {
-    //   tagSearchResults = null
-    // }
+    var openTagExplorer = <a onClick={this.openTagExplorer}>tag explorer</a>
+
 
 
     var crudStuff = (
@@ -122,8 +123,11 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
     return (
       <div className='list-group-item tag-list-item'>
         <div className='row'>
-          <div className='col-xs-2'>
+          <div className='col-xs-3'>
             {tagName}
+          </div>
+          <div className='col-xs-2'>
+            {openTagExplorer}
           </div>
           <div className='col-xs-1'>
             {crudStuff}

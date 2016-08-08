@@ -5,7 +5,8 @@ addActionHelpers(function () {
     updateTag: function (tagRelationship, hash) {
       var tag = tagRelationship.tag
       var tag2 = Object.assign({}, tag, hash)
-      return Object.assign({}, tagRelationship, {tag: tag2})
+      var x =  Object.assign({}, tagRelationship, {tag: tag2})
+      return x
     },
 
     editTagRelationshipHelper: function (state, problemId, tagRelationshipClientId, inputFn, args) {

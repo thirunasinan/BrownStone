@@ -99,11 +99,15 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
     var subTagRelationships = tagRelationship.tagRelationships
 
     var isTagRelationships = subTagRelationships.filter(function (ele) {
-      return ele.tag.tagType.name = "IS"
+      return ele.tag.tagType.name === "IS"
+    })
+
+    var knowledgeTagRelationships = subTagRelationships.filter(function (ele) {
+      return ele.tag.tagType.name === "KNOWLEDGE"
     })
 
     var isTagRelationshipsTagger = <Tagger
-      tagRelationships={subTagRelationships}
+      tagRelationships={isTagRelationships}
       parentTagRelationshipClientId={tagRelationship.clientId}
       problemId={this.props.problemId}
       store={this.props.store}
@@ -111,8 +115,16 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
       tagRelationshipType="notAction"
       tagRelationshipSubType="IS" />
 
+    var knowledgeTagRelationshipsTagger = <Tagger
+      tagRelationships={knowledgeTagRelationships}
+      parentTagRelationshipClientId={tagRelationship.clientId}
+      problemId={this.props.problemId}
+      store={this.props.store}
+      actions={this.props.actions}
+      tagRelationshipType="notAction"
+      tagRelationshipSubType="KNOWLEDGE" />
 
-    var knowledgeTagRelationshipsTagger = null
+
 
     return (
       <div className='list-group-item tag-list-item'>

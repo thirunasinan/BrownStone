@@ -21,9 +21,8 @@ App.components.tagger.Top = React.createClass({
 
       tagExplorerActive: false,
       tagExplorerQuery: null,
-      tagExplorerTrId: null,
+      tagExplorerTagRelationship: null,
       tagExplorerProblemId: null,
-      tagExplorerTagTypeId: null,
       tagExplorerSearchResults: []
     }
   },
@@ -34,7 +33,6 @@ App.components.tagger.Top = React.createClass({
 
   render: function () {
     var that = this;
-    console.log("this'.state'", this.state)
     return (
       <div>
         <App.components.Modal active={this.state.tagExplorerActive} actions={this.actions} store={this.state} />

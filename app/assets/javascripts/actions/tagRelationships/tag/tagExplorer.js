@@ -1,26 +1,30 @@
-// addActions(function () {
+addActions(function () {
 
-//   return {
-//     toggleTagExplorer: function (state, problemId, tag) {
-//       var tagTypeId = tag ? tag.tagTypeId : null
-//       var trId = tag ? tag.trId : null
-//       return Object.assign({}, state, {tagExplorerActive: !this.state.tagExplorerActive, tagExplorerTrId: trId, tagExplorerProblemId: problemId, tagExplorerTagTypeId: tagTypeId})
-//     },
+  var _newState = App.actionHelpers.newState
 
-//     updateTagExplorerQuery: function (state, value) {
-//       this.setState({tagExplorerQuery: value})
-//       var that = this;
-//       var tagTypeId = this.state.tagExplorerTagTypeId
-//       if (value) {
-//         return function (bindAction) {
-//           $.get(['search_tags', tagTypeId, value].join('/'), function (data) {
-//             var hash = {tagExplorerSearchResults: data}
-//             bindAction(function (state, data) { return Object.assign({}, state, hash)})(data)
-//           }, 'json')
-//         }
-//       } else {
-//         return Object.assign({}, state, {tagExplorerSearchResults: []})
-//       }
-//     },
-//   }
-// })
+  return {
+    toggleTagExplorer: function (state, problemId, tagRelationship) {
+      var hash = {
+        tagExplorerActive: !state.tagExplorerActive,
+        tagExplorerTagRelationship: tagRelationship,
+        tagExplorerProblemId: problemId
+      }
+      return _newState(state, hash)
+    },
+
+    updateTagExplorerQuery: function (state, value) {
+      var tagTypeId = state.tagExplorerTagRelationship.tag.tagType.id
+      if (value) {
+        return function (bindAction) {
+          bindAction(_newState)({tagExplorerQuery: value})
+          $.get(['search_tags', tagTypeId, value].join('/'), function (data) {
+            var hash = {tagExplorerSearchResults: data}
+            bindAction(_newState)(hash)
+          }, 'json')
+        }
+      } else {
+        return _newState(state, {tagExplorerSearchResults: [], tagExplorerQuery: ''})
+      }
+    },
+  }
+})
