@@ -21,6 +21,15 @@ App.components.Modal = React.createClass({
     }
   },
 
+  newTag: function () {
+    var value = this.refs.tagExplorer.getDOMNode().value
+    var tagData = this.props.store.tagExplorerTagRelationship.tag
+    tagData.name = value
+    tagData.isNew = true
+    console.log('tagData', tagData)
+    this.selectTag(tagData)()
+  },
+
   render: function () {
     var that = this;
     var items = this.props.store.tagExplorerSearchResults.map(function (sr) {
@@ -35,15 +44,19 @@ App.components.Modal = React.createClass({
       <div className={this.className()}>
         <div className='tagger-modal-content'>
           <div className='row'>
-            <div className='col-xs-12'>
+            <div className='col-xs-11' />
+            <div className='col-xs-1' >
               <button onClick={this.props.actions.toggleTagExplorer} className='btn btn-danger pull-right'>close</button>
             </div>
           </div>
           <br />
           <div className='row'>
-            <div className='col-xs-12'>
+            <div className='col-xs-11'>
               <input ref={'tagExplorer'} onChange={this.updateTagExplorerQuery} value={this.props.store.tagExplorerQuery} />
             </div>
+              <div className='col-xs-1'>
+                <button className='btn btn-success pull-right' onClick={this.newTag}>new</button>
+              </div>
           </div>
           <br />
           <div className='row'>

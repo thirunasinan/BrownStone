@@ -82,12 +82,11 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
   render: function () {
     var tagRelationship = this.props.tagRelationship
     var tagName
-    console.log('tagRelationship.tag.name', tagRelationship.tag.name)
     var inputTagName = <input
                           onBlur={this.onBlur}
                           onFocus={this.onFocus}
                           className='tag-search-input'
-                          placeholder={'tag name'}
+                          placeholder={this.props.tagRelationshipSubType + " tag"}
                           ref={'search'}
                           onKeyDown={this.onKeyDown}
                           value={tagRelationship.tag.name || ''}

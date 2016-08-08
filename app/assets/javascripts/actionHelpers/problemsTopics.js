@@ -8,7 +8,6 @@ addActionHelpers(function () {
       var problemTopic = problemsTopics.find(function (pt) { return parseFloat(pt.clientId) === parseFloat(problemTopicClientId) })
       var editedProblemTopic = Object.assign({}, problemTopic, hash)
       var editedProblemsTopics = app('updateArray')(problemsTopics, editedProblemTopic, 'clientId')
-      console.log('problemTopicId', problemTopicClientId, 'problemsTopics', problemsTopics, 'problemTopic', problemTopic, 'editedProblemTopic', editedProblemTopic, 'editedProblemsTopics', editedProblemsTopics)
       return app('updateEditedProblem')(state, problemId, {problemsTopics: editedProblemsTopics})
     },
 

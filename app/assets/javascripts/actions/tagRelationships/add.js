@@ -1,23 +1,6 @@
 addActions(function () {
 
-
-
-  var _newTagRelationship = function (tagType) {
-    return {
-      id: null,
-      description: null,
-      tagRelationships: [],
-      tag: {
-        isNew: true,
-        id: null,
-        name: "",
-        tagType: tagType,
-      },
-      clientId: Math.random(),
-      isNew: true,
-      markedForRemoval: false,
-    }
-  }
+  var _newTagRelationship = App.actionHelpers.newTagRelationship
 
   var _addTagRelationshipHelper1 = function (tagRelationship, tagType) {
     var tagRelationships = tagRelationship.tagRelationships.concat([_newTagRelationship(tagType)])

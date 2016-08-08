@@ -19,6 +19,7 @@ addActions(function () {
     saveTagRelationships: function (state, problemId) {
       var edited = _getEditedProblem(state, problemId)
       var that = this;
+      console.log('post data', edited.tagRelationships)
       return function (bindAction) {
         $.ajax({
           type: 'POST',

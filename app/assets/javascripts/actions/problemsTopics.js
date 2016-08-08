@@ -51,9 +51,7 @@ addActions(function () {
       var problemTopic = _getProblemTopic(state, problemId, problemTopicClientId)
       if (problemTopic.isNew) {
         var ep = _getEditedProblem(state, problemId)
-        console.log('problemsTopics', ep.problemsTopics, 'problemTopicClientId', problemTopicClientId)
         var problemsTopics = ep.problemsTopics.filter(function (pt) { return parseFloat(pt.clientId) !== parseFloat(problemTopicClientId)})
-        console.log('after', problemsTopics)
         return _updateEditedProblem(state, problemId, {problemsTopics: problemsTopics})
       } else {
         return _updateProblemTopicHelper(state, problemId, problemTopicClientId, {markedForRemoval: !problemTopic.markedForRemoval})

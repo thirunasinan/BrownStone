@@ -13,7 +13,7 @@ addActions(function () {
   }
 
   var _selectTagSearchResultHelper = function (tagRelationship, tag) {
-    tag.isNew = false
+    tag.isNew = (tag.id === null)
     return _updateTag(tagRelationship, tag)
   }
 
@@ -38,7 +38,6 @@ addActions(function () {
     },
 
     selectTagSearchResult: function (state, problemId, tagRelationshipClientId, tagData) {
-      console.log('selectTagSearchResult', problemId, tagRelationshipClientId, tagData)
       return _editTagRelationshipHelper(state, problemId, tagRelationshipClientId, _selectTagSearchResultHelper, tagData)
     },
 

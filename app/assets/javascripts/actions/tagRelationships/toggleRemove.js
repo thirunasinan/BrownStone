@@ -1,7 +1,6 @@
 addActions(function () {
 
   var _toggleRemoveTagRelationshipHelper = function (tagRelationship, bool) {
-    console.log('tagRelationship', tagRelationship, 'bool', bool)
     var that = this;
     if (tagRelationship.isNew) {
       return false;
@@ -10,7 +9,7 @@ addActions(function () {
         if (tr.isNew) {
           return acc;
         } else {
-          return acc.concat([that.toggleRemoveTagRelationshipHelper(tr, bool)])
+          return acc.concat([_toggleRemoveTagRelationshipHelper(tr, bool)])
         }
       }, [])
       return Object.assign({}, tagRelationship, {markedForRemoval: bool, tagRelationships: hoTrs })

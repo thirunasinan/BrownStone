@@ -19,7 +19,7 @@ module CreateTagRelationships
       if tag_relationship[:is_new] == true
         if tag[:is_new] == true
           new_tag = Tag.create(name: tag[:name], tag_type_id: tag[:tag_type][:id])
-          tag_id = new_tag_relationship.id
+          tag_id = new_tag.id
         else
           tag_id = tag[:id]
         end

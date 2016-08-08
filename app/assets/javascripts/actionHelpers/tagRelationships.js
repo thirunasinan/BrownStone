@@ -1,6 +1,22 @@
 addActionHelpers(function () {
 
   return {
+    newTagRelationship:  function (tagType) {
+      return {
+        id: null,
+        description: null,
+        tagRelationships: [],
+        tag: {
+          isNew: true,
+          id: null,
+          name: "",
+          tagType: tagType,
+        },
+        clientId: Math.random(),
+        isNew: true,
+        markedForRemoval: false,
+      }
+    },
 
     updateTag: function (tagRelationship, hash) {
       var tag = tagRelationship.tag
