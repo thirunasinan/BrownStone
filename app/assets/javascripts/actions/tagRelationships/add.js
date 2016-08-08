@@ -32,7 +32,7 @@ addActions(function () {
     addTagRelationship: function (state, problemId, parentTagRelationshipClientId, tagRelationshipSubType) {
       var tagType
       if (tagRelationshipSubType === 'action') {
-        tagType = {id: nul, name: '', taggerCanCreateNew: false}
+        tagType = {id: null, name: '', taggerCanCreateNew: false}
       } else {
         tagType = state.tagTypeOptions.find(function (tt) { return tt.name === tagRelationshipSubType})
       }

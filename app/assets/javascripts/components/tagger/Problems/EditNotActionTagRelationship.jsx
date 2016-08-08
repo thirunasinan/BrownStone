@@ -106,7 +106,7 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
 
     if (tagRelationship.isNew) {
       tagName = <span>{inputTagName}{tagSearchResults}</span>
-      openTagExplorer = <a onClick={this.openTagExplorer}>tag explorer</a>
+      openTagExplorer = <a onClick={this.openTagExplorer}>TE</a>
     } else {
       tagName = <span>{tagRelationship.tag.name}</span>
       openTagExplorer = null
@@ -125,13 +125,13 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
     return (
       <div className='list-group-item tag-list-item'>
         <div className='row'>
-          <div className='col-xs-3'>
+          <div className='col-xs-8'>
             {tagName}
           </div>
           <div className='col-xs-2'>
             {openTagExplorer}
           </div>
-          <div className='col-xs-1'>
+          <div className='col-xs-2'>
             {crudStuff}
           </div>
         </div>

@@ -127,7 +127,7 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
 
 
     return (
-      <div className='list-group-item tag-list-item'>
+      <div className='list-group-item tag-list-item edit-action-tag-relationship'>
         <div className='row'>
           <div className='col-xs-2'>
             {tagTypeName}
@@ -138,19 +138,19 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
           <div className='col-xs-3'>
             <textarea rows={1} className='tag-description autoresize' ref={'description'} placeholder={'data'} onChange={this.editTagRelationshipDescription}  value={tagRelationship.description}></textarea>
           </div>
+          <div className='col-xs-4'>
+            {isTagRelationshipsTagger}
+          </div>
           <div className='col-xs-1'>
             {crudStuff}
           </div>
         </div>
         <div className='row'>
-          <div className='col-xs-12'>
-            {isTagRelationshipsTagger}
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-xs-12'>
+          <div className='col-xs-2' />
+          <div className='col-xs-4'>
             {knowledgeTagRelationshipsTagger}
           </div>
+          <div className='col-xs-6' />
         </div>
       </div>
 

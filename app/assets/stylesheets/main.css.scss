@@ -19,6 +19,8 @@ body {
     overflow-y: auto;
 }
 
+
+
 .tag-type-dropdown {
     width: 100%;
 }
@@ -79,20 +81,24 @@ a.save {
 
 .tag-panel-body {
     padding: 0px !important;
-    outline: 1px solid black;
+    //outline: 1px solid black;
     background-color: rgb(250,250,250);
 }
 
 .tag-list-item {
-    border: none !important;
-    outline: none !important;
     background-color:  rgb(250,250,250) !important;
     padding-bottom: 0px !important;
+    border: none;
+    outline: none;
     padding-top: 2px !important;
     input {
         // border: none !important;
         // outline: none !important;
     }
+}
+
+.tag-list-item.edit-action-tag-relationship {
+    outline: 1px solid rgb(200,200,200);
 }
 
 .new-tag-or-not.old-tag {

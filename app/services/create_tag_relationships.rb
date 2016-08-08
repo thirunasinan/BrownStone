@@ -9,13 +9,14 @@ module CreateTagRelationships
   private
 
   def self.handle_tag_relationship(tagged_id, tagged_type, tag_relationship)
-    tag_relationship = tag_relationship.symbolize_keys
+    tag_relationship = tag_relationship
+    tag = tag_relationship[:tag]
 
     if tag_relationship[:marked_for_removal] == true
       self.delete_tag_relationship(tag_relationship[:id])
-    else
+
+    elsif tag[:name].present?
       if tag_relationship[:is_new] == true
-        tag = tag_relationship[:tag]
         if tag[:is_new] == true
           new_tag = Tag.create(name: tag[:name], tag_type_id: tag[:tag_type][:id])
           tag_id = new_tag_relationship.id
