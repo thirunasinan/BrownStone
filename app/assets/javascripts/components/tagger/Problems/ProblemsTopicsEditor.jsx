@@ -30,6 +30,11 @@ App.components.ProblemsTopicsEditor = React.createClass({
       <div>
         <div className='row'>
           <div className='col-xs-12'>
+            Topics Tagger
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-xs-12'>
             {buttons}
           </div>
         </div>
