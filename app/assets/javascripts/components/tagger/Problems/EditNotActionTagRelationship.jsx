@@ -106,11 +106,13 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
 
     if (tagRelationship.isNew) {
       tagName = <span>{inputTagName}{tagSearchResults}</span>
+      openTagExplorer = <a onClick={this.openTagExplorer}>tag explorer</a>
     } else {
       tagName = <span>{tagRelationship.tag.name}</span>
+      openTagExplorer = null
     }
 
-    var openTagExplorer = <a onClick={this.openTagExplorer}>tag explorer</a>
+
 
 
 

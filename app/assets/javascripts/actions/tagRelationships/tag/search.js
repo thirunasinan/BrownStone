@@ -38,6 +38,7 @@ addActions(function () {
     },
 
     selectTagSearchResult: function (state, problemId, tagRelationshipClientId, tagData) {
+      console.log('selectTagSearchResult', problemId, tagRelationshipClientId, tagData)
       return _editTagRelationshipHelper(state, problemId, tagRelationshipClientId, _selectTagSearchResultHelper, tagData)
     },
 

@@ -11,13 +11,13 @@ App.components.Modal = React.createClass({
     this.props.actions.updateTagExplorerQuery(value)
   },
 
-  selectTag: function (tag_data) {
+  selectTag: function (tagData) {
     var that = this;
     return function (e) {
       that.props.actions.selectTagSearchResult(that.props.store.tagExplorerProblemId,
-                                               that.props.store.tagExplorerTrId,
-                                               tag_data)
-      that.props.actions.toggleTagExplorer()
+                                               that.props.store.tagExplorerTagRelationship.clientId,
+                                               tagData)
+      setTimeout(function () {that.props.actions.toggleTagExplorer()}, 500)
     }
   },
 

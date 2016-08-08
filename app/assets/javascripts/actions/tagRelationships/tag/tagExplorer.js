@@ -13,11 +13,11 @@ addActions(function () {
     },
 
     updateTagExplorerQuery: function (state, value) {
-      var tagTypeId = state.tagExplorerTagRelationship.tag.tagType.id
+      var tagTypeName = state.tagExplorerTagRelationship.tag.tagType.name
       if (value) {
         return function (bindAction) {
           bindAction(_newState)({tagExplorerQuery: value})
-          $.get(['search_tags', tagTypeId, value].join('/'), function (data) {
+          $.get(['search_tags', tagTypeName, value].join('/'), function (data) {
             var hash = {tagExplorerSearchResults: data}
             bindAction(_newState)(hash)
           }, 'json')
