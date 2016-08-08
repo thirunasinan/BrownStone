@@ -36,7 +36,7 @@ App.components.ProblemTopicEditor = React.createClass({
     var subjectId = this.props.problemTopic.topic.subject.id
     if (subjectId) {
       var topicOptions = this.props.store.topicOptions.filter(function (t) {
-        return t.subjectId === subjectId
+        return parseInt(t.subjectId) === parseInt(subjectId)
       })
       .concat([{id: null, value: ''}])
       .reverse()
