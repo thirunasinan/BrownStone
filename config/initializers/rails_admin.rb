@@ -36,6 +36,7 @@ RailsAdmin.config do |config|
     "User",
     "Tag",
     "TagType",
+    "Topic",
   ]
 
   config.actions do
