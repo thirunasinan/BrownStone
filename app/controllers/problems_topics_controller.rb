@@ -8,13 +8,15 @@ class ProblemsTopicsController < ApplicationController
       if ((pt[:marked_for_removal] === "true") || (pt[:marked_for_removal] === true))
         ProblemTopic.where(problem_id: problem_id, topic_id: pt[:topic][:id]).destroy_all
       else
-        ProblemTopic.find_or_create_by(problem_id: problem_id, topic_id: pt[:topic][:id])
+        if pt[:topic] && pt[:topic][:id]
+          ProblemTopic.find_or_create_by(problem_id: problem_id, topic_id: pt[:topic][:id])
+        end
       end
     end
 
     hash = {
       problem_id: problem_id,
-      problems_topics: Problem.find(problem_id).problems_topics
+      problems_topics: Problem.find(problem_id).problems_topics.where.not(topic_id: nil)
     }
 
     render json: CamelizeKeys.run(hash)
