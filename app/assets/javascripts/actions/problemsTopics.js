@@ -1,25 +1,12 @@
 addActions(function () {
 
-  var newTopic = function () {
-    return {
-      id: null,
-      clientId: Math.random(),
-      name: null,
-      displayName: null,
-      subject: {
-        id: null,
-        name: null,
-      }
-    }
-  }
-
-  var newProblemTopic = function () {
+  var newProblemTopic = function (state) {
     return {
       clientId: Math.random(),
       id: null,
       isNew: true,
       name: '',
-      topic: newTopic(),
+      topic: state.defaults.topic,
       markedForRemoval: false,
     }
   }
@@ -35,7 +22,7 @@ addActions(function () {
     addProblemTopic: function (state, problemId) {
       var editedProblem = _getEditedProblem(state, problemId)
       var problemsTopics = editedProblem.problemsTopics.concat([
-        newProblemTopic()
+        newProblemTopic(state)
       ])
       return _updateEditedProblem(state, problemId, {problemsTopics: problemsTopics})
     },
