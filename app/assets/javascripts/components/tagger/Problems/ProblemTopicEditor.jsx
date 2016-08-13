@@ -45,7 +45,7 @@ App.components.ProblemTopicEditor = React.createClass({
       })
 
       return (
-        <select ref={'topicSelect'} onChange={this.selectTopic} >
+        <select ref={'topicSelect'} onChange={this.selectTopic} value={this.props.problemTopic.topic.id}>
           {topicOptions}
         </select>
       )
