@@ -30,7 +30,7 @@ class ProblemsController < ApplicationController
       end
 
       format.json do
-        problems = Problem.where(source_id: params[:id]).limit(2)
+        problems = Problem.where(source_id: params[:id])
         render json: CamelizeKeys.run(problems), root: false
       end
     end
