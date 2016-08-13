@@ -13,10 +13,12 @@ App.components.tagger.Top = React.createClass({
       actionTagOptions: [],
 
       defaults: {
-        subject: {},
         topic: {},
-        actionTagType: {},
-        actionTag: {},
+        actionTagType: {
+          id: '',
+          name: '',
+          taggerCanCreateNew: false
+        }
       },
 
       problems: [],

@@ -45,10 +45,16 @@ addActions(function () {
           var stateKey = stateKeyPart1 + "Options"
           $.get(url, function (data) {
             var total = data
+            if (stateKeyPart1 === 'actionTagType') {
+              total.unshift(state.defaults.actionTagType)
+            }
             hash = state
             hash.defaults = hash.defaults || {}
-            hash[stateKey] = data
-            hash['defaults'][stateKeyPart1] = data[0]
+            hash[stateKey] = total
+            if (stateKeyPart1 === 'topic') {
+              hash['defaults'][stateKeyPart1] = data[0]
+            }
+
             bindAction(_newState)(hash)
           })
         })
