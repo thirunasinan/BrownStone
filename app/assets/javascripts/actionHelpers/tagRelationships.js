@@ -1,7 +1,7 @@
 addActionHelpers(function () {
 
   return {
-    newTagRelationship:  function (tagType) {
+    newTagRelationship:  function (state, tagType) {
       return {
         id: null,
         description: null,

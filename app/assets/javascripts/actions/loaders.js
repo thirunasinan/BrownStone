@@ -41,11 +41,14 @@ addActions(function () {
       return function (bindAction) {
         ['sources', 'tag_types', 'action_tag_types', 'action_tags', 'subjects', 'topics'].map(function (name) {
           var url = name + "_for_select"
-          var stateKey = camelCase(name.slice(0, name.length -1)) + "Options"
+          var stateKeyPart1 = camelCase(name.slice(0, name.length -1))
+          var stateKey = stateKeyPart1 + "Options"
           $.get(url, function (data) {
-            var total = data//[{id: null, name: ''}].concat(data)
-            var hash = {}
-            hash[stateKey] = total
+            var total = data
+            hash = state
+            hash.defaults = hash.defaults || {}
+            hash[stateKey] = data
+            hash['defaults'][stateKeyPart1] = data[0]
             bindAction(_newState)(hash)
           })
         })

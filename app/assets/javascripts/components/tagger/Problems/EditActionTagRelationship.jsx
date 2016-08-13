@@ -41,7 +41,7 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
     return (<select
               ref={'selectTagType'}
               className='tag-type-dropdown'
-              selected={this.props.tagRelationship.tag.tagType.name}
+              value={this.props.tagRelationship.tag.tagType.id}
               onChange={this.selectTagType}>{typeOptions}</select>)
   },
 
@@ -56,7 +56,7 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
     var tagOptions = this.props.store.actionTagOptions.filter(function (t) {
       var x =  parseInt(t.tagType.id) === parseInt(that.props.tagRelationship.tag.tagType.id)
       return x
-    }).concat([{id: null, name: ''}])
+    })
     .reverse()
     .map(function (option) {
       return <option key={option.id} value={option.id}>{option.name}</option>;
@@ -64,7 +64,7 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
     return (<select
               ref={'selectActionTag'}
               className='tag-type-dropdown'
-              selected={this.props.tagRelationship.tag.name}
+              value={this.props.tagRelationship.tag.id}
               onChange={this.selectActionTag}>{tagOptions}</select>)
   },
 

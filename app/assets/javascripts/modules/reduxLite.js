@@ -8,6 +8,7 @@ App.modules.reduxLite = function (component) {
       if (isFunction(result)) {
         result(_bindAction)
       } else {
+        console.log('newState', result)
         component.setState(result, callback)
       }
     }
