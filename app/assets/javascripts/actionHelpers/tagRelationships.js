@@ -8,7 +8,7 @@ addActionHelpers(function () {
         tagRelationships: [],
         tag: {
           isNew: true,
-          id: null,
+          id: '',
           name: "",
           tagType: tagType,
         },

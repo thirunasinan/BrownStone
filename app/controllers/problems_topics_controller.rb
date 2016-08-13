@@ -16,7 +16,7 @@ class ProblemsTopicsController < ApplicationController
 
     hash = {
       problem_id: problem_id,
-      problems_topics: Problem.find(problem_id).problems_topics.where.not(topic_id: nil)
+      problems_topics: Problem.find(problem_id).problems_topics
     }
 
     render json: CamelizeKeys.run(hash)

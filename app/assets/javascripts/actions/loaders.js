@@ -55,6 +55,7 @@ addActions(function () {
               hash['defaults'][stateKeyPart1] = data[0]
             }
 
+
             bindAction(_newState)(hash)
           })
         })

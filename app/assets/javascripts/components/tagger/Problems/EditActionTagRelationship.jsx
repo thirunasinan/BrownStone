@@ -57,15 +57,19 @@ App.components.tagger.problems.EditActionTagRelationship = React.createClass({
       var x =  parseInt(t.tagType.id) === parseInt(that.props.tagRelationship.tag.tagType.id)
       return x
     })
-    .reverse()
-    .map(function (option) {
+    tagOptions.unshift(this.props.store.defaults.blankActionTag)
+
+    var toCs = tagOptions.map(function (option) {
       return <option key={option.id} value={option.id}>{option.name}</option>;
     })
+
+
+
     return (<select
               ref={'selectActionTag'}
               className='tag-type-dropdown'
               value={this.props.tagRelationship.tag.id}
-              onChange={this.selectActionTag}>{tagOptions}</select>)
+              onChange={this.selectActionTag}>{toCs}</select>)
   },
 
 

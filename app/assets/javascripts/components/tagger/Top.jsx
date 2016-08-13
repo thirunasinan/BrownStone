@@ -18,6 +18,16 @@ App.components.tagger.Top = React.createClass({
           id: '',
           name: '',
           taggerCanCreateNew: false
+        },
+        blankActionTag: {
+          id: '',
+          name: '',
+          isNew: true,
+          tagType: {
+            id: '',
+            name: '',
+            taggerCanCreateNew: false
+          }
         }
       },
 
