@@ -107,8 +107,13 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
       tagName = <span>{inputTagName}{tagSearchResults}</span>
       openTagExplorer = <a onClick={this.openTagExplorer}>TE</a>
     } else {
-      tagName = <span>{tagRelationship.tag.name}</span>
       openTagExplorer = null
+      if (tagRelationship.taggedType === 'Problem') {
+        tagName = <span>{tagRelationship.tag.tagType.name + ": " + tagRelationship.tag.name}</span>
+      } else {
+        tagName = <span>{tagRelationship.tag.name}</span>
+
+      }
     }
 
 

@@ -9,12 +9,17 @@ App.components.tagger.problems.Tagger = React.createClass({
   },
 
   render: function () {
-    var trt = this.props.tagRelationshipType
-    var x = trt[0].toUpperCase() + trt.slice(1, trt.length)
-    var key = "Edit" + x + "TagRelationship"
-    var EditTagRelationship = App.components.tagger.problems[key]
     var that = this;
     var tagRelationships = this.props.tagRelationships.map(function (tagRelationship) {
+
+      var x = tagRelationship.tag.tagType.taggerCanCreateNew
+      var trt = x
+      ? 'NotAction'
+      : 'Action'
+
+      var key = "Edit" + trt + "TagRelationship"
+      var EditTagRelationship = App.components.tagger.problems[key]
+
       return <EditTagRelationship
               tagRelationshipSubType={that.props.tagRelationshipSubType}
               parentTagRelationshipClientId={that.props.parentTagRelationshipClientId}

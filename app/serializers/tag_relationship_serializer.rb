@@ -1,5 +1,5 @@
 class TagRelationshipSerializer < ActiveModel::Serializer
-  attributes :id, :description, :is_new, :client_id
+  attributes :id, :description, :is_new, :client_id, :tagged_type
   has_many :tag_relationships
   has_one :tag
 
@@ -10,5 +10,4 @@ class TagRelationshipSerializer < ActiveModel::Serializer
   def client_id
     object.id
   end
-
 end
