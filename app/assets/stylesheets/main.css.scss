@@ -103,7 +103,13 @@ a.save {
 .tag-list-item {
   &.edit-action-tag-relationship {
     outline: 1px solid rgb(200,200,200);
+    border: none;
   }
+}
+
+.tag-list-item.edit-topic-tag {
+  //outline: 1px solid rgb(240,240,240);
+  border: none;
 }
 
 .new-tag-or-not.old-tag {
