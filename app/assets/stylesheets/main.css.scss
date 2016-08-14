@@ -19,8 +19,6 @@ body {
     overflow-y: auto;
 }
 
-
-
 .tag-type-dropdown {
     width: 100%;
 }
@@ -101,8 +99,11 @@ a.save {
     }
 }
 
-.tag-list-item.edit-action-tag-relationship {
+
+.tag-list-item {
+  &.edit-action-tag-relationship {
     outline: 1px solid rgb(200,200,200);
+  }
 }
 
 .new-tag-or-not.old-tag {

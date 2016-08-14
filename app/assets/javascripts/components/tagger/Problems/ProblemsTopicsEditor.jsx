@@ -11,14 +11,6 @@ App.components.ProblemsTopicsEditor = React.createClass({
   render: function () {
     var ProblemTopicEditor = App.components.ProblemTopicEditor
     var that = this;
-
-    var buttons = (
-      <span>
-        <button onClick={this.saveProblemsTopics} className='btn btn-success'>save</button>
-        <button onClick={this.addNewProblemTopic} className='btn btn-success'>add new</button>
-      </span>
-    )
-
     var problemsTopics = this.props.problemsTopics.map(function (pt) {
       return <ProblemTopicEditor problemTopic={pt}
                           key={pt.clientId}
@@ -27,21 +19,14 @@ App.components.ProblemsTopicsEditor = React.createClass({
                           actions={that.props.actions} />
     })
     return (
-      <div>
-        <div className='row'>
-          <div className='col-xs-12'>
-            Topics Tagger
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-xs-12'>
-            {buttons}
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-xs-12'>
+      <div className='panel panel-success'>
+        <div className='tag-panel-body panel-body'>
+          <p>Topic Tagger</p>
+          <div className='list-group tag-list-group'>
             {problemsTopics}
           </div>
+          <a onClick={this.addNewProblemTopic} className='margined-a pull-left'>add topic tag</a>
+          <a onClick={this.saveProblemsTopics} className='margined-a pull-right save'>save</a>
         </div>
       </div>
     )

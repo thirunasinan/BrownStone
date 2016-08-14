@@ -45,6 +45,8 @@ App.components.tagger.problems.Problem = React.createClass({
             {alerts}
           </div>
           <ProblemsTopicsEditor problemsTopics={editedProblem.problemsTopics} actions={this.props.actions} problemId={editedProblem.id} store={this.props.store}/>
+          <br />
+          <br />
           {taggerStuff}
         </div>
       </div>

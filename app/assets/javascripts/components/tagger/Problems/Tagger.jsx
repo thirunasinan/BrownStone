@@ -26,8 +26,10 @@ App.components.tagger.problems.Tagger = React.createClass({
     })
 
 
-
-    var addTagRelationshipText = ['add', this.props.tagRelationshipSubType, "tag"].join(" ")
+    var nameForTag = this.props.tagRelationshipSubType === 'action'
+    ? "solution process"
+    : this.props.tagRelationshipSubType
+    var addTagRelationshipText = ['add', nameForTag, "tag"].join(" ")
     var addTagRelationship = <a className='margined-a pull-left' onClick={this.addTagRelationship} >{addTagRelationshipText}</a>
     if (this.props.tagRelationshipType === 'action') {
       var save = <a className='margined-a save pull-right' onClick={this.saveTagRelationships}>save</a>
@@ -35,11 +37,16 @@ App.components.tagger.problems.Tagger = React.createClass({
       var save = null;
     }
 
+    var title = this.props.tagRelationshipType === 'action'
+    ? <p>Solution Process Tagger</p>
+    : null
+
 
     if (this.props.tagRelationships.length) {
       return (
         <div className='panel panel-success'>
           <div className='tag-panel-body panel-body'>
+            {title}
             <div className='list-group tag-list-group'>
               {tagRelationships}
             </div>

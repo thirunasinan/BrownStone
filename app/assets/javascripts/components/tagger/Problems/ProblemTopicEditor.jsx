@@ -70,15 +70,17 @@ App.components.ProblemTopicEditor = React.createClass({
     }
 
     return (
-      <div className='row'>
-        <div className='col-xs-9'>
-          {mainSection}
-        </div>
-        <div className='col-xs-3'>
-          <span className='pull-right'>
-            remove:
-            <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeProblemTopic} type='checkbox' />
-          </span>
+      <div className='list-group-item tag-list-item edit-topic-tag'>
+        <div className='row'>
+          <div className='col-xs-9'>
+            {mainSection}
+          </div>
+          <div className='col-xs-3'>
+            <span className='pull-right'>
+              X:
+              <input checked={this.markedForRemoval()} ref={'remove'} onChange={this.removeProblemTopic} type='checkbox' />
+            </span>
+          </div>
         </div>
       </div>
     )
