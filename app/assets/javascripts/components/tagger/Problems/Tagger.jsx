@@ -42,7 +42,7 @@ App.components.tagger.problems.Tagger = React.createClass({
     : null
 
 
-    if (this.props.tagRelationships.length) {
+    if (this.props.tagRelationships.length || this.props.tagRelationshipType === 'action') {
       return (
         <div className='panel panel-success'>
           <div className='tag-panel-body panel-body'>
