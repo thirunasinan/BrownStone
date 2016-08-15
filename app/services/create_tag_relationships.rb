@@ -32,6 +32,8 @@ module CreateTagRelationships
         tr1.update(description: tag_relationship[:description])
       end
       self.run(tr1.id, "TagRelationship", tag_relationship[:tag_relationships] || [])
+    else # take care of any dangling sub-tags
+      self.run(tagged_id, tagged_type, tag_relationship[:tag_relationships] || [])
     end
   end
 
