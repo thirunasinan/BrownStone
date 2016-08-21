@@ -1,48 +1,7 @@
-
-
-
-(have tag aggregator camlize things before sending it over)
-
-options
-  tags
-  tagTypes
-  subjects
-  topics
-
-
-
-tagRelationships
-  id
-  clientId
-  description
-  isNew
-  markedForRemoval
-
-  tag
-    id
-    clientId
-    name
-    isNew
-
-    tagType
-      id
-      clientId
-      name
-
-
---
-
-
-
-markForRemoval
-
-addNew
-
-selectTag
-  updateTagId
-  updateTagName
-
-updateTagName
-
-
-
+Tag explorer:
+Subject filter - can’t be blank
+Tags listed by group- tag can belong to multiple groups and therefore be repeated
+“Add new tag” button
+Clears modal so focus is just on making a new tag (with subject / tag grup dropdowns / button to create new tag group)
+Add new tag/add new group - fields should match same fields in tag manager
+Add notes field for tag

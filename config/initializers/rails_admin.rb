@@ -37,6 +37,7 @@ RailsAdmin.config do |config|
     "Tag",
     "TagType",
     "Topic",
+    "TagGroup",
   ]
 
   config.actions do
@@ -265,15 +266,27 @@ RailsAdmin.config do |config|
 
     create do
       field :tag_type
+      field :subjects
+      field :tag_groups
       field :name
       field :description
     end
 
     edit do
       field :tag_type
+      field :subjects
+      field :tag_groups
       field :name
       field :description
     end
+  end
+
+  config.model 'Topic' do
+    navigation_label 'Other'
+  end
+
+  config.model 'TagGroup' do
+    navigation_label 'Other'
   end
 
   config.model 'User' do
