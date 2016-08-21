@@ -6,11 +6,6 @@ App.components.Modal = React.createClass({
     : 'tagger-modal tagger-modal-inactive'
   },
 
-  updateTagExplorerQuery: function () {
-    var value = this.refs.tagExplorer.getDOMNode().value
-    this.props.actions.updateTagExplorerQuery(value)
-  },
-
   selectTag: function (tagData) {
     var that = this;
     return function (e) {

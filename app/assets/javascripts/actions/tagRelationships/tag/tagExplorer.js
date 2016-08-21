@@ -4,26 +4,17 @@ addActions(function () {
 
   return {
     toggleTagExplorer: function (state, problemId, tagRelationship) {
-      var hash = {
-        tagExplorerActive: !state.tagExplorerActive,
-        tagExplorerTagRelationship: tagRelationship,
-        tagExplorerProblemId: problemId
-      }
-      return _newState(state, hash)
-    },
-
-    updateTagExplorerQuery: function (state, value) {
-      var tagTypeName = state.tagExplorerTagRelationship.tag.tagType.name
-      if (value) {
-        return function (bindAction) {
-          bindAction(_newState)({tagExplorerQuery: value})
-          $.get(['search_tags', tagTypeName, value].join('/'), function (data) {
-            var hash = {tagExplorerSearchResults: data}
-            bindAction(_newState)(hash)
-          }, 'json')
-        }
-      } else {
-        return _newState(state, {tagExplorerSearchResults: [], tagExplorerQuery: ''})
+      return function (bindAction) {
+        var subjectId = state.subjectOptions[0].id
+        $.get('/tag_groups/' + subjectId, function (data) {
+          var hash = {
+            tagExplorerActive: !state.tagExplorerActive,
+            tagExplorerTagRelationship: tagRelationship,
+            tagExplorerProblemId: problemId,
+            tagGroups: data
+          }
+          bindAction(_newState)(hash)
+        }, 'json')
       }
     },
   }
