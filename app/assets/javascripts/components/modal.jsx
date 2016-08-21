@@ -27,13 +27,10 @@ App.components.Modal = React.createClass({
 
   render: function () {
     var that = this;
-    var items = this.props.store.tagExplorerSearchResults.map(function (sr) {
-      return (
-        <a onClick={that.selectTag(sr)} className='list-group-item'>{sr.name}</a>
-      )
+    var TagGroup = App.components.tagger.TagGroup
+    var tagGroups = that.props.store.tagGroups.map(function (tagGroup, i) {
+      return <TagGroup key={i} actions={that.props.actions} store={that.props.store} tagGroup={tagGroup} />
     })
-
-    var searchResults = <div className='list-group'>{items}</div>
 
     return (
       <div className={this.className()}>
@@ -45,18 +42,10 @@ App.components.Modal = React.createClass({
             </div>
           </div>
           <br />
-          <div className='row'>
-            <div className='col-xs-11'>
-              <input ref={'tagExplorer'} onChange={this.updateTagExplorerQuery} value={this.props.store.tagExplorerQuery} />
-            </div>
-              <div className='col-xs-1'>
-                <button className='btn btn-success pull-right' onClick={this.newTag}>new</button>
-              </div>
-          </div>
           <br />
           <div className='row'>
             <div className='col-xs-12'>
-              {searchResults}
+              {tagGroups}
             </div>
           </div>
         </div>

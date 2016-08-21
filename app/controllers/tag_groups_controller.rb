@@ -5,6 +5,6 @@ class TagGroupsController < ApplicationController
                           .references(tags: [:subjects])
                          .where("subjects.id = ?", params[:subject_id] || Subject.last.id)
 
-    render json: CamelizeKeys.run(tag_groups)
+    render json: CamelizeKeys.run(tag_groups), root: false
   end
 end
