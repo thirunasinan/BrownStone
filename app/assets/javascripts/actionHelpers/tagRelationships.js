@@ -1,22 +1,33 @@
 addActionHelpers(function () {
 
-  return {
-    newTagRelationship:  function (state, tagType) {
-      return {
-        id: null,
-        description: null,
-        tagRelationships: [],
-        tag: {
-          isNew: true,
-          id: '',
-          name: "",
-          tagType: tagType,
-        },
-        clientId: Math.random(),
+  var newTagRelationshipHelper = function (state, tagType) {
+    var tagRelationships;
+    if (tagType.name === 'KNOWLEDGE' || tagType.name === 'IS') {
+      tagRelationships = []
+    } else {
+      tagRelationships = ['KNOWLEDGE', 'IS'].map(function (tagTypeName) {
+        var tagType = state.tagTypeOptions.find(function (tt) { return tt.name === tagTypeName })
+        return newTagRelationshipHelper(state, tagType)
+      })
+    }
+    return {
+      id: null,
+      description: null,
+      tagRelationships: tagRelationships,
+      tag: {
         isNew: true,
-        markedForRemoval: false,
-      }
-    },
+        id: '',
+        name: "",
+        tagType: tagType,
+      },
+      clientId: Math.random(),
+      isNew: true,
+      markedForRemoval: false,
+    }
+  }
+
+  return {
+    newTagRelationship: newTagRelationshipHelper,
 
     updateTag: function (tagRelationship, hash) {
       var tag = tagRelationship.tag
