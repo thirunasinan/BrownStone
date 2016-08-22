@@ -12,6 +12,7 @@ App.components.tagger.Top = React.createClass({
       actionTagTypeOptions: [],
       actionTagOptions: [],
       tagGroups: [],
+      
 
       defaults: {
         topic: {},

@@ -6,6 +6,11 @@ App.components.Modal = React.createClass({
     : 'tagger-modal tagger-modal-inactive'
   },
 
+  selectSubject: function () {
+    var value = this.refs.subjectSelect.getDOMNode().value
+    this.props.actions.filterTagExplorerBySubject(value)
+  },
+
   selectTag: function (tagData) {
     var that = this;
     return function (e) {
@@ -28,6 +33,18 @@ App.components.Modal = React.createClass({
   render: function () {
     var that = this;
     var TagGroup = App.components.tagger.TagGroup
+
+    var subjectOptions = that.props.store.subjectOptions.map(function (subject, i) {
+      return <option key={i} value={subject.id}>{subject.name}</option>
+    });
+
+    var subjectSelect = (
+      <select ref="subjectSelect" onChange={this.selectSubject}>
+        {subjectOptions}
+      </select>
+
+    )
+
     var tagGroups = that.props.store.tagGroups.map(function (tagGroup, i) {
       return <TagGroup key={i} actions={that.props.actions} store={that.props.store} tagGroup={tagGroup} />
     })
@@ -36,7 +53,9 @@ App.components.Modal = React.createClass({
       <div className={this.className()}>
         <div className='tagger-modal-content'>
           <div className='row'>
-            <div className='col-xs-11' />
+            <div className='col-xs-11'>
+              {subjectSelect}
+            </div>
             <div className='col-xs-1' >
               <button onClick={this.props.actions.toggleTagExplorer} className='btn btn-danger pull-right'>close</button>
             </div>
