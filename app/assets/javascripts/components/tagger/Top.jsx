@@ -12,7 +12,7 @@ App.components.tagger.Top = React.createClass({
       actionTagTypeOptions: [],
       actionTagOptions: [],
       tagGroups: [],
-      
+
 
       defaults: {
         topic: {},
@@ -44,7 +44,8 @@ App.components.tagger.Top = React.createClass({
       tagExplorerQuery: null,
       tagExplorerTagRelationship: null,
       tagExplorerProblemId: null,
-      tagExplorerSearchResults: []
+      tagExplorerSearchResults: [],
+      tagExplorerMode: 'find'
     }
   },
 

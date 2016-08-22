@@ -14,6 +14,14 @@ addActions(function () {
 
   return {
 
+    tagExplorerFindMode: function (state) {
+      return _newState(state, {tagExplorerMode: 'find'})
+    },
+
+    tagExplorerCreateMode: function (state) {
+      return _newState(state, {tagExplorerMode: 'create'})
+    },
+
     selectTagInTagExplorer: function (state, tag) {
       return function (bindAction) {
         var problemId = state.tagExplorerProblemId;
