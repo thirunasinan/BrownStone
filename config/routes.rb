@@ -45,7 +45,7 @@ Rails.application.routes.draw do
 
   get 'topics_for_select', to: 'topics#for_select'
 
-  get 'tag_groups/:subject_id', to: 'tag_groups#index' 
+  get 'tag_groups/:tag_type_id/:subject_id', to: 'tag_groups#index' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

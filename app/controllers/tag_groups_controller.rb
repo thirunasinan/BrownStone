@@ -1,9 +1,10 @@
 class TagGroupsController < ApplicationController
 
   def index
-    tag_groups = TagGroup.includes(tags: [:subjects])
-                          .references(tags: [:subjects])
-                         .where("subjects.id = ?", params[:subject_id] || Subject.last.id)
+    tag_groups = TagGroup.includes(tags: [:tag_type, :subjects])
+                          .references(tags: [:tag_type, :subjects])
+                          .where("tag_types.id = ?", params[:tag_type_id])
+                         .where("subjects.id = ?", params[:subject_id])
 
     render json: CamelizeKeys.run(tag_groups), root: false
   end

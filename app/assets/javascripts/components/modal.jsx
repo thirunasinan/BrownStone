@@ -26,7 +26,6 @@ App.components.Modal = React.createClass({
     var tagData = this.props.store.tagExplorerTagRelationship.tag
     tagData.name = value
     tagData.isNew = true
-    console.log('tagData', tagData)
     this.selectTag(tagData)()
   },
 
@@ -49,26 +48,31 @@ App.components.Modal = React.createClass({
       return <TagGroup key={i} actions={that.props.actions} store={that.props.store} tagGroup={tagGroup} />
     })
 
-    return (
-      <div className={this.className()}>
-        <div className='tagger-modal-content'>
-          <div className='row'>
-            <div className='col-xs-11'>
-              {subjectSelect}
+    if (!this.props.active) {
+      return null
+    } else {
+
+      return (
+        <div className={this.className()}>
+          <div className='tagger-modal-content'>
+            <div className='row'>
+              <div className='col-xs-11'>
+                {subjectSelect}
+              </div>
+              <div className='col-xs-1' >
+                <button onClick={this.props.actions.toggleTagExplorer} className='btn btn-danger pull-right'>close</button>
+              </div>
             </div>
-            <div className='col-xs-1' >
-              <button onClick={this.props.actions.toggleTagExplorer} className='btn btn-danger pull-right'>close</button>
-            </div>
-          </div>
-          <br />
-          <br />
-          <div className='row'>
-            <div className='col-xs-12'>
-              {tagGroups}
+            <br />
+            <br />
+            <div className='row'>
+              <div className='col-xs-12'>
+                {tagGroups}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 })
