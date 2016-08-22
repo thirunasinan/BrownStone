@@ -76,6 +76,7 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
   },
 
   openTagExplorer: function (e) {
+    console.log('this.props.actions', this.props.actions)
     this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tagRelationship)
   },
 

@@ -7,9 +7,9 @@ App.components.tagger.TagGroup = React.createClass({
       return <TagGroupTag key={i} actions={that.props.actions} store={that.props.store}
                           tag={tag} />
     })
-    return (<div>
+    return (<div className='list-group'>
       <div>
-        <strong>{tagGroup.name}</strong>
+        <h5>{tagGroup.name}</h5>
       </div>
       <div>
         {tags}
