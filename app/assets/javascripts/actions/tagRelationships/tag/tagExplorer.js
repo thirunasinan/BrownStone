@@ -62,7 +62,7 @@ addActions(function () {
               tagExplorerActive: !state.tagExplorerActive,
               tagExplorerTagRelationship: tagRelationship,
               tagExplorerProblemId: problemId,
-              tagExplorerSelectedSubject: subjectId,
+              tagExplorerSubjectId: subjectId,
               tagGroups: data
             }
             bindAction(_newState)(hash)

@@ -38,7 +38,7 @@ App.components.Modal = React.createClass({
     });
 
     var subjectSelect = (
-      <select ref="subjectSelect" onChange={this.selectSubject}>
+      <select ref="subjectSelect" onChange={this.selectSubject} value={that.props.store.tagExplorerSubjectId}>
         {subjectOptions}
       </select>
 
@@ -67,7 +67,9 @@ App.components.Modal = React.createClass({
             <br />
             <div className='row'>
               <div className='col-xs-12'>
-                {tagGroups}
+                <div className='tag-groups-container'>
+                  {tagGroups}
+                </div>
               </div>
             </div>
           </div>
