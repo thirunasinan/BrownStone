@@ -14,6 +14,10 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
   onBlur: function () {
     var that = this;
     setTimeout(function () {that.setState({focused: false})}, 300)
+    var tag = this.props.tagRelationship.tag
+    if (!(tag.id || tag.createdInTagExplorer)) {
+      this.props.actions.updateTagSearchQuery(this.props.problemId, this.props.tagRelationship.clientId, this.props.tagRelationshipSubType, '')
+    }
   },
 
   onFocus: function () {
@@ -76,7 +80,6 @@ App.components.tagger.problems.EditNotActionTagRelationship = React.createClass(
   },
 
   openTagExplorer: function (e) {
-    console.log('this.props.actions', this.props.actions)
     this.props.actions.toggleTagExplorer(this.props.problemId, this.props.tagRelationship)
   },
 

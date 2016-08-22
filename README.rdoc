@@ -1,17 +1,6 @@
---
-api endpoint
-  tag_groups
-    filtered by subject_id
-
---
-
-
-
 Tag explorer:
-Subject filter - can’t be blank
-Tags listed by group- tag can belong to multiple groups and therefore be repeated
+
 “Add new tag” button
 Clears modal so focus is just on making a new tag (with subject / tag group drop-downs / button to create new tag group)
 Add new tag/add new group - fields should match same fields in tag manager
-
 allow them to add description if creating new tag
