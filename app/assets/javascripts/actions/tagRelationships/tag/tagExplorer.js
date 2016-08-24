@@ -12,6 +12,14 @@ addActions(function () {
     tagGroups: []
   }
 
+  var updateNewTag = function (state, hash) {
+    var tr = state.tagExplorerTagRelationship
+    var tag = tr.tag
+    var updatedTag = Object.assign({}, tag, hash)
+    var updatedTr = Object.assign({}, tr, {tag: updatedTag})
+    return Object.assign({}, state, {tagExplorerTagRelationship: updatedTr})
+  }
+
   return {
 
     tagExplorerFindMode: function (state) {
@@ -20,6 +28,41 @@ addActions(function () {
 
     tagExplorerCreateMode: function (state) {
       return _newState(state, {tagExplorerMode: 'create'})
+    },
+
+    addRelationToNewTagInTagExplorer: function (state, relationName, entityName) {
+      var tr = state.tagExplorerTagRelationship
+      var newRelation = {clientId: Math.random()}
+      newRelation[entityName] = {id: null, name: ''}
+      var rs = tr.tag[relationName].concat([newRelation])
+      var hash = {}
+      hash[relationName] = rs
+      return updateNewTag(state, hash)
+    },
+
+    removeRelationFromNewTagInTagExplorer: function (state, relationName, clientId) {
+      var tr = state.tagExplorerTagRelationship
+      var rs = tr.tag[relationName].filter(function (r) { return r.clientId !== clientId})
+      var hash = {}
+      hash[relationName] = rs
+      return updateNewTag(state, hash)
+    },
+
+    updateRelationForNewTagInTagExplorer: function (state, clientId, relationName, entityName, value) {
+      var tr = state.tagExplorerTagRelationship
+      var rs = tr.tag[relationName].map(function (r) {
+        if (r.clientId === clientId) {
+          var entity = Object.assign({}, r[entityName], {id: value})
+          var hash = {}
+          hash[entityName] = entity
+          return Object.assign({}, r, hash)
+        } else {
+          return r
+        }
+      }, this)
+      var hash2 = {}
+      hash2[relationName] = rs
+      return updateNewTag(state, hash2)
     },
 
     selectTagInTagExplorer: function (state, tag) {

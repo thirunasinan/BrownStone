@@ -6,8 +6,8 @@ App.components.Modal = React.createClass({
     : 'tagger-modal tagger-modal-inactive'
   },
 
-  selectSubject: function () {
-    var value = this.refs.subjectSelect.getDOMNode().value
+  selectSubjectForFind: function () {
+    var value = this.refs.selectSubjectForFind.getDOMNode().value
     this.props.actions.filterTagExplorerBySubject(value)
   },
 
@@ -29,20 +29,69 @@ App.components.Modal = React.createClass({
     this.selectTag(tagData)()
   },
 
+  dropDownForCreate: function (entityName, onChange, value, refId) {
+    var options = [{id: '', name: null}].concat(this.props.store[entityName + 'Options']).map(function (entity, i) {
+      return <option key={i} value={entity.id}>{entity.name}</option>
+    })
+    var dropdown = (
+      <select ref={refId} onChange={onChange} value={value}>
+        {options}
+      </select>
+    )
+    return dropdown
+  },
+
+  selectEntityInCreate: function (relationName, entityName, clientId) {
+    return (function () {
+      var value = this.refs[clientId].getDOMNode().value
+      this.props.actions.updateRelationForNewTagInTagExplorer(clientId, relationName, entityName, value)
+    }).bind(this)
+  },
+
+  addRelationToNewTag: function (relationName, entityName) {
+    this.props.actions.addRelationToNewTagInTagExplorer(relationName, entityName)
+  },
+
+  removeRelationFromNewTagInTagExplorer: function (relationName, clientId) {
+    return (function () {
+      this.props.actions.removeRelationFromNewTagInTagExplorer(relationName, clientId)
+    }).bind(this)
+  },
+
+  removeSubjectFromNewTagInTagExplorer: function (clientId) {
+    return (function () {
+      this.props.actions.removeSubjectFromNewTagInTagExplorer(clientId)
+    }).bind(this)
+  },
+
+  dropDownsForCreate: function (relationName, entityName) {
+    var dropdowns = this.props.store.tagExplorerTagRelationship.tag[relationName].map(function (r) {
+      var onChange = this.selectEntityInCreate(relationName, entityName, r.clientId)
+      return (
+        <span>
+          {this.dropDownForCreate(entityName, onChange, r[entityName].id || '', r.clientId)}
+          <span>&nbsp;</span>
+          <a onClick={this.removeRelationFromNewTagInTagExplorer(relationName, r.clientId)}>X</a>
+          <span>&nbsp;&nbsp;</span>
+        </span>
+      )
+    }, this)
+    return (
+      <div>
+        {entityName + "s :"}
+        {dropdowns}
+        <span>&nbsp;&nbsp;</span>
+        <a onClick={this.addRelationToNewTag(relationName, entityName)}>add</a>
+      </div>
+    )
+  },
+
   render: function () {
+    console.log('this.props.store', this.props.store)
     var that = this;
     var TagGroup = App.components.tagger.TagGroup
 
-    var subjectOptions = that.props.store.subjectOptions.map(function (subject, i) {
-      return <option key={i} value={subject.id}>{subject.name}</option>
-    });
 
-    var subjectSelect = (
-      <select ref="subjectSelect" onChange={this.selectSubject} value={that.props.store.tagExplorerSubjectId}>
-        {subjectOptions}
-      </select>
-
-    )
 
     var tagGroups = that.props.store.tagGroups.map(function (tagGroup, i) {
       return <TagGroup key={i} actions={that.props.actions} store={that.props.store} tagGroup={tagGroup} />
@@ -59,7 +108,7 @@ App.components.Modal = React.createClass({
           <span>
             <div className='row'>
               <div className='col-xs-12'>
-                {subjectSelect}
+                {this.subjectSelect(this.selectSubjectForFind, this.props.store.tagExplorerSubjectId, 'selectSubjectForFind')}
               </div>
             </div>
             <br />
@@ -76,7 +125,24 @@ App.components.Modal = React.createClass({
       } else {
         var tagExplorerFindModeButtonClassName = 'btn btn-default'
         var tagExplorerCreateModeButtonClassName = 'btn btn-info'
-        var taggerModalMainContent = null
+        var taggerModalMainContent = (
+          <span>
+            <div className='row'>
+              <div className='col-xs-12'>
+                {this.dropDownsForCreate('subjectsTags', 'subject')}
+              </div>
+            </div>
+            <br />
+            <br />
+            <div className='row'>
+              <div className='col-xs-12'>
+                <div className='tag-groups-container'>
+                  {null}
+                </div>
+              </div>
+            </div>
+          </span>
+        )
       }
 
 

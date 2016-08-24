@@ -19,6 +19,26 @@ addActionHelpers(function () {
         id: '',
         name: "",
         tagType: tagType,
+        subjectsTags: [
+          {
+            clientId: Math.random(),
+            id: null,
+            subject: {
+              id: null,
+              name: null
+            }
+          }
+        ],
+        tagGroupsTags: [
+          {
+            clientId: Math.random(),
+            id: null,
+            tagGroup: {
+              id: null,
+              name: null
+            }
+          }
+        ]
       },
       clientId: Math.random(),
       isNew: true,

@@ -1,6 +1,9 @@
 Tag explorer:
 
 “Add new tag” button
-Clears modal so focus is just on making a new tag (with subject / tag group drop-downs / button to create new tag group)
 Add new tag/add new group - fields should match same fields in tag manager
-allow them to add description if creating new tag
+allow them to add description (of tag) if creating new tag
+
+how this will work with state :
+
+update tag within tagExplorerTagRelationship
