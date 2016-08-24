@@ -1,6 +1,6 @@
 class Tag < ActiveRecord::Base
   belongs_to :tag_type
-  has_many :tag_relationships
+  has_many :tag_relationships, dependent: :nullify
   has_and_belongs_to_many :tag_groups
   has_and_belongs_to_many :subjects
   validates_uniqueness_of :name
