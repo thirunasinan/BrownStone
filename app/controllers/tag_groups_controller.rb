@@ -8,4 +8,8 @@ class TagGroupsController < ApplicationController
 
     render json: CamelizeKeys.run(tag_groups), root: false
   end
+
+  def for_select
+    render json: CamelizeKeys.run(TagGroup.all), root: false
+  end
 end

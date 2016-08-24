@@ -39,7 +39,7 @@ addActions(function () {
     taggerComponentDidMount: function (state) {
       var that = this;
       return function (bindAction) {
-        ['sources', 'tag_types', 'action_tag_types', 'action_tags', 'subjects', 'topics'].map(function (name) {
+        ['tag_groups', 'sources', 'tag_types', 'action_tag_types', 'action_tags', 'subjects', 'topics'].map(function (name) {
           var url = name + "_for_select"
           var stateKeyPart1 = camelCase(name.slice(0, name.length -1))
           var stateKey = stateKeyPart1 + "Options"

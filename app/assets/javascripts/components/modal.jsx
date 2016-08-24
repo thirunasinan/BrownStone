@@ -29,7 +29,7 @@ App.components.Modal = React.createClass({
     this.selectTag(tagData)()
   },
 
-  dropDownForCreate: function (entityName, onChange, value, refId) {
+  dropDown: function (entityName, onChange, value, refId) {
     var options = [{id: '', name: null}].concat(this.props.store[entityName + 'Options']).map(function (entity, i) {
       return <option key={i} value={entity.id}>{entity.name}</option>
     })
@@ -49,7 +49,9 @@ App.components.Modal = React.createClass({
   },
 
   addRelationToNewTag: function (relationName, entityName) {
-    this.props.actions.addRelationToNewTagInTagExplorer(relationName, entityName)
+    return (function () {
+      this.props.actions.addRelationToNewTagInTagExplorer(relationName, entityName)
+    }).bind(this)
   },
 
   removeRelationFromNewTagInTagExplorer: function (relationName, clientId) {
@@ -64,12 +66,12 @@ App.components.Modal = React.createClass({
     }).bind(this)
   },
 
-  dropDownsForCreate: function (relationName, entityName) {
+  dropDownsForCreate: function (relationName, entityName, label) {
     var dropdowns = this.props.store.tagExplorerTagRelationship.tag[relationName].map(function (r) {
       var onChange = this.selectEntityInCreate(relationName, entityName, r.clientId)
       return (
         <span>
-          {this.dropDownForCreate(entityName, onChange, r[entityName].id || '', r.clientId)}
+          {this.dropDown(entityName, onChange, r[entityName].id || '', r.clientId)}
           <span>&nbsp;</span>
           <a onClick={this.removeRelationFromNewTagInTagExplorer(relationName, r.clientId)}>X</a>
           <span>&nbsp;&nbsp;</span>
@@ -77,11 +79,13 @@ App.components.Modal = React.createClass({
       )
     }, this)
     return (
-      <div>
-        {entityName + "s :"}
-        {dropdowns}
-        <span>&nbsp;&nbsp;</span>
-        <a onClick={this.addRelationToNewTag(relationName, entityName)}>add</a>
+      <div className='row'>
+        <div className='col-xs-3'>{label + " : "}</div>
+        <div className='col-xs-9'>
+          {dropdowns}
+          <span>&nbsp;&nbsp;</span>
+          <a onClick={this.addRelationToNewTag(relationName, entityName)}>add</a>
+        </div>
       </div>
     )
   },
@@ -108,7 +112,7 @@ App.components.Modal = React.createClass({
           <span>
             <div className='row'>
               <div className='col-xs-12'>
-                {this.subjectSelect(this.selectSubjectForFind, this.props.store.tagExplorerSubjectId, 'selectSubjectForFind')}
+                {this.dropDown('subject', this.selectSubjectForFind, this.props.store.tagExplorerSubjectId, 'selectSubjectForFind')}
               </div>
             </div>
             <br />
@@ -129,7 +133,9 @@ App.components.Modal = React.createClass({
           <span>
             <div className='row'>
               <div className='col-xs-12'>
-                {this.dropDownsForCreate('subjectsTags', 'subject')}
+                {this.dropDownsForCreate('subjectsTags', 'subject', 'assign subjects')}
+                <br />
+                {this.dropDownsForCreate('tagGroupsTags', 'tagGroup', 'assign pre-existing tag groups')}
               </div>
             </div>
             <br />
