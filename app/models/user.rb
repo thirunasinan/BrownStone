@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
   private
 
   def send_the_invite
-    #User.invite!(email: self.email)
+    User.invite!(email: self.email, :skip_invitation => true)
     # https://github.com/scambra/devise_invitable/wiki/Invite-a-Resource-(or-User)-that-Has-Already-Signed-Up-without-Invitation
-    self.invite!(User.find_or_create_by(email: "joshalbro@gmail.com"))
+    # self.invite!(User.find_or_create_by(email: "joshalbro@gmail.com"))
   end
 
 
