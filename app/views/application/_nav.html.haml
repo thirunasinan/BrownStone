@@ -2,7 +2,7 @@
 
 .container-fluid
 .navbar-header
-  = link_to "Brown", "/", {class: "navbar-brand"}
+  = link_to image_tag('/logo.png'), "/", {class: "navbar-brand"}
 %ul.nav.navbar-nav
 
   - if current_user && (current_user.is_admin or current_user.is_teacher)
