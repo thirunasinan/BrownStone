@@ -12,8 +12,8 @@
 			<%= select_tag :tags, options_from_collection_for_select(@tags,"id","name"), {:multiple => :multiple, :class => 'select2' } %>
 		</div>
 		<div class="col-md-2 form-group">
-			<label>  . </label>
-			<input type="button" value="search" class="btn btn-primary col-md-12"/>
+			<label> . </label>
+			<input type="button" value="search" class="btn btn-primary col-md-12" id="search"/>
 		</div >
 	</div>
 
@@ -22,20 +22,20 @@
 	</div>
 </div>
 
-<script type="text/babel">
-
-  var CustomRow = React.createClass({
-  	render: function() {
-  		return ( <h2> Hellow </h2>)
-  	}
-  });
-
-  ReactDOM.render(<CustomRow />, document.getElementById('app-container'));
-</script>
-
 <script>
 $(document).ready(function(){
 	$('.select2').select2()
+
+	$('#search').on('click', function () {
+		$.ajax({
+			url: "/get_problems",
+			type: 'POST',
+			data: {"id": $('#tags').val()}, 
+			success: function(result){
+        $('.table-container').html(result);
+    	}
+  	});
+	})
 
 	$('#subject').on('change', function(e) {
 		var id = parseInt($(this).val())
