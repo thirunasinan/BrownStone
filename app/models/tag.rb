@@ -3,6 +3,7 @@ class Tag < ActiveRecord::Base
   has_many :tag_relationships, dependent: :nullify
   has_and_belongs_to_many :tag_groups
   has_and_belongs_to_many :subjects
+  has_and_belongs_to_many :problems
   validates_uniqueness_of :name
   validates_presence_of :name
 

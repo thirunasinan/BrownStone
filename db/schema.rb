@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821212622) do
+ActiveRecord::Schema.define(version: 20161006182838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,14 @@ ActiveRecord::Schema.define(version: 20160821212622) do
 
   add_index "problems", ["section_id"], name: "index_problems_on_section_id", using: :btree
   add_index "problems", ["source_id"], name: "index_problems_on_source_id", using: :btree
+
+  create_table "problems_tags", force: :cascade do |t|
+    t.integer "problem_id"
+    t.integer "tag_id"
+  end
+
+  add_index "problems_tags", ["problem_id"], name: "index_problems_tags_on_problem_id", using: :btree
+  add_index "problems_tags", ["tag_id"], name: "index_problems_tags_on_tag_id", using: :btree
 
   create_table "problems_texts", force: :cascade do |t|
     t.integer "problem_id"
@@ -231,6 +239,8 @@ ActiveRecord::Schema.define(version: 20160821212622) do
   add_foreign_key "notes", "assessments"
   add_foreign_key "problems", "sections"
   add_foreign_key "problems", "sources"
+  add_foreign_key "problems_tags", "problems"
+  add_foreign_key "problems_tags", "tags"
   add_foreign_key "problems_texts", "problems"
   add_foreign_key "problems_texts", "texts"
   add_foreign_key "problems_topics", "problems"

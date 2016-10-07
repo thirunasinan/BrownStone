@@ -2,7 +2,7 @@
 
 .container-fluid
 .navbar-header
-  = link_to image_tag('/logo.png'), "/", {class: "navbar-brand"}
+  = link_to image_tag('/logoo.png'), "/", {class: "navbar-brand"}
 %ul.nav.navbar-nav
 
   - if current_user && (current_user.is_admin or current_user.is_teacher)
@@ -33,9 +33,9 @@
 
   - if current_user
     %li
-      = link_to 'log out', '/users/sign_out', method: 'delete'
+      = link_to 'Log Out', '/users/sign_out', method: 'delete'
   - else
     %li
-      = link_to 'log in', '/users/sign_in'
+      = link_to 'Log In', '/users/sign_in'
     %li
-      = link_to 'sign up', '/users/sign_up'
+      = link_to 'Sign Up', '/users/sign_up'

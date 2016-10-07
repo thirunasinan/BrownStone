@@ -6,7 +6,8 @@ class HomeController < ApplicationController
       elsif current_user.is_teacher
         render 'teacher'
       else
-        render 'student'
+        # render 'student'
+        redirect_to '/students'
       end
     else
       redirect_to new_user_session_path

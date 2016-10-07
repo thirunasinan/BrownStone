@@ -9,6 +9,25 @@ body {
   }
 }
 
+.container label {
+    font-weight: 200;
+    color: #aaa;
+}
+
+.container h2 {
+    font-size: 26px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+.table-container{
+    margin-top: 30px;
+}
+
+
+select {
+    width: 100%
+}
+
 .navbar-header {
     .navbar-brand {
         padding: 0 15px;

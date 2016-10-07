@@ -31,6 +31,8 @@ class Problem < ActiveRecord::Base
 
   around_save :process_answer_choices
 
+  has_and_belongs_to_many :tags
+
   attr_accessor :raw_answer_choices, :answer_choices_attributes
 
   ransacker :number do

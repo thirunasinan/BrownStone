@@ -49,6 +49,10 @@ Rails.application.routes.draw do
 
   get 'tag_groups_for_select', to: 'tag_groups#for_select'
 
+  get 'students', to: 'students#index'
+
+  get 'tags', to: 'students#get_tags'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
