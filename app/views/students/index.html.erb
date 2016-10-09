@@ -7,7 +7,12 @@
 			<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
 		@subject.first.id), {:class => 'select2'} %>
 		</div>
-		<div class="col-md-8 form-group">
+		<div class="col-md-3 form-group">
+			<label for="source">Source</label>
+			<%= select_tag :source, options_from_collection_for_select(@sources,"id","name",
+		@sources.first.id), {:class => 'select2'} %>
+		</div>
+		<div class="col-md-5 form-group">
 			<label for="tags">Tags</label>
 			<%= select_tag :tags, options_from_collection_for_select(@tags,"id","name"), {:multiple => :multiple, :class => 'select2' } %>
 		</div>
@@ -30,24 +35,37 @@ $(document).ready(function(){
 		$.ajax({
 			url: "/get_problems",
 			type: 'POST',
-			data: {"id": $('#tags').val()}, 
+			data: {
+				"soutce_id": $("#source").val(),
+				"tag_id": $('#tags').val()
+			}, 
 			success: function(result){
-        $('.table-container').html(result);
-    	}
-  	});
+	        	$('.table-container').html(result);
+	    	}
+	  	});
 	})
 
 	$('#subject').on('change', function(e) {
 		var id = parseInt($(this).val())
-		$.ajax({url: "/tags", data: {"id": id}, success: function(result){
-        console.log(result);
-        var options = []
-        $.each(result.tags, function(i, obj) {
-        	options.push("<option value=" + obj.id+">" +obj.name +"</option>" )
-        })
+		$.ajax({
+			url: "/tags", data: {"id": id}, 
+			success: function(result){
+	        console.log(result);
 
-				$('#tags').html(options.join("")).select2('destroy').select2();
-    }});
+	        var tag_options = [], source_option = [];
+	        $.each(result.sources, function(i, obj) {
+	        	source_option.push("<option value=" + obj.id+">" +obj.name +"</option>" )
+	        })
+
+			$('#source').html(source_option.join("")).select2('destroy').select2();
+
+
+	        $.each(result.tags, function(i, obj) {
+	        	tag_options.push("<option value=" + obj.id+">" +obj.name +"</option>" )
+	        })
+
+			$('#tags').html(tag_options.join("")).select2('destroy').select2();
+	    }});
 	})
 })
 </script>
