@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Brown</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <!-- latex rendering -->
@@ -15,17 +18,34 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <%= render 'nav' %>
+<body class="skin-blue sidebar-mini">
+  <div class="wrapper">
+    <% if current_user.present? %>
+      <% if current_user.is_admin || current_user.is_teacher %>
+        <div class="navbar navbar-default navbar-fixed-top">
+          <%= render 'nav' %>
+        </div>
+         <div>
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+          </div>
+      <% else %>
+        <%= render 'navbar' %>
+        <%= render 'body'%>
+      <% end %>
+    <% else %>
+      <div class="navbar navbar-default navbar-fixed-top">
+        <%= render 'nav' %>
+      </div>
+      <div class="row " style="background-color:#fff">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-  </div>
-
 </body>
 </html>

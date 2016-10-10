@@ -1,12 +1,23 @@
 
 body {
-  padding-top: 70px;
+  /*padding-top: 70px;*/
 }
 
 @media screen and (max-width: 768px) {
   body {
     padding-top: 0px;
   }
+}
+aside.main-sidebar, aside.left-side {
+    padding-top: 0;
+}
+
+span.select2-container .select2-selection--single .select2-selection__rendered {
+        margin-top: -7px;
+}
+
+span.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #333;
 }
 
 .container label {
