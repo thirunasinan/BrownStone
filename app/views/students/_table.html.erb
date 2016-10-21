@@ -1,18 +1,51 @@
 <table class="table table-bordered table-condensed table-hover table-striped">
 	<thead>
 	<tr>
+		<th style="width:50px;"></th>
 		<th>Number</th>
 	   	<th>Question</th>
 	   	<th>Source</th>
 	</tr>
 	</thead>
 	<tbody>
-		<% @problems.each do |p| %>
-			<tr>
-				<td><%= p.number %></td>
-				<td><%= p.question %></td>
-				<td><%= p.source.name %></td>
-			</tr>	
+		<% unless (@problems.blank?) %>
+			<% @problems.each do |p| %>
+				<tr>
+					<td > <input type="checkbox" class="pick-product" data-product-id="<%= p.id %>" /> </td>
+					<td><%= p.number %></td>
+					<td class="question_row">
+						<p class="only_q"><%= p.question %></p>
+						<div class="q_and_a_wrapper hide">
+							<div class="box box-default box-solid">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Question</h3>
+					            </div>
+					            <div class="box-body">
+					              <%= p.question %>
+					            </div>
+					        </div>
+
+					        <div class="box box-default box-solid">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Answers Choices</h3>
+					            </div>
+					            <div class="box-body">
+					            	<ul class="products-list product-list-in-box">
+						              <% p.answer_choices.each do |answer| %>
+						              	<li class="item"><%= answer.text %></li>
+						              <% end %>
+						            </ul>  
+					            </div>
+					        </div>
+					    <div>   
+					</td>
+					<td><%= p.source.name %></td>
+				</tr>	
+			<% end %>
+		<% else %>
+			<tr> 
+				<td colspan="4" class="text-center no_data_row" >No Search Data... </td>
+			</tr>
 		<% end %>
 	</tbody>
 </table>

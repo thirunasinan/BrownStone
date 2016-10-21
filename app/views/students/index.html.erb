@@ -13,13 +13,13 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="box">
+<div class="box main-content">
 	<!-- <h2> Search Problems </h2> -->
 	<div class="box-header with-border">
 		<i class="fa fa-search"></i>
 		<h3 class="box-title">Search</h3>
 	</div>
-	<div class="box-body">
+	<div class="box-body body-content">
 
 		<div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
@@ -34,38 +34,115 @@
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="simple_search">
-					<div class="row" >
-						<div class="col-md-2 form-group">
-							<label for="subject">Subject</label>
-							<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
-							@subject.first.id), {:class => 'select2'} %>
+        <div class="tab-pane row active" id="simple_search">
+			<div class="search-area col-md-3" >
+				<div class="form-group">
+					<label for="subject">Subject</label>
+					<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
+					@subject.first.id), {:multiple => :multiple, :class => 'select2 form-control'} %>
+				</div>
+				<div class="form-group">
+					<label for="source">Source</label>
+					<%= select_tag :source, options_from_collection_for_select(@sources,"id","name",
+					@sources.first.id), {:class => 'select2 form-control'} %>
+				</div>
+				<div class="form-group">
+					<label for="tags">Tags</label>
+					<%= select_tag :tags, options_from_collection_for_select(@tags,"id","name"), {:multiple => :multiple, :class => 'select2 form-control' } %>
+				</div>
+				<div class="form-group">
+					<input type="button" value="Search" class="btn btn-primary col-md-12" id="search"/>
+				</div >
+			</div>
+			<div class="col-md-9 table-container">
+				<div class="row search-result">
+					<div class="col-md-6"><h3 class="box-title"> Search Result </h2></div>
+					<div class="col-md-6">
+						<!-- <button class="btn pull-right btn-primary btn-sm"> Add Selected Problem(s) to collection</button> -->
+						<div class="dropdown pull-right">
+						  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    Add Selected Problem(s) to collection
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						  	<% unless @collections.blank? %>
+						  		<% @collections.each do |collection| %>
+						  			<li class="collection_row" data-collection-id="<%= collection.id %>">
+						  				<a href="#"> <%= collection.name %> </a>
+						  			</li>
+						  		<% end %>
+						  	<% else %>
+						  		<li class="dropdown-header"> 
+						  			No Collections are Available
+						  		</li>
+						  	<% end %>
+						  </ul>
 						</div>
-						<div class="col-md-3 form-group">
-							<label for="source">Source</label>
-							<%= select_tag :source, options_from_collection_for_select(@sources,"id","name",
-							@sources.first.id), {:class => 'select2'} %>
-						</div>
-						<div class="col-md-5 form-group">
-							<label for="tags">Tags</label>
-							<%= select_tag :tags, options_from_collection_for_select(@tags,"id","name"), {:multiple => :multiple, :class => 'select2' } %>
-						</div>
-						<div class="col-md-2 form-group">
-							<label> . </label>
-							<input type="button" value="search" class="btn btn-primary col-md-12" id="search"/>
-						</div >
 					</div>
-					<div class="table-container">
-						<%= render 'table' %>
-					</div>
+				</div>
+				<div class="problem_result"><%= render 'table' %></div>
+			</div>
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="by_topic">
-         
+         	<table id="topic_list" class="table table-bordered table-condensed table-hover table-striped">
+				<thead>
+				<tr>
+					<th>Topics</th>
+				   	<th># of Question</th>
+				</tr>
+				</thead>
+				<tbody>
+					<% unless (@topics.blank?) %>
+						<% @topics.each do |p| %>
+							<tr class="question_row">
+								<td><%= p.name %></td>
+								<td><a href="#" class="problems_in_topic" data-product-id="<%= p.id %>"><%= p.problems_count %></a></td>
+							</tr>	
+						<% end %>
+					<% else %>
+						<tr> 
+							<td></td> 
+							<td class="text-center" >No Topics availble </td>
+							<td></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<div class="hide" id="topic_proble_wrapper"></div>
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="my_collection">
-          
+        	<div class="row search-result">
+	        	<div class="col-md-6"><h3 class="box-title"> Collections </h2></div>
+						<div class="col-md-6"> 
+							<div class="dropdown pull-right add-colletion-dropdown">
+							  <button class="btn btn-primary dropdown-toggle-own" type="button" id="dropdownMenu1" >
+							    Add Collection
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" style="width:350px;padding:20px;">
+					  			<li class="add-collection">
+					  				<div>
+			                <div class="input-group">
+			                  <input type="text" name="message" placeholder="Collection Name" class="form-control" id="add-c-input">
+			                      <span class="input-group-btn">
+			                        <button id="add-collection-btn" class="btn btn-success btn-flat">
+			                        	<i class="fa fa-plus"> </i>
+			                        	Add
+			                        </button>
+			                      </span>
+			                </div>
+			              </div>
+					  			</li>
+							  </ul>
+							</div>
+						</div>
+					</div>
+
+					<div id="collection-list">
+						<%= render 'collections' %>
+					</div>
         </div>
         <!-- /.tab-pane -->
       </div>
@@ -77,7 +154,9 @@
 
 <script>
 $(document).ready(function(){
-	$('.select2').select2()
+	$('.select2').select2();
+
+	$('.dropdown-toggle').dropdown();
 
 	$('#search').on('click', function () {
 		$.ajax({
@@ -89,17 +168,16 @@ $(document).ready(function(){
 				"authenticity_token": $('[name="csrf-token"]').attr('content')
 			}, 
 			success: function(result){
-	        	$('.table-container').html(result);
+	        	$('.table-container .problem_result').html(result);
 	    	}
 	  	});
 	})
 
 	$('#subject').on('change', function(e) {
-		var id = parseInt($(this).val())
+		var id = $(this).val();
 		$.ajax({
-			url: "/tags", data: {"id": id}, 
+			url: "/tags", data: {"id": id},
 			success: function(result){
-	        console.log(result);
 
 	        var tag_options = [], source_option = [];
 	        $.each(result.sources, function(i, obj) {
@@ -115,6 +193,102 @@ $(document).ready(function(){
 
 			$('#tags').html(tag_options.join("")).select2('destroy').select2();
 	    }});
+	})
+
+	$('.problems_in_topic').on('click', function() {
+		var id = $(this).data('productId');
+		$.ajax({
+			url: "/topic_problems", data: {"id": id},
+			success: function(result){
+				$('#topic_list').addClass('hide');
+				$('#topic_proble_wrapper').append(result).removeClass('hide');
+			}
+		})
+	})
+
+	$(document).on('click' , ".question_row", function(){
+		$(this).find(".only_q").toggleClass('hide');
+		$(this).find(".q_and_a_wrapper").toggleClass('hide');
+	})
+
+	var theArray = [];
+	$(document).on('click', '.pick-product', function() {
+
+		var theValue = parseInt($(this).data('productId'));
+
+		var index= $.inArray(theValue, theArray);
+
+		if(index== -1) {
+		    theArray.push(theValue);
+		} else {
+			theArray.splice(index,1);
+		}
+
+	})
+
+	$(document).on('click', '.dropdown-toggle-own', function (e) {
+	  $(this).parent().addClass('open')
+	});
+
+	$(document).on('click', '.col-add', function () {
+			$.ajax({
+			type: 'post',
+			url: "/add_collection",
+			data: {"name": $('#add-c-input').val()},
+			success: function(result) {
+				$('#add-c-input').val('')
+				$('.add-colletion-dropdown').removeClass('open');
+				$('#collection-list table').append(result);
+			} 
+		})
+	})
+
+	$(document).on('click', '.col-add',function (e) {
+		e.preventDefault();
+
+		var row = $(this).parents('.collection_row');
+		var id = $(row).find('.collection-data').data('collectionId');
+		var name = $(row).find('.input-edit').val()
+		$.ajax({
+			type: 'post',
+			url: "/edit_collection",
+			data: {"id": id, "name": name },
+			success: function(result) {
+				console.log(" dasdasdas ", result)
+				$('#input-edit').val(result.value);
+				$(row).find('.collection-data').html(result.value);
+
+				$(row).find('.collection-data').removeClass('hide');
+				$(row).find('.col-activity-btn').removeClass('hide');
+
+				$(row).find('.input-edit').addClass('hide');
+				$(row).find('.col-add-group').addClass('hide');
+			} 
+		})
+	})
+
+	$(document).on('click', '.col-edit', function (e) {
+		e.preventDefault();
+
+		var row = $(this).parents('.collection_row');
+
+		$(row).find('.collection-data').addClass('hide');
+		$(row).find('.col-activity-btn').addClass('hide');
+
+		$(row).find('.input-edit').removeClass('hide');
+		$(row).find('.col-add-group').removeClass('hide');
+	})
+
+	$(document).on('click', '.col-cancel', function (e) {
+		e.preventDefault();
+		var row = $(this).parents('.collection_row');
+		
+		$(row).find('.collection-data').removeClass('hide');
+		$(row).find('.col-activity-btn').removeClass('hide');
+
+		$(row).find('.input-edit').addClass('hide');
+		$(row).find('.col-add-group').addClass('hide');
+
 	})
 })
 </script>

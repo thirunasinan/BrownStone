@@ -1,0 +1,42 @@
+<table class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+	<tr>
+		<th>Collections</th>
+	  <th># of Students</th>
+	  <th> Action </th>
+	</tr>
+	</thead>
+		<tbody>
+			<% unless @collections.blank? %>
+	  		<% @collections.each do |collection| %>
+	  			<tr class="collection_row">	
+	  				<td>
+	  					<a href="#" class="collection-data" data-collection-id="<%= collection.id %>"><%= collection.name %></a>
+					        <input type="text" value="<%= collection.name %>" class="hide col-md-10 input-edit">
+	  				</td>
+	  				<td></td>
+	  				<td class="text-center">
+	  					<div class="col-activity-btn">
+		  					<a href="#" class="btn btn-default btn-sm col-edit"> <i class="fa fa-pencil"> </i></a>  
+		  					<a href="#" class="btn btn-danger btn-sm col-delete"> <i class="fa fa-trash"> </i></a>
+		  				</div>
+		  				<div class="col-add-group hide">
+			  				<a href="#" class="btn btn-primary btn-sm col-add"> 
+			  					<i class="fa fa-save"> </i>
+			  				</a>
+			  				<a href="#" class="btn btn-default btn-sm col-cancel"> 
+			  					<i class="fa fa-close"> </i>
+			  				</a>
+			  			</div>
+	  				</td>
+	  			</tr>
+	  		<% end %>
+	  	<% else %>
+	  		<tr > 
+	  			<td colspan="4" class="text-center no_data_row" >
+	  				No Collections are available
+	  			</td>
+	  		</tr>
+	  	<% end %>
+		</tbody>
+</table>

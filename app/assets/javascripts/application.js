@@ -18,4 +18,6 @@
 //= require app
 //= require components
 //= require bootstrap-sprockets
-//= require_tree .
+//= require plugins/mathjax.js
+//= require plugins/select2.full.js
+//= require adminLTE
