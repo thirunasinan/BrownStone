@@ -230,7 +230,7 @@ $(document).ready(function(){
 	  $(this).parent().addClass('open')
 	});
 
-	$(document).on('click', '.col-add', function () {
+	$(document).on('click', '#add-collection-btn', function () {
 			$.ajax({
 			type: 'post',
 			url: "/add_collection",
@@ -282,7 +282,7 @@ $(document).ready(function(){
 	$(document).on('click', '.col-cancel', function (e) {
 		e.preventDefault();
 		var row = $(this).parents('.collection_row');
-		
+
 		$(row).find('.collection-data').removeClass('hide');
 		$(row).find('.col-activity-btn').removeClass('hide');
 
