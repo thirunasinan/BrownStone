@@ -260,7 +260,7 @@ $(document).ready(function(){
 	$(document).on('click', '.col-add',function (e) {
 		e.preventDefault();
 
-		var row = $(this).parents('.collection_row');
+		var row = $(this).parents('.collection_list');
 		var id = $(row).find('.collection-data').data('collectionId');
 		var name = $(row).find('.input-edit').val()
 		$.ajax({
@@ -268,7 +268,7 @@ $(document).ready(function(){
 			url: "/edit_collection",
 			data: {"id": id, "name": name },
 			success: function(result) {
-				console.log(" dasdasdas ", result)
+
 				$('#input-edit').val(result.value);
 				$(row).find('.collection-data').html(result.value);
 
@@ -284,7 +284,7 @@ $(document).ready(function(){
 	$(document).on('click', '.col-edit', function (e) {
 		e.preventDefault();
 
-		var row = $(this).parents('.collection_row');
+		var row = $(this).parents('.collection_list');
 
 		$(row).find('.collection-data').addClass('hide');
 		$(row).find('.col-activity-btn').addClass('hide');
@@ -330,7 +330,7 @@ $(document).ready(function(){
 	$(document).on('click', '.problem-delete', function () {
 		var problemId = $(this).data('problemId');
 		var id = $('#col-head').data('colId');
-		
+
 		if(confirm("Do you want to remove the problem from collection")) {
 			var col_list = $(this).parents('.col-problm-row')
 			$.ajax({
