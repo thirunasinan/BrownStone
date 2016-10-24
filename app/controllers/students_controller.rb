@@ -134,6 +134,12 @@ class StudentsController < ApplicationController
 	    end
 	end
 
+	def get_collection
+		@collections = Collection.all.order(:name)
+
+		render '_collections', :layout => false
+	end
+
 	private
 		def collection_params
 			params.permit(:name)

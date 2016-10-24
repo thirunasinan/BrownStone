@@ -114,37 +114,8 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="my_collection">
         	<div id="coll-list-wrapper">
-        	<div class="row search-result">
-	        	<div class="col-md-6"><h3 class="box-title"> Collections </h2></div>
-						<div class="col-md-6"> 
-							<div class="dropdown pull-right add-colletion-dropdown">
-							  <button class="btn btn-primary dropdown-toggle-own" type="button" id="dropdownMenu1" >
-							    Add Collection
-							    <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" style="width:350px;padding:20px;">
-					  			<li class="add-collection">
-					  				<div>
-			                <div class="input-group">
-			                  <input type="text" name="message" placeholder="Collection Name" class="form-control" id="add-c-input">
-			                      <span class="input-group-btn">
-			                        <button id="add-collection-btn" class="btn btn-success btn-flat">
-			                        	<i class="fa fa-plus"> </i>
-			                        	Add
-			                        </button>
-			                      </span>
-			                </div>
-			              </div>
-					  			</li>
-							  </ul>
-							</div>
-						</div>
-					</div>
-
-					<div id="collection-list">
-						<%= render 'collections' %>
-					</div>
-					<div>
+				<%= render 'collections' %>
+			</div>
         </div>
         <!-- /.tab-pane -->
       </div>
@@ -216,7 +187,7 @@ $(document).ready(function(){
 			url: "/collection_problems", data: {"id": id},
 			success: function(result){
 				$('#coll-list-wrapper').addClass('hide');
-				$('#coll_problem_wrapper').append(result).removeClass('hide');
+				$('#coll_problem_wrapper').html(result).removeClass('hide');
 			}
 		})
 	})
@@ -296,7 +267,7 @@ $(document).ready(function(){
 
 	$(document).on('click', '.col-cancel', function (e) {
 		e.preventDefault();
-		var row = $(this).parents('.collection_row');
+		var row = $(this).parents('.collection_list');
 
 		$(row).find('.collection-data').removeClass('hide');
 		$(row).find('.col-activity-btn').removeClass('hide');
@@ -390,6 +361,17 @@ $(document).ready(function(){
 
 	$(document).on('click', '#add-student', function () {
 		$('.student_dropdown').toggleClass('hide');
+	})
+
+	$(document).on('click', '.back_to_collection', function () {
+
+		$.ajax({
+			url: "/get_collection",
+			success: function(result){
+				$('#coll_problem_wrapper').addClass('hide')
+				$('#coll-list-wrapper').html(result).removeClass('hide');
+			}
+		})
 	})
 })
 </script>

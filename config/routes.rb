@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   post 'get_problems', to: 'students#get_problems'
 
+  get 'get_collection', to: 'students#get_collection'
   post 'add_collection', to: 'students#add_collection'
   post 'edit_collection', to: 'students#edit_collection'
   post 'problems_to_collection', to: 'students#problems_to_collection'
