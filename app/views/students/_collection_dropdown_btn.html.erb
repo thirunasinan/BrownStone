@@ -1,0 +1,20 @@
+<!-- <button class="btn pull-right btn-primary btn-sm"> Add Selected Problem(s) to collection</button> -->
+<div class="dropdown pull-right">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Add Selected Problem(s) to collection
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  	<% unless @collections.blank? %>
+  		<% @collections.each do |collection| %>
+  			<li class="collection_row" data-collection-id="<%= collection.id %>">
+  				<a href="#"> <%= collection.name %> </a>
+  			</li>
+  		<% end %>
+  	<% else %>
+  		<li class="dropdown-header"> 
+  			No Collections are Available
+  		</li>
+  	<% end %>
+  </ul>
+</div>

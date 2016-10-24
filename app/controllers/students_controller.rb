@@ -48,10 +48,25 @@ class StudentsController < ApplicationController
 		render '_table', :layout => false
 	end
 
+	def get_topics
+		@topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
+
+		render '_topics', :layout => false
+	end
+
 	def get_topics_problem
+		@topics = Topic.find(params[:id])
+		@collections = Collection.all.order(:name)
+		
 		@problems = Problem.joins(:topics).where("topics.id = ?", params[:id])
 
-		render '_table', :layout => false
+		render '_topics_problem_table', :layout => false
+	end
+
+	def get_collection
+		@collections = Collection.all.order(:name)
+
+		render '_collections', :layout => false
 	end
 
 	def get_collection_problems
@@ -132,12 +147,6 @@ class StudentsController < ApplicationController
 	    else
 	    	render :json => {:error => "Error occered on remove product"}.to_json
 	    end
-	end
-
-	def get_collection
-		@collections = Collection.all.order(:name)
-
-		render '_collections', :layout => false
 	end
 
 	private

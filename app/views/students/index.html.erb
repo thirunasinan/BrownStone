@@ -58,26 +58,7 @@
 				<div class="row search-result">
 					<div class="col-md-6"><h3 class="box-title"> Search Result </h2></div>
 					<div class="col-md-6">
-						<!-- <button class="btn pull-right btn-primary btn-sm"> Add Selected Problem(s) to collection</button> -->
-						<div class="dropdown pull-right">
-						  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    Add Selected Problem(s) to collection
-						    <span class="caret"></span>
-						  </button>
-						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						  	<% unless @collections.blank? %>
-						  		<% @collections.each do |collection| %>
-						  			<li class="collection_row" data-collection-id="<%= collection.id %>">
-						  				<a href="#"> <%= collection.name %> </a>
-						  			</li>
-						  		<% end %>
-						  	<% else %>
-						  		<li class="dropdown-header"> 
-						  			No Collections are Available
-						  		</li>
-						  	<% end %>
-						  </ul>
-						</div>
+						<%= render 'collection_dropdown_btn' %>
 					</div>
 				</div>
 				<div class="problem_result"><%= render 'table' %></div>
@@ -85,30 +66,10 @@
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="by_topic">
-         	<table id="topic_list" class="table table-bordered table-condensed table-hover table-striped">
-				<thead>
-				<tr>
-					<th>Topics</th>
-				   	<th># of Question</th>
-				</tr>
-				</thead>
-				<tbody>
-					<% unless (@topics.blank?) %>
-						<% @topics.each do |p| %>
-							<tr class="question_row">
-								<td><%= p.name %></td>
-								<td><a href="#" class="problems_in_topic" data-product-id="<%= p.id %>"><%= p.problems_count %></a></td>
-							</tr>	
-						<% end %>
-					<% else %>
-						<tr> 
-							<td></td> 
-							<td class="text-center" >No Topics availble </td>
-							<td></td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
+        	<div id="topic_list">
+        		<%= render 'topics' %>
+        	</div>
+         	
 			<div class="hide" id="topic_proble_wrapper"></div>
         </div>
         <!-- /.tab-pane -->
@@ -170,13 +131,15 @@ $(document).ready(function(){
 	    }});
 	})
 
-	$('.problems_in_topic').on('click', function() {
+	$(document).on('click', '.problems_in_topic', function() {
 		var id = $(this).data('productId');
 		$.ajax({
 			url: "/topic_problems", data: {"id": id},
 			success: function(result){
 				$('#topic_list').addClass('hide');
 				$('#topic_proble_wrapper').append(result).removeClass('hide');
+
+				$('.dropdown-toggle').dropdown();
 			}
 		})
 	})
@@ -372,6 +335,17 @@ $(document).ready(function(){
 				$('#coll-list-wrapper').html(result).removeClass('hide');
 			}
 		})
+	})
+
+	$(document).on('click', '.back_to_topics', function () {
+		$.ajax({
+			url: "/get_topics",
+			success: function(result){
+				$('#topic_proble_wrapper').addClass('hide')
+				$('#topic_list').html(result).removeClass('hide');
+			}
+		})
+
 	})
 })
 </script>
