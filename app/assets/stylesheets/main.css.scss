@@ -9,6 +9,21 @@ body {
   }
 }
 
+.student_dropdown_wrap {
+    position: relative;
+}
+
+.student_dropdown {
+    position: absolute;
+    width: 300px;
+    max-height: 400px;
+    overflow-x: auto;
+    right: 0;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    padding: 20px;
+}
+
 .box.main-content {
     min-height: 600px;
 }

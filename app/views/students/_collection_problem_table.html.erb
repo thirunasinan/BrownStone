@@ -5,6 +5,25 @@
 			<h3 class="box-title" id="col-head" data-col-id="<%= @collection.id %>"> <%= @collection.name %> </h3>
 			<span class="title-sub"> Created On :  <%= DateTime.now %></span>
 		</div>
+		<div class="pull-right student_dropdown_wrap">
+			<div>
+				<span id="student_count"> No. of Students : <%= @collection.user_hash.length %></span>
+				&nbsp;&nbsp;&nbsp;(<span id="add-student"> Add Student </span>)
+			</div>
+			<div class="student_dropdown hide">
+				<ul class="list-group"> 
+					<% @students.each_with_index do | student, i | %>
+						<li class="list-group-item">
+							<input type="checkbox" id="student_<%= i %>" data-std-id="<%= student.id %>"/> 
+							<label for="student_<%= i %>"> <%= student.email.split('@')[0] %> </label>
+						</li>
+					<% end %>
+				</ul>
+				<div class="col-md-12 text-center">
+					<a href="#" id="add_student_col" class="btn btn-primary btn-sm"> Add </a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <table class="table table-bordered table-condensed table-hover table-striped">

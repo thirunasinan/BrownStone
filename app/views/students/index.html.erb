@@ -349,6 +349,26 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '#add_student_col', function () {
+		var studentId = []
+		$('.student_dropdown .list-group-item input:checked').each(function(a, b) {
+			studentId.push($(b).data('stdId'))
+		})
+		var id = $('#col-head').data('colId');
+
+		$.ajax({
+			type: 'post',
+			url: "/student_to_collection",
+			data: {"id": id, "user_hash": studentId },
+			success: function(result) {
+				$('.student_dropdown').addClass('hide');
+				$('#student_count').html(result.student_count)
+				$.growl({ title: "Added in Collection", message: "The selected students has been added in collection", duration: 5000})
+			}
+		})
+
+	})
+
 	$(document).on('click', '.collection_row', function () {
 
 		var problemId = []
@@ -366,6 +386,10 @@ $(document).ready(function(){
 			} 
 		})
 
+	})
+
+	$(document).on('click', '#add-student', function () {
+		$('.student_dropdown').toggleClass('hide');
 	})
 })
 </script>

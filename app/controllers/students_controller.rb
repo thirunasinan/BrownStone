@@ -57,6 +57,8 @@ class StudentsController < ApplicationController
 	def get_collection_problems
 		@collection = Collection.find(params[:id])
 
+		@students = User.where("is_admin = ? and is_teacher = ?", false, false)
+
 		@problems = Problem.where(:id => @collection.problems_hash)
 
 		render '_collection_problem_table', :layout => false
@@ -91,6 +93,18 @@ class StudentsController < ApplicationController
 
 		if collection.update(:problems_hash => add_problem.uniq)
 			render :json => {:value => collection.name}.to_json
+		else
+			render :json => {:error => "Error occered on edit"}.to_json
+		end
+	end
+
+	def student_to_collection
+		collection = Collection.find(params[:id])
+
+		add_users = collection.user_hash + params[:user_hash]
+		
+		if collection.update(:user_hash => add_users.uniq)
+			render :json => {:success => "user has added to collection ", :student_count => collection.user_hash.length}.to_json
 		else
 			render :json => {:error => "Error occered on edit"}.to_json
 		end
