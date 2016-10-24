@@ -113,6 +113,7 @@
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="my_collection">
+        	<div id="coll-list-wrapper">
         	<div class="row search-result">
 	        	<div class="col-md-6"><h3 class="box-title"> Collections </h2></div>
 						<div class="col-md-6"> 
@@ -143,9 +144,11 @@
 					<div id="collection-list">
 						<%= render 'collections' %>
 					</div>
+					<div>
         </div>
         <!-- /.tab-pane -->
       </div>
+       <div class="hide" id="coll_problem_wrapper"></div>
       <!-- /.tab-content -->
     </div>
   </div>
@@ -202,6 +205,17 @@ $(document).ready(function(){
 			success: function(result){
 				$('#topic_list').addClass('hide');
 				$('#topic_proble_wrapper').append(result).removeClass('hide');
+			}
+		})
+	})
+
+	$(document).on('click', '.collection-data', function () {
+		var id = $(this).data('collectionId');
+		$.ajax({
+			url: "/collection_problems", data: {"id": id},
+			success: function(result){
+				$('#coll-list-wrapper').addClass('hide');
+				$('#coll_problem_wrapper').append(result).removeClass('hide');
 			}
 		})
 	})
@@ -288,6 +302,68 @@ $(document).ready(function(){
 
 		$(row).find('.input-edit').addClass('hide');
 		$(row).find('.col-add-group').addClass('hide');
+
+	})
+
+	$(document).on('click', '.col-delete', function (e) {
+		e.preventDefault();
+		var col_list = $(this).parents('.collection_list');
+
+		if(confirm("Do you want to delete the " + col_list.find('.input-edit').val() +"  from collection")) {
+			var id = col_list.find('.collection-data').data('collectionId')
+			$.ajax({
+				url: "/delete_collection",
+				data: {"id": id},
+				type: 'DELETE',
+				success: function(result){
+					console.log(result);
+					col_list.remove();
+					$.growl({ title: "Delete in Collection", message: result.success, duration: 5000 })
+				}
+			})
+		} else {
+			return false;
+		}
+
+	})
+
+	$(document).on('click', '.problem-delete', function () {
+		var problemId = $(this).data('problemId');
+		var id = $('#col-head').data('colId');
+		
+		if(confirm("Do you want to remove the problem from collection")) {
+			var col_list = $(this).parents('.col-problm-row')
+			$.ajax({
+				url: "/remove_problem_collection",
+				data: {"id": id, "problem_id": problemId},
+				type: 'post',
+				success: function(result){
+					console.log(result);
+					col_list.remove();
+					$.growl({ title: "Problem removed from Collection", duration: 5000 })
+				}
+			})
+		} else {
+			return false;
+		}
+	})
+
+	$(document).on('click', '.collection_row', function () {
+
+		var problemId = []
+		$('.problem_result .table').find('input.pick-product:checked').each(function(a,b) { 
+			problemId.push($(b).data('productId'));
+		});
+		var id = $(this).data('collectionId');
+		
+		$.ajax({
+			type: 'post',
+			url: "/problems_to_collection",
+			data: {"id": id, "problems": problemId },
+			success: function(result) {
+				 $.growl({ title: "Added in Collection", message: "The selected "+ problemId.length +"problems has been added in collection", duration: 5000})
+			} 
+		})
 
 	})
 })

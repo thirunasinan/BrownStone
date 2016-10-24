@@ -1,8 +1,21 @@
-<tr class="collection_row">	
-	<td><a href="#" class="collection-data" data-collection-id="<%= @collection.id %>"><%= @collection.name %></a></td>
+<tr class="collection_list">	
+	<td>
+		<a href="#" class="collection-data problems_in_collection" data-collection-id="<%= @collection.id %>" ><%= @collection.name %></a>
+        <input type="text" value="<%= @collection.name %>" class="hide col-md-10 input-edit">
+	</td>
 	<td></td>
 	<td class="text-center">
-		<a href="#"> <i class="fa fa-pencil"> </i></a> | 
-		<a href="#"> <i class="fa fa-trash"> </i></a>
+		<div class="col-activity-btn">
+			<a href="#" class="btn btn-default btn-sm col-edit"> <i class="fa fa-pencil"> </i></a>  
+			<a href="#" class="btn btn-danger btn-sm col-delete"> <i class="fa fa-trash"> </i></a>
+		</div>
+		<div class="col-add-group hide">
+			<a href="#" class="btn btn-primary btn-sm col-add"> 
+				<i class="fa fa-save"> </i>
+			</a>
+			<a href="#" class="btn btn-default btn-sm col-cancel"> 
+				<i class="fa fa-close"> </i>
+			</a>
+		</div>
 	</td>
 </tr>

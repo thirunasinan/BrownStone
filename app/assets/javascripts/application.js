@@ -21,3 +21,4 @@
 //= require plugins/mathjax.js
 //= require plugins/select2.full.js
 //= require adminLTE
+//= require plugins/growl

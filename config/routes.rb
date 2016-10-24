@@ -53,11 +53,16 @@ Rails.application.routes.draw do
 
   get 'tags', to: 'students#get_tags'
   get 'topic_problems', to: 'students#get_topics_problem'
+  get 'collection_problems', to: 'students#get_collection_problems'
 
   post 'get_problems', to: 'students#get_problems'
 
   post 'add_collection', to: 'students#add_collection'
   post 'edit_collection', to: 'students#edit_collection'
+  post 'problems_to_collection', to: 'students#problems_to_collection'
+
+  delete 'delete_collection', to: 'students#delete_collection'
+  post 'remove_problem_collection', to: 'students#remove_problem_collection'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,64 @@
+<div class="row search-result">
+	<div class="col-md-12">
+		<a href = "#" class="back_to_collection pull-left"> <i class="fa fa-chevron-left"></i></a>
+		<div class="title pull-left">
+			<h3 class="box-title" id="col-head" data-col-id="<%= @collection.id %>"> <%= @collection.name %> </h3>
+			<span class="title-sub"> Created On :  <%= DateTime.now %></span>
+		</div>
+	</div>
+</div>
+<table class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+	<tr>
+		<th>Number</th>
+	   	<th>Question</th>
+	   	<th>Source</th>
+	   	<th>Subject</th>
+	   	<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% unless (@problems.blank?) %>
+			<% @problems.each do |p| %>
+				<tr class="col-problm-row">
+					<td><%= p.number %></td>
+					<td class="question_row">
+						<p class="only_q"><%= p.question %></p>
+						<div class="q_and_a_wrapper hide">
+							<div class="box box-default box-solid">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Question</h3>
+					            </div>
+					            <div class="box-body">
+					              <%= p.question %>
+					            </div>
+					        </div>
+
+					        <div class="box box-default box-solid">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Answers Choices</h3>
+					            </div>
+					            <div class="box-body">
+					            	<ul class="products-list product-list-in-box">
+						              <% p.answer_choices.each do |answer| %>
+						              	<li class="item"><%= answer.text %></li>
+						              <% end %>
+						            </ul>  
+					            </div>
+					        </div>
+					    <div>   
+					</td>
+					<td><%= p.source.name %></td>
+					<td><%= p.source.subject.name %></td>
+					<td> 
+						<a href="#" class="btn btn-danger btn-sm problem-delete" data-problem-id="<%= p.id %>"> <i class="fa fa-trash"> </i></a>
+					</td>
+				</tr>	
+			<% end %>
+		<% else %>
+			<tr> 
+				<td colspan="5" class="text-center no_data_row" >No Problems Available... </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

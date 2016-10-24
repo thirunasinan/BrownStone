@@ -9,7 +9,7 @@
 		<tbody>
 			<% unless @collections.blank? %>
 	  		<% @collections.each do |collection| %>
-	  			<tr class="collection_row">	
+	  			<tr class="collection_list">	
 	  				<td>
 	  					<a href="#" class="collection-data" data-collection-id="<%= collection.id %>"><%= collection.name %></a>
 					        <input type="text" value="<%= collection.name %>" class="hide col-md-10 input-edit">
