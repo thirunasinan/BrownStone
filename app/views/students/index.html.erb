@@ -39,12 +39,12 @@
 				<div class="form-group">
 					<label for="subject">Subject</label>
 					<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
-					@subject.first.id), {:multiple => :multiple, :class => 'select2 form-control'} %>
+					''), {:multiple => :multiple, :class => 'select2 form-control'} %>
 				</div>
 				<div class="form-group">
 					<label for="source">Source</label>
 					<%= select_tag :source, options_from_collection_for_select(@sources,"id","name",
-					@sources.first.id), {:class => 'select2 form-control'} %>
+					''), {:multiple => :multiple, :class => 'select2 form-control'} %>
 				</div>
 				<div class="form-group">
 					<label for="tags">Tags</label>
@@ -166,6 +166,7 @@ $(document).ready(function(){
 			url: "/get_problems",
 			type: 'POST',
 			data: {
+				"subject_id": $("#subject").val(),
 				"source_id": $("#source").val(),
 				"tag_id": $('#tags').val(),
 				"authenticity_token": $('[name="csrf-token"]').attr('content')
@@ -179,7 +180,7 @@ $(document).ready(function(){
 	$('#subject').on('change', function(e) {
 		var id = $(this).val();
 		$.ajax({
-			url: "/tags", data: {"id": id},
+			url: "/tags_source", data: {"id": id},
 			success: function(result){
 
 	        var tag_options = [], source_option = [];

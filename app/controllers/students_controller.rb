@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
 		subject = Subject
 		@subject = subject.all
 		@tags = Tag.all
-		@sources = subject.first.sources
+		@sources = Source.all
 		@problems = Problem.all
 		# @problems = []
 
@@ -12,16 +12,38 @@ class StudentsController < ApplicationController
 		@collections = Collection.all.order(:name)
 	end
 
-	def get_tags
-		id = (params[:id].blank?) ? [] : params[:id]
-		subject = Subject.find(id)
-		tags = Tag.joins(:subjects).where("subjects.id in (?)", id)
+	def get_tags_source
+		tags = []
+		source =[]
+		id = params[:id]
 
-		render :json => {:tags => tags, :sources => Source.all }
+		if (id.blank?) 
+			tags = Tag.all
+			source = Source.all
+		else
+			subject = Subject.find(id)
+			tags = Tag.joins(:subjects).where("subjects.id in (?)", id)
+			source = Source.where("subject_id in (?)", id)
+		end 
+
+		render :json => {:tags => tags, :sources => source }
 	end
 
 	def get_problems
-		@problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", params[:tag_id] || [], params[:source_id])
+		source = []
+		tag = []
+
+		subject_id = params[:subject_id]
+
+		if (subject_id.present? && params[:source_id].blank? && params[:tag_id].blank?) 
+			tag = Tag.joins(:subjects).where("subjects.id in (?)", subject_id).ids
+			source = Source.where("subject_id in (?)", subject_id).ids
+		else
+			source = (params[:source_id].blank?) ?  Source.ids : params[:source_id]
+			tag = (params[:tag_id].blank?) ? Tag.ids : params[:tag_id]
+		end
+
+		@problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
 
 		render '_table', :layout => false
 	end

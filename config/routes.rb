@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   get 'students', to: 'students#index'
 
-  get 'tags', to: 'students#get_tags'
+  get 'tags_source', to: 'students#get_tags_source'
   get 'topic_problems', to: 'students#get_topics_problem'
   get 'collection_problems', to: 'students#get_collection_problems'
 
