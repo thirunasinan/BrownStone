@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
 		@subject = subject.all
 		@tags = Tag.all
 		@sources = Source.all
-		@problems = Problem.all
-		# @problems = []
+		# @problems = Problem.all
+		@problems = []
 
 		@topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
 		@collections = Collection.all.order(:name)
