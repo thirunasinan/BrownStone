@@ -93,7 +93,7 @@ $(document).ready(function(){
 
 	$('.dropdown-toggle').dropdown();
 
-	$('#search').on('click', function () {
+	$("#search").on('click', function () {
 		$.ajax({
 			url: "/get_problems",
 			type: 'POST',
@@ -104,7 +104,21 @@ $(document).ready(function(){
 				"authenticity_token": $('[name="csrf-token"]').attr('content')
 			}, 
 			success: function(result){
-	        	$('.table-container .problem_result').html(result);
+	        	$('#simple_search').find('.table-container .problem_result').html(result);
+	    	}
+	  	});
+	})
+
+	$(document).on('click', '.search-problems', function () {
+		$.ajax({
+			url: "/get_problems",
+			type: 'POST',
+			data: {
+				"subject_id": $('.topic-subjet').val(),
+				"authenticity_token": $('[name="csrf-token"]').attr('content')
+			},
+			success: function(result){
+	        	$('#by_topic').find('.table-container .problem_result').html(result);
 	    	}
 	  	});
 	})
@@ -137,8 +151,10 @@ $(document).ready(function(){
 			url: "/topic_problems", data: {"id": id},
 			success: function(result){
 				$('#topic_list').addClass('hide');
-				$('#topic_proble_wrapper').append(result).removeClass('hide');
+				$('#topic_proble_wrapper').html(result).removeClass('hide');
 
+
+				$('.topic-subjet').select2();
 				$('.dropdown-toggle').dropdown();
 			}
 		})
@@ -154,6 +170,7 @@ $(document).ready(function(){
 			}
 		})
 	})
+
 
 	$(document).on('click' , ".question_row", function(){
 		$(this).find(".only_q").toggleClass('hide');
@@ -290,23 +307,32 @@ $(document).ready(function(){
 	})
 
 	$(document).on('click', '#add_student_col', function () {
+		debugger
 		var studentId = []
 		$('.student_dropdown .list-group-item input:checked').each(function(a, b) {
 			studentId.push($(b).data('stdId'))
 		})
 		var id = $('#col-head').data('colId');
 
-		$.ajax({
-			type: 'post',
-			url: "/student_to_collection",
-			data: {"id": id, "user_hash": studentId },
-			success: function(result) {
-				$('.student_dropdown').addClass('hide');
-				$('#student_count').html(result.student_count)
-				$.growl({ title: "Added in Collection", message: "The selected students has been added in collection", duration: 5000})
-			}
-		})
+		if (studentId.length > 0) {
+			$.ajax({
+				type: 'post',
+				url: "/student_to_collection",
+				data: {"id": id, "user_hash": studentId },
+				success: function(result) {
+					$('.student_dropdown').addClass('hide');
+					$('#student_count').html(result.student_count)
+					$.growl({ title: "Added in Collection", message: "The selected students has been added in collection", duration: 5000})
+				}
+			})
+		}
 
+	})
+
+	$(document).on('click', function(e) {
+		if (!$(e.target).parents('.student_dropdown_wrap').get(0)) {
+			$('.student_dropdown').addClass('hide')
+		}
 	})
 
 	$(document).on('click', '.collection_row', function () {
@@ -353,5 +379,38 @@ $(document).ready(function(){
 		})
 
 	})
+
+	$(document).on('click', '.coll-student', function (e) {
+		e.preventDefault();
+		var coll_id = $(this).parent().siblings().find('.collection-data').data('collectionId')
+		$.ajax({
+			url: "/get_students",
+			data: {"id" : coll_id},
+			success: function(result){
+				$('#coll-list-wrapper').addClass('hide')
+				$('#coll_problem_wrapper').html(result).removeClass('hide');
+			}
+		})
+	})
+
+	$(document).on('click', '.remove-student', function (e) {
+		var coll_id = $('#col-head').data('colId');
+		var studentId = $(this).data('studentId');
+		var self = this
+
+		if(confirm("Do you want to remove the " + $(this).parent().siblings().text() +"  from this collection")) {
+			$.ajax({
+				type: 'post',
+				url: "/remove_student",
+				data: {"id": coll_id, "student_id": studentId},
+				success: function(result){
+					$(self).parents('.col-problm-row').remove();
+				}
+			})
+		} else {
+			return false;
+		}
+	})
+	
 })
 </script>

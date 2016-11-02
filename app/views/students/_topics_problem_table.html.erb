@@ -10,6 +10,19 @@
 	</div>
 </div>
 
-<div class="problem_result">
-	<%= render 'table'%>
+<div class="table-container row">
+	<div class="search-area col-md-3" >
+		<div class="form-group">
+			<label for="subject">Subject</label>
+			<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
+			''), {:multiple => :multiple, :class => 'select2 form-control topic-subjet'} %>
+		</div>
+		<div class="form-group">
+			<input type="button" value="Search" class="btn btn-primary col-md-12 search-problems"/>
+		</div >
+	</div>
+
+	<div class="col-md-9 problem_result">
+		<%= render 'table'%>
+	</div>
 </div>

@@ -39,8 +39,8 @@ class StudentsController < ApplicationController
 			tag = Tag.joins(:subjects).where("subjects.id in (?)", subject_id).ids
 			source = Source.where("subject_id in (?)", subject_id).ids
 		else
-			source = (params[:source_id].blank?) ?  Source.ids : params[:source_id]
-			tag = (params[:tag_id].blank?) ? Tag.ids : params[:tag_id]
+			source = (params[:source_id].blank?) ?  [] : params[:source_id]
+			tag = (params[:tag_id].blank?) ? [] : params[:tag_id]
 		end
 
 		@problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
@@ -57,6 +57,7 @@ class StudentsController < ApplicationController
 	def get_topics_problem
 		@topics = Topic.find(params[:id])
 		@collections = Collection.all.order(:name)
+		@subject = Subject.all
 		
 		@problems = Problem.joins(:topics).where("topics.id = ?", params[:id])
 
@@ -78,6 +79,13 @@ class StudentsController < ApplicationController
 
 		render '_collection_problem_table', :layout => false
 	end	
+
+	def get_students
+		@collection = Collection.find(params[:id])
+		@students = @collection.users
+
+		render "student_list", :layout => false
+	end
 
 	def add_collection
 		@collection = Collection.new(collection_params)
@@ -143,6 +151,18 @@ class StudentsController < ApplicationController
 		val = collection.problems_hash.delete_if{|i| i ==  params[:problem_id].to_i }
 
 		if collection.update(:problems_hash => val)
+	    	render :json => {:success => true}.to_json
+	    else
+	    	render :json => {:error => "Error occered on remove product"}.to_json
+	    end
+	end
+
+	def remove_student
+		collection = Collection.find(params[:id])
+
+		val = collection.user_hash.delete_if{|i| i ==  params[:student_id].to_i }
+
+		if collection.update(:user_hash => val)
 	    	render :json => {:success => true}.to_json
 	    else
 	    	render :json => {:error => "Error occered on remove product"}.to_json

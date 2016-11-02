@@ -16,12 +16,63 @@ body {
 .student_dropdown {
     position: absolute;
     width: 300px;
-    max-height: 400px;
+/*    max-height: 400px;
     overflow-x: auto;
-    right: 0;
-    border: 1px solid #aaa;
+*/    right: 0;
+    border: 1px solid #ddd;
     background-color: #fff;
-    padding: 20px;
+    /*padding: 20px;*/
+    top: 35px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 15px -1px #ddd;
+
+    .list-group {
+        padding: 0;
+        margin: 0;
+        max-height: 250px;
+        overflow-y: scroll;
+        li.list-group-item {
+            border: none;
+            border-top: 1px solid #ddd;
+
+            label {
+                margin-left: 10px;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .col-md-12 {
+        padding: 10px;
+        border-top: 1px dotted #ddd;
+        .btn-sm {
+            padding: 5px 30px;
+        }
+    }
+}
+
+.student_dropdown:before {
+    width: 0px;
+    content: "";
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid #ddd;
+    top: -15px;
+    right: 35px;
+    height: 0;
+}
+
+.student_dropdown:after {
+    width: 0px;
+    content: "";
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 16px solid #fff;
+    top: -13px;
+    right: 35px;
+    height: 0;
 }
 
 .box.main-content {
