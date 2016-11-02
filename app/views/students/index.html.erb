@@ -310,7 +310,7 @@ $(document).ready(function(){
 		debugger
 		var studentId = []
 		$('.student_dropdown .list-group-item input:checked').each(function(a, b) {
-			studentId.push($(b).data('stdId'))
+			studentId.push(parseInt($(b).data('stdId')))
 		})
 		var id = $('#col-head').data('colId');
 
@@ -405,6 +405,7 @@ $(document).ready(function(){
 				data: {"id": coll_id, "student_id": studentId},
 				success: function(result){
 					$(self).parents('.col-problm-row').remove();
+					$.growl({ title: "Removed from Collection", message: "The selected student has been removed from this collection", duration: 5000})
 				}
 			})
 		} else {

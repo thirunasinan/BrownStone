@@ -124,8 +124,7 @@ class StudentsController < ApplicationController
 	def student_to_collection
 		collection = Collection.find(params[:id])
 
-		add_users = collection.user_hash + params[:user_hash]
-		
+		add_users = collection.user_hash + params[:user_hash].map(&:to_i)
 		if collection.update(:user_hash => add_users.uniq)
 			render :json => {:success => "user has added to collection ", :student_count => collection.user_hash.length}.to_json
 		else
