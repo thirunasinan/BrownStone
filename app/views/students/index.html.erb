@@ -110,8 +110,20 @@ $(document).ready(function(){
 	})
 
 	$(document).on('click', '.search-problems', function () {
+		// $.ajax({
+		// 	url: "/get_problems",
+		// 	type: 'POST',
+		// 	data: {
+		// 		"subject_id": $('.topic-subjet').val(),
+		// 		"authenticity_token": $('[name="csrf-token"]').attr('content')
+		// 	},
+		// 	success: function(result){
+	 //        	$('#by_topic').find('.table-container .problem_result').html(result);
+	 //    	}
+	 //  	});
+
 		$.ajax({
-			url: "/get_problems",
+			url: "/get_subject_topic",
 			type: 'POST',
 			data: {
 				"subject_id": $('.topic-subjet').val(),
@@ -153,8 +165,6 @@ $(document).ready(function(){
 				$('#topic_list').addClass('hide');
 				$('#topic_proble_wrapper').html(result).removeClass('hide');
 
-
-				$('.topic-subjet').select2();
 				$('.dropdown-toggle').dropdown();
 			}
 		})
@@ -338,7 +348,7 @@ $(document).ready(function(){
 	$(document).on('click', '.collection_row', function () {
 
 		var problemId = []
-		$('.problem_result .table').find('input.pick-product:checked').each(function(a,b) { 
+		$('#problem_result .table').find('input.pick-product:checked').each(function(a,b) { 
 			problemId.push($(b).data('productId'));
 		});
 		var id = $(this).data('collectionId');
@@ -375,6 +385,7 @@ $(document).ready(function(){
 			success: function(result){
 				$('#topic_proble_wrapper').addClass('hide')
 				$('#topic_list').html(result).removeClass('hide');
+				$('.topic-subjet').select2();
 			}
 		})
 

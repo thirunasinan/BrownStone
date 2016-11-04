@@ -1,0 +1,22 @@
+<table  class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+	<tr>
+		<th>Topics</th>
+	   	<th># of Question</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% unless (@topics.blank?) %>
+			<% @topics.each do |p| %>
+				<tr class="question_row">
+					<td><%= p.name %></td>
+					<td><a href="#" class="problems_in_topic" data-product-id="<%= p.id %>"><%= p.problems_count %></a></td>
+				</tr>	
+			<% end %>
+		<% else %>
+			<tr> 
+				<td colspan="2" class="text-center" >No Topics availble </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

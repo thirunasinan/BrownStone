@@ -8,7 +8,8 @@ class StudentsController < ApplicationController
 		# @problems = Problem.all
 		@problems = []
 
-		@topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
+		@topics = []
+		# @topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
 		@collections = Collection.all.order(:name)
 	end
 
@@ -49,15 +50,22 @@ class StudentsController < ApplicationController
 	end
 
 	def get_topics
-		@topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
+		@topics = []
+		# @topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').group('topics.id')
+		@subject = Subject.all
 
 		render '_topics', :layout => false
+	end
+
+	def get_subject_topic
+		@topics = Topic.joins(:problems).select('topics.id, topics.name, COUNT(problems.*) as problems_count').where(:subject_id => params['subject_id']).group('topics.id')
+
+		render '_topics_list', :layout => false
 	end
 
 	def get_topics_problem
 		@topics = Topic.find(params[:id])
 		@collections = Collection.all.order(:name)
-		@subject = Subject.all
 		
 		@problems = Problem.joins(:topics).where("topics.id = ?", params[:id])
 

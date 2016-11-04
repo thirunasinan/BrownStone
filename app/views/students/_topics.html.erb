@@ -5,27 +5,21 @@
 		</div>
 	</div>
 </div>
-<table  class="table table-bordered table-condensed table-hover table-striped">
-	<thead>
-	<tr>
-		<th>Topics</th>
-	   	<th># of Question</th>
-	</tr>
-	</thead>
-	<tbody>
-		<% unless (@topics.blank?) %>
-			<% @topics.each do |p| %>
-				<tr class="question_row">
-					<td><%= p.name %></td>
-					<td><a href="#" class="problems_in_topic" data-product-id="<%= p.id %>"><%= p.problems_count %></a></td>
-				</tr>	
-			<% end %>
-		<% else %>
-			<tr> 
-				<td></td> 
-				<td class="text-center" >No Topics availble </td>
-				<td></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+
+<div class="table-container row">
+
+<div class="search-area col-md-3" >
+	<div class="form-group">
+		<label for="subject">Subject</label>
+		<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
+		''), {:multiple => :multiple, :class => 'select2 form-control topic-subjet', :style => 'width:220px'} %>
+	</div>
+	<div class="form-group">
+		<input type="button" value="Search" class="btn btn-primary col-md-12 search-problems"/>
+	</div >
+</div>
+
+<div class="col-md-9 problem_result">
+	<%= render 'topics_list' %>
+</div>
+</div>
