@@ -9,6 +9,11 @@ body {
   }
 }
 
+#collection-dropdown .dropdown-menu {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
 .student_dropdown_wrap {
     position: relative;
 }

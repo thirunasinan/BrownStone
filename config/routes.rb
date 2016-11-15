@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   post 'add_collection', to: 'students#add_collection'
   post 'edit_collection', to: 'students#edit_collection'
   post 'problems_to_collection', to: 'students#problems_to_collection'
+  post 'add_problems_to_collection', to: 'students#add_problems_to_collection'
   post 'student_to_collection', to: 'students#student_to_collection'
 
   delete 'delete_collection', to: 'students#delete_collection'

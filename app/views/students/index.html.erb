@@ -331,8 +331,15 @@ $(document).ready(function(){
 				data: {"id": id, "user_hash": studentId },
 				success: function(result) {
 					$('.student_dropdown').addClass('hide');
-					$('#student_count').html(result.student_count)
+					
 					$.growl({ title: "Added in Collection", message: "The selected students has been added in collection", duration: 5000})
+
+					$('#assisned_students').html('').html(result);
+					jQuery('[href="#assisned_students"]').trigger('click');
+
+					var len = $('#assisned_students').find('.col-problm-row').length;
+
+					$('.student_count').html(len);
 				}
 			})
 		}
@@ -348,7 +355,7 @@ $(document).ready(function(){
 	$(document).on('click', '.collection_row', function () {
 
 		var problemId = []
-		$('#problem_result .table').find('input.pick-product:checked').each(function(a,b) { 
+		$('.problem_result .table').find('input.pick-product:checked').each(function(a,b) { 
 			problemId.push($(b).data('productId'));
 		});
 		var id = $(this).data('collectionId');
@@ -358,11 +365,39 @@ $(document).ready(function(){
 			url: "/problems_to_collection",
 			data: {"id": id, "problems": problemId },
 			success: function(result) {
-				 $.growl({ title: "Added in Collection", message: "The selected "+ problemId.length +"problems has been added in collection", duration: 5000})
+				 // $.growl({ title: "Added in Collection", message: "The selected "+ problemId.length +"problems has been added in collection", duration: 5000})
+
+				 jQuery('[href="#my_collection"]').trigger('click');
+
+				$('#coll-list-wrapper').addClass('hide')
+				$('#coll_problem_wrapper').html(result).removeClass('hide');
 			} 
 		})
 
 	})
+
+	$(document).on('click', '#confirm_quest_to_collection', function () {
+
+		var problemId = []
+		$('#selected_collection').find('.problem-delete').each(function(a,b) { 
+			problemId.push($(b).data('problemId'));
+		});
+		var id = $("#coll_problem_wrapper #col-head").data('colId');
+		
+		$.ajax({
+			type: 'post',
+			url: "/add_problems_to_collection",
+			data: {"id": id, "problems": problemId },
+			success: function(result) {
+				 $.growl({ title: "Added in Collection", message: "The selected "+ problemId.length +"problems has been added in collection", duration: 5000})
+
+
+				$('#coll-list-wrapper').addClass('hide')
+				$('#coll_problem_wrapper').html(result).removeClass('hide');
+			} 
+		})
+
+	});
 
 	$(document).on('click', '#add-student', function () {
 		$('.student_dropdown').toggleClass('hide');

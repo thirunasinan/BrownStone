@@ -8,7 +8,13 @@
   	<% unless @collections.blank? %>
   		<% @collections.each do |collection| %>
   			<li class="collection_row" data-collection-id="<%= collection.id %>">
-  				<a href="#"> <%= collection.name %> </a>
+  				<a href="#"> 
+            <p style="font-weight:500;margin-bottom: 0;"><%= collection.name %> </p>
+            <p style="color:#999;"><span> Questions: <%= collection.problems.size()%></span> 
+              &nbsp;&nbsp;&nbsp; 
+              <span> Students: <%= collection.students.size()%></span></p>
+
+          </a>
   			</li>
   		<% end %>
   	<% else %>

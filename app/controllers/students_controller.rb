@@ -85,12 +85,14 @@ class StudentsController < ApplicationController
 
 		@problems = Problem.where(:id => @collection.problems_hash)
 
+		@collection_student = @collection.students
+
 		render '_collection_problem_table', :layout => false
 	end	
 
 	def get_students
 		@collection = Collection.find(params[:id])
-		@students = @collection.users
+		@students = @collection.students
 
 		render "student_list", :layout => false
 	end
@@ -116,17 +118,42 @@ class StudentsController < ApplicationController
 
 	end
 
-	def problems_to_collection
-		# debugger
-		collection = Collection.find(params[:id])
+	def add_problems_to_collection
+		@collection = Collection.find(params[:id])
 
-		add_problem = collection.problems_hash +  params[:problems]
+		add_problem = @collection.problems_hash +  params[:problems]
 
-		if collection.update(:problems_hash => add_problem.uniq)
-			render :json => {:value => collection.name}.to_json
+		if @collection.update(:problems_hash => add_problem.uniq)
+
+			@students = User.where("is_admin = ? and is_teacher = ?", false, false)
+
+			@problems = Problem.where(:id => add_problem.uniq)
+
+			@collection_student = @collection.students
+
+			render '_collection_problem_table', :layout => false
 		else
 			render :json => {:error => "Error occered on edit"}.to_json
 		end
+	end
+
+	def problems_to_collection
+		# debugger
+		@collection = Collection.find(params[:id])
+
+		# add_problem = @collection.problems_hash +  params[:problems]
+
+		@selected_problems = Problem.where(:id => params[:problems])
+		@problems = @collection.problems
+		@students = @collection.students
+
+		render "_collection_student_problem", :layout => false
+
+		# if collection.update(:problems_hash => add_problem.uniq)
+		# 	render :json => {:value => collection.name}.to_json
+		# else
+		# 	render :json => {:error => "Error occered on edit"}.to_json
+		# end
 	end
 
 	def student_to_collection
@@ -134,7 +161,10 @@ class StudentsController < ApplicationController
 
 		add_users = collection.user_hash + params[:user_hash].map(&:to_i)
 		if collection.update(:user_hash => add_users.uniq)
-			render :json => {:success => "user has added to collection ", :student_count => collection.user_hash.length}.to_json
+
+			@collection_student = collection.students
+			render "_student_table", :layout => false
+			# render :json => {:success => "user has added to collection ", :student_count => collection.user_hash.length}.to_json
 		else
 			render :json => {:error => "Error occered on edit"}.to_json
 		end

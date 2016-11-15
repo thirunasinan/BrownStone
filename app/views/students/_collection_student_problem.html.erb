@@ -1,0 +1,179 @@
+<div class="row search-result">
+	<div class="col-md-12">
+		<a href = "#" class="back_to_collection back_to pull-left"> <i class="fa fa-chevron-left"></i></a>
+		<div class="title pull-left">
+			<h3 class="box-title" id="col-head" data-col-id="<%= @collection.id %>"> <%= @collection.name %> </h3>
+			<span class="title-sub"> Created On :  <%= DateTime.now %></span>
+		</div>
+	</div>
+</div>
+
+<div class="nav-tabs-custom">
+<ul class="nav nav-tabs">
+	<li class="active">
+		<a href="#questions" data-toggle="tab" aria-expanded="true">Questions</a>
+	</li>
+	<li class="">
+		<a href="#assisned_students" data-toggle="tab" aria-expanded="false">Assigned Students ( <%= @students.length %> )</a>
+	</li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane row active" id="questions">
+
+	<div class="title pull-left">
+		<h4 class="box-title"> Following Questions to be added to Collection </h4>
+	</div>
+
+	<table class="table table-bordered table-condensed table-hover table-striped" id="selected_collection">
+		<thead>
+		<tr>
+			<th>Number</th>
+		   	<th>Question</th>
+		   	<th>Source</th>
+		   	<th>Subject</th>
+		   	<th>Action</th>
+		</tr>
+		</thead>
+		<tbody>
+			<% unless (@selected_problems.blank?) %>
+				<% @selected_problems.each do |p| %>
+					<tr class="col-problm-row">
+						<td><%= p.number %></td>
+						<td class="question_row">
+							<p class="only_q"><%= p.question %></p>
+							<div class="q_and_a_wrapper hide">
+								<div class="box box-default box-solid">
+						            <div class="box-header with-border">
+						              <h3 class="box-title">Question</h3>
+						            </div>
+						            <div class="box-body">
+						              <%= p.question %>
+						            </div>
+						        </div>
+
+						        <div class="box box-default box-solid">
+						            <div class="box-header with-border">
+						              <h3 class="box-title">Answers Choices</h3>
+						            </div>
+						            <div class="box-body">
+						            	<ul class="products-list product-list-in-box">
+							              <% p.answer_choices.each do |answer| %>
+							              	<li class="item"><%= answer.text %></li>
+							              <% end %>
+							            </ul>  
+						            </div>
+						        </div>
+						    <div>   
+						</td>
+						<td><%= p.source.name %></td>
+						<td><%= p.source.subject.name %></td>
+						<td> 
+							<a href="#" class="btn btn-danger btn-sm problem-delete" data-problem-id="<%= p.id %>"> <i class="fa fa-trash"> </i></a>
+						</td>
+					</tr>	
+				<% end %>
+			<% else %>
+				<tr> 
+					<td colspan="5" class="text-center no_data_row" >No Problems Available... </td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+<div>
+	<button class="btn btn-primary" id="confirm_quest_to_collection"> Add/Confirm above question(s) to collection </button>
+</div>
+
+
+	<div class="title pull-left">
+		<h4 class="box-title"> Existing Questions in Collection </h4>
+	</div>
+
+	<table class="table table-bordered table-condensed table-hover table-striped">
+		<thead>
+		<tr>
+			<th>Number</th>
+		   	<th>Question</th>
+		   	<th>Source</th>
+		   	<th>Subject</th>
+		   	<th>Action</th>
+		</tr>
+		</thead>
+		<tbody>
+			<% unless (@problems.blank?) %>
+				<% @problems.each do |p| %>
+					<tr class="col-problm-row">
+						<td><%= p.number %></td>
+						<td class="question_row">
+							<p class="only_q"><%= p.question %></p>
+							<div class="q_and_a_wrapper hide">
+								<div class="box box-default box-solid">
+						            <div class="box-header with-border">
+						              <h3 class="box-title">Question</h3>
+						            </div>
+						            <div class="box-body">
+						              <%= p.question %>
+						            </div>
+						        </div>
+
+						        <div class="box box-default box-solid">
+						            <div class="box-header with-border">
+						              <h3 class="box-title">Answers Choices</h3>
+						            </div>
+						            <div class="box-body">
+						            	<ul class="products-list product-list-in-box">
+							              <% p.answer_choices.each do |answer| %>
+							              	<li class="item"><%= answer.text %></li>
+							              <% end %>
+							            </ul>  
+						            </div>
+						        </div>
+						    <div>   
+						</td>
+						<td><%= p.source.name %></td>
+						<td><%= p.source.subject.name %></td>
+						<td> 
+							<a href="#" class="btn btn-danger btn-sm problem-delete" data-problem-id="<%= p.id %>"> <i class="fa fa-trash"> </i></a>
+						</td>
+					</tr>	
+				<% end %>
+			<% else %>
+				<tr> 
+					<td colspan="5" class="text-center no_data_row" >No Problems Available... </td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	</div>
+
+	<div class="tab-pane row" id="assisned_students">
+		<table class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+	<tr>
+		<th>Name</th>
+	   	<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% unless (@students.blank?) %>
+			<% @students.each do |s| %>
+				<tr class="col-problm-row">
+					<td class="name"><%= s.email.split('@')[0] %></td>
+					<td> 
+						<a href="#" class="btn btn-danger btn-sm remove-student" data-student-id="<%= s.id %>"> <i class="fa fa-trash"> </i></a>
+					</td>
+				</tr>	
+			<% end %>
+		<% else %>
+			<tr> 
+				<td colspan="5" class="text-center no_data_row" >No Student has mapped for this collection </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+	</div>
+
+</div>
+</div>

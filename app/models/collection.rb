@@ -1,13 +1,13 @@
 class Collection < ActiveRecord::Base
-	# self.table_name= "collections"
-	# has_many :problems
-
-	# def problems
-	#     Problem.where(:id => self.problems)
-	# end
+	self.table_name= "collections"
+	has_many :problems
 	has_many :users
 
-	def users
+	def problems
+	    Problem.where(:id => self.problems_hash)
+	end
+
+	def students
 		User.where(:id => self.user_hash)
 	end
 end
