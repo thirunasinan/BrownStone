@@ -44,7 +44,11 @@ class StudentsController < ApplicationController
 			tag = (params[:tag_id].blank?) ? [] : params[:tag_id]
 		end
 
-		@problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
+		problem_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
+
+		# @problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
+
+		@problems = Problem.where("id in (?) and source_id in (?)", problem_id, source)
 
 		render '_table', :layout => false
 	end

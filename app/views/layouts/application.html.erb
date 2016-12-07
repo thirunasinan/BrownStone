@@ -12,6 +12,16 @@
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
+<style>
+.problem_search {
+  margin-top: 100px;
+}
+
+.rails_admin .navbar-brand img{
+  width: 100px;
+  margin-top: -15px;
+}
+</style>
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
 
@@ -25,7 +35,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="skin-blue sidebar-mini">
-  <div class="wrapper">
+  <div class="">
     <% if current_user.present? %>
       <% if current_user.is_admin || current_user.is_teacher %>
         <div class="navbar navbar-default navbar-fixed-top">
