@@ -30,6 +30,41 @@ class StudentsController < ApplicationController
 		render :json => {:tags => tags, :sources => source }
 	end
 
+	def get_source_tags
+		tags = []
+		stags = []
+		problems_id = []
+		tagArr = []
+		tag_id = []
+		source_id = params[:source_id]
+			if(params[:subject_id].present?)
+				stags = Tag.joins(:subjects).where("subjects.id in (?)",params[:subject_id]).ids
+			end
+			if (params[:source_id].present?)
+			problem_id = Problem.where("source_id in (?)",source_id).ids
+			tags_id= TagRelationship.where("tagged_id in (?) AND tagged_type = 'Problem'",problem_id).pluck(:tag_id)
+			
+			end
+			if(tags_id.blank? && stags.blank?)
+
+				tagArr = []
+			elsif tags_id.blank?
+				tagArr.push *stags
+			elsif stags.blank?
+				tagArr.push *tags_id
+			else
+				tagArr.push *tags_id
+				tagArr.push *stags
+			end
+
+			if(tagArr.present?)	
+          tags = Tag.where("id in (?)" ,tagArr)
+      end
+		render :json => {:tags => tags}
+	end
+
+
+
 	def get_problems
 		source = []
 		tag = []
@@ -44,11 +79,16 @@ class StudentsController < ApplicationController
 			tag = (params[:tag_id].blank?) ? [] : params[:tag_id]
 		end
 
+		if(tag.blank?)
+			@problems = Problem.where("source_id in (?)",source)
+		else
 		problem_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
 
 		# @problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
 
 		@problems = Problem.where("id in (?) and source_id in (?)", problem_id, source)
+
+		end
 
 		render '_table', :layout => false
 	end

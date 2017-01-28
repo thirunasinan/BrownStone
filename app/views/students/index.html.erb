@@ -39,12 +39,12 @@
 				<div class="form-group">
 					<label for="subject">Subject</label>
 					<%= select_tag :subject, options_from_collection_for_select(@subject,"id","name",
-					''), {:multiple => :multiple, :class => 'select2 form-control'} %>
+					''), {:multiple => :multiple, :class => 'select2 form-control', :required =>true }%>
 				</div>
 				<div class="form-group">
 					<label for="source">Source</label>
 					<%= select_tag :source, options_from_collection_for_select(@sources,"id","name",
-					''), {:multiple => :multiple, :class => 'select2 form-control'} %>
+					''), {:multiple => :multiple, :class => 'select2 form-control',:required =>true} %>
 				</div>
 				<div class="form-group">
 					<label for="tags">Tags</label>
@@ -133,6 +133,26 @@ $(document).ready(function(){
 	        	$('#by_topic').find('.table-container .problem_result').html(result);
 	    	}
 	  	});
+	})
+
+
+	$('#source').on('change', function(e) {
+		var source_id = $(this).val();
+		var tag_id = $('')
+		$.ajax({
+			url: "/source_tags", data: {"source_id": source_id, "subject_id":$('#subject').val()},
+			success: function(result){
+
+	        var tag_options = [];
+	      
+	      console.log(result.tags);
+	        $.each(result.tags, function(i, obj) {
+
+	        	tag_options.push("<option value=" + obj.id+">" +obj.name +"</option>" )
+	        })
+
+			$('#tags').html(tag_options.join("")).select2('destroy').select2();
+	    }});
 	})
 
 	$('#subject').on('change', function(e) {

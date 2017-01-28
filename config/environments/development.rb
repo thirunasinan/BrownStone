@@ -1,20 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  Paperclip.options[:command_path] = "/usr/local/bin/"
-
-  # pdf, image uploads - https://devcenter.heroku.com/articles/paperclip-s3
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_credentials: {
-      bucket: ENV.fetch('S3_BUCKET_NAME'),
-      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-      s3_region: ENV.fetch('AWS_REGION'),
-    },
-    :url =>':s3_domain_url',
-    :path => '/:class/:attachment/:id_partition/:style/:filename',
-  }
+  
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
