@@ -81,14 +81,24 @@ class StudentsController < ApplicationController
 
 		if(tag.blank?)
 			@problems = Problem.where("source_id in (?)",source)
+		else if (source.blank?)
+			tagprob_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
+			src_id = Source.where(:subject_id =>subject_id).ids
+			srcprob_id = Problem.where(:source_id =>src_id).ids
+		
+
+			@problems = Problem.where("id in (?) and id in (?)", tagprob_id, srcprob_id)
+
+		
 		else
-		problem_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
+			problem_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
 
 		# @problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
 
-		@problems = Problem.where("id in (?) and source_id in (?)", problem_id, source)
+			@problems = Problem.where("id in (?) and source_id in (?)", problem_id, source)
 
 		end
+	end
 
 		render '_table', :layout => false
 	end
