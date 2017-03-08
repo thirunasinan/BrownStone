@@ -68,38 +68,47 @@ class StudentsController < ApplicationController
 	def get_problems
 		source = []
 		tag = []
+		problems =[]
 
 		subject_id = params[:subject_id]
+		tag_id =params[:tag_id]
+		source_id = params[:source_id]	
+		
 
-		if (subject_id.present? && params[:source_id].blank? && params[:tag_id].blank?) 
-			tag = Tag.joins(:subjects).where("subjects.id in (?)", subject_id).ids
+		if (subject_id.present? && source_id.present? && tag_id.present?) 
+			problems = TagRelationship.where(:tag_id => tag_id,:tagged_type => "Problem").pluck(:tagged_id)
+			@problems =  Problem.where("id in (?) and source_id in (?)",problems,source_id)
+		
+		elsif(subject_id.present? && source_id.blank? && tag_id.blank?)
 			source = Source.where("subject_id in (?)", subject_id).ids
-		else
-			source = (params[:source_id].blank?) ?  [] : params[:source_id]
-			tag = (params[:tag_id].blank?) ? [] : params[:tag_id]
+			@problems = Problem.where("problems.source_id in (?)",source)
+
+		elsif(subject_id.present? && source_id.present? && tag_id.blank?)
+			
+			@problems = Problem.where("problems.source_id in (?)",source_id)
+
+		elsif (subject_id.present? && source_id.blank? && tag_id.present?)
+			source = Source.where("subject_id in (?)", subject_id).ids
+			problems = TagRelationship.where(:tag_id => tag_id,:tagged_type => "Problem").pluck(:tagged_id)
+			@problems = Problem.where("id in (?) and source_id in (?)",problems,source)
+		elsif (subject_id.blank? && source_id.present? && tag_id.blank?)
+				@problems = Problem.where("problems.source_id in (?)",source_id)
+		elsif (subject_id.blank? && source_id.present? && tag_id.present?)
+
+			 problems = TagRelationship.where(:tag_id => tag_id,:tagged_type => "Problem").pluck(:tagged_id)
+			@problems = Problem.where("id in (?) and source_id in (?)",problems,source_id)
+
+		elsif (subject_id.blank? && source_id.blank? && tag_id.present?)
+			problems = TagRelationship.where(:tag_id => tag_id,:tagged_type => "Problem").pluck(:tagged_id)
+			@problems = Problem.where("id in (?) ",problems)
+
+		elsif (subject_id.blank? && source_id.blank? && tag_id.blank?)
+			tag = Tag.select(:id).all
+			source = Source.select(:id).all
+		 	problems = TagRelationship.where(:tag_id => tag,:tagged_type => "Problem").pluck(:tagged_id)
+			@problems = Problem.where("id in (?) and source_id in (?)",problems,source)
+
 		end
-
-		if(tag.blank?)
-			@problems = Problem.where("source_id in (?)",source)
-		else if (source.blank?)
-			tagprob_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
-			src_id = Source.where(:subject_id =>subject_id).ids
-			srcprob_id = Problem.where(:source_id =>src_id).ids
-		
-
-			@problems = Problem.where("id in (?) and id in (?)", tagprob_id, srcprob_id)
-
-		
-		else
-			problem_id = TagRelationship.where(:tag_id => tag).pluck(:tagged_id)
-
-		# @problems = Problem.joins(:tags).where("tags.id in (?) and problems.source_id in (?)", tag, source)
-
-			@problems = Problem.where("id in (?) and source_id in (?)", problem_id, source)
-
-		end
-	end
-
 		render '_table', :layout => false
 	end
 
