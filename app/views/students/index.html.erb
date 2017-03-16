@@ -138,14 +138,14 @@ $(document).ready(function(){
 
 	$('#source').on('change', function(e) {
 		var source_id = $(this).val();
-		var tag_id = $('')
+		var tag_id = $('#tags').val();
 		$.ajax({
-			url: "/source_tags", data: {"source_id": source_id, "subject_id":$('#subject').val()},
+			url: "/source_tags", data: {"source_id": source_id, "subject_id":$('#subject').val(),"tag_id":tag_id},
 			success: function(result){
 
 	        var tag_options = [];
 	      
-	      console.log(result.tags);
+	    
 	        $.each(result.tags, function(i, obj) {
 
 	        	tag_options.push("<option value=" + obj.id+">" +obj.name +"</option>" )
@@ -157,6 +157,7 @@ $(document).ready(function(){
 
 	$('#subject').on('change', function(e) {
 		var id = $(this).val();
+
 		$.ajax({
 			url: "/tags_source", data: {"id": id},
 			success: function(result){
